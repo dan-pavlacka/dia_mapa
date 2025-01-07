@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+		<title>Leaflet Mapa digitalizace</title>
+    	
+		<!--nacteni test GeoJSON-->
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>		
+		<!--leaflet knihovna-->
+    	<script src="scripts/leaflet.js"></script>
+		<!--Nacteni GeoJSON - test -->
+		<script src="scripts/leaflet.ajax.js"></script>	
+		<!--leaflet CSS-->
+		<link rel="stylesheet" href="styles/leaflet.css"/>
+		<!--moje CSS-->
+		<link rel="stylesheet" href="styles/mapa.css"/>
+		<!--sidebar css-->
+		<link rel="stylesheet" href="styles/leaflet-sidebar.css" />
+
+	</head>
+
+	<body>
+		
+		<div id="sidebar" class="sidebar collapsed">
+			<!-- Nav tabs -->
+			<div class="sidebar-tabs">
+				<ul role="tablist">
+					<li><a href="#home" role="tab">		<img src="img/home.png" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#legenda" role="tab">	<img src="img/vrstvy.png" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#sluzby" role="tab">	<img src="img/search.png" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#dalsi_zalozka" role="tab">	<img src="img/help.png" alt="Menu Icon" class="menu-icon"></a></li>
+				</ul>
+	
+				<ul role="tablist">
+					<li><a href="#settings" role="tab">	<img src="img/settings.png" alt="Menu Icon" class="menu-icon"></i></a></li>
+				</ul>
+			</div>
+	
+			<!-- Tab panes -->
+			<div class="sidebar-content">
+				<div class="sidebar-pane" id="home">
+					<h1 class="sidebar-header">
+						INDEX DIGITALIZACE_
+						<span class="sidebar-close">	<img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span>
+					</h1>
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>	
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>						
+					<img src="img/logoDIA.png" style="width:350px">
+				</div>
+	
+				<div class="sidebar-pane" id="legenda">
+					<h1 class="sidebar-header">LEGENDA_<span class="sidebar-close"><img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					
+					<h3>Přehled vrstev</h3>
+				<div>
+					<div><input class="radio" type="radio" id="vrstva1" name="vrs" onclick="addlay(indexD, 'legenda1', legendModra)" checked>
+					<label for="vrstva1">Celkový index digitalizace</label> 
+						<div id="legenda1" class="legend-container"></div>
+					</div>
+				<!--pokrytí podle DESI-->
+					<div><input class="radio" type="radio" id="vrstva2" name="vrs" onclick="addlay(index1, 'legenda2', legendOranzova)">
+					<label for="vrstva2">Index za oblast 1</label> 
+						<div id="legenda2" class="legend-container"></div>
+					</div>
+	
+					<div><input class="radio" type="radio" id="vrstva3" name="vrs" onclick="addlay(index2, 'legenda3', legendZelena)">
+					<label for="vrstva3">Index za oblast 2</label>
+						<div id="legenda3" class="legend-container"></div>
+					</div>
+
+					<div><input class="radio" type="radio" id="vrstva4" name="vrs" onclick="addlay(index3, 'legenda4', legendFialova)">
+					<label for="vrstva4">Index za oblast 3</label> 
+						<div id="legenda4" class="legend-container"></div>
+					</div>
+				</div>
+
+					<h3>Podkladové mapy</h3>
+				<div>
+					<div><input class= "checkbox" type="checkbox" id="OSM" name="podk" onclick="addBase()" checked>
+					<label for="OSM">OpenStreetMap</label> </div>			
+				
+				</div>
+				</div>
+
+				<div class="sidebar-pane" id="sluzby">
+					<h1 class="sidebar-header">DIGITÁLNÍ SLUŽBY_<span class="sidebar-close"><img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span></h1>
+
+					<!--platební portál, integrovaný dopravní systém, rozklikávací rozpočet-->
+					<h3> Přehled služeb</h3>
+					<div><input class= "radio" type="radio" id="sl1" name="sluzby" data-attribute="sluzba" data-group="sluzby">
+					<label for="sl1">služba 1</label> </div>
+
+					<div><input class= "radio" type="radio" id="sl2" name="sluzby" data-attribute="sluzba2" data-group="sluzby">
+					<label for="sl2">služba 2</label> </div>
+
+					<div><input class= "radio" type="radio" id="sl3" name="sluzby" data-attribute="sluzba3" data-group="sluzby">
+					<label for="sl3">služba 3</label> </div>
+
+					<div><button type="button" onclick="zrusitVyberSluzby()">Zrušit výběr</button> </div>
+					
+
+				</div>
+	
+				<div class="sidebar-pane" id="dalsi_zalozka">
+					<h1 class="sidebar-header">IN FORMACE O KRAJI_<span class="sidebar-close"><img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					<div id="infoKraj"></div>
+
+
+
+				</div>
+				
+					<div class="sidebar-pane" id="settings">
+					<h1 class="sidebar-header">NASTAVENÍ_<span class="sidebar-close"><img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span></h1>
+				</div>
+			</div>
+		</div>
+		
+		<div id="map" class="map"></div>
+		
+    	
+    	<script src="scripts/leaflet-sidebar.js"></script>
+
+		<!--moje JS-->
+		<script src="scripts/myleaflet.js"> </script>
+		
+	</body>
+</html>

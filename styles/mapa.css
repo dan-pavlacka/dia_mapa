@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'AzeretMono'; 
+    src: url('../fonts/Azeret_Mono/AzeretMono-VariableFont_wght.ttf') format('truetype'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+@font-face {
+    font-family: 'DMSans'; 
+    src: url('../fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.leaflet-container {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+body {
+    
+    padding: 0;
+    margin: 0;
+}
+
+html, body, #map {
+    height: 100%;
+    font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+p {
+    font-family: 'AzeretMono', sans-serif;
+    font-style: normal;
+    color: #000000;
+}
+
+h1, h3, label {
+    font-family: 'DMSans', sans-serif;
+}
+
+/* Kdybych htěl někde zrušit azeret tak oddělat to p a používat tuto class */
+.lorem {
+    font-family: 'AzeretMono', sans-serif;
+    font-style: normal;
+    color: #000000;
+}
+
+.menu-icon {
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+  }
+
+
+.bold {
+    font-weight: bold;
+}
+
+.legend { text-align: left;
+    font-family: 'DMSans', sans-serif;
+    line-height: 18px;
+    padding: 12px 28px;
+    color: #242424; } 
+
+.legend i { 
+    width: 36px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;}
+
+
+/* styly z designsystem*/
+
+label {
+    font-size: 1.2rem;
+    line-height: 150%;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    cursor: pointer;
+
+}
+
+.checkbox {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    color:  #000000;;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.radio{
+    width:15px;
+    height: 15px;
+    border-width: 2px;
+    position: relative;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    cursor: pointer;
+}
+
+radio input:checked{
+    background: #2362a2;
+    box-shadow: 0 0 0 2px #2362a2;
+}
+
+button{
+    margin: 25px 25px 0px 0px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color:#ffffff;
+    height:2rem  ;
+    padding:1em;
+    display: inline-flex;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    background-color: #2362a2;
+    text-align: center;
+    cursor: pointer;
+    border-radius: .5rem;
+}
