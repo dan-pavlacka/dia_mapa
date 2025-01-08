@@ -234,7 +234,8 @@ function vypisPopupu(feature, layer) {
 	layer.bindPopup(popupContent); 
 
 	let	vypisKraj = `<h3>${feature.properties.text}</h3>` +
-	`<a href="${feature.properties.web_kraje}">${feature.properties.web_kraje}`;
+	`<a href="${feature.properties.web_kraje}" target="_blank">Web kraje</a>` +
+	`<a href="${feature.properties.platebni_portal_web}" target="_blank">Platební portál</a>`;
 
 	layer.on('click', (e) => {
         // Změna obsahu v elementu s ID "infoKraj"
