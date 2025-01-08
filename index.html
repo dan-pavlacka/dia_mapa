@@ -63,7 +63,7 @@
 					</div>
 				<!--pokrytí podle DESI-->
 					<div><input class="radio" type="radio" id="vrstva2" name="vrs" onclick="addlay(index1, 'legenda2', legendOranzova)">
-					<label for="vrstva2">Pokrytí širokopásmovým připojením k internetu</label> 
+					<label for="vrstva2">Index za oblast 1</label> 
 						<div id="legenda2" class="legend-container"></div>
 					</div>
 	
@@ -91,14 +91,17 @@
 
 					<!--platební portál, integrovaný dopravní systém, rozklikávací rozpočet-->
 					<h3> Přehled služeb</h3>
-					<div><input class= "radio" type="radio" id="sl1" name="sluzby" data-attribute="sluzba" data-group="sluzby">
+					<div><input class= "radio" type="radio" id="sl1" name="sluzby" data-attribute="j_platebni_portal" data-group="sluzby">
 					<label for="sl1">Platební portál</label> </div>
 
-					<div><input class= "radio" type="radio" id="sl2" name="sluzby" data-attribute="sluzba2" data-group="sluzby">
+					<div><input class= "radio" type="radio" id="sl2" name="sluzby" data-attribute="j_rozklikavaci_rozpocet" data-group="sluzby">
 					<label for="sl2">Rozklikávací rozpočet</label> </div>
 
-					<div><input class= "radio" type="radio" id="sl3" name="sluzby" data-attribute="sluzba3" data-group="sluzby">
-					<label for="sl3">služba 3</label> </div>
+					<div><input class= "radio" type="radio" id="sl3" name="sluzby" data-attribute="j_IDS" data-group="sluzby">
+					<label for="sl3">Integrovaný dopravní systém</label> </div>
+
+					<div><input class= "radio" type="radio" id="sl4" name="sluzby" data-attribute="j_GEOportal" data-group="sluzby">
+					<label for="sl4s">Integrovaný dopravní systém</label> </div>
 
 					<div><button type="button" onclick="zrusitVyberSluzby()">Zrušit výběr</button> </div>
 					
