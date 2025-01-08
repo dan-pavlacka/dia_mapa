@@ -100,7 +100,7 @@ const defaultStyle = {
 
 //funkce na zvýraznění polygonů + definice toho způsobu zvýraznění
 function highlightFeature(feature, layer, attribute) {
-    if (feature.properties[attribute]) {
+    if (feature.properties[attribute] == 1) {
         layer.setStyle({
             fillColor: '#d6d64b',
 			weight: 2,
