@@ -61,7 +61,7 @@
 					<label for="vrstva1">Index digitalizace</label> 
 						<div id="legenda1" class="legend-container"></div>
 					</div>
-				<!--pokrytí podle DESI-->
+
 					<div><input class="radio" type="radio" id="vrstva2" name="vrs" onclick="addlay(index1, 'legenda2', legendOranzova)">
 					<label for="vrstva2">Index za oblast 1</label> 
 						<div id="legenda2" class="legend-container"></div>
@@ -76,6 +76,12 @@
 					<label for="vrstva4">Index za oblast 3</label> 
 						<div id="legenda4" class="legend-container"></div>
 					</div>
+				
+				<!--dodelat novou legendu-->	
+					<div><input class="radio" type="radio" id="vrstva5" name="vrs" onclick="addlay(indexD, 'legenda5', legendModra)">
+						<label for="vrstva5">Lighthouse accessibility scoring</label> 
+							<div id="legenda5" class="legend-container"></div>
+						</div>
 				</div>
 
 					<h3>Podkladové mapy</h3>
@@ -89,7 +95,6 @@
 				<div class="sidebar-pane" id="sluzby">
 					<h1 class="sidebar-header">DIGITÁLNÍ SLUŽBY<span class="sidebar-close"><img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span></h1>
 
-					<!--platební portál, integrovaný dopravní systém, rozklikávací rozpočet-->
 					<h3> Přehled služeb</h3>
 					<div><input class= "radio" type="radio" id="sl1" name="sluzby" data-attribute="j_platebni_portal" data-group="sluzby">
 					<label for="sl1">Platební portál</label> </div>
