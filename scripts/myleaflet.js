@@ -48,6 +48,14 @@ const map = L.map('map',{minZoom:6, maxZoom:9}).setView([49.8, 14.85],zoomLev);
 						 '#C187BC' ;
 	};
 
+	function getColorCervena(d) {
+		return 	d > 80 ? '#FF0000' :
+				d > 60 ? '#FF603E' :
+				d > 40 ? '#FF9B7E' :
+				d < 40 ? '#FFC4B0' :
+						 '#FFC4B0' ;
+	};
+
 //definování stylu vrstev
 function indexD(feature) {
 	return {
@@ -62,7 +70,7 @@ function indexD(feature) {
 
 	function index1(feature) {
 		return {
-			fillColor: getColorOranzova(feature.properties.test2),
+			fillColor: getColorOranzova(feature.properties.j_celkove_hodnoceni),
 			weight: 2,
 			opacity: 0.5,
 			color: 'white',
@@ -90,6 +98,16 @@ function indexD(feature) {
 		};
 	};
 
+	function accessibilityScoring(feature) {
+		return {
+			fillColor: getColorCervena(feature.properties.test4),
+			weight: 2,
+			opacity: 0.5,
+			color: 'white',
+			fillOpacity: 0.7
+		};
+	};
+
 
 //zvýraznění podle služby
 //defultní průhledná vrstva
@@ -98,11 +116,13 @@ const defaultStyle = {
 	fillOpacity: 0
 };
 
-//funkce na zvýraznění polygonů + definice toho způsobu zvýraznění
+
+/*/funkce na zvýraznění polygonů - jenom barva
 function highlightFeature(feature, layer, attribute) {
     if (feature.properties[attribute] == 1) {
         layer.setStyle({
             fillColor: '#d6d64b',
+			
 			weight: 2,
 			color: "white",
             opacity: 0.5,
@@ -112,7 +132,37 @@ function highlightFeature(feature, layer, attribute) {
     } else {
         layer.setStyle(defaultStyle);
     }
-};
+};*/
+
+// Funkce na zvýraznění polygonů
+function highlightFeature(feature, layer, attribute) {
+    // Zkontrolujte, zda hodnota atributu odpovídá podmínce
+    if (feature.properties[attribute] == 1) {
+        // Vytvoření šrafovacího vzoru
+        const hatchingPattern = new L.StripePattern({
+            weight: 2, // Tloušťka čar
+            color: "#4d4d4d", // Barva šrafování
+            spaceWeight: 12, // Vzdálenost mezi čarami
+            angle: 45, // Úhel šrafování
+        });
+
+        // Přidání vzoru do mapy
+        hatchingPattern.addTo(map);
+
+        // Použití vzoru na zvýrazněný polygon
+        layer.setStyle({
+            fillPattern: hatchingPattern, // Nastavení šrafovacího vzoru
+            weight: 2,
+            color: "white", // Okraj polygonu
+            opacity: 1,
+            fillOpacity: 1, // Plná neprůhlednost šrafy
+        });
+
+        layer.bringToFront(); // Posun vrstvy dopředu
+    } else {
+        layer.setStyle(defaultStyle); // Reset na výchozí styl
+    }
+}
 
 //inicializace průhledné vrstvy
 let pruhlednaVrstva = new L.GeoJSON.AJAX("data/kraje.geojson", {style: defaultStyle, onEachFeature: vypisPopupu});
@@ -168,6 +218,7 @@ const legendModra = generateLegend(getColorModra, "legendModra");
 const legendFialova = generateLegend(getColorFialova, "legendFialova");
 const legendOranzova = generateLegend(getColorOranzova, "legendOranzova");
 const legendZelena = generateLegend(getColorZelena, "legendZelena");
+const legendCervena = generateLegend(getColorCervena, "legendCervena");
 
 //sidebar
 let sidebar = L.control.sidebar('sidebar').addTo(map); 
@@ -227,7 +278,7 @@ function addBase(){
 function vypisPopupu(feature, layer) {  
 	let popupContent = `<b>${feature.properties.text}</b>` + 
 	`<br>Hodnota celkového indexu: ${feature.properties.test}` +
-	`<br>Hodnota indexu za oblast 1: ${feature.properties.test2}` +
+	`<br>Hodnota indexu poskytovaných služeb: ${Math.round(feature.properties.j_celkove_hodnoceni)}` +
 	`<br>Hodnota indexu za oblast 2: ${feature.properties.test3}` +
 	`<br>Hodnota indexu za oblast 3: ${feature.properties.test4}`;
 
@@ -235,15 +286,24 @@ function vypisPopupu(feature, layer) {
 
 	let	vypisKraj = `<h3>${feature.properties.text}</h3>`;
 	if (feature.properties.web_kraje) {
-	vypisKraj += `<a href="${feature.properties.web_kraje}" target="_blank">Web kraje</a> <br>`}
+		vypisKraj += `<a href="${feature.properties.web_kraje}" target="_blank">Web kraje</a> <br>`;}
 	if (feature.properties.j_platebni_portal_web) {
-	vypisKraj += `<a href="${feature.properties.j_platebni_portal_web}" target="_blank">Platební portál</a> <br>`}
-	if (feature.properties.properties.j_IDS_web) {
-	vypisKraj += `<a href="${feature.properties.j_IDS_web}" target="_blank">Integrovaný dopravní systém</a> <br>`}
+		vypisKraj += `<a href="${feature.properties.j_platebni_portal_web}" target="_blank">Platební portál</a> <br>`;}
+	if (feature.properties.j_IDS_web) {
+		vypisKraj += `<a href="${feature.properties.j_IDS_web}" target="_blank">Integrovaný dopravní systém</a> <br>`;}
 	if (feature.properties.j_rozklikavaci_rozpocet_web) {
-	vypisKraj += `<a href="${feature.properties.j_rozklikavaci_rozpocet_web}" target="_blank">Rozklikávací rozpočet</a> <br>`}
+		vypisKraj += `<a href="${feature.properties.j_rozklikavaci_rozpocet_web}" target="_blank">Rozklikávací rozpočet</a> <br>`;}
 	if (feature.properties.j_GEOportal_web) {
-	vypisKraj += `<a href="${feature.properties.j_GEOportal_web}" target="_blank">GEOportál</a> <br>`};
+		vypisKraj += `<a href="${feature.properties.j_GEOportal_web}" target="_blank">GEOportál</a> <br>`;};
+	if (feature.properties.j_openDATA_web) {
+		vypisKraj += `<a href="${feature.properties.j_openDATA_web}" target="_blank">Portál otevřených dat</a> <br>`;};
+	if (feature.properties.j_katalog_soc_sluzeb_web) {
+		vypisKraj += `<a href="${feature.properties.j_katalog_soc_sluzeb_web}" target="_blank">Katalog sociálních služeb</a> <br>`;};
+	if (feature.properties.j_portal_kriz_rizeni_web) {
+		vypisKraj += `<a href="${feature.properties.j_portal_kriz_rizeni_web}" target="_blank">Portál krizového řízení</a> <br>`;};
+	
+
+
 
 	layer.on('click', (e) => {
         // Změna obsahu v elementu s ID "infoKraj"

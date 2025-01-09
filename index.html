@@ -19,7 +19,9 @@
 		<link rel="stylesheet" href="styles/mapa.css"/>
 		<!--sidebar css-->
 		<link rel="stylesheet" href="styles/leaflet-sidebar.css" />
-
+		<!--šrafa-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.pattern/dist/leaflet.pattern.css" />
+		<script src="https://cdn.jsdelivr.net/npm/leaflet.pattern/dist/leaflet.pattern.min.js"></script>
 	</head>
 
 	<body>
@@ -61,9 +63,9 @@
 					<label for="vrstva1">Index digitalizace</label> 
 						<div id="legenda1" class="legend-container"></div>
 					</div>
-				<!--pokrytí podle DESI-->
+
 					<div><input class="radio" type="radio" id="vrstva2" name="vrs" onclick="addlay(index1, 'legenda2', legendOranzova)">
-					<label for="vrstva2">Index za oblast 1</label> 
+					<label for="vrstva2">Index poskytované služby</label> 
 						<div id="legenda2" class="legend-container"></div>
 					</div>
 	
@@ -76,6 +78,12 @@
 					<label for="vrstva4">Index za oblast 3</label> 
 						<div id="legenda4" class="legend-container"></div>
 					</div>
+				
+				<!--dodelat novou legendu-->	
+					<div><input class="radio" type="radio" id="vrstva5" name="vrs" onclick="addlay(accessibilityScoring, 'legenda5', legendCervena)">
+						<label for="vrstva5">Lighthouse accessibility scoring</label> 
+							<div id="legenda5" class="legend-container"></div>
+						</div>
 				</div>
 
 					<h3>Podkladové mapy</h3>
@@ -89,7 +97,6 @@
 				<div class="sidebar-pane" id="sluzby">
 					<h1 class="sidebar-header">DIGITÁLNÍ SLUŽBY<span class="sidebar-close"><img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span></h1>
 
-					<!--platební portál, integrovaný dopravní systém, rozklikávací rozpočet-->
 					<h3> Přehled služeb</h3>
 					<div><input class= "radio" type="radio" id="sl1" name="sluzby" data-attribute="j_platebni_portal" data-group="sluzby">
 					<label for="sl1">Platební portál</label> </div>
@@ -102,6 +109,15 @@
 
 					<div><input class= "radio" type="radio" id="sl4" name="sluzby" data-attribute="j_GEOportal" data-group="sluzby">
 					<label for="sl4">Geoportál</label> </div>
+
+					<div><input class= "radio" type="radio" id="sl5" name="sluzby" data-attribute="j_openDATA" data-group="sluzby">
+					<label for="sl5">Portál otevřených dat</label> </div>
+
+					<div><input class= "radio" type="radio" id="sl6" name="sluzby" data-attribute="j_katalog_soc_sluzeb" data-group="sluzby">
+					<label for="sl6">Katalog sociálních služeb</label> </div>
+
+					<div><input class= "radio" type="radio" id="sl7" name="sluzby" data-attribute="j_portal_kriz_rizeni" data-group="sluzby">
+					<label for="sl7">Portál krizového řízení</label> </div>
 
 					<div><button type="button" onclick="zrusitVyberSluzby()">Zrušit výběr</button> </div>
 					
@@ -127,6 +143,7 @@
 		
     	
     	<script src="scripts/leaflet-sidebar.js"></script>
+		<!--<script src="scripts/pattern.js"> </script>-->
 
 		<!--moje JS-->
 		<script src="scripts/myleaflet.js"> </script>
