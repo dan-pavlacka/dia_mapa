@@ -18,24 +18,24 @@ const map = L.map('map',{minZoom:6, maxZoom:9}).setView([49.8, 14.85],zoomLev);
 //definování barevných stupnic pro kartogramy	
 	function getColorModra(d) {
 		return 	d > 80 ? 				'#2362a2' :
-				d > 60 && d < 80 ? 		'#337fc4' :
-				d > 40 && d < 60 ? 		'#599bd7' :
+				d > 60  ? 		'#337fc4' :
+				d > 40 ? 		'#599bd7' :
 				d < 40  ? 				'#93bde6' :
 										'#93bde6' ;
 	};	
 
 	function getColorOranzova(d) {
 		return 	d > 80 ? 				'#C76300' :
-				d > 60 && d < 80 ? 		'#DB8543' :
-				d > 40 && d < 60 ? 		'#EEB086' :
+				d > 60 ? 		'#DB8543' :
+				d > 40  ? 		'#EEB086' :
 				d < 40  ? 				'#F9D2B9' :
 										'#F9D2B9' ;
 	};
 
 	function getColorZelena(d) {
 		return 	d > 80 ? 				'#008040' :
-				d > 60 && d < 80 ? 		'#499861' :
-				d > 40 && d < 60 ? 		'#82B78F' :
+				d > 60  ? 		'#499861' :
+				d > 40  ? 		'#82B78F' :
 				d < 40  ? 				'#B2D3B9' :
 										'#B2D3B9' ;
 	};
@@ -49,11 +49,12 @@ const map = L.map('map',{minZoom:6, maxZoom:9}).setView([49.8, 14.85],zoomLev);
 	};
 
 	function getColorCervena(d) {
-		return 	d > 80 ? '#FF0000' :
-				d > 60 ? '#FF603E' :
-				d > 40 ? '#FF9B7E' :
-				d < 40 ? '#FFC4B0' :
-						 '#FFC4B0' ;
+		return 	d > 99 ? '#FF0000' :
+				d >= 95 ? '#FF603E' :
+				d >= 90 ? '#FF9B7E' :
+				d >= 85 ? '#FFCCBA' :
+				d < 85 ? '#FFE8E0':
+						 '#FFE8E0';
 	};
 
 //definování stylu vrstev
@@ -61,7 +62,7 @@ function indexD(feature) {
 	return {
 		fillColor: getColorModra(feature.properties.test),
 		weight: 2,
-		opacity: 0.5,
+		opacity: 1,
 		color: 'white',
 		fillOpacity: 0.7
 	};
@@ -72,7 +73,7 @@ function indexD(feature) {
 		return {
 			fillColor: getColorOranzova(feature.properties.j_celkove_hodnoceni),
 			weight: 2,
-			opacity: 0.5,
+			opacity: 1,
 			color: 'white',
 			fillOpacity: 0.7
 		};
@@ -82,7 +83,7 @@ function indexD(feature) {
 		return {
 			fillColor: getColorZelena(feature.properties.test3),
 			weight: 2,
-			opacity: 0.5,
+			opacity: 1,
 			color: 'white',
 			fillOpacity: 0.7
 		};
@@ -92,7 +93,7 @@ function indexD(feature) {
 		return {
 			fillColor: getColorFialova(feature.properties.test4),
 			weight: 2,
-			opacity: 0.5,
+			opacity: 1,
 			color: 'white',
 			fillOpacity: 0.7
 		};
@@ -100,9 +101,9 @@ function indexD(feature) {
 
 	function accessibilityScoring(feature) {
 		return {
-			fillColor: getColorCervena(feature.properties.test4),
+			fillColor: getColorCervena(feature.properties.j_Accessibility_desktop),
 			weight: 2,
-			opacity: 0.5,
+			opacity: 1,
 			color: 'white',
 			fillOpacity: 0.7
 		};
@@ -152,7 +153,7 @@ function highlightFeature(feature, layer, attribute) {
         // Použití vzoru na zvýrazněný polygon
         layer.setStyle({
             fillPattern: hatchingPattern, // Nastavení šrafovacího vzoru
-            weight: 2,
+            weight: 3,
             color: "white", // Okraj polygonu
             opacity: 1,
             fillOpacity: 1, // Plná neprůhlednost šrafy
@@ -193,10 +194,11 @@ function zrusitVyberSluzby(){
 */
 	
 //generování legendy
-const grades = [80, 60, 40, 40];
 
-function generateLegend(getColorFunction, legendName) {
-    let legend = `<div class="info legend">`;
+let grades;
+function generateLegend(getColorFunction, legendName, grades) {
+
+	let legend = `<div class="info legend">`;
 
     for (let i = 0; i < grades.length; i++) {
         const from = grades[i];
@@ -214,11 +216,55 @@ function generateLegend(getColorFunction, legendName) {
     return legend;
 }
 
-const legendModra = generateLegend(getColorModra, "legendModra");
-const legendFialova = generateLegend(getColorFialova, "legendFialova");
-const legendOranzova = generateLegend(getColorOranzova, "legendOranzova");
-const legendZelena = generateLegend(getColorZelena, "legendZelena");
-const legendCervena = generateLegend(getColorCervena, "legendCervena");
+/*function generateLegendAccessibility(getColorFunction, legendName, grades) {
+
+	let legend = `<div class="info legend">`;
+
+    for (let i = 0; i < grades.length; i++) {
+        const from = grades[i];
+        
+        if (i === grades.length - 1) {
+            // Poslední interval: méně než
+            legend += `<i style="background:${getColorFunction(from)}"></i> méně než ${from}<br>`;
+        } else {
+            // Ostatní intervaly: více než
+            legend += `<i style="background:${getColorFunction(from + 1)}"></i> ${from} a více <br>`;
+        } 
+    }
+
+    legend += '</div>';
+    return legend;
+}*/
+
+function generateLegendAccessibility(getColorFunction, legendName, grades) {
+    let legend = `<div class="info legend">`;
+
+    for (let i = 0; i < grades.length; i++) {
+        const from = grades[i];
+
+        if (i === 0) {
+            // První interval: méně než
+            legend += `<i style="background:${getColorFunction(from)}"></i> 100<br>`;
+			
+        } else if (i === grades.length - 1) {
+            // Poslední interval: pevně 100
+            legend += `<i style="background:${getColorFunction(from)}"></i> méně než 85<br>`;
+        } else {
+            // Ostatní intervaly: více než
+            legend += `<i style="background:${getColorFunction(from)}"></i> ${from} a více <br>`;
+        }
+    }
+
+    legend += '</div>';
+    return legend;
+}
+
+const legendModra = generateLegend(getColorModra, "legendModra", [80, 60, 40, 40]);
+const legendFialova = generateLegend(getColorFialova, "legendFialova", [80, 60, 40, 40]);
+const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [80, 60, 40, 40]);
+const legendZelena = generateLegend(getColorZelena, "legendZelena", [80, 60, 40, 40]);
+//legenda pro lighthouse
+const legendCervena = generateLegendAccessibility(getColorCervena, "legendCervena", [100, 95, 90, 85, 84]);
 
 //sidebar
 let sidebar = L.control.sidebar('sidebar').addTo(map); 
@@ -277,10 +323,11 @@ function addBase(){
 
 function vypisPopupu(feature, layer) {  
 	let popupContent = `<b>${feature.properties.text}</b>` + 
-	`<br>Hodnota celkového indexu: ${feature.properties.test}` +
-	`<br>Hodnota indexu poskytovaných služeb: ${Math.round(feature.properties.j_celkove_hodnoceni)}` +
-	`<br>Hodnota indexu za oblast 2: ${feature.properties.test3}` +
-	`<br>Hodnota indexu za oblast 3: ${feature.properties.test4}`;
+	`<br>Index digitalizace: ${feature.properties.test}` +
+	`<br>Index poskytovaných služeb: ${Math.round(feature.properties.j_celkove_hodnoceni)}` +
+	`<br>Index za oblast 2: ${feature.properties.test3}` +
+	`<br>Index za oblast 3: ${feature.properties.test4}`+
+	`<br>Accessibility scoring: ${feature.properties.j_Accessibility_desktop}`;
 
 	layer.bindPopup(popupContent); 
 
