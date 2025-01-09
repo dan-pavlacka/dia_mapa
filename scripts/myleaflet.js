@@ -286,6 +286,7 @@ function vypisPopupu(feature, layer) {
 
 	let	vypisKraj = `<h3>${feature.properties.text}</h3>`;
 	if (feature.properties.web_kraje) {
+<<<<<<< HEAD
 		vypisKraj += `<a href="${feature.properties.web_kraje}" target="_blank">Web kraje</a> <br>`;}
 	if (feature.properties.j_platebni_portal_web) {
 		vypisKraj += `<a href="${feature.properties.j_platebni_portal_web}" target="_blank">Platební portál</a> <br>`;}
@@ -304,6 +305,17 @@ function vypisPopupu(feature, layer) {
 	
 
 
+=======
+	vypisKraj += `<a href="${feature.properties.web_kraje}" target="_blank">Web kraje</a> <br>`;}
+	if (feature.properties.j_platebni_portal_web) {
+	vypisKraj += `<a href="${feature.properties.j_platebni_portal_web}" target="_blank">Platební portál</a> <br>`;}
+	if (feature.properties.j_IDS_web) {
+	vypisKraj += `<a href="${feature.properties.j_IDS_web}" target="_blank">Integrovaný dopravní systém</a> <br>`;}
+	if (feature.properties.j_rozklikavaci_rozpocet_web) {
+	vypisKraj += `<a href="${feature.properties.j_rozklikavaci_rozpocet_web}" target="_blank">Rozklikávací rozpočet</a> <br>`;}
+	if (feature.properties.j_GEOportal_web) {
+	vypisKraj += `<a href="${feature.properties.j_GEOportal_web}" target="_blank">GEOportál</a> <br>`;};
+>>>>>>> 04a682fcc0ca9068e8d709195b210768bbf3722e
 
 	layer.on('click', (e) => {
         // Změna obsahu v elementu s ID "infoKraj"
