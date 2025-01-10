@@ -17,34 +17,34 @@ const map = L.map('map',{minZoom:6, maxZoom:9}).setView([49.8, 14.85],zoomLev);
 
 //definování barevných stupnic pro kartogramy	
 	function getColorModra(d) {
-		return 	d > 80 ? 				'#2362a2' :
-				d > 60  ? 		'#337fc4' :
-				d > 40 ? 		'#599bd7' :
-				d < 40  ? 				'#93bde6' :
-										'#93bde6' ;
+		return 	d >= 80 ? 				'#0080ff' :
+				d >= 70  ? 		'#709bff' :
+				d >= 60 ? 		'#adbeff' :
+				d < 60  ? 				'#d5dcff' :
+										'#d5dcff' ;
 	};	
 
 	function getColorOranzova(d) {
-		return 	d > 80 ? 				'#C76300' :
-				d > 60 ? 		'#DB8543' :
-				d > 40  ? 		'#EEB086' :
-				d < 40  ? 				'#F9D2B9' :
+		return 	d >= 80 ? 				'#C76300' :
+				d >= 70 ? 		'#DB8543' :
+				d >= 60  ? 		'#EEB086' :
+				d < 60  ? 				'#F9D2B9' :
 										'#F9D2B9' ;
 	};
 
 	function getColorZelena(d) {
-		return 	d > 80 ? 				'#008040' :
-				d > 60  ? 		'#499861' :
-				d > 40  ? 		'#82B78F' :
-				d < 40  ? 				'#B2D3B9' :
+		return 	d >= 80 ? 				'#008040' :
+				d >= 70  ? 		'#499861' :
+				d >= 60  ? 		'#82B78F' :
+				d < 60  ? 				'#B2D3B9' :
 										'#B2D3B9' ;
 	};
 
 	function getColorFialova(d) {
-		return 	d > 80 ? '#800080' :
-				d > 60 ? '#973E95' :
-				d > 40 ? '#AE66AA' :
-				d < 40 ? '#C187BC' :
+		return 	d >= 80 ? '#800080' :
+				d >= 70 ? '#973E95' :
+				d >= 60 ? '#AE66AA' :
+				d < 60 ? '#C187BC' :
 						 '#C187BC' ;
 	};
 
@@ -58,9 +58,9 @@ const map = L.map('map',{minZoom:6, maxZoom:9}).setView([49.8, 14.85],zoomLev);
 	};
 
 //definování stylu vrstev
-function indexD(feature) {
+function indexDigitalizace(feature) {
 	return {
-		fillColor: getColorModra(feature.properties.test),
+		fillColor: getColorModra(feature.properties.j_index_digitalizace),
 		weight: 2,
 		opacity: 1,
 		color: 'white',
@@ -69,9 +69,9 @@ function indexD(feature) {
 };
 
 
-	function index1(feature) {
+	function indexSluzby(feature) {
 		return {
-			fillColor: getColorOranzova(feature.properties.j_celkove_hodnoceni),
+			fillColor: getColorOranzova(feature.properties.j_index_sluzby),
 			weight: 2,
 			opacity: 1,
 			color: 'white',
@@ -79,9 +79,9 @@ function indexD(feature) {
 		};
 	};
 
-	function index2(feature) {
+	function indexDovednosti(feature) {
 		return {
-			fillColor: getColorZelena(feature.properties.test3),
+			fillColor: getColorZelena(feature.properties.j_index_dovednosti),
 			weight: 2,
 			opacity: 1,
 			color: 'white',
@@ -89,9 +89,9 @@ function indexD(feature) {
 		};
 	};
 
-	function index3(feature) {
+	function indexInfrastruktura(feature) {
 		return {
-			fillColor: getColorFialova(feature.properties.test4),
+			fillColor: getColorFialova(feature.properties.j_index_infrastruktura),
 			weight: 2,
 			opacity: 1,
 			color: 'white',
@@ -186,11 +186,11 @@ function zrusitVyberSluzby(){
 }
 
 //vytvoření vrstev
-	let inD = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexD, onEachFeature: vypisPopupu});
+	let inD = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexDigitalizace, onEachFeature: vypisPopupu});
 /*	
-	let in1 = new L.GeoJSON.AJAX("data/kraje.geojson", {style: index1, onEachFeature: vypisPopupu});
-	let in2 = new L.GeoJSON.AJAX("data/kraje.geojson", {style: index2, onEachFeature: vypisPopupu});
-	let in3 = new L.GeoJSON.AJAX("data/kraje.geojson", {style: index3, onEachFeature: vypisPopupu});
+	let in1 = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexSluzby, onEachFeature: vypisPopupu});
+	let in2 = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexDovednosti, onEachFeature: vypisPopupu});
+	let in3 = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexInfrastruktura, onEachFeature: vypisPopupu});
 */
 	
 //generování legendy
@@ -205,7 +205,7 @@ function generateLegend(getColorFunction, legendName, grades) {
         
         if (i === grades.length - 1) {
             // Poslední interval: méně než
-            legend += `<i style="background:${getColorFunction(from)}"></i> méně než ${from}<br>`;
+            legend += `<i style="background:${getColorFunction(from)}"></i> méně než 60<br>`;
         } else {
             // Ostatní intervaly: více než
             legend += `<i style="background:${getColorFunction(from + 1)}"></i> ${from} a více <br>`;
@@ -259,10 +259,10 @@ function generateLegendAccessibility(getColorFunction, legendName, grades) {
     return legend;
 }
 
-const legendModra = generateLegend(getColorModra, "legendModra", [80, 60, 40, 40]);
-const legendFialova = generateLegend(getColorFialova, "legendFialova", [80, 60, 40, 40]);
-const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [80, 60, 40, 40]);
-const legendZelena = generateLegend(getColorZelena, "legendZelena", [80, 60, 40, 40]);
+const legendModra = generateLegend(getColorModra, "legendModra", [80, 70, 60, 59]);
+const legendFialova = generateLegend(getColorFialova, "legendFialova", [80, 70, 60, 59]);
+const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [80, 70, 60, 59]);
+const legendZelena = generateLegend(getColorZelena, "legendZelena", [80, 70, 60, 59]);
 //legenda pro lighthouse
 const legendCervena = generateLegendAccessibility(getColorCervena, "legendCervena", [100, 95, 90, 85, 84]);
 
@@ -323,10 +323,10 @@ function addBase(){
 
 function vypisPopupu(feature, layer) {  
 	let popupContent = `<b>${feature.properties.text}</b>` + 
-	`<br>Index digitalizace: ${feature.properties.test}` +
-	`<br>Index poskytovaných služeb: ${Math.round(feature.properties.j_celkove_hodnoceni)}` +
-	`<br>Index za oblast 2: ${feature.properties.test3}` +
-	`<br>Index za oblast 3: ${feature.properties.test4}`+
+	`<br>Index digitalizace: ${Math.round(feature.properties.j_index_digitalizace)}` +
+	`<br>Index poskytovaných služeb: ${Math.round(feature.properties.j_index_sluzby)}` +
+	`<br>Index digitální dovednosti: ${Math.round(feature.properties.j_index_dovednosti)}` +
+	`<br>Index digitální infrastruktura: ${Math.round(feature.properties.j_index_digitalizace)}`+
 	`<br>Accessibility scoring: ${feature.properties.j_Accessibility_desktop}`;
 
 	layer.bindPopup(popupContent); 
@@ -348,6 +348,8 @@ function vypisPopupu(feature, layer) {
 		vypisKraj += `<a href="${feature.properties.j_katalog_soc_sluzeb_web}" target="_blank">Katalog sociálních služeb</a> <br>`;};
 	if (feature.properties.j_portal_kriz_rizeni_web) {
 		vypisKraj += `<a href="${feature.properties.j_portal_kriz_rizeni_web}" target="_blank">Portál krizového řízení</a> <br>`;};
+	if (feature.properties.j_dotacni_portal_web) {
+		vypisKraj += `<a href="${feature.properties.j_dotacni_portal_web}" target="_blank">Dotační portál</a> <br>`;};
 	
 
 

@@ -59,23 +59,23 @@
 					
 					<h3>Přehled vrstev</h3>
 				<div>
-					<div><input class="radio" type="radio" id="vrstva1" name="vrs" onclick="addlay(indexD, 'legenda1', legendModra)" checked>
+					<div><input class="radio" type="radio" id="vrstva1" name="vrs" onclick="addlay(indexDigitalizace, 'legenda1', legendModra)" checked>
 					<label for="vrstva1">Index digitalizace</label> 
 						<div id="legenda1" class="legend-container"></div>
 					</div>
 
-					<div><input class="radio" type="radio" id="vrstva2" name="vrs" onclick="addlay(index1, 'legenda2', legendOranzova)">
+					<div><input class="radio" type="radio" id="vrstva2" name="vrs" onclick="addlay(indexSluzby, 'legenda2', legendOranzova)">
 					<label for="vrstva2">Index poskytované služby</label> 
 						<div id="legenda2" class="legend-container"></div>
 					</div>
 	
-					<div><input class="radio" type="radio" id="vrstva3" name="vrs" onclick="addlay(index2, 'legenda3', legendZelena)">
-					<label for="vrstva3">Index za oblast 2</label>
+					<div><input class="radio" type="radio" id="vrstva3" name="vrs" onclick="addlay(indexDovednosti, 'legenda3', legendZelena)">
+					<label for="vrstva3">Index digitální dovednosti</label>
 						<div id="legenda3" class="legend-container"></div>
 					</div>
 
-					<div><input class="radio" type="radio" id="vrstva4" name="vrs" onclick="addlay(index3, 'legenda4', legendFialova)">
-					<label for="vrstva4">Index za oblast 3</label> 
+					<div><input class="radio" type="radio" id="vrstva4" name="vrs" onclick="addlay(indexInfrastruktura, 'legenda4', legendFialova)">
+					<label for="vrstva4">Index digitální infrastruktura</label> 
 						<div id="legenda4" class="legend-container"></div>
 					</div>
 				
@@ -119,6 +119,9 @@
 					<div><input class= "radio" type="radio" id="sl7" name="sluzby" data-attribute="j_portal_kriz_rizeni" data-group="sluzby">
 					<label for="sl7">Portál krizového řízení</label> </div>
 
+					<div><input class= "radio" type="radio" id="sl8" name="sluzby" data-attribute="j_dotacni_portal" data-group="sluzby">
+					<label for="sl8">Dotační portál</label> </div>
+
 					<div><button type="button" onclick="zrusitVyberSluzby()">Zrušit výběr</button> </div>
 					
 
@@ -133,9 +136,22 @@
 				</div>
 				
 					<div class="sidebar-pane" id="settings">
-					<h1 class="sidebar-header">NASTAVENÍ<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					<h1 class="sidebar-header">INFORMACE O INDEXECH<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
 					
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+					<h3>Index digitalizace</h3>
+					<p>Výpočet vážením dílčích indexů. Váhy jsou stanoveny rovnoměrně.</p>
+
+					<h3>Index digitální služby</h3>
+					<p>Stanoven jako procentuální podíl vybraných digitálních služeb, poskytovaných krajem.</p>
+
+					<h3>Index digitální dovednosti</h3>
+					<p>Stanoven jako průměrná hodnota vybraných ukazatelů, kde všechny jsou udány v procentech.</p>
+
+					<h3>Index digitální infrastruktura</h3>
+					<p>Stanoven jako průměrná hodnota vybraných ukazatelů, kde všechny jsou udány v procentech.</p>
+
+					<h3>Lighthouse accessibility scoring</h3>
+					<p>Bylo měřeno pro webové stránky krajů 9.1.2025.</p>
 
 				</div>
 			</div>
