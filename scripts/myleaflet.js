@@ -17,45 +17,49 @@ const map = L.map('map',{minZoom:6, maxZoom:9}).setView([49.8, 14.85],zoomLev);
 
 //definování barevných stupnic pro kartogramy	
 	function getColorModra(d) {
-		return 	d >= 80 ? 				'#0080ff' :
-				d >= 70  ? 		'#709bff' :
-				d >= 60 ? 		'#adbeff' :
-				d < 60  ? 				'#d5dcff' :
-										'#d5dcff' ;
+		return 	d >= 80 ? 	'#0080ff':
+				d >= 70 ? 	'#709bff':
+				d >= 60 ? 	'#adbeff':
+				d < 60  ? 	'#d5dcff':
+							'#d5dcff';
 	};	
 
 	function getColorOranzova(d) {
-		return 	d >= 80 ? 				'#C76300' :
-				d >= 70 ? 		'#DB8543' :
-				d >= 60  ? 		'#EEB086' :
-				d < 60  ? 				'#F9D2B9' :
-										'#F9D2B9' ;
+		return 	d >= 80 ? 	'#C76300':
+				d >= 70 ? 	'#DB8543':
+				d >= 60 ? 	'#EEB086':
+				d < 60  ? 	'#F9D2B9':
+							'#F9D2B9';
 	};
 
 	function getColorZelena(d) {
-		return 	d >= 80 ? 				'#008040' :
-				d >= 70  ? 		'#499861' :
-				d >= 60  ? 		'#82B78F' :
-				d < 60  ? 				'#B2D3B9' :
-										'#B2D3B9' ;
+		return 	d >= 80 ? 	'#008040':
+				d >= 70 ? 	'#499861':
+				d >= 60 ? 	'#82B78F':
+				d < 60  ? 	'#B2D3B9':
+							'#B2D3B9';
 	};
 
 	function getColorFialova(d) {
-		return 	d >= 80 ? '#800080' :
-				d >= 70 ? '#973E95' :
-				d >= 60 ? '#AE66AA' :
-				d < 60 ? '#C187BC' :
-						 '#C187BC' ;
+		return 	d >= 80 ? 	'#800080':
+				d >= 70 ? 	'#973E95':
+				d >= 60 ? 	'#AE66AA':
+				d < 60 ?  	'#C187BC':
+						  	'#C187BC';
 	};
 
+
 	function getColorCervena(d) {
-		return 	d > 99 ? '#FF0000' :
-				d >= 95 ? '#FF603E' :
-				d >= 90 ? '#FF9B7E' :
-				d >= 85 ? '#FFCCBA' :
-				d < 85 ? '#FFE8E0':
-						 '#FFE8E0';
+		return 	d > 99  ? 	'#FF0000':
+				d >= 95 ? 	'#FF603E':
+				d >= 90 ? 	'#FF9B7E':
+				d >= 85 ? 	'#FFCCBA':
+				d < 85  ? 	'#FFE8E0':
+						  	'#FFE8E0';
 	};
+
+
+//Přidat výpočty indexů
 
 //definování stylu vrstev
 function indexDigitalizace(feature) {
@@ -118,23 +122,6 @@ const defaultStyle = {
 };
 
 
-/*/funkce na zvýraznění polygonů - jenom barva
-function highlightFeature(feature, layer, attribute) {
-    if (feature.properties[attribute] == 1) {
-        layer.setStyle({
-            fillColor: '#d6d64b',
-			
-			weight: 2,
-			color: "white",
-            opacity: 0.5,
-            fillOpacity: 1
-        });
-		layer.bringToFront(); 
-    } else {
-        layer.setStyle(defaultStyle);
-    }
-};*/
-
 // Funkce na zvýraznění polygonů
 function highlightFeature(feature, layer, attribute) {
     // Zkontrolujte, zda hodnota atributu odpovídá podmínce
@@ -185,16 +172,11 @@ function zrusitVyberSluzby(){
       radios.forEach(radio => radio.checked = false);
 }
 
-//vytvoření vrstev
-	let inD = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexDigitalizace, onEachFeature: vypisPopupu});
-/*	
-	let in1 = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexSluzby, onEachFeature: vypisPopupu});
-	let in2 = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexDovednosti, onEachFeature: vypisPopupu});
-	let in3 = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexInfrastruktura, onEachFeature: vypisPopupu});
-*/
+//vytvoření vrstevy pro indexy
+let inD = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexDigitalizace, onEachFeature: vypisPopupu});
+
 	
 //generování legendy
-
 let grades;
 function generateLegend(getColorFunction, legendName, grades) {
 
@@ -216,26 +198,7 @@ function generateLegend(getColorFunction, legendName, grades) {
     return legend;
 }
 
-/*function generateLegendAccessibility(getColorFunction, legendName, grades) {
-
-	let legend = `<div class="info legend">`;
-
-    for (let i = 0; i < grades.length; i++) {
-        const from = grades[i];
-        
-        if (i === grades.length - 1) {
-            // Poslední interval: méně než
-            legend += `<i style="background:${getColorFunction(from)}"></i> méně než ${from}<br>`;
-        } else {
-            // Ostatní intervaly: více než
-            legend += `<i style="background:${getColorFunction(from + 1)}"></i> ${from} a více <br>`;
-        } 
-    }
-
-    legend += '</div>';
-    return legend;
-}*/
-
+//generování legendy pro lighthouse accessibility score 
 function generateLegendAccessibility(getColorFunction, legendName, grades) {
     let legend = `<div class="info legend">`;
 
@@ -263,11 +226,13 @@ const legendModra = generateLegend(getColorModra, "legendModra", [80, 70, 60, 59
 const legendFialova = generateLegend(getColorFialova, "legendFialova", [80, 70, 60, 59]);
 const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [80, 70, 60, 59]);
 const legendZelena = generateLegend(getColorZelena, "legendZelena", [80, 70, 60, 59]);
-//legenda pro lighthouse
+
+//legenda pro lighthouse Accessibility
 const legendCervena = generateLegendAccessibility(getColorCervena, "legendCervena", [100, 95, 90, 85, 84]);
 
 //sidebar
 let sidebar = L.control.sidebar('sidebar').addTo(map); 
+
 //defaultní stav sidebaru podle šířky monitoru
 function checkWindowSize() {
     if (window.innerWidth >= 1537) {
@@ -277,6 +242,7 @@ function checkWindowSize() {
     }
 }
 checkWindowSize();
+
 //default vrstva
 inD.addTo(map);
 let aktivniVrstva = inD;
@@ -318,9 +284,7 @@ function addBase(){
 	}
 };
 
-//popup
-
-
+//popup a výpis do sidebaru
 function vypisPopupu(feature, layer) {  
 	let popupContent = `<b>${feature.properties.text}</b>` + 
 	`<br>Index digitalizace: ${Math.round(feature.properties.j_index_digitalizace)}` +
@@ -331,27 +295,25 @@ function vypisPopupu(feature, layer) {
 
 	layer.bindPopup(popupContent); 
 
-	let	vypisKraj = `<h3>${feature.properties.text}</h3>`;
-	if (feature.properties.web_kraje) {
-		vypisKraj += `<a href="${feature.properties.web_kraje}" target="_blank">Web kraje</a> <br>`;}
-	if (feature.properties.j_platebni_portal_web) {
-		vypisKraj += `<a href="${feature.properties.j_platebni_portal_web}" target="_blank">Platební portál</a> <br>`;}
-	if (feature.properties.j_IDS_web) {
-		vypisKraj += `<a href="${feature.properties.j_IDS_web}" target="_blank">Integrovaný dopravní systém</a> <br>`;}
-	if (feature.properties.j_rozklikavaci_rozpocet_web) {
-		vypisKraj += `<a href="${feature.properties.j_rozklikavaci_rozpocet_web}" target="_blank">Rozklikávací rozpočet</a> <br>`;}
-	if (feature.properties.j_GEOportal_web) {
-		vypisKraj += `<a href="${feature.properties.j_GEOportal_web}" target="_blank">GEOportál</a> <br>`;};
-	if (feature.properties.j_openDATA_web) {
-		vypisKraj += `<a href="${feature.properties.j_openDATA_web}" target="_blank">Portál otevřených dat</a> <br>`;};
-	if (feature.properties.j_katalog_soc_sluzeb_web) {
-		vypisKraj += `<a href="${feature.properties.j_katalog_soc_sluzeb_web}" target="_blank">Katalog sociálních služeb</a> <br>`;};
-	if (feature.properties.j_portal_kriz_rizeni_web) {
-		vypisKraj += `<a href="${feature.properties.j_portal_kriz_rizeni_web}" target="_blank">Portál krizového řízení</a> <br>`;};
-	if (feature.properties.j_dotacni_portal_web) {
-		vypisKraj += `<a href="${feature.properties.j_dotacni_portal_web}" target="_blank">Dotační portál</a> <br>`;};
+		// Seznam klíčů a jejich odpovídajících textů
+		const linkKeys = {
+			web_kraje: "Web kraje",
+			j_platebni_portal_web: "Platební portál",
+			j_IDS_web: "Integrovaný dopravní systém",
+			j_rozklikavaci_rozpocet_web: "Rozklikávací rozpočet",
+			j_GEOportal_web: "GEOportál",
+			j_openDATA_web: "Portál otevřených dat",
+			j_katalog_soc_sluzeb_web: "Katalog sociálních služeb",
+			j_portal_kriz_rizeni_web: "Portál krizového řízení",
+			j_dotacni_portal_web: "Dotační portál"
+		};
 	
-
+		let vypisKraj = `<h3>${feature.properties.text}</h3>`;
+		for (const [key, label] of Object.entries(linkKeys)) {
+			if (feature.properties[key]) {
+				vypisKraj += `<a href="${feature.properties[key]}" target="_blank">${label}</a><br>`;
+			}
+		}
 
 
 	layer.on('click', (e) => {
