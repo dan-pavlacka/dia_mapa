@@ -1,23 +1,17 @@
 @font-face {
-    font-family: 'AzeretMono'; 
-    src: url('../fonts/Azeret_Mono/AzeretMono-VariableFont_wght.ttf') format('truetype'); 
+    font-family: 'Roboto'; 
+    src: url('../fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype'); 
     font-weight: normal; 
     font-style: normal; 
 }
 
-@font-face {
-    font-family: 'DMSans'; 
-    src: url('../fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype'); 
-    font-weight: normal; 
-    font-style: normal; 
-}
 
 html, body {
     height: 100%;
     margin: 0;
 }
 
-.leaflet-container {
+.leaflet-container{
     height: 100%;
     width: 100%;
     max-width: 100%;
@@ -33,39 +27,43 @@ body {
 
 html, body, #map {
     height: 100%;
-    font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font: 10pt "Roboto";
 }
 
 p {
-    font-family: 'AzeretMono', sans-serif;
+    font-family: 'Roboto';
     font-style: normal;
     color: #000000;
 }
 
 h1, h3, label {
-    font-family: 'DMSans', sans-serif;
+    font-family: 'Roboto';
 }
 
 /* Kdybych htěl někde zrušit azeret tak oddělat to p a používat tuto class */
 .lorem {
-    font-family: 'AzeretMono', sans-serif;
+    font-family: 'Roboto';
     font-style: normal;
     color: #000000;
 }
 
 .menu-icon {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     display: inline-block;
-  }
+    padding:5px;
+    padding-top: 6px;
+    
+}
+  
 
 
 .bold {
     font-weight: bold;
 }
 
-.legend { text-align: left;
-    font-family: 'DMSans', sans-serif;
+.legend, .sluzba-status { text-align: left;
+    font-family: 'Roboto';
     line-height: 18px;
     padding: 12px 28px;
     color: #242424; } 
@@ -119,6 +117,7 @@ radio input:checked{
 }
 
 button{
+    font-family: 'Roboto';
     margin: 25px 25px 0px 0px;
     font-size: 1.2rem;
     font-weight: bold;
@@ -135,3 +134,14 @@ button{
     cursor: pointer;
     border-radius: .5rem;
 }
+
+
+.schovaniLegendy{
+    margin:0px 10px 0px 0px;
+    width: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
