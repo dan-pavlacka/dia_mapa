@@ -6,7 +6,7 @@
   overflow: hidden;
   z-index: 2000; }
   .sidebar.collapsed {
-    width: 40px; }
+    width: 50px; }
   @media (min-width: 768px) {
     .sidebar {
       top: 0px;
@@ -45,14 +45,15 @@
     right: 0; }
   .sidebar-tabs, .sidebar-tabs > ul {
     position: absolute;
-    width: 40px;
+    width: 50px;
     margin: 0;
     padding: 0;
     list-style-type: none; }
     .sidebar-tabs > li, .sidebar-tabs > ul > li {
       width: 100%;
-      height: 40px;
+      height: 50px;
       color: #333;
+      padding-bottom: 5px;
       font-size: 12pt;
       overflow: hidden;
       transition: all 80ms; }
@@ -61,7 +62,13 @@
         background-color: #2362a2; }
       .sidebar-tabs > li.active, .sidebar-tabs > ul > li.active {
         color: #fff;
-        background-color: #2362a2; }
+        background-color: #2362a2;
+         
+      }
+      .sidebar-tabs > li.active > a, .sidebar-tabs > ul > li.active > a {
+        filter: invert(1); 
+    }
+
       .sidebar-tabs > li.disabled, .sidebar-tabs > ul > li.disabled {
         color: rgba(51, 51, 51, 0.4); }
         .sidebar-tabs > li.disabled:hover, .sidebar-tabs > ul > li.disabled:hover {
@@ -72,28 +79,56 @@
         display: block;
         width: 100%;
         height: 100%;
-        line-height: 40px;
+        line-height: 50px;
         color: inherit;
         text-decoration: none;
         text-align: center; }
   .sidebar-tabs > ul + ul {
     bottom: 0; }
 
-.sidebar-content {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.95);
-  overflow-x: hidden;
-  overflow-y: auto; }
-  .sidebar-left .sidebar-content {
-    left: 40px;
-    right: 0; }
-  .sidebar-right .sidebar-content {
-    left: 0;
-    right: 40px; }
-  .sidebar.collapsed > .sidebar-content {
-    overflow-y: hidden; }
+  .sidebar-content {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      overflow-x: hidden;
+      overflow-y: hidden; /* Scrollbar je ve výchozím stavu skrytý */
+      transition: all 0.3s; /* Plynulý přechod při změně */
+    }
+    .sidebar-content:hover {
+      overflow-y: auto; /* Scrollbar se zobrazí při najetí myší */
+    }
+    /* Styly pro scrollbar */
+    .sidebar-content::-webkit-scrollbar {
+      width: 8px; /* Šířka scrollbaru */
+    }
+    .sidebar-content::-webkit-scrollbar-track {
+      background: #f0f0f0; /* Barva pozadí scrollbaru */
+    }
+    .sidebar-content::-webkit-scrollbar-thumb {
+      background-color: #337fc4; /* Barva posuvníku */
+      border-radius: 0px; /* Zaoblené rohy posuvníku */
+    }
+    
+    .sidebar-content::-webkit-scrollbar-thumb:hover {
+      background-color: #1d3c5d; /* Barva posuvníku při hoveru */
+    }
+    
+    /* Pro levý a pravý sidebar zůstávají specifické úpravy */
+    .sidebar-left .sidebar-content {
+      left: 50px;
+      right: 0;
+    }
+    
+    .sidebar-right .sidebar-content {
+      left: 0;
+      right: 50px;
+    }
+    
+    .sidebar.collapsed > .sidebar-content {
+      overflow-y: hidden; /* V režimu "collapsed" zůstává scrollbar skrytý */
+    }
+    
 
 .sidebar-pane {
   display: none;
@@ -108,27 +143,27 @@
       min-width: 265px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .sidebar-pane {
-      min-width: 350px; } }
+      min-width: 340px; } }
   @media (min-width: 1200px) {
     .sidebar-pane {
       min-width: 420px; } }
 
 .sidebar-header {
   margin: -10px -20px 0;
-  height: 40px;
+  height: 55px;
   padding: 0 20px;
-  line-height: 40px;
+  line-height: 55px;
   font-size: 14.4pt;
   color: #fff;
   background-color: #2362a2; }
   .sidebar-right .sidebar-header {
-    padding-left: 40px; }
+    padding-left: 50px; }
 
 .sidebar-close {
   position: absolute;
   top: 0;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   text-align: center;
   cursor: pointer; }
   .sidebar-left .sidebar-close {
@@ -137,13 +172,13 @@
     left: 0; }
 
 .sidebar-left ~ .sidebar-map {
-  margin-left: 40px; }
+  margin-left: 50px; }
   @media (min-width: 768px) {
     .sidebar-left ~ .sidebar-map {
       margin-left: 0; } }
 
 .sidebar-right ~ .sidebar-map {
-  margin-right: 40px; }
+  margin-right: 50px; }
   @media (min-width: 768px) {
     .sidebar-right ~ .sidebar-map {
       margin-right: 0; } }

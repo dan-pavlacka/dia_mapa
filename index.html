@@ -8,7 +8,7 @@
 		<title>Leaflet Mapa digitalizace</title>
     	
 		<!--nacteni test GeoJSON-->
-		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>		
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>		
 		<!--leaflet knihovna-->
     	<script src="scripts/leaflet.js"></script>
 		<!--Nacteni GeoJSON - test -->
@@ -19,6 +19,17 @@
 		<link rel="stylesheet" href="styles/mapa.css"/>
 		<!--sidebar css-->
 		<link rel="stylesheet" href="styles/leaflet-sidebar.css" />
+		<!--Point clustering-->
+		<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+		<!--šrafa-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.pattern/dist/leaflet.pattern.css" />
+		<script src="https://cdn.jsdelivr.net/npm/leaflet.pattern/dist/leaflet.pattern.min.js"></script>
+		<!--design system-->
+		<link rel="stylesheet" href="styles/tokens.css"/>
+		<link rel="stylesheet" href="styles/components.css"/>
+		<!--<link rel="stylesheet" href="styles/styles.css"/>-->
+
+		
 
 	</head>
 
@@ -28,14 +39,14 @@
 			<!-- Nav tabs -->
 			<div class="sidebar-tabs">
 				<ul role="tablist">
-					<li><a href="#home" role="tab">		<img src="img/home.png" alt="Menu Icon" class="menu-icon"></a></li>
-					<li><a href="#legenda" role="tab">	<img src="img/vrstvy.png" alt="Menu Icon" class="menu-icon"></a></li>
-					<li><a href="#sluzby" role="tab">	<img src="img/search.png" alt="Menu Icon" class="menu-icon"></a></li>
-					<li><a href="#dalsi_zalozka" role="tab">	<img src="img/help.png" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#home" role="tab">		<img src="img/home.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#legenda" role="tab">	<img src="img/vrstvy.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#sluzby" role="tab">	<img src="img/search.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#dalsi_zalozka" role="tab">	<img src="img/help.svg" alt="Menu Icon" class="menu-icon"></a></li>
 				</ul>
 	
 				<ul role="tablist">
-					<li><a href="#settings" role="tab">	<img src="img/settings.png" alt="Menu Icon" class="menu-icon"></i></a></li>
+					<li><a href="#settings" role="tab">	<img src="img/settings.svg" alt="Menu Icon" class="menu-icon"></i></a></li>
 				</ul>
 			</div>
 	
@@ -43,82 +54,152 @@
 			<div class="sidebar-content">
 				<div class="sidebar-pane" id="home">
 					<h1 class="sidebar-header">
-						INDEX DIGITALIZACE
-						<span class="sidebar-close">	<img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span>
+						DIGITALIZACE V KRAJÍCH
+						<span class="sidebar-close">	<img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span>
 					</h1>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>	
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>						
+					
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.  
+						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+						At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+						At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>	
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+						At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>	
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+						At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>	
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+						At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>							
 					<img src="img/logoDIA.png" style="width:350px">
 				</div>
 	
 				<div class="sidebar-pane" id="legenda">
-					<h1 class="sidebar-header">LEGENDA<span class="sidebar-close"><img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					<h1 class="sidebar-header">Přehled vrstev<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
 					
-					<h3>Přehled vrstev</h3>
-				<div>
-					<div><input class="radio" type="radio" id="vrstva1" name="vrs" onclick="addlay(indexD, 'legenda1', legendModra)" checked>
+					<h3><button class="schovaniLegendy" id="toggleBtn" data-target="#Vdigitalizace">-</button>Indexy digitalizace</h3>
+				<div id="Vdigitalizace">
+					<h4 style="margin-top: 0px;">Kraje ČR</h4>
+					<div><input class="radio" type="radio" id="vrstva1" name="vrs" onclick="addlay(indexDigitalizace, 'legenda1', legendModra, 1)" checked>
 					<label for="vrstva1">Index digitalizace</label> 
 						<div id="legenda1" class="legend-container"></div>
 					</div>
-				<!--pokrytí podle DESI-->
-					<div><input class="radio" type="radio" id="vrstva2" name="vrs" onclick="addlay(index1, 'legenda2', legendOranzova)">
-					<label for="vrstva2">Index za oblast 1</label> 
+
+					<div><input class="radio" type="radio" id="vrstva2" name="vrs" onclick="addlay(indexSluzby, 'legenda2', legendOranzova, 1)">
+					<label for="vrstva2">Index poskytované služby</label> 
 						<div id="legenda2" class="legend-container"></div>
 					</div>
 	
-					<div><input class="radio" type="radio" id="vrstva3" name="vrs" onclick="addlay(index2, 'legenda3', legendZelena)">
-					<label for="vrstva3">Index za oblast 2</label>
+					<div><input class="radio" type="radio" id="vrstva3" name="vrs" onclick="addlay(indexDovednosti, 'legenda3', legendZelena, 1)">
+					<label for="vrstva3">Index digitální dovednosti</label>
 						<div id="legenda3" class="legend-container"></div>
 					</div>
 
-					<div><input class="radio" type="radio" id="vrstva4" name="vrs" onclick="addlay(index3, 'legenda4', legendFialova)">
-					<label for="vrstva4">Index za oblast 3</label> 
+					<div><input class="radio" type="radio" id="vrstva4" name="vrs" onclick="addlay(indexInfrastruktura, 'legenda4', legendFialova, 1)">
+					<label for="vrstva4">Index digitální infrastruktura</label> 
 						<div id="legenda4" class="legend-container"></div>
 					</div>
+				
+					<div><input class="radio" type="radio" id="vrstva5" name="vrs" onclick="addlay(accessibilityScoring, 'legenda5', legendCervena, 1)">
+						<label for="vrstva5">Lighthouse accessibility scoring</label> 
+							<div id="legenda5" class="legend-container"></div>
+						</div>
+				
+
+				<div>
+					<h4>Státy EU</h4>
+					
+					<div>
+						<div><input class="radio" type="radio" id="vrstva6" name="vrs" onclick="addlay(DESIIndex, 'legenda6', legendVinova, 2)">
+							<label for="vrstva6">DESI 2022</label> 
+								<div id="legenda6" class="legend-container"></div>
+							</div>	
+					
+					</div>
+					<div><button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberIndexu()">Zrušit zobrazení Indexu</button> </div>
+				</div>	
+
 				</div>
 
-					<h3>Podkladové mapy</h3>
+
+
+				<h3> <button class="schovaniLegendy" id="toggleBtn" data-target="#Vsluzby">+</button>Digitální služby</h3>
+				
+				
+				<div id="Vsluzby" class="hidden">
+				<div id="sluzby-container">	
+					<!-- Radio buttons and legends will be dynamically generated here -->
+				</div>
 				<div>
-					<div><input class= "checkbox" type="checkbox" id="OSM" name="podk" onclick="addBase()" checked>
+					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberSluzby()">Zrušit výběr služby</button>
+				</div>
+				</div>
+				
+				<h3><button class="schovaniLegendy" id="toggleBtn" data-target="#Vbody">+</button>Bodová data</h3>
+				<div id="Vbody" class="hidden">
+				<div><input type="checkbox" id="KMVS" name="body" onclick="addKMVS()">
+					<label for="KMVS">Czech POINT</label> </div>	
+
+				</div>
+
+
+
+					<h3><button class="schovaniLegendy" id="toggleBtn" data-target="#Vpodklad">+</button>Podkladové mapy</h3>
+				<div id = "Vpodklad" class="hidden">
+					<div><input class="radio" type="radio" id="OSM" name="podk" onclick="addBase(OSM_base)" checked>
 					<label for="OSM">OpenStreetMap</label> </div>			
+					
+					<div><input class="radio" type="radio" id="orto" name="podk" onclick="addBase(Orto_base)">
+					<label for="orto">Ortofoto (ČR)</label> </div>	
+					
+					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitPodklad()">Vypnout podkladovou mapu</button>
 				
 				</div>
-				</div>
+
+				
+
+			</div>
 
 				<div class="sidebar-pane" id="sluzby">
-					<h1 class="sidebar-header">DIGITÁLNÍ SLUŽBY<span class="sidebar-close"><img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span></h1>
-
-					<!--platební portál, integrovaný dopravní systém, rozklikávací rozpočet-->
-					<h3> Přehled služeb</h3>
-					<div><input class= "radio" type="radio" id="sl1" name="sluzby" data-attribute="j_platebni_portal" data-group="sluzby">
-					<label for="sl1">Platební portál</label> </div>
-
-					<div><input class= "radio" type="radio" id="sl2" name="sluzby" data-attribute="j_rozklikavaci_rozpocet" data-group="sluzby">
-					<label for="sl2">Rozklikávací rozpočet</label> </div>
-
-					<div><input class= "radio" type="radio" id="sl3" name="sluzby" data-attribute="j_IDS" data-group="sluzby">
-					<label for="sl3">Integrovaný dopravní systém</label> </div>
-
-					<div><input class= "radio" type="radio" id="sl4" name="sluzby" data-attribute="j_GEOportal" data-group="sluzby">
-					<label for="sl4">Geoportál</label> </div>
-
-					<div><button type="button" onclick="zrusitVyberSluzby()">Zrušit výběr</button> </div>
+					<h1 class="sidebar-header">DIGITÁLNÍ SLUŽBY<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.  
+						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+						At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+				</div>
+					
 					
 
-				</div>
+				
 	
 				<div class="sidebar-pane" id="dalsi_zalozka">
-					<h1 class="sidebar-header">INFORMACE O KRAJI<span class="sidebar-close"><img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span></h1>
-					<div id="infoKraj"></div>
+					<h1 class="sidebar-header">INFORMACE O KRAJI<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					<div id="infoKraj"><h3>Pro zobrazení informací klikni na kraj</h3></div>
 
 
 
 				</div>
 				
 					<div class="sidebar-pane" id="settings">
-					<h1 class="sidebar-header">NASTAVENÍ<span class="sidebar-close"><img src="img/left_arrow.png" alt="Menu Icon" class="menu-icon"></i></span></h1>
-					<h3> Vojto, nečum!</h3>
+					<h1 class="sidebar-header">INFORMACE O INDEXECH<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					
+					<h3>Index digitalizace</h3>					
+					<p>Výpočet vážením dílčích indexů. Váhy jsou stanoveny rovnoměrně.</p>
+					<a href="img/index_schema.html" target="_blank">Schéma Indexu</a>
+					
+					<h3>Index digitální služby</h3>
+					<p>Stanoven jako procentuální podíl vybraných digitálních služeb, poskytovaných krajem.</p>
+
+					<h3>Index digitální dovednosti</h3>
+					<p>Stanoven jako průměrná hodnota vybraných ukazatelů, kde všechny jsou udány v procentech a byli normalizovány.</p>
+
+					<h3>Index digitální infrastruktura</h3>
+					<p>Stanoven jako průměrná hodnota vybraných ukazatelů, kde všechny jsou udány v procentech a byli normalizovány.</p>
+
+					<h3>Lighthouse accessibility scoring</h3>
+					<p>Bylo měřeno pro webové stránky krajů 9.1.2025.</p>
+
 				</div>
 			</div>
 		</div>
@@ -127,6 +208,7 @@
 		
     	
     	<script src="scripts/leaflet-sidebar.js"></script>
+
 
 		<!--moje JS-->
 		<script src="scripts/myleaflet.js"> </script>
