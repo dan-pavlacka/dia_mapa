@@ -77,9 +77,9 @@
 				</div>
 	
 				<div class="sidebar-pane" id="legenda">
-					<h1 class="sidebar-header">Přehled vrstev<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					<h1 class="sidebar-header">PŘEHLED VRSTEV<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
 					
-					<h3><button class="schovaniLegendy" id="toggleBtn" data-target="#Vdigitalizace">-</button>Indexy digitalizace</h3>
+					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#Vdigitalizace">−</button>Indexy digitalizace</h3>
 				<div id="Vdigitalizace">
 					<h4 style="margin-top: 0px;">Kraje ČR</h4>
 					<div><input class="radio" type="radio" id="vrstva1" name="vrs" onclick="addlay(indexDigitalizace, 'legenda1', legendModra, 1)" checked>
@@ -127,7 +127,7 @@
 
 
 
-				<h3> <button class="schovaniLegendy" id="toggleBtn" data-target="#Vsluzby">+</button>Digitální služby</h3>
+				<h3 class="expandable"> <button class="schovaniLegendy" id="toggleBtn" data-target="#Vsluzby">+</button>Digitální služby</h3>
 				
 				
 				<div id="Vsluzby" class="hidden">
@@ -139,7 +139,7 @@
 				</div>
 				</div>
 				
-				<h3><button class="schovaniLegendy" id="toggleBtn" data-target="#Vbody">+</button>Bodová data</h3>
+				<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#Vbody">+</button>Bodová data</h3>
 				<div id="Vbody" class="hidden">
 				<div><input type="checkbox" id="KMVS" name="body" onclick="addKMVS()">
 					<label for="KMVS">Kontaktní místa veřejné správy</label> </div>	
@@ -148,7 +148,7 @@
 
 
 
-					<h3><button class="schovaniLegendy" id="toggleBtn" data-target="#Vpodklad">+</button>Podkladové mapy</h3>
+					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#Vpodklad">+</button>Podkladové mapy</h3>
 				<div id = "Vpodklad" class="hidden">
 					<div><input class="radio" type="radio" id="OSM" name="podk" onclick="addBase(OSM_base)" checked>
 					<label for="OSM">OpenStreetMap</label> </div>			

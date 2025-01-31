@@ -28,34 +28,34 @@ const map = L.map('map',{minZoom:4, maxZoom:19}).setView([49.8, 14.85],zoomLev);
 
 //definování barevných stupnic pro kartogramy	
 	function getColorModra(d) {
-		return 	d >= 80 ? 	'#0080ff':
-				d >= 70 ? 	'#709bff':
-				d >= 60 ? 	'#adbeff':
-				d < 60  ? 	'#d5dcff':
+		return 	d >= 75 ? 	'#0080ff':
+				d >= 60 ? 	'#709bff':
+				d >= 45 ? 	'#adbeff':
+				d < 45  ? 	'#d5dcff':
 							'#d5dcff';
 	};	
 
 	function getColorOranzova(d) {
-		return 	d >= 80 ? 	'#C76300':
-				d >= 70 ? 	'#DB8543':
-				d >= 60 ? 	'#EEB086':
-				d < 60  ? 	'#F9D2B9':
+		return 	d >= 75 ? 	'#C76300':
+				d >= 50 ? 	'#DB8543':
+				d >= 25 ? 	'#EEB086':
+				d < 25 ? 	'#F9D2B9':
 							'#F9D2B9';
 	};
 
 	function getColorZelena(d) {
-		return 	d >= 80 ? 	'#008040':
-				d >= 70 ? 	'#499861':
-				d >= 60 ? 	'#82B78F':
-				d < 60  ? 	'#B2D3B9':
+		return 	d >= 75 ? 	'#008040':
+				d >= 50 ? 	'#499861':
+				d >= 25 ? 	'#82B78F':
+				d < 25 ? 	'#B2D3B9':
 							'#B2D3B9';
 	};
 
 	function getColorFialova(d) {
-		return 	d >= 80 ? 	'#800080':
-				d >= 70 ? 	'#973E95':
-				d >= 60 ? 	'#AE66AA':
-				d < 60 ?  	'#C187BC':
+		return 	d >= 75 ? 	'#800080':
+				d >= 50 ? 	'#973E95':
+				d >= 25 ? 	'#AE66AA':
+				d < 25 ?  	'#C187BC':
 						  	'#C187BC';
 	};
 
@@ -393,10 +393,10 @@ function generateLegendAccessibility(getColorFunction, legendName, grades) {
     return legend;
 }
 
-const legendModra = generateLegend(getColorModra, "legendModra", [80, 70, 60, 59],"60");
-const legendFialova = generateLegend(getColorFialova, "legendFialova", [80, 70, 60, 59],"60");
-const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [80, 70, 60, 59],"60");
-const legendZelena = generateLegend(getColorZelena, "legendZelena", [80, 70, 60, 59],"60");
+const legendModra = generateLegend(getColorModra, "legendModra", [75, 60, 45, 44],"45");
+const legendFialova = generateLegend(getColorFialova, "legendFialova", [75, 50, 25, 24],"25");
+const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [75, 50, 25, 24],"25");
+const legendZelena = generateLegend(getColorZelena, "legendZelena", [75, 50, 25, 24],"25");
 const legendVinova = generateLegend(getColorVinova, "legendVinova", [65, 60, 55, 50, 49],"50");
 
 //legenda pro lighthouse Accessibility
@@ -568,17 +568,22 @@ if (infoElement) {
 
 
 
+//+- pro schovávání oddílů ovládání
 
-
-//schování části legendy
-$(document).ready(function(){
-	$(".schovaniLegendy").click(function(){
-		let target = $(this).data("target"); // Získá ID cílového divu
-		$(target).slideToggle();
-		$(this).text($(this).text() === "-" ? "+" : "-");
-	});
+$(".schovaniLegendy").click(function(event){
+    event.stopPropagation();  // Zabrání šíření události
+    let target = $(this).data("target"); // Získá ID cílového divu
+    $(target).slideToggle();
+    $(this).text($(this).text() === "−" ? "+" : "−");
 });
 
+// Funkce pro kliknutí na celý nadpis s třídou 'expandable'
+$("h3.expandable").click(function() {
+    let target = $(this).find(".schovaniLegendy").data("target"); // Získá ID cílového divu
+    $(target).slideToggle();
+    let buttonText = $(this).find(".schovaniLegendy").text();
+    $(this).find(".schovaniLegendy").text(buttonText === "−" ? "+" : "−");
+});
 
 //czech POINTY a clusterování
 
@@ -619,7 +624,7 @@ let CPStyle = function(feature, latlng) {
     });
 
     
-    let popupContent = `<b><br>${feature.properties.Inst}</b><br>` +
+    let popupContent = `<b>${feature.properties.Inst}</b><br>` +
 			`<br>${feature.properties.Mesto} ${feature.properties.Ulice}, ${feature.properties.Psc}` ;
 	if (feature.properties.URL) {
 		popupContent += `<br><a href="${feature.properties.URL}" target="_blank">Webové stránky</a>`
@@ -671,3 +676,53 @@ function addKMVS() {
         CP_active = 0;
     }
 }
+
+//odkaz na platformu
+L.Control.LinkButton = L.Control.extend({
+    onAdd: function(map) {
+        let container = L.DomUtil.create('div', 'leaflet-control leaflet-control-custom');
+
+        // Stylování kontejneru
+        container.style.position = "absolute";
+        container.style.top = "0px"; // 10 px od horního okraje
+        container.style.right = "55px"; // 50 px od pravého okraje
+        container.style.zIndex = "1000"; // Aby bylo nad mapou
+
+        let button = document.createElement("button");
+        button.innerHTML = "Platforma";
+        button.style.backgroundColor = "#2362a2"; // Modrá barva
+        button.style.color = "white"; // Bílý text
+        button.style.border = "none";
+        button.style.cursor = "pointer";
+        button.style.margin = "0px";
+        button.style.fontSize = "20px";
+        button.style.borderRadius = "5px"; // Zaoblené rohy
+        button.style.boxShadow = "0px 2px 5px rgba(0,0,0,0.3)"; // Přidání stínu
+        //
+         // Nastavení pevné velikosti
+         button.style.width = "120px"; // Pevná šířka
+         button.style.height = "82px"; // Pevná výška
+         button.style.textAlign = "center"; // Zarovnání textu do středu
+ 
+        // Změna barvy při najetí myší
+        button.onmouseover = function() {
+            button.style.backgroundColor = "#f4f4f4"; // Tmavší modrá při hoveru
+            button.style.color = "#2362a2";
+        };
+        button.onmouseout = function() {
+            button.style.backgroundColor = "#2362a2"; // Zpět na původní modrou
+            button.style.color = "white";
+        };
+
+        // Kliknutí otevře odkaz v novém okně
+        button.onclick = function() {
+            window.open("https://dia.gov.cz", "_blank"); // Změň URL podle potřeby
+        };
+
+        container.appendChild(button);
+        return container;
+    }
+});
+
+// Přidání tlačítka do mapy
+map.addControl(new L.Control.LinkButton({ position: 'topright' }));

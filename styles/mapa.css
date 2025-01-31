@@ -145,3 +145,17 @@ button{
     display: none;
 }
 
+.expandable{
+    cursor: pointer;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+    color: #2362a2; 
+    box-shadow: none !important;
+}
+
+.leaflet-control-zoom {
+    box-shadow: none !important;
+    border: none; /* Volitelné: odstraní i okraj */
+}
