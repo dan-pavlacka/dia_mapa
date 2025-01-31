@@ -92,20 +92,22 @@
 						<div id="legenda2" class="legend-container"></div>
 					</div>
 	
-					<div><input class="radio" type="radio" id="vrstva3" name="vrs" onclick="addlay(indexDovednosti, 'legenda3', legendZelena, 1)">
-					<label for="vrstva3">Index digitální dovednosti</label>
+					<div><input class="radio" type="radio" id="vrstva3" name="vrs" onclick="addlay(indexPristupnost, 'legenda5', legendCervena, 1)">
+						<label for="vrstva3">Index přístupnosti</label> 
+							<div id="legenda5" class="legend-container"></div>
+						</div>
+
+					<div><input class="radio" type="radio" id="vrstva4" name="vrs" onclick="addlay(indexDovednosti, 'legenda3', legendZelena, 1)">
+					<label for="vrstva4">Index digitální dovednosti</label>
 						<div id="legenda3" class="legend-container"></div>
 					</div>
 
-					<div><input class="radio" type="radio" id="vrstva4" name="vrs" onclick="addlay(indexInfrastruktura, 'legenda4', legendFialova, 1)">
-					<label for="vrstva4">Index digitální infrastruktura</label> 
+					<div><input class="radio" type="radio" id="vrstva5" name="vrs" onclick="addlay(indexInfrastruktura, 'legenda4', legendFialova, 1)">
+					<label for="vrstva5">Index digitální infrastruktura</label> 
 						<div id="legenda4" class="legend-container"></div>
 					</div>
 				
-					<div><input class="radio" type="radio" id="vrstva5" name="vrs" onclick="addlay(accessibilityScoring, 'legenda5', legendCervena, 1)">
-						<label for="vrstva5">Lighthouse accessibility scoring</label> 
-							<div id="legenda5" class="legend-container"></div>
-						</div>
+				
 				
 
 				<div>
@@ -140,8 +142,8 @@
 				<h3><button class="schovaniLegendy" id="toggleBtn" data-target="#Vbody">+</button>Bodová data</h3>
 				<div id="Vbody" class="hidden">
 				<div><input type="checkbox" id="KMVS" name="body" onclick="addKMVS()">
-					<label for="KMVS">Czech POINT</label> </div>	
-
+					<label for="KMVS">Kontaktní místa veřejné správy</label> </div>	
+					<div id="legend-kmvs"></div>
 				</div>
 
 

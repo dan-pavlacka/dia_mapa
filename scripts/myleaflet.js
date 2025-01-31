@@ -121,7 +121,7 @@ function indexDigitalizace(feature) {
 		};
 	};
 
-	function accessibilityScoring(feature) {
+	function indexPristupnost(feature) {
 		return {
 			fillColor: getColorCervena(feature.properties.j_Accessibility_desktop),
 			weight: 2,
@@ -141,26 +141,27 @@ function indexDigitalizace(feature) {
 		};
 	};
 
+
 //------------výběr služby
 // Data pro radio buttony na výběr služby
 const sluzbyData = [
-    { id: "sl1", label: "Platební portál", attribute: "j_platebni_portal" },
-    { id: "sl2", label: "Rozklikávací rozpočet", attribute: "j_rozklikavaci_rozpocet" },
-    { id: "sl3", label: "Integrovaný dopravní systém", attribute: "j_IDS" },
-    { id: "sl4", label: "Geoportál", attribute: "j_GEOportal" },
-    { id: "sl5", label: "Portál otevřených dat", attribute: "j_openDATA" },
-    { id: "sl6", label: "Katalog sociálních služeb", attribute: "j_katalog_soc_sluzeb" },
-    { id: "sl7", label: "Portál krizového řízení", attribute: "j_portal_kriz_rizeni" },
-    { id: "sl8", label: "Dotační portál", attribute: "j_dotacni_portal" },
+    { id: "sl1", label: "Platební portál", attribute: "j_platebni_portal", urlKey: "j_platebni_portal_web"},
+    { id: "sl2", label: "Rozklikávací rozpočet", attribute: "j_rozklikavaci_rozpocet", urlKey: "j_rozklikavaci_rozpocet_web"},
+    { id: "sl3", label: "Integrovaný dopravní systém", attribute: "j_IDS", urlKey: "j_IDS_web"},
+    { id: "sl4", label: "Geoportál", attribute: "j_GEOportal", urlKey: "j_GEOportal_odkaz"},
+    { id: "sl5", label: "Portál otevřených dat", attribute: "j_openDATA", urlKey: "j_openDATA_web"},
+    { id: "sl6", label: "Katalog sociálních služeb", attribute: "j_katalog_soc_sluzeb", urlKey: "j_katalog_soc_sluzeb_web"},
+    { id: "sl7", label: "Portál krizového řízení", attribute: "j_portal_kriz_rizeni", urlKey: "j_portal_kriz_rizeni_web"},
+    { id: "sl8", label: "Dotační portál", attribute: "j_dotacni_portal", urlKey: "j_dotacni_portal_web"},
 ];
 
-// Generate radio buttons and legends
+// Generování radio buttonů a legend
 function generateSluzby() {
     const container = document.getElementById("sluzby-container");
     sluzbyData.forEach((sluzba) => {
         const radioWrapper = document.createElement("div");
 
-        // Create radio input
+        // Vytvoření radio inputu
         const radioInput = document.createElement("input");
         radioInput.classList.add("radio");
         radioInput.type = "radio";
@@ -169,43 +170,43 @@ function generateSluzby() {
         radioInput.dataset.attribute = sluzba.attribute;
         radioInput.dataset.group = "sluzby";
 
-        // Create label
+        // Vytvoření labelu
         const label = document.createElement("label");
         label.htmlFor = sluzba.id;
         label.textContent = sluzba.label;
 
-        // Create legend container
+        // Vytvoření legendy
         const legendContainer = document.createElement("div");
         legendContainer.id = `legend-${sluzba.id}`;
         legendContainer.classList.add("legend-container2");
 
-        // Append to wrapper
+        // Přidání do wrapperu
         radioWrapper.appendChild(radioInput);
         radioWrapper.appendChild(label);
         radioWrapper.appendChild(legendContainer);
 
-        // Append to main container
+        // Přidání do hlavního kontejneru
         container.appendChild(radioWrapper);
     });
 }
 
-// Call the function to generate the HTML
+// Volání funkce pro generování HTML
 generateSluzby();
 
-// Default style for inactive state
+// Defaultní styl (žádná viditelnost)
 const defaultStyle = {
     opacity: 0,
     fillOpacity: 0,
 };
 
-// Update legend function
+// Funkce pro aktualizaci legendy
 function updateLegend(radioId, isActive) {
-    // Clear all legends
+    // Smazání všech legend
     document.querySelectorAll('.legend-container2').forEach((legend) => {
         legend.innerHTML = '';
     });
 
-    // Show the legend for the active radio button
+    // Zobrazení legendy pro aktivní radio button
     if (isActive && radioId) {
         const legendContainer = document.getElementById(`legend-${radioId}`);
         const legendContent = `
@@ -225,71 +226,124 @@ function updateLegend(radioId, isActive) {
     }
 }
 
-// Highlight polygons
-function highlightFeature(feature, layer, attribute) {
-    if (feature.properties[attribute] == 1) {
-        const hatchingPattern = new L.StripePattern({
-            weight: 2,
-            color: "#4d4d4d",
-            spaceWeight: 12,
-            angle: 45,
-        });
+// Inicializace prázdné vrstvy pro zvýrazněné polygony
+let vrstvaSluzby = L.geoJSON(null);
+let vrstvaAktivni = false; // Stav, zda je vrstva přidána do mapy
+let geojsonData = null; // Uložíme si všechna data pro výběr služby
 
-        hatchingPattern.addTo(map);
+// Načteme GeoJSON, ale nepřidáme ho do mapy
+fetch("data/kraje.geojson")
+    .then(response => response.json())
+    .then(data => {
+        geojsonData = data; // Uložíme si data pro pozdější filtraci
+    });
 
-        layer.setStyle({
-            fillPattern: hatchingPattern,
-            weight: 3,
-            color: "white",
-            opacity: 1,
-            fillOpacity: 1,
-        });
-
-        layer.bringToFront();
-    } else {
-        layer.setStyle(defaultStyle);
-    }
-}
-
-// Initialize the transparent layer
-let pruhlednaVrstva = new L.GeoJSON.AJAX("data/kraje.geojson", {
-    style: defaultStyle,
-    onEachFeature: vypisPopupu,
-});
-
-// Handle radio button changes
+// Event listener pro změnu radio buttonu
 document.addEventListener("change", (e) => {
     if (e.target.matches('input[type="radio"][data-group="sluzby"]')) {
         const attribute = e.target.dataset.attribute;
         const radioId = e.target.id;
-        pruhlednaVrstva.eachLayer((layer) => {
-            highlightFeature(layer.feature, layer, attribute);
+
+        if (!geojsonData) return; // Pokud nejsou data načtena, nic nedělej
+
+        // Odstraníme starou vrstvu
+        if (vrstvaAktivni) {
+            map.removeLayer(vrstvaSluzby);
+        }
+
+        // Vytvoříme nový šrafovací vzor
+        let hatchingPattern = new L.StripePattern({
+            weight: 2,    // Tloušťka čar
+            color: "#4d4d4d", // Barva šrafování
+            spaceWeight: 12, // Vzdálenost mezi čárami
+            angle: 45      // Úhel šrafování
         });
+
+        hatchingPattern.addTo(map); // Přidáme vzor do Leafletu
+
+        // Vytvoříme novou vrstvu jen se zvýrazněnými polygony
+        vrstvaSluzby = L.geoJSON(geojsonData, {
+            filter: feature => feature.properties[attribute] == 1, // Pouze zvýrazněné
+            style: () => ({
+                fillPattern: hatchingPattern, // Aplikujeme šrafu
+                weight: 3,
+                color: "white",
+                opacity: 1,
+                fillOpacity: 1
+            }),
+           onEachFeature: vypisPopupuSluzba
+        });
+
+        // Přidáme novou vrstvu do mapy
+        vrstvaSluzby.addTo(map);
+        vrstvaAktivni = true;
 
         // Update legend
         updateLegend(radioId, true);
     }
 });
 
-// Clear selections
+// Funkce pro zrušení výběru
 function zrusitVyberSluzby() {
-    pruhlednaVrstva.setStyle(defaultStyle);
+    if (vrstvaAktivni) {
+        map.removeLayer(vrstvaSluzby); // Odstraní zvýrazněné polygony
+        vrstvaAktivni = false;
+    }
+
     document.querySelectorAll('input[type="radio"][name="sluzby"]').forEach((radio) => {
         radio.checked = false;
     });
 
-    // Hide all legends
+    // Skrytí všech legend
     updateLegend(null, false);
 }
+
+function vypisPopupuSluzba(feature, layer) {  
+    let popupContent = `<b>${feature.properties.text}</b>`; 
+
+    // Získání klíče pro URL na základě vybrané služby
+    const sluzbaId = document.querySelector('input[type="radio"][name="sluzby"]:checked').id;
+    const sluzba = sluzbyData.find(s => s.id === sluzbaId);
+    
+    // Získání URL pro aktuální službu
+    const urlKey = sluzba.urlKey;
+    const url = feature.properties[urlKey];  // Například feature.properties.platebni_portal_url
+
+    // Pokud URL existuje, přidáme odkaz s label z sluzbyData
+    if (url) {
+        popupContent += `<br><a href="${url}" target="_blank">Přejít na ${sluzba.label}</a>`;
+    } else {
+        popupContent += `<br>Odkaz na službu není dostupný.`;
+    }
+
+    // Připojíme popup k vrstvě
+    layer.bindPopup(popupContent);
+
+    // Vypiseme další informace o kraji, pokud je potřeba
+    vypisInfoKraj(layer, feature);
+}
+
 //----------------konec výběru služby
 
 
 
 //vytvoření vrstvy krajů pro indexy
-let inD = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexDigitalizace, onEachFeature: vypisPopupu});
+let inD = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexDigitalizace, onEachFeature: vypisPopupuIndex});
 
 //vytvoření vrstvy pro DESI index
-let statyDESI = new L.GeoJSON.AJAX("data/desi.geojson", {style: defaultStyle});
+let statyDESI = new L.GeoJSON.AJAX("data/desi.geojson", {style: defaultStyle, onEachFeature: vypisPopupuDESI});
+
+function vypisPopupuDESI(feature, layer) {
+    let popupDESI = `<b>${feature.properties.CNTR_NAME}</b>` + 
+    `<br>DESI index: ${Math.round(feature.properties.j_DESI)}` +
+	`<br>Integrace digitálních technologií: ${Math.round(feature.properties.j_IDT)}` +
+    `<br>Lidský kapitál: ${Math.round(feature.properties.j_HC)}` +
+    `<br>Digitalizace veřejné služby: ${Math.round(feature.properties.j_DPS)}` +
+    `<br>Digitální infrastruktura: ${Math.round(feature.properties.j_CONN)}`;
+    
+    
+    layer.bindPopup(popupDESI);
+};
 
 
 
@@ -362,12 +416,12 @@ function checkWindowSize() {
 checkWindowSize();
 
 //vložení dvýchozí vrstvy do mapy
-pruhlednaVrstva.addTo(map)
+
 inD.addTo(map);
 let aktivniVrstva = inD;
 
 //pruhledne staty pro zobrazení DESI
-statyDESI.addTo(map)
+
 
 //přidání průhledné vrstvy pro zobrazení služeb 
 
@@ -384,13 +438,15 @@ L.control.scale({
 }).addTo(map);
 
 //ovládání legendy a vrstev indexů
-let desi;
+let desi = 0;
 function addlay(style,legenda,stupnice,vrstva){
 	
 	if (vrstva == 1) {
 		if(desi==1){
 			desi=0;
-			statyDESI.setStyle(defaultStyle)
+			statyDESI.removeFrom(map);
+            aktivniVrstva.addTo(map);
+            aktivniVrstva.bringToBack();
 		}
 	//ovladani legendy
 	legendContainer.innerHTML = '<div></div>';
@@ -400,7 +456,7 @@ function addlay(style,legenda,stupnice,vrstva){
 	//ovladani vrstev
 	aktivniVrstva.setStyle(style);
 	} else if (vrstva == 2) {
-	aktivniVrstva.setStyle(defaultStyle)
+	aktivniVrstva.removeFrom(map);
 	
 	desi=1;
 	
@@ -408,7 +464,8 @@ function addlay(style,legenda,stupnice,vrstva){
 	legendContainer = document.getElementById(legenda);
 	legendContainer.innerHTML = stupnice;
 
-		
+	statyDESI.addTo(map);
+    statyDESI.bringToBack();
 	statyDESI.setStyle(style);	
 	}
 };
@@ -416,10 +473,10 @@ function addlay(style,legenda,stupnice,vrstva){
 //tlačítko na vypnutí vrstev indexu
 function zrusitVyberIndexu() {
     if (desi === 1) {
-        statyDESI.setStyle(defaultStyle);
+        statyDESI.removeFrom(map);
         desi = 0; 
     } else {
-        aktivniVrstva.setStyle(defaultStyle); 
+        aktivniVrstva.removeFrom(map); 
     }
 
     // Odznačení vybraného radiobuttonu
@@ -463,44 +520,54 @@ function zrusitPodklad(){
 };
 
 //popup a výpis do sidebaru
-function vypisPopupu(feature, layer) {  
+function vypisPopupuIndex(feature, layer) {  
 	let popupContent = `<b>${feature.properties.text}</b>` + 
 	`<br>Index digitalizace: ${Math.round(feature.properties.j_index_digitalizace)}` +
 	`<br>Index poskytovaných služeb: ${Math.round(feature.properties.j_index_sluzby)}` +
 	`<br>Index digitální dovednosti: ${Math.round(feature.properties.j_index_dovednosti)}` +
 	`<br>Index digitální infrastruktura: ${Math.round(feature.properties.j_index_digitalizace)}`+
-	`<br>Accessibility scoring: ${feature.properties.j_Accessibility_desktop}`;
+	`<br>Index přístupnosti: ${feature.properties.j_Accessibility_desktop}`;
 
+    
 	layer.bindPopup(popupContent); 
 
-		// Seznam klíčů a jejich odpovídajících textů
-		const linkKeys = {
-			web_kraje: "Web kraje",
-			j_platebni_portal_web: "Platební portál",
-			j_IDS_web: "Integrovaný dopravní systém",
-			j_rozklikavaci_rozpocet_web: "Rozklikávací rozpočet",
-			j_GEOportal_web: "GEOportál",
-			j_openDATA_web: "Portál otevřených dat",
-			j_katalog_soc_sluzeb_web: "Katalog sociálních služeb",
-			j_portal_kriz_rizeni_web: "Portál krizového řízení",
-			j_dotacni_portal_web: "Dotační portál"
-		};
-	
-		let vypisKraj = `<h3>${feature.properties.text}</h3>`;
-		for (const [key, label] of Object.entries(linkKeys)) {
-			if (feature.properties[key]) {
-				vypisKraj += `<a href="${feature.properties[key]}" target="_blank">${label}</a><br>`;
-			}
-		}
-
-
-	layer.on('click', (e) => {
-        // Změna obsahu v elementu s ID "infoKraj"
-        const infoElement = document.getElementById('infoKraj');
-        if (infoElement) {
-            infoElement.innerHTML = vypisKraj;
-        }});
+    vypisInfoKraj(layer,feature);
+		
 };
+
+
+function vypisInfoKraj(layer,feature){
+// Seznam klíčů a jejich odpovídajících textů
+const linkKeys = {
+    web_kraje: "Web kraje",
+    j_platebni_portal_web: "Platební portál",
+    j_IDS_web: "Integrovaný dopravní systém",
+    j_rozklikavaci_rozpocet_web: "Rozklikávací rozpočet",
+    j_GEOportal_web: "GEOportál",
+    j_openDATA_web: "Portál otevřených dat",
+    j_katalog_soc_sluzeb_web: "Katalog sociálních služeb",
+    j_portal_kriz_rizeni_web: "Portál krizového řízení",
+    j_dotacni_portal_web: "Dotační portál"
+};
+
+let vypisKraj = `<h3>${feature.properties.text}</h3>`;
+for (const [key, label] of Object.entries(linkKeys)) {
+    if (feature.properties[key]) {
+        vypisKraj += `<a href="${feature.properties[key]}" target="_blank">${label}</a><br>`;
+    }
+}
+
+
+layer.on('click', (e) => {
+// Změna obsahu v elementu s ID "infoKraj"
+const infoElement = document.getElementById('infoKraj');
+if (infoElement) {
+    infoElement.innerHTML = vypisKraj;
+}});
+};
+
+
+
 
 
 //schování části legendy
@@ -512,29 +579,6 @@ $(document).ready(function(){
 	});
 });
 
-
-/*let CPStyle = function(feature, latlng) {
-    return L.circleMarker(latlng, {
-        radius: 4,          // Velikost bodu
-        fillColor: "#ff7800", // Barva výplně
-        color: "#000",       // Barva obrysu
-        weight: 1,           // Šířka obrysu
-        opacity: 1,          // Viditelnost obrysu
-        fillOpacity: 0.8     // Průhlednost výplně
-    });
-};
-
-// Přidání GeoJSON bodové vrstvy s `pointToLayer`
-let czechPoint = new L.GeoJSON.AJAX("data/czechpoint.geojson", {
-    pointToLayer: CPStyle,
-    onEachFeature: function(feature, layer) {
-        layer.on("add", function() {
-            layer.bringToFront();  // Posune bod nad ostatní vrstvy
-        });
-
-        
-    }
-});*/
 
 //czech POINTY a clusterování
 
@@ -604,12 +648,26 @@ czechPoint.on("data:loaded", function() {
 //ovládání czechPOINT
 let CP_active = 0;
 
-function addKMVS(){
-	if (CP_active == 0) {
-	 map.addLayer(markers);
-	CP_active = 1
-	} else {
-	 map.removeLayer(markers);
-	CP_active = 0;
-	};	
-};
+
+function addKMVS() {
+    let legend = document.getElementById("legend-kmvs");
+
+    if (CP_active == 0) {
+        map.addLayer(markers);
+        
+        // Zajistí, že legenda obsahuje aktuální informace
+        legend.innerHTML = `
+            <div style="display: flex; align-items: center;" class="legend">
+                <div style="background:#93bde6; width:10px; height:10px; border-radius:50%; border:2px solid #fff; margin-right: 5px;"></div>
+                Czech POINT
+            </div>
+        `;
+
+        legend.style.display = "block"; // Zobrazit legendu
+        CP_active = 1;
+    } else {
+        map.removeLayer(markers);
+        legend.style.display = "none"; // Skrýt legendu
+        CP_active = 0;
+    }
+}
