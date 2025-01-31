@@ -28,11 +28,11 @@ const map = L.map('map',{minZoom:4, maxZoom:19}).setView([49.8, 14.85],zoomLev);
 
 //definování barevných stupnic pro kartogramy	
 	function getColorModra(d) {
-		return 	d >= 75 ? 	'#0080ff':
-				d >= 60 ? 	'#709bff':
-				d >= 45 ? 	'#adbeff':
-				d < 45  ? 	'#d5dcff':
-							'#d5dcff';
+		return 	d >= 75 ? 	'#1d456f':
+				d >= 60 ? 	'#2362a2':
+				d >= 45 ? 	'#599bd7':
+				d < 45  ? 	'#c5dbf2':
+							'#c5dbf2';
 	};	
 
 	function getColorOranzova(d) {
@@ -87,7 +87,7 @@ function indexDigitalizace(feature) {
 		weight: 2,
 		opacity: 1,
 		color: 'white',
-		fillOpacity: 0.7
+		fillOpacity: 0.8
 	};
 };
 
@@ -107,7 +107,7 @@ function indexDigitalizace(feature) {
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			fillOpacity: 0.7
+			fillOpacity: 0.8
 		};
 	};
 
@@ -117,7 +117,7 @@ function indexDigitalizace(feature) {
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			fillOpacity: 0.7
+			fillOpacity: 0.8
 		};
 	};
 
@@ -127,7 +127,7 @@ function indexDigitalizace(feature) {
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			fillOpacity: 0.7
+			fillOpacity: 0.8
 		};
 	};
 	
@@ -137,7 +137,7 @@ function indexDigitalizace(feature) {
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			fillOpacity: 0.7
+			fillOpacity: 0.8
 		};
 	};
 
@@ -701,7 +701,7 @@ L.Control.LinkButton = L.Control.extend({
         //
          // Nastavení pevné velikosti
          button.style.width = "120px"; // Pevná šířka
-         button.style.height = "82px"; // Pevná výška
+         button.style.height = "41px"; // Pevná výška
          button.style.textAlign = "center"; // Zarovnání textu do středu
  
         // Změna barvy při najetí myší
