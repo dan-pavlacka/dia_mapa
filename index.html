@@ -79,6 +79,10 @@
 				<div class="sidebar-pane" id="legenda">
 					<h1 class="sidebar-header">PŘEHLED VRSTEV<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
 					
+					<div><button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberIndexu(); zrusitVyberSluzby(); zrusitBody()">Vyčistit mapu</button> </div>
+			
+				
+
 					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#Vdigitalizace">−</button>Indexy digitalizace</h3>
 				<div id="Vdigitalizace">
 					<h4 style="margin-top: 0px;">Kraje ČR</h4>
@@ -88,22 +92,22 @@
 					</div>
 
 					<div><input class="radio" type="radio" id="vrstva2" name="vrs" onclick="addlay(indexSluzby, 'legenda2', legendOranzova, 1,0)">
-					<label for="vrstva2">Index poskytované služby</label> 
+					<label for="vrstva2">Subindex poskytované služby</label> 
 						<div id="legenda2" class="legend-container"></div>
 					</div>
 	
 					<div><input class="radio" type="radio" id="vrstva3" name="vrs" onclick="addlay(indexPristupnost, 'legenda5', legendCervena, 1,null)">
-						<label for="vrstva3">Index přístupnosti</label> 
+						<label for="vrstva3">Subindex přístupnosti</label> 
 							<div id="legenda5" class="legend-container"></div>
 						</div>
 
 					<div><input class="radio" type="radio" id="vrstva4" name="vrs" onclick="addlay(indexDovednosti, 'legenda3', legendZelena, 1,null)">
-					<label for="vrstva4">Index digitální dovednosti</label>
+					<label for="vrstva4">Subindex digitální dovednosti</label>
 						<div id="legenda3" class="legend-container"></div>
 					</div>
 
 					<div><input class="radio" type="radio" id="vrstva5" name="vrs" onclick="addlay(indexInfrastruktura, 'legenda4', legendFialova, 1,null)">
-					<label for="vrstva5">Index digitální infrastruktura</label> 
+					<label for="vrstva5">Subindex digitální infrastruktura</label> 
 						<div id="legenda4" class="legend-container"></div>
 					</div>
 				

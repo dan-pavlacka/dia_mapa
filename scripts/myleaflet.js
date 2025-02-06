@@ -1,14 +1,28 @@
 //zoomlevel podle šířky monitoru
 let zoomLev;
-	
+
 if (window.innerWidth > 1800) {
     zoomLev = 9;
 } else {
     zoomLev = 8;
 };
 
+let bounds = [
+    [34.5, -35],  // Jihozápadní roh (SWW)
+    [71.5, 45]    // Severovýchodní roh (NEE)
+];
+
+
 //definice mapy, výchozí bod, a omezení zoom levelu
-const map = L.map('map',{minZoom:4, maxZoom:19}).setView([49.8, 14.85],zoomLev);
+const map = L.map('map',{   minZoom:4, 
+                            maxZoom:19,
+                            zoomSnap:0.25, //jemnější zoom pro kolečko myši
+                            zoomDelta:0.25,   //jemnější zoom pro +-
+                            maxBounds: bounds, // Omezení na dané souřadnice
+                            maxBoundsViscosity: 1.0 // Určuje "sílu" omezení (1 = nikdy nepřeskočí)
+                        }).setView([49.8, 14.85],zoomLev);
+
+map.options.wheelPxPerZoomLevel = 150;  // jinak nefunguje zoomSnap
 
 //podkladové mapy
 	const OSM_base = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -285,7 +299,7 @@ document.addEventListener("change", (e) => {
         vrstvaSluzby = L.geoJSON(geojsonData, {
             filter: feature => feature.properties[attribute] == 1, // Pouze zvýrazněné
             style: () => ({
-                fillPattern: hatchingPattern, // Aplikujeme šrafu
+                fillPattern: hatchingPattern, // Aplikuje šrafu
                 weight: 3,
                 color: "white",
                 opacity: 1,
@@ -353,23 +367,6 @@ let inD = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexDigitalizace, on
 
 //vytvoření vrstvy pro DESI index
 let statyDESI = new L.GeoJSON.AJAX("data/desi.geojson", {style: defaultStyle, onEachFeature: vypisPopupuDESI});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function vypisPopupuDESI(feature, layer) {
   
@@ -572,10 +569,10 @@ function vypisPopupuIndex(feature, layer) {
 
 	let popupContent = `<b>${feature.properties.text}</b>` + 
 	`<br>Index digitalizace: ${Math.round(feature.properties.j_index_digitalizace)}` +
-	`<br>Index poskytovaných služeb: ${Math.round(feature.properties.j_index_sluzby)}` +
-	`<br>Index digitální dovednosti: ${Math.round(feature.properties.j_index_dovednosti)}` +
-	`<br>Index digitální infrastruktura: ${Math.round(feature.properties.j_index_digitalizace)}`+
-	`<br>Index přístupnosti: ${feature.properties.j_Accessibility_desktop}`;
+	`<br>Subindex poskytovaných služeb: ${Math.round(feature.properties.j_index_sluzby)}` +
+	`<br>Subindex digitální dovednosti: ${Math.round(feature.properties.j_index_dovednosti)}` +
+	`<br>Subindex digitální infrastruktura: ${Math.round(feature.properties.j_index_digitalizace)}`+
+	`<br>Subindex přístupnosti: ${feature.properties.j_Accessibility_desktop}`;
 
     
 	layer.bindPopup(popupContent); 
@@ -782,6 +779,23 @@ function addKU(){
     KU_active = 0; 
     legend.innerHTML = ""
     }
+};
+//
+//dodělat líp..//////////////////////////////////////////////////////
+function zrusitBody(){
+    let legend1 = document.getElementById("legend-kmvs");
+    let legend2 = document.getElementById("legend-ku");
+
+    map.removeLayer(CPmarkers);
+    legend1.style.display = "none"; // Skrýt legendu
+    CP_active = 0;
+
+    KUbody.removeFrom(map);
+    KU_active = 0; 
+    legend2.innerHTML = ""
+
+    document.getElementById("KMVS").checked = false;
+    document.getElementById("KU").checked = false;
 };
 
 /////////bodové vrstvy, které budou vždy nad šrafou
