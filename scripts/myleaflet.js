@@ -131,9 +131,29 @@ function indexDigitalizace(feature) {
 		};
 	};
 	
-	function DESIIndex(feature) {
+	function DESIIndex22(feature) {
 		return {
-			fillColor: getColorVinova(feature.properties.j_DESI),
+			fillColor: getColorVinova(feature.properties.j_DESI22),
+			weight: 2,
+			opacity: 1,
+			color: 'white',
+			fillOpacity: 0.8
+		};
+	};
+
+    function DESIIndex21(feature) {
+		return {
+			fillColor: getColorVinova(feature.properties.j_DESI21),
+			weight: 2,
+			opacity: 1,
+			color: 'white',
+			fillOpacity: 0.8
+		};
+	};
+
+    function DESIIndex20(feature) {
+		return {
+			fillColor: getColorVinova(feature.properties.j_DESI20),
 			weight: 2,
 			opacity: 1,
 			color: 'white',
@@ -277,7 +297,8 @@ document.addEventListener("change", (e) => {
         // Přidáme novou vrstvu do mapy
         vrstvaSluzby.addTo(map);
         vrstvaAktivni = true;
-
+        //zajistí, že bodové vrstvy z pole, které je níž v kódu budou vždy graficky nad šrafou
+        presunBodoveVrstvyNahoru();
         // Update legend
         updateLegend(radioId, true);
     }
@@ -333,13 +354,31 @@ let inD = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexDigitalizace, on
 //vytvoření vrstvy pro DESI index
 let statyDESI = new L.GeoJSON.AJAX("data/desi.geojson", {style: defaultStyle, onEachFeature: vypisPopupuDESI});
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function vypisPopupuDESI(feature, layer) {
-    let popupDESI = `<b>${feature.properties.CNTR_NAME}</b>` + 
-    `<br>DESI index: ${Math.round(feature.properties.j_DESI)}` +
-	`<br>Integrace digitálních technologií: ${Math.round(feature.properties.j_IDT)}` +
-    `<br>Lidský kapitál: ${Math.round(feature.properties.j_HC)}` +
-    `<br>Digitalizace veřejné služby: ${Math.round(feature.properties.j_DPS)}` +
-    `<br>Digitální infrastruktura: ${Math.round(feature.properties.j_CONN)}`;
+  
+    let popupDESI = `<b>${feature.properties.j_stat_CZ}</b>` + 
+    `<br>DESI index: ${Math.round(feature.properties["j_DESI" + desi])}` +
+	`<br>Integrace digitálních technologií: ${Math.round(feature.properties["j_IDT" + desi])}` +
+    `<br>Lidský kapitál: ${Math.round(feature.properties["j_HC" + desi])}` +
+    `<br>Digitalizace veřejné služby: ${Math.round(feature.properties["j_DPS" + desi])}` +
+    `<br>Digitální infrastruktura: ${Math.round(feature.properties["j_CONN" + desi])}`;
     
     
     layer.bindPopup(popupDESI);
@@ -438,12 +477,12 @@ L.control.scale({
 }).addTo(map);
 
 //ovládání legendy a vrstev indexů
-let desi = 0;
-function addlay(style,legenda,stupnice,vrstva){
+let desi;
+function addlay(style,legenda,stupnice,vrstva, rok){
 	
 	if (vrstva == 1) {
-		if(desi==1){
-			desi=0;
+		if(desi){
+			desi= null;
 			statyDESI.removeFrom(map);
             aktivniVrstva.addTo(map);
             aktivniVrstva.bringToBack();
@@ -454,12 +493,19 @@ function addlay(style,legenda,stupnice,vrstva){
 	legendContainer.innerHTML = stupnice;
 	
 	//ovladani vrstev
+    aktivniVrstva.addTo(map);
 	aktivniVrstva.setStyle(style);
+    aktivniVrstva.bringToBack();
 	} else if (vrstva == 2) {
 	aktivniVrstva.removeFrom(map);
 	
-	desi=1;
-	
+	desi=rok;
+    //aktualizace pop-upu
+    statyDESI.eachLayer(layer => {
+        vypisPopupuDESI(layer.feature, layer);
+    });
+
+
 	legendContainer.innerHTML = '<div></div>';
 	legendContainer = document.getElementById(legenda);
 	legendContainer.innerHTML = stupnice;
@@ -472,11 +518,12 @@ function addlay(style,legenda,stupnice,vrstva){
 
 //tlačítko na vypnutí vrstev indexu
 function zrusitVyberIndexu() {
-    if (desi === 1) {
+    if (desi) {
         statyDESI.removeFrom(map);
-        desi = 0; 
+        desi = null; 
     } else {
         aktivniVrstva.removeFrom(map); 
+        desi=null;
     }
 
     // Odznačení vybraného radiobuttonu
@@ -521,6 +568,8 @@ function zrusitPodklad(){
 
 //popup a výpis do sidebaru
 function vypisPopupuIndex(feature, layer) {  
+
+
 	let popupContent = `<b>${feature.properties.text}</b>` + 
 	`<br>Index digitalizace: ${Math.round(feature.properties.j_index_digitalizace)}` +
 	`<br>Index poskytovaných služeb: ${Math.round(feature.properties.j_index_sluzby)}` +
@@ -587,7 +636,7 @@ $("h3.expandable").click(function() {
 
 //czech POINTY a clusterování
 
-let markers = L.markerClusterGroup({
+let CPmarkers = L.markerClusterGroup({
 	showCoverageOnHover: false,
     iconCreateFunction: function(cluster) {
         let count = cluster.getChildCount(); // Počet bodů v clusteru
@@ -647,7 +696,7 @@ let czechPoint = new L.GeoJSON.AJAX("data/czechpoint.geojson", {
 
 // Přidání bodů do clusterovací vrstvy
 czechPoint.on("data:loaded", function() {
-    markers.addLayer(czechPoint);
+    CPmarkers.addLayer(czechPoint);
 });
 
 //ovládání czechPOINT
@@ -658,7 +707,7 @@ function addKMVS() {
     let legend = document.getElementById("legend-kmvs");
 
     if (CP_active == 0) {
-        map.addLayer(markers);
+        map.addLayer(CPmarkers);
         
         // Zajistí, že legenda obsahuje aktuální informace
         legend.innerHTML = `
@@ -671,11 +720,82 @@ function addKMVS() {
         legend.style.display = "block"; // Zobrazit legendu
         CP_active = 1;
     } else {
-        map.removeLayer(markers);
+        map.removeLayer(CPmarkers);
         legend.style.display = "none"; // Skrýt legendu
         CP_active = 0;
     }
 }
+
+//Krajské úřady
+// Načtení GeoJSON bodů pomocí L.GeoJSON.AJAX
+let KUbody = new L.GeoJSON.AJAX("data/krajskyUrad.geojson", {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, {
+            radius: 6, // Poloměr kolečka
+            color: '#ff6666', // Barva okraje
+            weight: 2, // Tloušťka okraje
+            fillColor: 'red', 
+            fillOpacity: 1, // Plná průhlednost výplně
+            stroke: true // Okraj bude vykreslen
+        });
+    },
+    onEachFeature: vypisPopupuKU
+});
+
+
+// popup
+function vypisPopupuKU(feature, layer){
+    let popupKU = `<b>${feature.properties.nazev}</b>` + 
+	`<br>${feature.properties.adresa}` +
+    `<br>Telefon: ${feature.properties.tel}` +
+    `<br>E-mail: ${feature.properties.email}` +
+    `<br>Web: ${feature.properties.web}` +
+    `<br>Dat. schránka: ${feature.properties.datSchranka}` +
+    `<br>IČ: ${feature.properties.IC}` +
+    `<br><br>Úřední hodiny:` +
+    `<br>PO: ${feature.properties.po}` +
+    `<br>ÚT: ${feature.properties.ut}` +
+    `<br>ST: ${feature.properties.st}` +
+    `<br>ČT: ${feature.properties.ct}` +
+    `<br>PÁ: ${feature.properties.pa}`;
+    
+
+    layer.bindPopup(popupKU)
+};
+
+
+let KU_active = 0;
+function addKU(){
+    let legend = document.getElementById("legend-ku");
+    
+    if (KU_active ==0) {
+    KUbody.addTo(map);
+    
+
+    KU_active = 1;
+    
+    legend.innerHTML = `<div style="display: flex; align-items: center;" class="legend">
+                        <div style="background-color: #ff3333; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #ff6666; margin-right: 5px;"></div>
+                        Krajský úřad</div>`
+    } else {
+    KUbody.removeFrom(map);
+    KU_active = 0; 
+    legend.innerHTML = ""
+    }
+};
+
+/////////bodové vrstvy, které budou vždy nad šrafou
+let bodoveVrstvy = [KUbody];
+
+function presunBodoveVrstvyNahoru() {
+    bodoveVrstvy.forEach(layer => {
+        if (map.hasLayer(layer)) { // Ověříme, zda je vrstva aktivní
+            layer.eachLayer(marker => {
+                marker.bringToFront();
+            });
+        }
+    });
+};
 
 //odkaz na platformu
 L.Control.LinkButton = L.Control.extend({

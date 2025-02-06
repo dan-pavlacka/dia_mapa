@@ -82,27 +82,27 @@
 					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#Vdigitalizace">−</button>Indexy digitalizace</h3>
 				<div id="Vdigitalizace">
 					<h4 style="margin-top: 0px;">Kraje ČR</h4>
-					<div><input class="radio" type="radio" id="vrstva1" name="vrs" onclick="addlay(indexDigitalizace, 'legenda1', legendModra, 1)" checked>
+					<div><input class="radio" type="radio" id="vrstva1" name="vrs" onclick="addlay(indexDigitalizace, 'legenda1', legendModra, 1,0)" checked>
 					<label for="vrstva1">Index digitalizace</label> 
 						<div id="legenda1" class="legend-container"></div>
 					</div>
 
-					<div><input class="radio" type="radio" id="vrstva2" name="vrs" onclick="addlay(indexSluzby, 'legenda2', legendOranzova, 1)">
+					<div><input class="radio" type="radio" id="vrstva2" name="vrs" onclick="addlay(indexSluzby, 'legenda2', legendOranzova, 1,0)">
 					<label for="vrstva2">Index poskytované služby</label> 
 						<div id="legenda2" class="legend-container"></div>
 					</div>
 	
-					<div><input class="radio" type="radio" id="vrstva3" name="vrs" onclick="addlay(indexPristupnost, 'legenda5', legendCervena, 1)">
+					<div><input class="radio" type="radio" id="vrstva3" name="vrs" onclick="addlay(indexPristupnost, 'legenda5', legendCervena, 1,null)">
 						<label for="vrstva3">Index přístupnosti</label> 
 							<div id="legenda5" class="legend-container"></div>
 						</div>
 
-					<div><input class="radio" type="radio" id="vrstva4" name="vrs" onclick="addlay(indexDovednosti, 'legenda3', legendZelena, 1)">
+					<div><input class="radio" type="radio" id="vrstva4" name="vrs" onclick="addlay(indexDovednosti, 'legenda3', legendZelena, 1,null)">
 					<label for="vrstva4">Index digitální dovednosti</label>
 						<div id="legenda3" class="legend-container"></div>
 					</div>
 
-					<div><input class="radio" type="radio" id="vrstva5" name="vrs" onclick="addlay(indexInfrastruktura, 'legenda4', legendFialova, 1)">
+					<div><input class="radio" type="radio" id="vrstva5" name="vrs" onclick="addlay(indexInfrastruktura, 'legenda4', legendFialova, 1,null)">
 					<label for="vrstva5">Index digitální infrastruktura</label> 
 						<div id="legenda4" class="legend-container"></div>
 					</div>
@@ -111,15 +111,25 @@
 				
 
 				<div>
-					<h4>Státy EU</h4>
+				<h4>Státy EU</h4>
 					
-					<div>
-						<div><input class="radio" type="radio" id="vrstva6" name="vrs" onclick="addlay(DESIIndex, 'legenda6', legendVinova, 2)">
-							<label for="vrstva6">DESI 2022</label> 
-								<div id="legenda6" class="legend-container"></div>
-							</div>	
-					
-					</div>
+				<div>
+				<div><input class="radio" type="radio" id="vrstva6" name="vrs" onclick="addlay(DESIIndex22, 'legenda6', legendVinova, 2,22)">
+				<label for="vrstva6">DESI 2022</label> 
+						<div id="legenda6" class="legend-container"></div>
+				</div>	
+				
+				<div><input class="radio" type="radio" id="vrstva7" name="vrs" onclick="addlay(DESIIndex21, 'legenda7', legendVinova, 2,21)">
+				<label for="vrstva7">DESI 2021</label> 
+						<div id="legenda7" class="legend-container"></div>
+				</div>					
+				
+				<div><input class="radio" type="radio" id="vrstva8" name="vrs" onclick="addlay(DESIIndex20, 'legenda8', legendVinova, 2,20)">
+				<label for="vrstva8">DESI 2020</label> 
+						<div id="legenda8" class="legend-container"></div>
+				</div>					
+
+				</div>
 					<div><button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberIndexu()">Zrušit zobrazení Indexu</button> </div>
 				</div>	
 
@@ -144,6 +154,11 @@
 				<div><input type="checkbox" id="KMVS" name="body" onclick="addKMVS()">
 					<label for="KMVS">Kontaktní místa veřejné správy</label> </div>	
 					<div id="legend-kmvs"></div>
+				
+				<div><input type="checkbox" id="KU" name="body" onclick="addKU()">
+					<label for="KU">Krajské úřady</label> </div>	
+					<div id="legend-ku"></div>
+				
 				</div>
 
 
