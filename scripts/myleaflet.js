@@ -19,10 +19,31 @@ const map = L.map('map',{   minZoom:4,
                             zoomSnap:0.25, //jemnější zoom pro kolečko myši
                             zoomDelta:0.25,   //jemnější zoom pro +-
                             maxBounds: bounds, // Omezení na dané souřadnice
-                            maxBoundsViscosity: 1.0 // Určuje "sílu" omezení (1 = nikdy nepřeskočí)
+                            maxBoundsViscosity: 1.0, // Určuje "sílu" omezení (1 = nikdy nepřeskočí)
+                            zoomControl: false
                         }).setView([49.8, 14.85],zoomLev);
 
 map.options.wheelPxPerZoomLevel = 150;  // jinak nefunguje zoomSnap
+//měřítko
+L.control.scale({
+	position:'bottomright',
+	metric: true, 
+	imperial: false
+}).addTo(map);
+
+
+L.control.zoom({
+    position: 'bottomright' // Umístění tlačítek
+}).addTo(map);
+
+
+function zoomCR(){
+    map.setView([49.8, 14.85],zoomLev)
+}
+
+function zoomEU(){
+    map.setView([50.8503, 4.3517],4)
+}
 
 //podkladové mapy
 	const OSM_base = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -315,6 +336,7 @@ document.addEventListener("change", (e) => {
         presunBodoveVrstvyNahoru();
         // Update legend
         updateLegend(radioId, true);
+        zrusitVyberIndexuEU();
     }
 });
 
@@ -466,12 +488,10 @@ let aktivniVrstva = inD;
 let legendContainer = document.getElementById('legenda1');
 legendContainer.innerHTML = legendModra;
 
-//měřítko
-L.control.scale({
-	position:'bottomright',
-	metric: true, 
-	imperial: false
-}).addTo(map);
+
+
+
+
 
 //ovládání legendy a vrstev indexů
 let desi;
@@ -481,9 +501,17 @@ function addlay(style,legenda,stupnice,vrstva, rok){
 		if(desi){
 			desi= null;
 			statyDESI.removeFrom(map);
+            
+            const radios = document.querySelectorAll('input[type="radio"][name="vrsEU"]');
+            radios.forEach((radio) => {
+                radio.checked = false;
+            });
+
             aktivniVrstva.addTo(map);
             aktivniVrstva.bringToBack();
-		}
+		
+        
+        }
 	//ovladani legendy
 	legendContainer.innerHTML = '<div></div>';
 	legendContainer = document.getElementById(legenda);
@@ -496,12 +524,19 @@ function addlay(style,legenda,stupnice,vrstva, rok){
 	} else if (vrstva == 2) {
 	aktivniVrstva.removeFrom(map);
 	
+    zrusitVyberSluzby(); 
+    zrusitBody();
+
 	desi=rok;
     //aktualizace pop-upu
     statyDESI.eachLayer(layer => {
         vypisPopupuDESI(layer.feature, layer);
     });
 
+    const radios = document.querySelectorAll('input[type="radio"][name="vrsKraj"]');
+    radios.forEach((radio) => {
+        radio.checked = false;
+    });
 
 	legendContainer.innerHTML = '<div></div>';
 	legendContainer = document.getElementById(legenda);
@@ -513,35 +548,58 @@ function addlay(style,legenda,stupnice,vrstva, rok){
 	}
 };
 
-//tlačítko na vypnutí vrstev indexu
-function zrusitVyberIndexu() {
-    if (desi) {
-        statyDESI.removeFrom(map);
-        desi = null; 
-    } else {
+//tlačítko na vypnutí vrstev EU
+function zrusitVyberIndexuKraj() {
+    if (aktivniVrstva) {
         aktivniVrstva.removeFrom(map); 
-        desi=null;
-    }
+    
+       
+    
 
     // Odznačení vybraného radiobuttonu
-    const radios = document.querySelectorAll('input[type="radio"][name="vrs"]');
+    const radios = document.querySelectorAll('input[type="radio"][name="vrsKraj"]');
     radios.forEach((radio) => {
         radio.checked = false;
     });
 
     // Vyčištění všech zobrazených legend
-    const legends = document.querySelectorAll('.legend-container');
+    const legends = document.querySelectorAll('.legend-containerKraj');
     legends.forEach((legend) => {
         legend.innerHTML = '';
     });
 }
+}
+
+
+//tlačítko na vypnutí vrstev indexu kraj
+function zrusitVyberIndexuEU() {
+    if (desi) {
+        statyDESI.removeFrom(map);
+        desi = null; 
+    
+
+    // Odznačení vybraného radiobuttonu
+    const radios = document.querySelectorAll('input[type="radio"][name="vrsEU"]');
+    radios.forEach((radio) => {
+        radio.checked = false;
+    });
+
+    // Vyčištění všech zobrazených legend
+    const legends = document.querySelectorAll('.legend-containerEU');
+    legends.forEach((legend) => {
+        legend.innerHTML = '';
+    });
+    } 
+}
+
+
+
 
 //ovládání podkladových map
 let aktivniPodklad = OSM_base;
 aktivniPodklad.addTo(map);
 
 function addBase(base){
-	podklad = 1;
 	if (aktivniPodklad) {
 	aktivniPodklad.removeFrom(map);
 	aktivniPodklad = base;
@@ -556,12 +614,94 @@ function addBase(base){
 function zrusitPodklad(){
 	aktivniPodklad.removeFrom(map);
 	aktivniPodklad = false;
-	
-	const radios = document.querySelectorAll('input[type="radio"][name="podk"]');
-    radios.forEach((radio) => {
-        radio.checked = false; // Odznačí všechny radiobuttony
-    });
 };
+
+
+
+////////////Začátek menu pro podkladové mapy!!!!!!!!!!!!!!
+// Vytvoření tlačítka pro ovládání podkladových map
+let controlButton = L.DomUtil.create('button', 'control-button');
+controlButton.innerHTML = '<img src="img/vrstvyWhite.svg"></img>'; // Ikona tlačítka
+
+// Vytvoření menu pro tlačítka
+let menu = L.DomUtil.create('div', 'map-layer-menu');
+let button1 = L.DomUtil.create('button', '', menu);
+button1.innerHTML = "OpenStreetMap";
+let button2 = L.DomUtil.create('button', '', menu);
+button2.innerHTML = "Ortofoto";
+let button3 = L.DomUtil.create('button', '', menu);
+button3.innerHTML = "Bez podkladové mapy";
+
+// Přidání tlačítka a menu na mapu
+map.getContainer().appendChild(controlButton);
+map.getContainer().appendChild(menu);
+
+// Sledování aktivní podkladové mapy
+let activeButton = button1; // Výchozí aktivní tlačítko (button1)
+
+function updateActiveButton(button) {
+    // Odstraní aktivní třídu ze všech tlačítek
+    button1.classList.remove('active');
+    button2.classList.remove('active');
+    button3.classList.remove('active');
+    controlButton.classList.remove('active');
+    
+    // Přidá aktivní třídu novému tlačítku
+    button.classList.add('active');
+    if (button === controlButton) {
+        controlButton.classList.add('active'); // Pokud je aktivní hlavní tlačítko, přidá třídu active
+    }
+}
+
+// Funkce pro přepínání viditelnosti menu
+controlButton.onclick = function(event) {
+    // Zabráníme základnímu chování, aby se kliknutí správně zachytilo
+    event.stopPropagation();
+
+    // Přepnutí viditelnosti menu
+    if (menu.style.display === "none") {
+        menu.style.display = "block"; // Zobrazí menu
+        controlButton.classList.add('active'); // Přidání třídy 'active' na hlavní tlačítko
+    } else {
+        menu.style.display = "none"; // Skryje menu
+        controlButton.classList.remove('active'); // Odebrání třídy 'active' z hlavního tlačítka
+    }
+};
+
+// Funkce pro zavření menu, pokud klikneš mimo něj
+document.addEventListener('click', function(event) {
+    if (!controlButton.contains(event.target) && !menu.contains(event.target)) {
+        // Pokud klikneš mimo tlačítko a menu, zavřeme menu
+        menu.style.display = "none"; // Skryje menu
+        controlButton.classList.remove('active'); // Odebere 'active' z hlavního tlačítka
+    }
+});
+
+
+// Funkce pro přidání podkladové mapy
+button1.onclick = function() {
+    addBase(OSM_base);
+    updateActiveButton(button1);
+    controlButton.classList.add('active'); 
+};
+
+button2.onclick = function() {
+    addBase(Orto_base);
+    updateActiveButton(button2);
+    controlButton.classList.add('active'); 
+};
+
+button3.onclick = function() {
+    zrusitPodklad();
+    updateActiveButton(button3); 
+    controlButton.classList.add('active');
+};
+
+// Výchozí stav
+updateActiveButton(button1); // Výchozí aktivní tlačítko je button1 pro OSM
+
+////////////Konec menu pro podkladové mapy!!!!!!!!!!!!!!
+
 
 //popup a výpis do sidebaru
 function vypisPopupuIndex(feature, layer) {  
@@ -701,6 +841,7 @@ let CP_active = 0;
 
 
 function addKMVS() {
+    zrusitVyberIndexuEU();
     let legend = document.getElementById("legend-kmvs");
 
     if (CP_active == 0) {
@@ -708,17 +849,12 @@ function addKMVS() {
         
         // Zajistí, že legenda obsahuje aktuální informace
         legend.innerHTML = `
-            <div style="display: flex; align-items: center;" class="legend">
-                <div style="background:#93bde6; width:10px; height:10px; border-radius:50%; border:2px solid #fff; margin-right: 5px;"></div>
-                Czech POINT
-            </div>
+                <div style="display: inline-block; background:#93bde6; width:10px; height:10px; border-radius:50%; border:2px solid #fff;"></div>
         `;
-
-        legend.style.display = "block"; // Zobrazit legendu
         CP_active = 1;
     } else {
         map.removeLayer(CPmarkers);
-        legend.style.display = "none"; // Skrýt legendu
+        legend.innerHTML = ""; // Skrýt legendu
         CP_active = 0;
     }
 }
@@ -763,6 +899,7 @@ function vypisPopupuKU(feature, layer){
 
 let KU_active = 0;
 function addKU(){
+    zrusitVyberIndexuEU();
     let legend = document.getElementById("legend-ku");
     
     if (KU_active ==0) {
@@ -771,9 +908,9 @@ function addKU(){
 
     KU_active = 1;
     
-    legend.innerHTML = `<div style="display: flex; align-items: center;" class="legend">
-                        <div style="background-color: #ff3333; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #ff6666; margin-right: 5px;"></div>
-                        Krajský úřad</div>`
+    legend.innerHTML = `
+                        <div style="display: inline-block; background-color: #ff3333; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #ff6666;"></div>
+                        `;
     } else {
     KUbody.removeFrom(map);
     KU_active = 0; 
@@ -783,19 +920,21 @@ function addKU(){
 //
 //dodělat líp..//////////////////////////////////////////////////////
 function zrusitBody(){
-    let legend1 = document.getElementById("legend-kmvs");
+    if (CP_active == 1){
+        let legend1 = document.getElementById("legend-kmvs");
+        map.removeLayer(CPmarkers);
+        legend1.innerHTML = ""; // Skrýt legendu
+        CP_active = 0;
+        document.getElementById("KMVS").checked = false;
+    }
+
+    if (KU_active == 1){
     let legend2 = document.getElementById("legend-ku");
-
-    map.removeLayer(CPmarkers);
-    legend1.style.display = "none"; // Skrýt legendu
-    CP_active = 0;
-
     KUbody.removeFrom(map);
     KU_active = 0; 
-    legend2.innerHTML = ""
-
-    document.getElementById("KMVS").checked = false;
+    legend2.innerHTML = "" 
     document.getElementById("KU").checked = false;
+    }
 };
 
 /////////bodové vrstvy, které budou vždy nad šrafou
@@ -819,7 +958,7 @@ L.Control.LinkButton = L.Control.extend({
         // Stylování kontejneru
         container.style.position = "absolute";
         container.style.top = "0px"; // 10 px od horního okraje
-        container.style.right = "55px"; // 50 px od pravého okraje
+        container.style.right = "0px"; // 50 px od pravého okraje
         container.style.zIndex = "1000"; // Aby bylo nad mapou
 
         let button = document.createElement("button");
@@ -860,3 +999,6 @@ L.Control.LinkButton = L.Control.extend({
 
 // Přidání tlačítka do mapy
 map.addControl(new L.Control.LinkButton({ position: 'topright' }));
+
+
+

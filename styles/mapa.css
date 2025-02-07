@@ -155,7 +155,88 @@ button{
     box-shadow: none !important;
 }
 
+
+
+/* Vytvoření výjimky pro zoom tlačítka */
 .leaflet-control-zoom {
-    box-shadow: none !important;
-    border: none; /* Volitelné: odstraní i okraj */
+    position: absolute !important; /* Vynutí absolutní pozici pro zoom */
+    bottom: 18px; /* Vzdálenost od spodního okraje */
+    right: 0px; /* Vzdálenost od pravého okraje */
+}
+
+.leaflet-control-scale {
+    position: absolute !important; /* Vynutí absolutní pozici pro zoom */
+    bottom: 23px; /* Vzdálenost od spodního okraje */
+    right: 52px; /* Vzdálenost od pravého okraje */
+}
+
+.map-layer-menu {
+    display: none; /* Skrytí menu na začátku */
+    position: absolute;
+    top: 101px;
+    right: 10px;
+    background-color: transparent; /* Průhledné pozadí */
+    padding: 00px;
+    
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.map-layer-menu button {
+    display: block;
+    margin: 5px 0;
+    width: 100%;
+    background-color: #2362a2; /* Barva tlačítek */
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: right; /* Horizontální zarovnání textu */
+    line-height: 11px; /* Vertikální zarovnání textu, odpovídá výšce tlačítka */
+}
+
+.map-layer-menu button:hover {
+    background-color: #f4f4f4;
+    color: #2362a2;
+}
+
+.control-button {
+    position: absolute;
+    top: 60px; /* 70px od horního okraje */
+    right: 10px; /* 10px od pravého okraje */
+    background-color: #2362a2; /* Barva hlavního tlačítka */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+  
+    z-index: 1001; /* Zajištění, že tlačítko bude nad mapou */
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+    margin: 0; /* Odstraní margin */
+}
+
+.control-button:hover{
+    background-color: #ffffff; /* Barva hlavního tlačítka */
+}
+
+.control-button:hover img{
+    filter: invert(1);
+}
+
+.map-layer-menu button.active {
+    background-color: #f4f4f4; /* Barva tlačítka při aktivní vrstvě */
+    color: #2362a2; /* Barva textu */
+}
+
+/* Efekt pro hlavní tlačítko, když je aktivní (tlačítka 1, 2, 3 jsou zobrazená) */
+.control-button.active {
+    background-color: #ffffff; /* Barva hlavního tlačítka v aktivním stavu */
+}
+
+.control-button.active img {
+    filter: invert(1); /* Změní barvu ikony v aktivním stavu */
 }
