@@ -620,8 +620,9 @@ function zrusitPodklad(){
 
 ////////////Začátek menu pro podkladové mapy!!!!!!!!!!!!!!
 // Vytvoření tlačítka pro ovládání podkladových map
-let controlButton = L.DomUtil.create('button', 'control-button');
+let controlButton = L.DomUtil.create('button', 'control-button tooltip-left-kratky');
 controlButton.innerHTML = '<img src="img/vrstvyWhite.svg"></img>'; // Ikona tlačítka
+controlButton.setAttribute('data-tooltip', 'Podkladové mapy');
 
 // Vytvoření menu pro tlačítka
 let menu = L.DomUtil.create('div', 'map-layer-menu');

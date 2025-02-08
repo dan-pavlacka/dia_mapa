@@ -84,12 +84,15 @@
 					</div>
 			
 				
-
-					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#Vdigitalizace">−</button>Digitalizace v krajích</h3>
-				<div id="Vdigitalizace">
+					
+					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#Vdigitalizace">−</button>Digitalizace v krajích
+						
+					</h3>
+					
+					<div id="Vdigitalizace">
 
 					<div><input class="radio" type="radio" id="vrstva1" name="vrsKraj" onclick="addlay(indexDigitalizace, 'legenda1', legendModra, 1,0)" checked>
-					<label for="vrstva1">Index digitalizace</label> 
+					<label for="vrstva1" class="tooltip tooltip-right-dlouhy" data-tooltip="Výsledný index digitalizace je vypočítán vážením dílčích subindexů.">Index digitalizace</label> 
 						<div id="legenda1" class="legend-containerKraj"></div>
 					</div>
 
@@ -125,7 +128,10 @@
 
 
 
-				<h3 class="expandable"> <button class="schovaniLegendy" id="toggleBtn" data-target="#Vsluzby">+</button>Digitální služby</h3>
+				<h3 class="expandable">
+					<button class="schovaniLegendy" id="toggleBtn" data-target="#Vsluzby">+</button>
+					<span  class="tooltip tooltip-right-kratky" data-tooltip="Seznam digitálních služeb.">Digitální služby</span>
+				</h3>
 				
 				
 				<div id="Vsluzby" class="hidden">

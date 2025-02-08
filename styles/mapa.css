@@ -240,3 +240,107 @@ button{
 .control-button.active img {
     filter: invert(1); /* Změní barvu ikony v aktivním stavu */
 }
+
+/*Tooltip*/
+/* Tooltip container */
+/* Styl pro tooltip */
+.tooltip {
+    position: relative;
+    cursor: pointer; /* Ukazatel ruky při najetí */
+}
+
+
+/* Skrytý tooltip */
+.tooltip-right-dlouhy::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 110%; /* Posune tooltip doprava */
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2362a2;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px ;
+    font-weight: normal;
+    width:150px;
+    text-align: justify;
+    line-height: 1.4;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+.tooltip-left-dlouhy::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 110%; /* Posune tooltip doprava */
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2362a2;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px ;
+    font-weight: normal;
+    width:150px;
+    text-align: justify;
+    line-height: 1.4;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+
+/* Tooltip vlevo */
+.tooltip-right-kratky::after {
+    white-space:pre;
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 110%; /* Posune tooltip doleva */
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2362a2;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    max-width: 150px;
+    width:auto;
+    line-height: 1.4;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+.tooltip-left-kratky::after {
+    white-space:pre;
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 110%; /* Posune tooltip doleva */
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2362a2;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    max-width: 150px;
+    width:auto;
+    line-height: 1.4;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+
+/* Zobrazení tooltipu při najetí */
+.tooltip-right-dlouhy:hover::after,
+.tooltip-left-dlouhy:hover::after,
+.tooltip-right-kratky:hover::after,
+.tooltip-left-kratky:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
