@@ -252,6 +252,8 @@ generateSluzby();
 const defaultStyle = {
     opacity: 0,
     fillOpacity: 0,
+    color: 'white',
+    weight:2
 };
 
 // Funkce pro aktualizaci legendy
@@ -373,6 +375,7 @@ function vypisPopupuSluzba(feature, layer) {
         popupContent += `<br>Odkaz na službu není dostupný.`;
     }
 
+    highlightPolygon(layer);
     // Připojíme popup k vrstvě
     layer.bindPopup(popupContent);
 
@@ -399,7 +402,7 @@ function vypisPopupuDESI(feature, layer) {
     `<br>Digitalizace veřejné služby: ${Math.round(feature.properties["j_DPS" + desi])}` +
     `<br>Digitální infrastruktura: ${Math.round(feature.properties["j_CONN" + desi])}`;
     
-    
+    highlightPolygon(layer);
     layer.bindPopup(popupDESI);
 };
 
@@ -719,7 +722,7 @@ function vypisPopupuIndex(feature, layer) {
 	layer.bindPopup(popupContent); 
 
     vypisInfoKraj(layer,feature);
-		
+    highlightPolygon(layer);
 };
 
 
@@ -1003,3 +1006,42 @@ map.addControl(new L.Control.LinkButton({ position: 'topright' }));
 
 
 
+//zvýraznění při pop-upu
+let activePolygon = null; // Proměnná pro aktivní polygon
+
+function highlightPolygon(layer) {
+    let originalStyle = {
+        color: layer.options.color, // Uloží původní barvu obvodu
+        weight: layer.options.weight // Uloží původní tloušťku čáry
+    
+    };
+    console.log("Původní styl:", originalStyle);
+
+    console.log("Ukládám barvu: ", originalStyle.color);
+    layer.on('click', function () {
+        // Vrátí původní styl předchozímu polygonu (pokud existuje)
+        if (activePolygon) {
+            activePolygon.setStyle(activePolygon.originalStyle);
+        }
+
+        // Uloží odkaz na nový aktivní polygon
+        activePolygon = layer;
+        activePolygon.originalStyle = originalStyle;
+
+        // Zvýraznění polygonu
+        layer.setStyle({
+            color: '#FFD700',   // Zlatá/žlutá neonová
+            weight: 4,          // Středně silný obrys
+        });
+        
+        layer.bringToFront();
+        presunBodoveVrstvyNahoru();
+        layer.openPopup(); // Otevře popup
+    });
+
+    // Vrátí původní styl po zavření popupu
+    layer.on('popupclose', function () {
+        layer.setStyle(layer.originalStyle);
+        activePolygon = null; // Reset aktivního polygonu
+    });
+}
