@@ -143,6 +143,7 @@ button{
 
 .hidden {
     display: none;
+    overflow: hidden;
 }
 
 .expandable{

@@ -203,22 +203,66 @@
 					<div class="sidebar-pane" id="settings">
 					<h1 class="sidebar-header">INFORMACE O INDEXECH<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
 					
-					<h3>Index digitalizace</h3>					
-					<p>Výpočet vážením dílčích indexů. Váhy jsou stanoveny rovnoměrně.</p>
-					<a href="img/index_schema.html" target="_blank">Schéma Indexu</a>
+					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#popisIndexDigitalizace">+</button>Index digitalizace</h3>					
 					
-					<h3>Index digitální služby</h3>
-					<p>Stanoven jako procentuální podíl vybraných digitálních služeb, poskytovaných krajem.</p>
+					<div id="popisIndexDigitalizace" class="hidden">
+					<p>Index je stavoven vážením dílčích subindexů. Váhy jsou stanoveny rovnoměrně.</p>
+					<a href="img/index_schema.html" target="_blank">Schéma Indexu</a>
+					</div>					
 
-					<h3>Index digitální dovednosti</h3>
-					<p>Stanoven jako průměrná hodnota vybraných ukazatelů, kde všechny jsou udány v procentech a byli normalizovány.</p>
 
-					<h3>Index digitální infrastruktura</h3>
-					<p>Stanoven jako průměrná hodnota vybraných ukazatelů, kde všechny jsou udány v procentech a byli normalizovány.</p>
+					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#popisSubindexSluzby">+</button>Subindex digitální služby</h3>					
+					
+					<div id="popisSubindexSluzby" class="hidden">
 
-					<h3>Lighthouse accessibility scoring</h3>
-					<p>Bylo měřeno pro webové stránky krajů 9.1.2025.</p>
+					<p>Stanoven jako procentuální podíl vybraných digitálních služeb, poskytovaných krajem. Hodnocené služby jsou:</p>
+					<ul>
+						<li>Platební portál</li>
+						<li>Rozklikávací rozpočet</li>
+						<li>Integrovaný dopravní systém</li>
+						<li>Geoportál</li>
+						<li>Portál otevřených dat</li>
+						<li>Katalog sociálních služeb</li>
+						<li>Portál krizového řízení</li>
+						<li>Dotační portál</li>
+					</ul>
+					</div>
 
+					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#popisSubindexPristupnost">+</button>Subindex přístupnost služeb</h3>
+					<div id="popisSubindexPristupnost" class="hidden">
+					<p>Přístupnost webových stránek, měřená nástrojem Lighthouse accessibility scoring, dne 9.1.2025.</p>
+
+					<ul>
+						<li>Web kraje</li>
+					</ul>
+					</div>
+
+
+					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#popisSubindexDovednosti">+</button>Subindex digitální dovednosti</h3>
+					<div id="popisSubindexDovednosti" class="hidden">
+					<p>Stanoven jako průměrná hodnota vybraných ukazatelů, které  byly předem normalizovány.</p>
+
+					<ul>
+						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl osob, které denně využívají internet</a></li>
+						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl osob, využívajících sociální sítě</a></li>
+						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl osob, využívajících internetové bankovnictví</li>
+						<li><a href="https://csu.gov.cz/studenti-ict-oboru?pocet=10&start=0&podskupiny=412&razeni=-datumVydani" target="_blank">Podíl studentů ICT oborů na VŠ (podle trvalého bydliště)</a></li>
+						<li><a href="https://csu.gov.cz/studenti-ict-oboru?pocet=10&start=0&podskupiny=412&razeni=-datumVydani" target="_blank">Podíl ICT absolventů (podle trvalého bydliště)</a></li>
+						<li><a href="https://vdb.czso.cz/vdbvo2/faces/cs/index.jsf?page=vystup-objekt-vyhledavani&bkvt=WmFtxJtzdG5hbsOtIHBvZGxlIG9kdsSbdHbDrSBla29ub21pY2vDqSDEjWlubm9zdGksIHBvaGxhdsOtIGEgcG9kbGUgdmVsaWtvc3Ruw61jaCBza3VwaW4gb2Jjw60gYSBrcmFqxa8.&vyhltext=Zam%C4%9Bstnan%C3%AD+podle+odv%C4%9Btv%C3%AD+ekonomick%C3%A9+%C4%8Dinnosti%2C+pohlav%C3%AD+a+podle+velikostn%C3%ADch+skupin+obc%C3%AD+a+kraj%C5%AF&katalog=all&pvo=ZV21CR011" target="_blank">Podíl ICT odborníků (dle CZ-NACE)</a></li>
+					</ul>
+					</div>
+
+					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#popisSubindexInfrastruktura">+</button>Subindex digitální infrastruktura</h3>
+					<div id="popisSubindexInfrastruktura" class="hidden">
+					<p>Stanoven jako průměrná hodnota vybraných ukazatelů, které  byly předem normalizovány</p>
+
+					<ul>
+						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl domácností s připojením k internetu</a></li>
+						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl osob využívajících internet na telefonu</a></li>
+						<li><a href="https://data.ctu.gov.cz/tags/pristup-k-internetu" target="_blank">Pokrytí infrastrukturou 30 Mbit/s (% ZSJ >80%)</a></li>
+						<li><a href="https://data.ctu.gov.cz/tags/pristup-k-internetu" target="_blank">Pokrytí infrastrukturou 100 Mbit/s (% ZSJ >80%)</a></li>
+					</ul>
+				</div>
 				</div>
 			</div>
 		</div>
