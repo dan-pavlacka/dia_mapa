@@ -635,7 +635,7 @@ function addBase(base){
 
 let obrys = null;
 function kontrolaObrys(){
-    if (desi === null && krajAktivni === false) {
+    if (desi === null && krajAktivni === false && aktivniPodklad ===false) {
         CR_obrys.addTo(map);
         obrys = true;
     }
@@ -1075,8 +1075,4 @@ function vycistiMapu(){
     zrusitVyberIndexuEU();
     zrusitVyberSluzby();
     zrusitBody();
-    if (aktivniPodklad==false){
-        obrys=true;
-        CR_obrys.addTo(map);
-    }
 }
