@@ -41,8 +41,9 @@
 				<ul role="tablist">
 					<li><a href="#home" role="tab">		<img src="img/home.svg" alt="Menu Icon" class="menu-icon"></a></li>
 					<li><a href="#legenda" role="tab">	<img src="img/vrstvy.svg" alt="Menu Icon" class="menu-icon"></a></li>
-					<li><a href="#sluzby" role="tab">	<img src="img/help.svg" alt="Menu Icon" class="menu-icon"></a></li>
-					<li><a href="#dalsi_zalozka" role="tab">	<img src="img/search.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#eu" role="tab">	<img src="img/help.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#sluzby" role="tab">	<img src="img/search.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#graf" role="tab">		<img src="img/graf.svg" alt="Menu Icon" class="menu-icon"></a></li>
 				</ul>
 	
 				<ul role="tablist">
@@ -80,7 +81,7 @@
 				<div class="sidebar-pane" id="legenda">
 					<h1 class="sidebar-header">VRSTVY ČR<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
 					
-					<div><button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="zrusitVyberIndexuKraj();zrusitVyberIndexuEU() ;zrusitVyberSluzby(); zrusitBody()">Vyčistit mapu</button> 
+					<div><button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="vycistiMapu()">Vyčistit mapu</button> 
 					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zoomCR()">Přibliž na ČR</button>
 					</div>
 			
@@ -162,9 +163,9 @@
 
 			</div>
 
-			<div class="sidebar-pane" id="sluzby">
+			<div class="sidebar-pane" id="eu">
 				<h1 class="sidebar-header">VRSTVY EU<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
-				<div><button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="zrusitVyberIndexuKraj();zrusitVyberIndexuEU(); zrusitVyberSluzby(); zrusitBody()">Vyčistit mapu</button> 
+				<div><button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="vycistiMapu()">Vyčistit mapu</button> 
 					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zoomEU()">Přibliž na EU</button>
 				</div>	
 				
@@ -193,7 +194,7 @@
 			</div>
 		</div>	
 	
-				<div class="sidebar-pane" id="dalsi_zalozka">
+				<div class="sidebar-pane" id="sluzby">
 					<h1 class="sidebar-header">INFORMACE O KRAJI<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
 					<div id="infoKraj"><h3>Pro zobrazení informací klikni na kraj</h3></div>
 
@@ -201,7 +202,16 @@
 
 				</div>
 
-					<div class="sidebar-pane" id="export">
+				<div class="sidebar-pane" id="graf">
+					<h1 class="sidebar-header">POROVNÁNÍ INDEXŮ<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
+
+
+				</div>
+
+
+
+
+				<div class="sidebar-pane" id="export">
 					<h1 class="sidebar-header">EXPORT MAPY<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
 					</div>
 

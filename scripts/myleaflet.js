@@ -393,6 +393,18 @@ let inD = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexDigitalizace, on
 //vytvoření vrstvy pro DESI index
 let statyDESI = new L.GeoJSON.AJAX("data/desi.geojson", {style: defaultStyle, onEachFeature: vypisPopupuDESI});
 
+//obrys pokud není zobrazený podklad
+let CR_obrys = new L.GeoJSON.AJAX("data/CR_obrys.geojson", {
+    style: function(feature) {
+        return {
+            color: "black",       // Barva čáry
+            weight: 2,           // Tloušťka čáry
+            fillOpacity: 0    // Průhlednost výplně
+        };
+    }
+});
+
+
 function vypisPopupuDESI(feature, layer) {
   
     let popupDESI = `<b>${feature.properties.j_stat_CZ}</b>` + 
@@ -479,7 +491,7 @@ checkWindowSize();
 //vložení dvýchozí vrstvy do mapy
 
 inD.addTo(map);
-let aktivniVrstva = inD;
+let krajAktivni = true;
 
 //pruhledne staty pro zobrazení DESI
 
@@ -497,9 +509,12 @@ legendContainer.innerHTML = legendModra;
 
 
 //ovládání legendy a vrstev indexů
-let desi;
+let desi = null;
 function addlay(style,legenda,stupnice,vrstva, rok){
-	
+	if (obrys ==true) {
+        CR_obrys.removeFrom(map);
+        obrys = false;
+    }
 	if (vrstva == 1) {
 		if(desi){
 			desi= null;
@@ -510,8 +525,9 @@ function addlay(style,legenda,stupnice,vrstva, rok){
                 radio.checked = false;
             });
 
-            aktivniVrstva.addTo(map);
-            aktivniVrstva.bringToBack();
+            inD.addTo(map);
+            inD.bringToBack();
+            krajAktivni = true;
 		
         
         }
@@ -521,12 +537,13 @@ function addlay(style,legenda,stupnice,vrstva, rok){
 	legendContainer.innerHTML = stupnice;
 	
 	//ovladani vrstev
-    aktivniVrstva.addTo(map);
-	aktivniVrstva.setStyle(style);
-    aktivniVrstva.bringToBack();
+    inD.addTo(map);
+	inD.setStyle(style);
+    inD.bringToBack();
+    krajAktivni = true;
 	} else if (vrstva == 2) {
-	aktivniVrstva.removeFrom(map);
-	
+	inD.removeFrom(map);
+	krajAktivni = false;
     zrusitVyberSluzby(); 
     zrusitBody();
 
@@ -549,14 +566,15 @@ function addlay(style,legenda,stupnice,vrstva, rok){
     statyDESI.bringToBack();
 	statyDESI.setStyle(style);	
 	}
+
 };
 
-//tlačítko na vypnutí vrstev EU
+//tlačítko na vypnutí vrstev INDEXU
 function zrusitVyberIndexuKraj() {
-    if (aktivniVrstva) {
-        aktivniVrstva.removeFrom(map); 
-    
-       
+    if (inD) {
+        inD.removeFrom(map); 
+        krajAktivni = false;
+        console.log(krajAktivni);
     
 
     // Odznačení vybraného radiobuttonu
@@ -579,6 +597,7 @@ function zrusitVyberIndexuEU() {
     if (desi) {
         statyDESI.removeFrom(map);
         desi = null; 
+        console.log(desi);
     
 
     // Odznačení vybraného radiobuttonu
@@ -610,14 +629,20 @@ function addBase(base){
 	
 	} else{
 	aktivniPodklad = base;	
-	aktivniPodklad.addTo(map);	
+	aktivniPodklad.addTo(map);
+    CR_obrys.removeFrom(map);	
 	};
 }; 
 
+let obrys = null;
 function zrusitPodklad(){
 	aktivniPodklad.removeFrom(map);
 	aktivniPodklad = false;
-};
+    if (desi === null && krajAktivni === false) {
+        CR_obrys.addTo(map);
+        obrys = true;
+    }
+    };
 
 
 
@@ -1005,43 +1030,50 @@ L.Control.LinkButton = L.Control.extend({
 map.addControl(new L.Control.LinkButton({ position: 'topright' }));
 
 
-
-//zvýraznění při pop-upu
-let activePolygon = null; // Proměnná pro aktivní polygon
+//zvýraznění polygonu při popupu
+let activePolygon = null;
+let activeFeatureId = null; // Uložíme ID aktivního polygonu
 
 function highlightPolygon(layer) {
-    let originalStyle = {
-        color: layer.options.color, // Uloží původní barvu obvodu
-        weight: layer.options.weight // Uloží původní tloušťku čáry
-    
-    };
-    console.log("Původní styl:", originalStyle);
+    if (activePolygon === null) {
+        layer.on('click', function () {
+            // Pokud je již nějaký polygon zvýrazněný, odstraníme ho
+            if (activePolygon) {
+                activePolygon.removeFrom(map);
+            }
 
-    console.log("Ukládám barvu: ", originalStyle.color);
-    layer.on('click', function () {
-        // Vrátí původní styl předchozímu polygonu (pokud existuje)
-        if (activePolygon) {
-            activePolygon.setStyle(activePolygon.originalStyle);
-        }
+            // Vytvoříme novou vrstvu polygonu s upraveným stylem
+            activePolygon = L.geoJSON(layer.toGeoJSON(), {
+                style: {
+                    color: '#FFD700',  // Zlatá barva zvýraznění
+                    weight: 4,         // Zvýrazněný obrys
+                    fillOpacity: 0   // Průhlednost výplně
+                }
+            }).addTo(map); // Přidání do mapy
 
-        // Uloží odkaz na nový aktivní polygon
-        activePolygon = layer;
-        activePolygon.originalStyle = originalStyle;
-
-        // Zvýraznění polygonu
-        layer.setStyle({
-            color: '#FFD700',   // Zlatá/žlutá neonová
-            weight: 4,          // Středně silný obrys
+            activeFeatureId = layer.feature.id; // Uložíme ID polygonu
+            layer.openPopup(); // Otevřeme popup
         });
-        
-        layer.bringToFront();
-        presunBodoveVrstvyNahoru();
-        layer.openPopup(); // Otevře popup
-    });
+    }
 
-    // Vrátí původní styl po zavření popupu
     layer.on('popupclose', function () {
-        layer.setStyle(layer.originalStyle);
-        activePolygon = null; // Reset aktivního polygonu
+        if (activePolygon) {
+            activePolygon.removeFrom(map); // Odebrání zvýrazněného polygonu z mapy
+            activePolygon = null;
+            activeFeatureId = null;
+        }
     });
+}
+
+
+//
+function vycistiMapu(){
+    zrusitVyberIndexuKraj();
+    zrusitVyberIndexuEU();
+    zrusitVyberSluzby();
+    zrusitBody();
+    if (aktivniPodklad==false){
+        obrys=true;
+        CR_obrys.addTo(map);
+    }
 }
