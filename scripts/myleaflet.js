@@ -574,7 +574,6 @@ function zrusitVyberIndexuKraj() {
     if (inD) {
         inD.removeFrom(map); 
         krajAktivni = false;
-        console.log(krajAktivni);
     
 
     // Odznačení vybraného radiobuttonu
@@ -589,6 +588,7 @@ function zrusitVyberIndexuKraj() {
         legend.innerHTML = '';
     });
 }
+    kontrolaObrys();
 }
 
 
@@ -596,9 +596,7 @@ function zrusitVyberIndexuKraj() {
 function zrusitVyberIndexuEU() {
     if (desi) {
         statyDESI.removeFrom(map);
-        desi = null; 
-        console.log(desi);
-    
+        desi = null;     
 
     // Odznačení vybraného radiobuttonu
     const radios = document.querySelectorAll('input[type="radio"][name="vrsEU"]');
@@ -612,6 +610,7 @@ function zrusitVyberIndexuEU() {
         legend.innerHTML = '';
     });
     } 
+    kontrolaObrys();
 }
 
 
@@ -635,13 +634,17 @@ function addBase(base){
 }; 
 
 let obrys = null;
-function zrusitPodklad(){
-	aktivniPodklad.removeFrom(map);
-	aktivniPodklad = false;
+function kontrolaObrys(){
     if (desi === null && krajAktivni === false) {
         CR_obrys.addTo(map);
         obrys = true;
     }
+};
+
+function zrusitPodklad(){
+	aktivniPodklad.removeFrom(map);
+	aktivniPodklad = false;
+    kontrolaObrys();
     };
 
 
