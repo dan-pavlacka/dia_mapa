@@ -375,12 +375,13 @@ function vypisPopupuSluzba(feature, layer) {
         popupContent += `<br>Odkaz na službu není dostupný.`;
     }
 
-    highlightPolygon(layer);
+    
     // Připojíme popup k vrstvě
     layer.bindPopup(popupContent);
 
     // Vypiseme další informace o kraji, pokud je potřeba
     vypisInfoKraj(layer, feature);
+    highlightPolygon(layer);
 }
 
 //----------------konec výběru služby
@@ -1038,8 +1039,7 @@ let activePolygon = null;
 let activeFeatureId = null; // Uložíme ID aktivního polygonu
 
 function highlightPolygon(layer) {
-    if (activePolygon === null) {
-        layer.on('click', function () {
+            layer.on('click', function () {
             // Pokud je již nějaký polygon zvýrazněný, odstraníme ho
             if (activePolygon) {
                 activePolygon.removeFrom(map);
@@ -1053,11 +1053,12 @@ function highlightPolygon(layer) {
                     fillOpacity: 0   // Průhlednost výplně
                 }
             }).addTo(map); // Přidání do mapy
-
+            activePolygon.bringToFront();
+            
             activeFeatureId = layer.feature.id; // Uložíme ID polygonu
             layer.openPopup(); // Otevřeme popup
         });
-    }
+    
 
     layer.on('popupclose', function () {
         if (activePolygon) {
