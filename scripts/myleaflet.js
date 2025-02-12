@@ -96,11 +96,11 @@ function zoomEU(){
 
 
 	function getColorCervena(d) {
-		return 	d > 99  ? 	'#FF0000':
-				d >= 95 ? 	'#FF603E':
-				d >= 90 ? 	'#FF9B7E':
-				d >= 85 ? 	'#FFCCBA':
-				d < 85  ? 	'#FFE8E0':
+		return 	d > 90  ? 	'#FF0000':
+				d >= 85 ? 	'#FF603E':
+				d >= 80 ? 	'#FF9B7E':
+				d >= 75 ? 	'#FFCCBA':
+				d < 75 ? 	'#FFE8E0':
 						  	'#FFE8E0';
 	};
 
@@ -158,7 +158,7 @@ function indexDigitalizace(feature) {
 
 	function indexPristupnost(feature) {
 		return {
-			fillColor: getColorCervena(feature.properties.j_Accessibility_desktop),
+			fillColor: getColorCervena(feature.properties.j_index_dostupnost),
 			weight: 2,
 			opacity: 1,
 			color: 'white',
@@ -443,38 +443,14 @@ function generateLegend(getColorFunction, legendName, grades, min) {
     return legend;
 }
 
-//generování legendy pro lighthouse accessibility score 
-function generateLegendAccessibility(getColorFunction, legendName, grades) {
-    let legend = `<div class="info legend">`;
-
-    for (let i = 0; i < grades.length; i++) {
-        const from = grades[i];
-
-        if (i === 0) {
-            // První interval: méně než
-            legend += `<i style="background:${getColorFunction(from)}"></i> 100<br>`;
-			
-        } else if (i === grades.length - 1) {
-            // Poslední interval: pevně 100
-            legend += `<i style="background:${getColorFunction(from)}"></i> méně než 85<br>`;
-        } else {
-            // Ostatní intervaly: více než
-            legend += `<i style="background:${getColorFunction(from)}"></i> ${from} a více <br>`;
-        }
-    }
-
-    legend += '</div>';
-    return legend;
-}
 
 const legendModra = generateLegend(getColorModra, "legendModra", [75, 60, 45, 44],"45");
 const legendFialova = generateLegend(getColorFialova, "legendFialova", [75, 50, 25, 24],"25");
 const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [75, 50, 25, 24],"25");
 const legendZelena = generateLegend(getColorZelena, "legendZelena", [75, 50, 25, 24],"25");
 const legendVinova = generateLegend(getColorVinova, "legendVinova", [65, 60, 55, 50, 49],"50");
-
 //legenda pro lighthouse Accessibility
-const legendCervena = generateLegendAccessibility(getColorCervena, "legendCervena", [100, 95, 90, 85, 84]);
+const legendCervena = generateLegend(getColorCervena, "legendCervena", [90, 85, 80, 75, 74], "75");
 
 //sidebar
 let sidebar = L.control.sidebar('sidebar').addTo(map); 
@@ -745,7 +721,7 @@ function vypisPopupuIndex(feature, layer) {
 	`<br>Subindex poskytovaných služeb: ${Math.round(feature.properties.j_index_sluzby)}` +
 	`<br>Subindex digitální dovednosti: ${Math.round(feature.properties.j_index_dovednosti)}` +
 	`<br>Subindex digitální infrastruktura: ${Math.round(feature.properties.j_index_digitalizace)}`+
-	`<br>Subindex přístupnosti: ${feature.properties.j_Accessibility_desktop}`;
+	`<br>Subindex přístupnosti: ${Math.round(feature.properties.j_index_dostupnost)}`;
 
     
 	layer.bindPopup(popupContent); 
@@ -1076,4 +1052,5 @@ function vycistiMapu(){
     zrusitVyberIndexuEU();
     zrusitVyberSluzby();
     zrusitBody();
-}
+};
+
