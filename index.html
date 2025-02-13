@@ -32,22 +32,23 @@
 	</head>
 
 	<body>
-
+		<div id="custom-tooltip"></div>
 		
 		<div id="sidebar" class="sidebar collapsed">
 			<!-- Nav tabs -->
 			<div class="sidebar-tabs">
 				<ul role="tablist">
-					<li><a href="#home" role="tab">		<img src="img/home.svg" alt="Menu Icon" class="menu-icon"></a></li>
-					<li><a href="#legenda" role="tab">	<img src="img/vrstvy.svg" alt="Menu Icon" class="menu-icon"></a></li>
-					<li><a href="#eu" role="tab">	<img src="img/help.svg" alt="Menu Icon" class="menu-icon"></a></li>
-					<li><a href="#sluzby" role="tab">	<img src="img/search.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#home" role="tab" class="tooltip-trigger" data-tooltip="O aplikaci">	<img src="img/home.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#legenda" role="tab" class="tooltip-trigger" data-tooltip="Vrstvy ČR"><img src="img/vrstvy.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#eu" role="tab" class="tooltip-trigger" data-tooltip="Vrstvy EU">		<img src="img/help.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a href="#sluzby" role="tab" class="tooltip-trigger" data-tooltip="Informace o kraji">	<img src="img/search.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<!-- Kontejner pro tooltip -->
 					
 				</ul>
 	
 				<ul role="tablist">
 					
-					<li><a href="#settings" role="tab">	<img src="img/settings.svg" alt="Menu Icon" class="menu-icon"></i></a></li>
+					<li><a href="#settings" role="tab" class="tooltip-trigger" data-tooltip="Informace o indexech">	<img src="img/settings.svg" alt="Menu Icon" class="menu-icon"></i></a></li>
 				</ul>
 			</div>
 	

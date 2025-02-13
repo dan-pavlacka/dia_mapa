@@ -313,6 +313,7 @@ button{
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+    
 }
 
 .tooltip-left-kratky::after {
@@ -344,4 +345,20 @@ button{
 .tooltip-left-kratky:hover::after {
     opacity: 1;
     visibility: visible;
+  
+}
+
+#custom-tooltip {
+    position: absolute;
+    background: #2362a2;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 99999; /* Tooltip bude nad mapou */
+    pointer-events: none; /* Zabrání kolizi s myší */
 }

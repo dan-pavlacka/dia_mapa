@@ -1054,3 +1054,37 @@ function vycistiMapu(){
     zrusitBody();
 };
 
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const tooltip = document.getElementById("custom-tooltip");
+
+    document.querySelectorAll(".tooltip-trigger").forEach((item) => {
+        item.addEventListener("mouseenter", function () {
+            // ✅ Získáme aktuálně aktivní sekci z URL (např. #home)
+            const currentHash = window.location.hash; 
+            const itemHash = item.getAttribute("href"); 
+
+            // ✅ NEZOBRAZUJ tooltip, pokud se `href` ikony shoduje s aktuálním URL fragmentem
+            if (currentHash === itemHash) {
+                return;
+            }
+
+            const rect = item.getBoundingClientRect();
+            tooltip.textContent = item.getAttribute("data-tooltip");
+            tooltip.style.visibility = "visible";
+            tooltip.style.opacity = "1";
+
+            // Umístění tooltipu vpravo od ikony
+            tooltip.style.left = window.scrollX + rect.right + 10 + "px";
+            tooltip.style.top = window.scrollY + rect.top + (rect.height / 2) - (tooltip.offsetHeight / 2) + "px";
+        });
+
+        item.addEventListener("mouseleave", function () {
+            tooltip.style.visibility = "hidden";
+            tooltip.style.opacity = "0";
+        });
+    });
+});
+
