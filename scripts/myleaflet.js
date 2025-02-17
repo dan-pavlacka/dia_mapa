@@ -25,16 +25,27 @@ const map = L.map('map',{   minZoom:4,
 
 map.options.wheelPxPerZoomLevel = 150;  // jinak nefunguje zoomSnap
 //měřítko
-L.control.scale({
+let meritko = L.control.scale({
 	position:'bottomright',
 	metric: true, 
 	imperial: false
-}).addTo(map);
+});
+
+let meritkoExport =  L.control.scale({
+	position:'bottomleft',
+	metric: true, 
+	imperial: false
+});
+
+meritko.addTo(map);
 
 
-L.control.zoom({
+
+let zoomButton = L.control.zoom({
     position: 'bottomright' // Umístění tlačítek
-}).addTo(map);
+});
+
+zoomButton.addTo(map);
 
 
 function zoomCR(){
@@ -709,6 +720,8 @@ button3.onclick = function() {
 // Výchozí stav
 updateActiveButton(button1); // Výchozí aktivní tlačítko je button1 pro OSM
 
+
+
 ////////////Konec menu pro podkladové mapy!!!!!!!!!!!!!!
 
 
@@ -1007,7 +1020,10 @@ L.Control.LinkButton = L.Control.extend({
 });
 
 // Přidání tlačítka do mapy
-map.addControl(new L.Control.LinkButton({ position: 'topright' }));
+let linkButtonControl = new L.Control.LinkButton({ position: 'topright' });
+
+// 3️⃣ Přidání tlačítka na mapu
+map.addControl(linkButtonControl);
 
 
 //zvýraznění polygonu při popupu
@@ -1056,17 +1072,17 @@ function vycistiMapu(){
 
 
 
-
+//tooltipy nad mapou
 document.addEventListener("DOMContentLoaded", function () {
     const tooltip = document.getElementById("custom-tooltip");
 
     document.querySelectorAll(".tooltip-trigger").forEach((item) => {
         item.addEventListener("mouseenter", function () {
-            // ✅ Získáme aktuálně aktivní sekci z URL (např. #home)
+            //  Získáme aktuálně aktivní sekci z URL (např. #home)
             const currentHash = window.location.hash; 
             const itemHash = item.getAttribute("href"); 
 
-            // ✅ NEZOBRAZUJ tooltip, pokud se `href` ikony shoduje s aktuálním URL fragmentem
+            // NEZOBRAZUJ tooltip, pokud se `href` ikony shoduje s aktuálním URL fragmentem
             if (currentHash === itemHash) {
                 return;
             }
@@ -1087,4 +1103,98 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+
+
+//
+function exportMapToPDF(map) {
+
+    let podkladHolder;
+    controlButton.remove();
+    map.removeControl(linkButtonControl);
+    map.removeControl(zoomButton);
+    map.removeControl(meritko);
+    meritkoExport.addTo(map);
+    document.querySelector(".leaflet-control-scale").classList.add("meritko-export");
+    if (aktivniPodklad){
+    podkladHolder = aktivniPodklad;
+    aktivniPodklad.removeFrom(map);
+    
+    };
+
+    const mapContainer = map.getContainer();
+    
+    // Uložíme původní stav mapy
+    const originalCenter = map.getCenter();
+    const originalZoom = map.getZoom();
+    const originalBounds = map.getBounds();
+
+    const titleText = document.getElementById("mapTitle").value || "Bez názvu";
+
+    setTimeout(() => {
+        const options = {
+            useCORS: true,
+            allowTaint: true,
+            scrollX: 0,
+            scrollY: 0,
+            width: mapContainer.offsetWidth,
+            height: mapContainer.offsetHeight,
+            windowWidth: mapContainer.offsetWidth,
+            windowHeight: mapContainer.offsetHeight,
+            taintTest: false,
+            imageTimeout: 0,
+            scale: 1,
+            removeContainer: false,
+            logging: true,
+            foreignObjectRendering: true,
+            removeTransform: false,
+            ignoreClear: true
+        };
+
+        // Vynutíme překreslení mapy
+        map.invalidateSize();
+        map.fitBounds(originalBounds, {animate: false});
+
+        html2canvas(mapContainer, options).then(function(canvas) {
+            const imgData = canvas.toDataURL('image/png');
+            
+            // Vytvoření PDF
+            const pdf = new jspdf.jsPDF({
+                orientation: 'landscape',
+                unit: 'px',
+                format: [mapContainer.offsetWidth + 50, mapContainer.offsetHeight + 100],
+                compress: true, // Komprese pro lepší kvalitu
+                dpi: 600 // Zvýší rozlišení // Přidáme místo pro titulek
+            });
+
+            // Přidání titulku
+            pdf.setFont("helvetica", "bold");
+            pdf.setFontSize(36);
+            pdf.text(titleText, 50, 45);
+
+            // Přidání mapy pod titulek
+            pdf.addImage(imgData, 'PNG', 50, 50, mapContainer.offsetWidth - 50, mapContainer.offsetHeight);
+
+            pdf.save('mapa.pdf');
+
+            // Vrátíme mapu do původního stavu
+            map.setView(originalCenter, originalZoom, {animate: false});
+            document.getElementById('map').appendChild(controlButton);
+            map.addControl(linkButtonControl);
+            map.removeControl(meritkoExport);
+            meritko.addTo(map);
+            zoomButton.addTo(map);
+            if (podkladHolder)
+            aktivniPodklad = podkladHolder;
+            aktivniPodklad.addTo(map);
+            podkladHolder = null;
+        });
+    }, 50);
+}
+
+document.getElementById('exportBtn').addEventListener('click', function() {
+    exportMapToPDF(map);
+});
+
 

@@ -30,6 +30,10 @@ html, body, #map {
     font: 10pt "Roboto";
 }
 
+#map {
+    background:white;
+}
+
 p {
     font-family: 'Roboto';
     font-style: normal;
@@ -348,6 +352,7 @@ button{
   
 }
 
+/*tooltip nad mapou*/
 #custom-tooltip {
     position: absolute;
     background: #2362a2;
@@ -362,3 +367,20 @@ button{
     z-index: 99999; /* Tooltip bude nad mapou */
     pointer-events: none; /* Zabrání kolizi s myší */
 }
+
+
+.input{
+    display: block;
+    margin-top: 20px;
+    text-align: left;
+}
+
+
+.meritko-export {
+    position: absolute !important;
+    left: 50%;
+    bottom: 0px; /* 10px od spodního okraje */
+    transform: translateX(-50%) scale(1.5); /* Zarovná na střed a zvětší */
+
+}
+
