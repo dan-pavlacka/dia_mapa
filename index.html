@@ -25,8 +25,8 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.pattern/dist/leaflet.pattern.css" />
 		<script src="https://cdn.jsdelivr.net/npm/leaflet.pattern/dist/leaflet.pattern.min.js"></script>
 		<!--design system-->
-		<link rel="stylesheet" href="styles/tokens.css"/>
-		<link rel="stylesheet" href="styles/components.css"/>
+		<!--<link rel="stylesheet" href="styles/tokens.css"/>
+		<link rel="stylesheet" href="styles/components.css"/>-->
 		<!--export mapy-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -40,54 +40,86 @@
 			<!-- Nav tabs -->
 			<div class="sidebar-tabs">
 				<ul role="tablist">
-					<li><a href="#home" role="tab" class="tooltip-trigger" data-tooltip="O aplikaci">	<img src="img/home.svg" alt="Menu Icon" class="menu-icon"></a></li>
-					<li><a href="#legenda" role="tab" class="tooltip-trigger" data-tooltip="Vrstvy ČR"><img src="img/vrstvy.svg" alt="Menu Icon" class="menu-icon"></a></li>
-					<li><a href="#eu" role="tab" class="tooltip-trigger" data-tooltip="Vrstvy EU">		<img src="img/help.svg" alt="Menu Icon" class="menu-icon"></a></li>
-					<li><a href="#sluzby" role="tab" class="tooltip-trigger" data-tooltip="Informace o kraji">	<img src="img/search.svg" alt="Menu Icon" class="menu-icon"></a></li>
+					<li><a  role="tab" style="background-color: #E5EEF9; padding-top:0px;">	<img src="img/logo_lev.svg" alt="Menu Icon" class="menu-icon-lev"></a></li>
+					<!--<li><a href="#home" role="tab" class="tooltip-trigger" data-tooltip="O aplikaci">	<img src="img/vlajka.svg" alt="Menu Icon" class="menu-icon"></a></li>-->
+					<li>
+						<a href="#legenda" role="tab" class="tooltip-trigger" data-tooltip="Index digitalizace">
+						  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="menu-icon">
+							<path class="svg-path" fill-rule="evenodd" clip-rule="evenodd" d="M1.375 2.75C0.615609 2.75 0 3.36561 0 4.125V17.875C0 18.6344 0.615609 19.25 1.375 19.25H20.625C21.3844 19.25 22 18.6344 22 17.875V4.125C22 3.36561 21.3844 2.75 20.625 2.75H1.375ZM20.625 4.125H2.59009L10.3245 10.3125H20.625V4.125ZM20.625 11.6875H10.3245L2.59015 17.875H20.625V11.6875ZM8.98279 11L1.375 17.0863V4.91379L8.98279 11Z" fill="#2362A2"/>
+						  </svg>
+						</a>
+					  </li>
+					<li>
+						<a href="#eu" role="tab" class="tooltip-trigger" data-tooltip="Vrstvy EU">
+						  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="menu-icon">
+							<path class="svg-path" d="M11 0L11.586 1.80039H13.4711L11.939 2.90886L12.525 4.7163L10.9929 3.60077L9.46085 4.7163L10.0469 2.90886L8.51476 1.80039H10.4069L11 0ZM3.21951 3.21951L4.91399 4.08087L6.2484 2.73941L5.95186 4.6104L7.63928 5.47176L5.76829 5.76829L5.47176 7.63928L4.6104 5.9448L2.73941 6.2484L4.08087 4.90693L3.21951 3.21951ZM0 11L1.80039 10.414V8.52888L2.90886 10.061L4.7163 9.47497L3.60077 11.0071L4.7163 12.5392L2.90886 11.9531L1.80039 13.4852V11.5931L0 11ZM3.21951 18.7805L4.08087 17.086L2.73941 15.7516L4.6104 16.0481L5.47176 14.3607L5.76829 16.2317L7.63928 16.5282L5.9448 17.3896L6.2484 19.2606L4.90693 17.9191L3.21951 18.7805ZM11 22L10.414 20.1996H8.52888L10.061 19.0911L9.47497 17.2837L11.0071 18.3992L12.5392 17.2837L11.9531 19.0911L13.4852 20.1996H11.5931L11 22ZM18.7805 18.7805L17.086 17.9191L15.7516 19.2606L16.0481 17.3896L14.3607 16.5282L16.2317 16.2317L16.5282 14.3607L17.3896 16.0552L19.2606 15.7516L17.9191 17.0931L18.7805 18.7805ZM22 11L20.1996 11.586V13.4711L19.0911 11.939L17.2837 12.525L18.3992 10.9929L17.2837 9.46085L19.0911 10.0469L20.1996 8.51476V10.4069L22 11ZM18.7805 3.21951L17.9191 4.91399L19.2606 6.2484L17.3896 5.95186L16.5282 7.63928L16.2317 5.76829L14.3607 5.47176L16.0552 4.6104L15.7516 2.73941L17.0931 4.08087L18.7805 3.21951Z" fill="#2362A2"/>
+						  </svg>
+						</a>
+					</li>
+					<li>
+						<a href="#sluzby" role="tab" class="tooltip-trigger" data-tooltip="Informace o kraji">
+						  <svg width="22" height="28" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="menu-icon">
+							<g transform="translate(0, 1)">
+							  <path class="svg-path" d="M8.75 7.54232L9.33333 8.70898H11.0833V7.54232L10.2083 6.95898L8.75 7.54232Z" fill="#2362A2"/>
+							  <path class="svg-path" fill-rule="evenodd" clip-rule="evenodd" d="M8.88728 0.962137C9.02043 0.82898 9.22386 0.795968 9.39229 0.880185L10.5225 1.44529C10.6263 1.49718 10.7052 1.58817 10.7419 1.69825L10.9671 2.37399L11.1745 2.47767L11.3819 2.37399L11.6071 1.69825C11.6667 1.5196 11.8338 1.3991 12.0222 1.3991H13.1524C13.3313 1.3991 13.4921 1.50802 13.5586 1.67412L14.0322 2.85829L15.4847 3.10037C15.5458 3.11054 15.604 3.13356 15.6555 3.16789L16.3929 3.65952H17.5193C17.6832 3.65952 17.8333 3.75107 17.9083 3.89674L18.3447 4.7444C18.4466 4.94232 18.3837 5.18521 18.1984 5.3087L17.7301 5.62094L17.8591 5.79822L18.8185 6.85381L19.0592 6.61318C19.1072 6.56515 19.1657 6.52897 19.2302 6.50749L19.6796 6.35768L19.3889 5.3483C19.3388 5.17436 19.401 4.98754 19.5454 4.87833C19.6897 4.76912 19.8864 4.76008 20.0402 4.85558L21.7128 5.8945L22.9559 5.64588C23.1493 5.60718 23.3448 5.70276 23.433 5.87922L23.7156 6.44433C23.7998 6.61276 23.7668 6.81619 23.6336 6.94934L23.3368 7.24614L23.7676 7.82053L24.3161 7.6377C24.4059 7.60776 24.503 7.60776 24.5928 7.6377L25.4245 7.91494L26.5384 8.19341C26.6623 8.22439 26.7665 8.30796 26.8236 8.42219L27.357 9.4889L27.8719 10.0038C27.9539 10.0858 28 10.1971 28 10.3132V11.1608C28 11.4024 27.8041 11.5983 27.5625 11.5983H26.6665L26.2463 12.2285L25.976 12.7692C25.9241 12.873 25.8331 12.9519 25.723 12.9886L25.1032 13.1952L24.8789 14.0924C24.8647 14.149 24.8394 14.2022 24.8045 14.2488L23.9568 15.379C23.8922 15.4652 23.7981 15.5244 23.6926 15.5456L22.2798 15.8281C22.2232 15.8394 22.1649 15.8394 22.1082 15.8281L21.0042 15.6073L20.1889 17.0295C20.1093 17.1683 19.9603 17.2526 19.8003 17.2493C19.6404 17.246 19.495 17.1557 19.4212 17.0137L19.0748 16.3476L18.1222 16.1382L17.556 16.3693C17.5035 16.3907 17.4473 16.4017 17.3906 16.4017H16.2604C16.1444 16.4017 16.0331 16.3556 15.9511 16.2736L15.2316 15.554H14.8477C14.7798 15.554 14.7128 15.5382 14.652 15.5079L13.5742 14.969L12.5976 14.7736L12.1546 16.1026C12.1067 16.2464 11.9877 16.3552 11.8401 16.39C11.7586 16.4093 11.6747 16.4044 11.5979 16.3781L11.2833 17.0075C11.2204 17.1333 11.1008 17.2212 10.962 17.2437C10.8232 17.2662 10.682 17.2207 10.5826 17.1212L10.2711 16.8097L9.72187 17.1759C9.62532 17.2402 9.50716 17.2636 9.39338 17.2409L7.98063 16.9583C7.82241 16.9267 7.69446 16.8105 7.6477 16.6561C7.60804 16.5251 7.63226 16.3846 7.71013 16.2754L6.12729 14.9187L5.61035 14.6602C5.5683 14.6392 5.5299 14.6115 5.49665 14.5783L3.92948 13.0111H3.54559C3.42956 13.0111 3.31828 12.965 3.23623 12.8829L2.38858 12.0353C2.34055 11.9873 2.30436 11.9287 2.28289 11.8643L2.02279 11.084L1.21773 10.0106C1.1183 9.87799 1.10231 9.70062 1.17642 9.5524L1.65888 8.58746L0.806967 8.1615C0.703185 8.10961 0.624267 8.01862 0.587574 7.90854L0.0224698 6.21323C-0.0334874 6.04536 0.0171887 5.86031 0.150868 5.74437C0.284547 5.62843 0.474904 5.60443 0.633175 5.68357L1.41794 6.07595L1.76881 5.54965C1.81104 5.4863 1.86908 5.43507 1.93718 5.40102L3.06738 4.83591C3.17117 4.78402 3.29131 4.77548 3.40139 4.81218L3.94989 4.99501L4.60835 4.11707C4.69098 4.0069 4.82065 3.94207 4.95835 3.94207H5.77323L5.95607 3.39356C6.00337 3.25166 6.11989 3.14375 6.265 3.10748L7.34862 2.83657L8.45806 2.28185L8.32217 2.14596C8.15132 1.97511 8.15132 1.6981 8.32217 1.52724L8.88728 0.962137ZM9.25025 1.8366L9.50599 2.09235C9.60543 2.19179 9.65101 2.33297 9.62848 2.47178C9.60596 2.6106 9.51807 2.73012 9.39229 2.79302L7.69698 3.64067C7.66843 3.65495 7.6384 3.66606 7.60743 3.6738L6.71022 3.8981L6.50361 4.51792C6.44406 4.69657 6.27688 4.81707 6.08856 4.81707H5.1771L4.68064 5.47902C4.71472 5.51226 4.74392 5.55168 4.76641 5.59666L5.45692 6.97769L9.08365 5.42338L9.40341 5.10362L8.92722 3.91313C8.86222 3.75064 8.90032 3.56504 9.02407 3.44129L10.0564 2.40892L9.9691 2.14687L9.28302 1.80383L9.25025 1.8366ZM10.5561 3.14673L9.84678 3.85602L10.1016 4.49305C10.1358 4.48448 10.1715 4.47994 10.2083 4.47994H12.5314L12.5417 4.47982C12.5759 4.47982 12.6091 4.48374 12.6411 4.49115L13.7071 4.70436L14.027 3.74449L13.6455 3.68091C13.4948 3.65578 13.368 3.55377 13.3113 3.41184L12.8562 2.2741H12.3375L12.1546 2.82261C12.118 2.93268 12.039 3.02368 11.9353 3.07557L11.3702 3.35812C11.247 3.41971 11.102 3.41971 10.9788 3.35812L10.5561 3.14673ZM10.3292 5.35494C10.3079 5.41524 10.2732 5.47127 10.2261 5.51834L9.64279 6.10168C9.60343 6.14103 9.55693 6.17252 9.50577 6.19444L6.23007 7.59832L7.50899 8.32913C7.69006 8.4326 7.77293 8.64949 7.70698 8.84733L7.16976 10.459L7.31476 10.894L11.5081 10.6144L13.5625 9.07357V8.48831L13.2952 7.68634C13.2918 7.67666 13.2888 7.6668 13.2861 7.65678C13.278 7.62701 13.2731 7.59647 13.2715 7.56567C13.271 7.55602 13.2708 7.54641 13.2709 7.53685V7.17773L12.2792 6.43398C12.169 6.35136 12.1042 6.22169 12.1042 6.08398V5.35494H10.3292ZM3.98378 5.98797L4.63928 7.29897L2.48881 8.08096C2.44809 8.02395 2.39354 7.97651 2.32849 7.94398L1.36037 7.45992L1.18657 6.93855L1.37207 7.0313C1.56942 7.12997 1.80936 7.06625 1.93175 6.88267L2.43241 6.13168L3.29661 5.69958L3.95642 5.91952C3.96349 5.94269 3.97259 5.96558 3.98378 5.98797ZM2.07996 9.70187L2.41069 9.04042L5.20923 8.02277L6.76346 8.91089L6.29355 10.3206C6.26361 10.4104 6.26361 10.5075 6.29355 10.5973L6.54847 11.3621L6.04338 13.8875L4.42005 12.2642C4.33801 12.1822 4.22673 12.1361 4.1107 12.1361H3.72681L3.08032 11.4896L2.83043 10.7399C2.81556 10.6953 2.7936 10.6534 2.76538 10.6158L2.07996 9.70187ZM8.6337 15.9146L6.8404 14.3775L7.35996 11.7679L11.2292 11.51V12.209C11.2292 12.325 11.2753 12.4363 11.3573 12.5183L11.9407 13.1017C11.9739 13.1349 12.0123 13.1626 12.0544 13.1836L13.5625 13.9377V14.0743L12.3905 13.8399C12.1741 13.7966 11.9594 13.9212 11.8897 14.1305L11.5171 15.2483C11.4744 15.2424 11.4306 15.2427 11.387 15.2498C11.2482 15.2723 11.1286 15.3602 11.0657 15.486L10.7721 16.0733L10.6362 15.9374C10.4887 15.7899 10.2577 15.7671 10.0842 15.8827L9.38729 16.3473L8.78604 16.2271C8.7806 16.1064 8.72549 15.9933 8.6337 15.9146ZM14.951 14.679L14.4375 14.4223V13.6673C14.4375 13.5016 14.3439 13.3501 14.1957 13.276L12.5092 12.4328L12.1042 12.0278V11.2611L14.1628 9.71709L15.8461 10.5587C15.8832 10.5773 15.9227 10.5904 15.9635 10.5979L17.3542 10.8507V12.6886L16.869 13.659L15.3389 14.679H14.951ZM14.4874 8.9011C14.471 8.8929 14.4544 8.88583 14.4375 8.87986V8.41732C14.4375 8.37029 14.4299 8.32358 14.4151 8.27897L14.2853 7.88972L15.39 7.70561L17.0127 8.51699C17.161 8.5911 17.3383 8.5751 17.4709 8.47568L18.4457 7.74457L18.4797 7.78191C18.5601 7.87045 18.6734 7.92216 18.793 7.92502C18.8996 7.92756 19.003 7.89107 19.0841 7.82319L18.835 8.57075C18.8022 8.66892 18.8054 8.77551 18.8438 8.87158L19.3417 10.1162L19.2189 10.3004L16.1815 9.74815L14.4874 8.9011ZM15.3865 6.81913L14.1459 7.0259V6.95898C14.1459 6.82128 14.081 6.69161 13.9709 6.60898L12.9792 5.86523V5.45111L13.9142 5.63811C14.1306 5.68138 14.3453 5.55677 14.415 5.34745L14.9008 3.89012L15.2482 3.94802L16.0178 4.46104C16.0896 4.50895 16.1741 4.53452 16.2604 4.53452H17.2525L17.3879 4.79745L16.8654 5.14576C16.7663 5.21185 16.6984 5.31551 16.6774 5.4328C16.6565 5.55009 16.6842 5.67085 16.7543 5.76719L17.1656 6.3323C17.1749 6.34512 17.1849 6.35742 17.1956 6.36915L17.8546 7.09418L17.1622 7.61344L15.6541 6.85936C15.5714 6.81801 15.4777 6.80393 15.3865 6.81913ZM16.4417 15.5267L16.1229 15.208L17.4511 14.3226C17.5144 14.2803 17.5656 14.2223 17.5997 14.1542L18.183 12.9875C18.2134 12.9268 18.2292 12.8598 18.2292 12.7919V11.0098L18.8189 11.117C18.8226 11.1385 18.828 11.1598 18.835 11.1808L19.1266 12.0558C19.1673 12.1779 19.2597 12.2759 19.3792 12.3236L19.7869 12.4867L21.6772 14.8496L20.8671 14.6875C20.6826 14.6507 20.4953 14.7358 20.4017 14.8989L19.828 15.8996L19.7567 15.7624C19.6968 15.6473 19.5891 15.5647 19.4624 15.5369L18.1769 15.2544C18.0903 15.2353 17.9998 15.2431 17.9177 15.2766L17.3048 15.5267H16.4417ZM22.7858 14.8346L23.3571 14.7203L24.0514 13.7945L24.3126 12.75C24.3488 12.6049 24.4567 12.4884 24.5987 12.4411L25.2744 12.2158L25.3891 11.9864L23.9706 11.7837L21.224 12.8824L22.7858 14.8346ZM20.2509 7.08956L20.2484 7.09745L19.7157 8.69542L20.2395 10.005C20.2931 10.1387 20.2773 10.2902 20.1974 10.4101L19.7327 11.1071L19.8926 11.5866L21 12.0296L23.2067 11.1469L22.4891 10.2499L20.8617 9.70746C20.683 9.64791 20.5625 9.48072 20.5625 9.29241V8.41741C20.5625 8.34949 20.5783 8.28251 20.6087 8.22176L21.192 7.05509C21.2344 6.97042 21.303 6.90177 21.3877 6.85943L21.5365 6.78505C21.4879 6.77455 21.441 6.75576 21.3981 6.72908L20.5444 6.19883L20.6366 6.51891C20.7015 6.74434 20.5771 6.98085 20.3545 7.05503L20.2509 7.08956ZM24.1501 10.9255L25.897 11.1751L26.0683 10.9181C26.1494 10.7964 26.286 10.7233 26.4323 10.7233H27.125V10.4944L26.6881 10.0574C26.6548 10.0242 26.6271 9.98577 26.6061 9.94371L26.131 8.99348L25.196 8.75973L25.1862 8.75715L25.1783 8.75492L25.1698 8.7523L25.1638 8.75035L24.4545 8.51391L23.7451 8.75035C23.5665 8.8099 23.3698 8.74845 23.2568 8.5978L22.4091 7.46759C22.3833 7.43309 22.3632 7.39586 22.3488 7.35714L21.9094 7.57684L21.4375 8.52069V8.97708L22.8884 9.4607C22.9684 9.48736 23.039 9.53659 23.0916 9.60244L24.1501 10.9255Z" fill="#2362A2"/>
+							</g>
+						  </svg>
+						</a>
+					  </li>
 					
 					
 				</ul>
 	
 				<ul role="tablist">
-					<li><a href="#export" role="tab" class="tooltip-trigger" data-tooltip="Export do PDF">	<img src="img/export.svg" alt="Menu Icon" class="menu-icon"></i></a></li>
-					<li><a href="#settings" role="tab" class="tooltip-trigger" data-tooltip="Informace o indexech">	<img src="img/settings.svg" alt="Menu Icon" class="menu-icon"></i></a></li>
+					<li>
+						<a href="#export" role="tab" class="tooltip-trigger" data-tooltip="Export do PDF">
+						  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="menu-icon">
+							<path class="svg-path" d="M0.75 14.8501C0.948912 14.8501 1.13968 14.9291 1.28033 15.0698C1.42098 15.2104 1.5 15.4012 1.5 15.6001V19.3501C1.5 19.7479 1.65804 20.1295 1.93934 20.4108C2.22064 20.6921 2.60218 20.8501 3 20.8501H21C21.3978 20.8501 21.7794 20.6921 22.0607 20.4108C22.342 20.1295 22.5 19.7479 22.5 19.3501V15.6001C22.5 15.4012 22.579 15.2104 22.7197 15.0698C22.8603 14.9291 23.0511 14.8501 23.25 14.8501C23.4489 14.8501 23.6397 14.9291 23.7803 15.0698C23.921 15.2104 24 15.4012 24 15.6001V19.3501C24 20.1457 23.6839 20.9088 23.1213 21.4714C22.5587 22.034 21.7956 22.3501 21 22.3501H3C2.20435 22.3501 1.44129 22.034 0.87868 21.4714C0.316071 20.9088 0 20.1457 0 19.3501V15.6001C0 15.4012 0.0790176 15.2104 0.21967 15.0698C0.360322 14.9291 0.551088 14.8501 0.75 14.8501Z" fill="#2362A2"/>
+							<path class="svg-path" d="M11.469 17.781C11.5386 17.8508 11.6214 17.9063 11.7125 17.9441C11.8036 17.9819 11.9013 18.0013 12 18.0013C12.0986 18.0013 12.1963 17.9819 12.2874 17.9441C12.3785 17.9063 12.4613 17.8508 12.531 17.781L17.031 13.281C17.1718 13.1402 17.2509 12.9492 17.2509 12.75C17.2509 12.5508 17.1718 12.3598 17.031 12.219C16.8901 12.0782 16.6991 11.9991 16.5 11.9991C16.3008 11.9991 16.1098 12.0782 15.969 12.219L12.75 15.4395V2.25C12.75 2.05109 12.671 1.86032 12.5303 1.71967C12.3896 1.57902 12.1989 1.5 12 1.5C11.8011 1.5 11.6103 1.57902 11.4696 1.71967C11.329 1.86032 11.25 2.05109 11.25 2.25V15.4395L8.03097 12.219C7.89014 12.0782 7.69913 11.9991 7.49997 11.9991C7.30081 11.9991 7.1098 12.0782 6.96897 12.219C6.82814 12.3598 6.74902 12.5508 6.74902 12.75C6.74902 12.9492 6.82814 13.1402 6.96897 13.281L11.469 17.781Z" fill="#2362A2"/>
+						  </svg>
+						</a>
+					  </li>
+					  <li>
+						<a href="#info" role="tab" class="tooltip-trigger" data-tooltip="Informace">
+						  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="menu-icon">
+							
+							  <path class="svg-path" d="M10 18.75C7.67936 18.75 5.45376 17.8281 3.81282 16.1872C2.17187 14.5462 1.25 12.3206 1.25 10C1.25 7.67936 2.17187 5.45376 3.81282 3.81282C5.45376 2.17187 7.67936 1.25 10 1.25C12.3206 1.25 14.5462 2.17187 16.1872 3.81282C17.8281 5.45376 18.75 7.67936 18.75 10C18.75 12.3206 17.8281 14.5462 16.1872 16.1872C14.5462 17.8281 12.3206 18.75 10 18.75ZM10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 7.34784 18.9464 4.8043 17.0711 2.92893C15.1957 1.05357 12.6522 0 10 0C7.34784 0 4.8043 1.05357 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C4.8043 18.9464 7.34784 20 10 20Z" fill="#2362A2"/>
+							  <path class="svg-path" d="M11.1624 8.235L8.29994 8.59375L8.19744 9.06875L8.75994 9.1725C9.12744 9.26 9.19994 9.3925 9.11994 9.75875L8.19744 14.0938C7.95494 15.215 8.32869 15.7425 9.20744 15.7425C9.88869 15.7425 10.6799 15.4275 11.0387 14.995L11.1487 14.475C10.8987 14.695 10.5337 14.7825 10.2912 14.7825C9.94744 14.7825 9.82244 14.5413 9.91119 14.1163L11.1624 8.235ZM11.2499 5.625C11.2499 5.95652 11.1182 6.27446 10.8838 6.50888C10.6494 6.7433 10.3315 6.875 9.99994 6.875C9.66842 6.875 9.35048 6.7433 9.11606 6.50888C8.88164 6.27446 8.74994 5.95652 8.74994 5.625C8.74994 5.29348 8.88164 4.97554 9.11606 4.74112C9.35048 4.5067 9.66842 4.375 9.99994 4.375C10.3315 4.375 10.6494 4.5067 10.8838 4.74112C11.1182 4.97554 11.2499 5.29348 11.2499 5.625Z" fill="#2362A2"/>
+							
+							
+						  </svg>
+						</a>
+					  </li>
 				</ul>
 			</div>
 	
 			<!-- Tab panes -->
 			<div class="sidebar-content">
-				<div class="sidebar-pane" id="home">
-					<h1 class="sidebar-header">
-						O APLIKACI
-						<span class="sidebar-close">	<img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span>
-					</h1>
-					
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.  
-						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-						At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
-						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-						At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>	
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
-						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-						At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>	
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
-						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-						At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>	
-					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
-						Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
-						At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>							
-					<img src="img/logoDIA.png" style="width:350px">
-				</div>
+			
 	
 				<div class="sidebar-pane" id="legenda">
-					<h1 class="sidebar-header">VRSTVY ČR<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					<h1 class="sidebar-header">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
+					<div class="sidebar-sticky">
+					<h2>Mapa digitalizace ČR </h2>
+					<p>Na mapě jsou znázorněny stupně digitalizace státní správy. <a href="javascript:void(0)" onclick="sidebar.open('info')">Více info.</a></p>
 					
-					<div><button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="vycistiMapu()">Vyčistit mapu</button> 
-					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zoomCR()">Přibliž na ČR</button>
+					
+					
+					<div>
+						<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zoomCR()">
+							<img src="img/priblizit.svg" alt="Ikona" class="button-ikona">
+							Přibliž na ČR
+						</button>
+						
+						<button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="vycistiMapu()">
+							<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
+							Vyčistit mapu
+						</button> 
+					
+					
 					</div>
 			
-				
+					</div>	<!--konec sticky části-->
 					
 					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#Vdigitalizace">−</button>Digitalizace v krajích
 						
@@ -95,41 +127,45 @@
 					
 					<div id="Vdigitalizace">
 
-					<div><input class="radio" type="radio" id="vrstva1" name="vrsKraj" onclick="addlay(indexDigitalizace, 'legenda1', legendModra, 1,0)" checked>
+					<div class="radio-container"><input  class="radio" type="radio" id="vrstva1" name="vrsKraj" onclick="addlay(indexDigitalizace, 'legenda1', legendModra, 1,0)" checked>
 					<label for="vrstva1" class="tooltip tooltip-right-dlouhy" data-tooltip="Výsledný index digitalizace je vypočítán vážením dílčích subindexů.">Index digitalizace</label> 
-						<div id="legenda1" class="legend-containerKraj"></div>
 					</div>
+					<div id="legenda1" class="legend-containerKraj"></div>
 
-					<div><input class="radio" type="radio" id="vrstva2" name="vrsKraj" onclick="addlay(indexSluzby, 'legenda2', legendOranzova, 1,0)">
+					<div class="radio-container"><input class="radio" type="radio" id="vrstva2" name="vrsKraj" onclick="addlay(indexSluzby, 'legenda2', legendOranzova, 1,0)">
 					<label for="vrstva2">Subindex poskytované služby</label> 
-						<div id="legenda2" class="legend-containerKraj"></div>
 					</div>
+					<div id="legenda2" class="legend-containerKraj"></div>
 	
-					<div><input class="radio" type="radio" id="vrstva3" name="vrsKraj" onclick="addlay(indexPristupnost, 'legenda5', legendCervena, 1,null)">
+					<div class="radio-container"><input class="radio" type="radio" id="vrstva3" name="vrsKraj" onclick="addlay(indexPristupnost, 'legenda5', legendCervena, 1,null)">
 						<label for="vrstva3">Subindex přístupnosti</label> 
-							<div id="legenda5" class="legend-containerKraj"></div>
-						</div>
+					</div>		
+						<div id="legenda5" class="legend-containerKraj"></div>
+						
 
-					<div><input class="radio" type="radio" id="vrstva4" name="vrsKraj" onclick="addlay(indexDovednosti, 'legenda3', legendZelena, 1,null)">
+					<div class="radio-container"><input class="radio" type="radio" id="vrstva4" name="vrsKraj" onclick="addlay(indexDovednosti, 'legenda3', legendZelena, 1,null)">
 					<label for="vrstva4">Subindex digitální dovednosti</label>
-						<div id="legenda3" class="legend-containerKraj"></div>
+						
 					</div>
+					<div id="legenda3" class="legend-containerKraj"></div>
 
-					<div><input class="radio" type="radio" id="vrstva5" name="vrsKraj" onclick="addlay(indexInfrastruktura, 'legenda4', legendFialova, 1,null)">
+					<div class="radio-container"><input class="radio" type="radio" id="vrstva5" name="vrsKraj" onclick="addlay(indexInfrastruktura, 'legenda4', legendFialova, 1,null)">
 					<label for="vrstva5">Subindex digitální infrastruktura</label> 
-						<div id="legenda4" class="legend-containerKraj"></div>
+						
 					</div>
-				
+					<div id="legenda4" class="legend-containerKraj"></div>
 				
 				
 
 				<div>
 				
-					<div><button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberIndexuKraj()">Zrušit zobrazení Indexu</button> </div>
+					<div><button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberIndexuKraj()">
+						<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
+						Zrušit zobrazení Indexu</button> </div>
 				</div>	
 
 				</div>
-
+					
 
 
 				<h3 class="expandable">
@@ -142,7 +178,9 @@
 					<!-- Radio buttons and legends will be dynamically generated here -->
 				</div>
 				<div>
-					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberSluzby()">Zrušit výběr služby</button>
+					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberSluzby()">
+						<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
+						Zrušit výběr služby</button>
 				</div>
 				</div>
 				
@@ -158,46 +196,54 @@
 					<div id="legend-ku" style="display:inline"></div>
 					<label for="KU">Krajský úřad</label> </div>	
 					
-					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitBody()">Zrušit zobrazení bodů</button>
+					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitBody()">Zrušit zobrazení bodů
+						<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
+					</button>
 				</div>
 
-				
+			
 
 			</div>
 
 			<div class="sidebar-pane" id="eu">
-				<h1 class="sidebar-header">VRSTVY EU<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
-				<div><button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="vycistiMapu()">Vyčistit mapu</button> 
-					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zoomEU()">Přibliž na EU</button>
+				<h1 class="sidebar-header">VRSTVY EU<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
+				<div><button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="vycistiMapu()">
+					<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
+					Vyčistit mapu</button> 
+					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zoomEU()">
+						<img src="img/priblizit.svg" alt="Ikona" class="button-ikona">
+						Přibliž na EU</button>
 				</div>	
 				
 					
 				<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#Vdesi">−</button>DESI</h3>
 				<div id="Vdesi">	
 				
-				<div><input class="radio" type="radio" id="vrstva6" name="vrsEU" onclick="addlay(DESIIndex22, 'legenda6', legendVinova, 2,22)">
+				<div class="radio-container"><input class="radio" type="radio" id="vrstva6" name="vrsEU" onclick="addlay(DESIIndex22, 'legenda6', legendVinova, 2,22)">
 				<label for="vrstva6">DESI 2022</label> 
-						<div id="legenda6" class="legend-containerEU"></div>
 				</div>	
+				<div id="legenda6" class="legend-containerEU"></div>
 				
-				<div><input class="radio" type="radio" id="vrstva7" name="vrsEU" onclick="addlay(DESIIndex21, 'legenda7', legendVinova, 2,21)">
+				<div class="radio-container"><input class="radio" type="radio" id="vrstva7" name="vrsEU" onclick="addlay(DESIIndex21, 'legenda7', legendVinova, 2,21)">
 				<label for="vrstva7">DESI 2021</label> 
-						<div id="legenda7" class="legend-containerEU"></div>
 				</div>					
-				
-				<div><input class="radio" type="radio" id="vrstva8" name="vrsEU" onclick="addlay(DESIIndex20, 'legenda8', legendVinova, 2,20)">
-				<label for="vrstva8">DESI 2020</label> 
-						<div id="legenda8" class="legend-containerEU"></div>
-				</div>					
+				<div id="legenda7" class="legend-containerEU"></div>
 
-				<div><button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberIndexuEU()">Zrušit zobrazení Indexu</button> </div>
+				<div class="radio-container"><input class="radio" type="radio" id="vrstva8" name="vrsEU" onclick="addlay(DESIIndex20, 'legenda8', legendVinova, 2,20)">
+				<label for="vrstva8">DESI 2020</label> 
+				</div>					
+				<div id="legenda8" class="legend-containerEU"></div>
+
+				<div><button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberIndexuEU()">
+					<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
+					Zrušit zobrazení Indexu</button> </div>
 
 				
 			</div>
 		</div>	
 	
 				<div class="sidebar-pane" id="sluzby">
-					<h1 class="sidebar-header">INFORMACE O KRAJI<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					<h1 class="sidebar-header">INFORMACE O KRAJI<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 					<div id="infoKraj"><h3>Pro zobrazení informací klikni na kraj</h3></div>
 
 
@@ -209,22 +255,24 @@
 
 				<div class="sidebar-pane" id="export">
 					
-					<h1 class="sidebar-header">EXPORT DO PDF<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					<h1 class="sidebar-header">EXPORT DO PDF<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 
 
 					<div>
 					<input type="text" id="mapTitle" placeholder="Zadejte titulek mapy" class="input">
 
 					
-					<button id="exportBtn" class="gov-button" style="margin-top: 15px;">Exportovat</button>
+					<button id="exportBtn" class="gov-button" style="margin-top: 15px;">
+						<img src="img/export_black.svg" alt="Ikona" class="button-ikona">
+						Exportovat</button>
 					</div>
 				</div>
 
 
 
 				
-					<div class="sidebar-pane" id="settings">
-					<h1 class="sidebar-header">INFORMACE O INDEXECH<span class="sidebar-close"><img src="img/left_arrow.svg" alt="Menu Icon" class="menu-icon"></i></span></h1>
+					<div class="sidebar-pane" id="info">
+					<h1 class="sidebar-header">INFORMACE O INDEXECH<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 					
 					<h3 class="expandable"><button class="schovaniLegendy" id="toggleBtn" data-target="#popisIndexDigitalizace">+</button>Index digitalizace</h3>					
 					

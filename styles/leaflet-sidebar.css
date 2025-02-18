@@ -4,9 +4,11 @@
   bottom: 0;
   width: 100%;
   overflow: hidden;
-  z-index: 2000; }
+  z-index: 2000; 
+  
+  }
   .sidebar.collapsed {
-    width: 50px; }
+    width: 64px; }
   @media (min-width: 768px) {
     .sidebar {
       top: 0px;
@@ -35,39 +37,39 @@
       right: 10px; } }
 
 .sidebar-tabs {
-  top: 0;
   bottom: 0;
   height: 100%;
-  background-color: #fff; }
+  background-color: #fff; 
+  }
+  
   .sidebar-left .sidebar-tabs {
     left: 0; }
   .sidebar-right .sidebar-tabs {
     right: 0; }
   .sidebar-tabs, .sidebar-tabs > ul {
     position: absolute;
-    width: 50px;
+    width: 64px;
     margin: 0;
     padding: 0;
     list-style-type: none; }
     .sidebar-tabs > li, .sidebar-tabs > ul > li {
       width: 100%;
-      height: 50px;
+      height: 56px;
       color: #333;
-      padding-bottom: 5px;
+      padding-bottom: 0px;
       font-size: 12pt;
       overflow: hidden;
       transition: all 80ms; }
       .sidebar-tabs > li:hover, .sidebar-tabs > ul > li:hover {
         color: #000;
-        background-color: #2362a2; }
+         }
       .sidebar-tabs > li.active, .sidebar-tabs > ul > li.active {
-        color: #fff;
-        background-color: #2362a2;
-         
+        color: #fff;         
       }
-      .sidebar-tabs > li.active > a, .sidebar-tabs > ul > li.active > a {
+      /*.sidebar-tabs > li.active > a, .sidebar-tabs > ul > li.active > a {
         filter: invert(1); 
-    }
+        background-color: #2362a2;
+    }*/
 
       .sidebar-tabs > li.disabled, .sidebar-tabs > ul > li.disabled {
         color: rgba(51, 51, 51, 0.4); }
@@ -79,7 +81,7 @@
         display: block;
         width: 100%;
         height: 100%;
-        line-height: 50px;
+        line-height: 56px;
         color: inherit;
         text-decoration: none;
         text-align: center; }
@@ -90,11 +92,15 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 255, 255, 1);
       overflow-x: hidden;
-      overflow-y: hidden; /* Scrollbar je ve výchozím stavu skrytý */
+      overflow-y: auto; /* Scrollbar je ve výchozím stavu skrytý */
       transition: all 0.3s; /* Plynulý přechod při změně */
+      
     }
+
+
+
     .sidebar-content:hover {
       overflow-y: auto; /* Scrollbar se zobrazí při najetí myší */
     }
@@ -116,13 +122,13 @@
     
     /* Pro levý a pravý sidebar zůstávají specifické úpravy */
     .sidebar-left .sidebar-content {
-      left: 50px;
+      left: 64px;
       right: 0;
     }
     
     .sidebar-right .sidebar-content {
       left: 0;
-      right: 50px;
+      right: 64px;
     }
     
     .sidebar.collapsed > .sidebar-content {
@@ -135,50 +141,57 @@
   left: 0;
   right: 0;
   box-sizing: border-box;
-  padding: 10px 20px; }
+  padding: 10px 20px; 
+  }
   .sidebar-pane.active {
     display: block; }
   @media (min-width: 768px) and (max-width: 991px) {
     .sidebar-pane {
-      min-width: 265px; } }
+      min-width: 229px; } }
   @media (min-width: 992px) and (max-width: 1199px) {
     .sidebar-pane {
-      min-width: 340px; } }
+      min-width: 320px; } }
   @media (min-width: 1200px) {
     .sidebar-pane {
-      min-width: 420px; } }
+      min-width: 396px; } }
 
-.sidebar-header {
-  margin: -10px -20px 0;
-  height: 55px;
-  padding: 0 20px;
-  line-height: 55px;
-  font-size: 14.4pt;
-  color: #fff;
-  background-color: #2362a2; }
+      .sidebar-header {
+        position: sticky;
+        top: 0;
+        margin: -10px -20px 0;
+        height: 56px;
+        padding: 0 20px;
+        line-height: 55px;
+        font-size: 14.4pt;
+        color: #2362a2;
+        background-color: #E5EEF9;
+        z-index: 1000; /* Nastaví vysoce prioritu pro zobrazení */
+      }
   .sidebar-right .sidebar-header {
-    padding-left: 50px; }
+    padding-left: 0px; }
 
 .sidebar-close {
-  position: absolute;
+  position:absolute;
   top: 0;
-  width: 50px;
-  height: 50px;
+  right:0;
+  width: 36px;
+  height: 56px;
   text-align: center;
-  cursor: pointer; }
+  cursor: pointer; 
+  }
   .sidebar-left .sidebar-close {
     right: 0; }
   .sidebar-right .sidebar-close {
     left: 0; }
 
 .sidebar-left ~ .sidebar-map {
-  margin-left: 50px; }
+  margin-left: 64px; }
   @media (min-width: 768px) {
     .sidebar-left ~ .sidebar-map {
       margin-left: 0; } }
 
 .sidebar-right ~ .sidebar-map {
-  margin-right: 50px; }
+  margin-right: 64px; }
   @media (min-width: 768px) {
     .sidebar-right ~ .sidebar-map {
       margin-right: 0; } }
@@ -212,7 +225,7 @@
 
 @media (min-width: 768px) {
   .sidebar-left.collapsed ~ .sidebar-map .leaflet-left {
-    left: 50px; } }
+    left: 64px; } }
 
 @media (min-width: 768px) {
   .sidebar-right ~ .sidebar-map .leaflet-right {
@@ -232,7 +245,7 @@
 
 @media (min-width: 768px) {
   .sidebar-right.collapsed ~ .sidebar-map .leaflet-right {
-    right: 50px; } }
+    right: 64px; } }
 
     
     
@@ -241,3 +254,14 @@
       height: auto;
   }
 
+
+
+.sidebar-tabs::before {
+  content: '';
+  position: absolute;
+  top: 56px; /* Začne 56px od vrchu */
+  right: 0;
+  width: 2px;
+  height: calc(100% - 56px); /* Vysoká na zbytek výšky */
+  background-color: #E7E7E7; /* Barva linie */
+}

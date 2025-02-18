@@ -225,34 +225,35 @@ const sluzbyData = [
 function generateSluzby() {
     const container = document.getElementById("sluzby-container");
     sluzbyData.forEach((sluzba) => {
-        const radioWrapper = document.createElement("div");
+        // Vytvoření hlavního containeru pro radio button a label
+        const radioContainer = document.createElement("div");
+        radioContainer.classList.add("radio-container");
 
         // Vytvoření radio inputu
         const radioInput = document.createElement("input");
-        radioInput.classList.add("radio");
         radioInput.type = "radio";
         radioInput.id = sluzba.id;
         radioInput.name = "sluzby";
         radioInput.dataset.attribute = sluzba.attribute;
         radioInput.dataset.group = "sluzby";
-
+        
         // Vytvoření labelu
         const label = document.createElement("label");
         label.htmlFor = sluzba.id;
         label.textContent = sluzba.label;
-
+        
         // Vytvoření legendy
         const legendContainer = document.createElement("div");
         legendContainer.id = `legend-${sluzba.id}`;
         legendContainer.classList.add("legend-container2");
 
-        // Přidání do wrapperu
-        radioWrapper.appendChild(radioInput);
-        radioWrapper.appendChild(label);
-        radioWrapper.appendChild(legendContainer);
-
-        // Přidání do hlavního kontejneru
-        container.appendChild(radioWrapper);
+        // Přidání elementů do radio-containeru
+        radioContainer.appendChild(radioInput);
+        radioContainer.appendChild(label);
+        
+        // Přidání radio-containeru a legendy do hlavního kontejneru
+        container.appendChild(radioContainer);
+        container.appendChild(legendContainer);
     });
 }
 
@@ -469,7 +470,7 @@ let sidebar = L.control.sidebar('sidebar').addTo(map);
 //defaultní stav sidebaru podle šířky monitoru
 function checkWindowSize() {
     if (window.innerWidth >= 1537) {
-        sidebar.open('home');
+        sidebar.open('legenda');
     } else {
         sidebar.close();
     }
@@ -1198,3 +1199,35 @@ document.getElementById('exportBtn').addEventListener('click', function() {
 });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    var svgObject = document.getElementById('download-icon');
+    
+    svgObject.addEventListener('load', function() {
+        var svgDoc = svgObject.contentDocument;
+        var paths = svgDoc.querySelectorAll('path');
+        
+        var link = svgObject.closest('a');
+        
+        link.addEventListener('mouseenter', function() {
+            for (var i = 0; i < paths.length; i++) {
+                paths[i].setAttribute('fill', 'white');
+            }
+            svgObject.style.backgroundColor = '#2362a2';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            for (var i = 0; i < paths.length; i++) {
+                paths[i].setAttribute('fill', '#2362A2');
+            }
+            svgObject.style.backgroundColor = '';
+        });
+        
+        link.addEventListener('click', function() {
+            link.classList.toggle('active');
+        });
+    });
+});
+
+
+
+//přepínání sidebar-pane odkazem

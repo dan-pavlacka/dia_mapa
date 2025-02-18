@@ -51,15 +51,50 @@ h1, h3, label {
     color: #000000;
 }
 
-.menu-icon {
-    width: 40px;
-    height: 40px;
+.menu-icon-arrow{
+    width: 16px;
+    height: 16px;
+    margin:0 auto;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}    
+
+.menu-icon-lev{
+    margin-top:6px;
+    width: 26px;
+    height: 26px;
     display: inline-block;
     padding:5px;
-    padding-top: 6px;
-    
+    background-color: #E5EEF9;
+
 }
-  
+
+.menu-icon {
+    margin-top: 7px;
+    padding: 7px;
+    width: 26px;
+    height: 26px;
+    display: inline-block;
+    border: 1px solid #E7E7E7;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.svg-path {
+    transition: fill 0.3s;
+}
+
+/* Aktivní stav */
+a:hover .menu-icon, li.active .menu-icon {
+    background-color: #2362a2;
+}
+
+a:hover .svg-path, li.active .svg-path {
+    fill: white;
+}
+
+
 
 
 .bold {
@@ -104,23 +139,59 @@ label {
     box-sizing: border-box;
 }
 
-.radio{
-    width:15px;
-    height: 15px;
-    border-width: 2px;
-    position: relative;
-    flex: 0 0 auto;
+input[type="radio"] {
+    appearance: none; /* Skryje defaultní vzhled */
+    width: 16px;
+    height: 16px;
+    min-width: 16px; /* Zajistí, že šířka neklesne pod 16px */
+    min-height: 16px; /* Zajistí, že výška neklesne pod 16px */
+    max-width: 16px; /* Zajistí, že šířka nepřesáhne 16px */
+    max-height: 16px; /* Zajistí, že výška nepřesáhne 16px */
+    border: 2px solid gray;
     border-radius: 50%;
-    border: 3px solid #ffffff;
+    display: inline-block;
+    position: relative;
     cursor: pointer;
+    margin: 0; /* Odstraní výchozí margin */
+    vertical-align: middle; /* Vertikální zarovnání */
+    box-sizing: border-box; /* Zajistí, že padding a border jsou součástí celkové šířky/výšky */
 }
 
-radio input:checked{
-    background: #2362a2;
-    box-shadow: 0 0 0 2px #2362a2;
+input[type="radio"]:checked {
+    border-color: #2362a2; /* Barva obrysu */
+    background-color: white;
 }
 
-button{
+input[type="radio"]:checked::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: #2362a2; /* Barva aktivního bodu */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.radio-container {
+    display: flex;
+    align-items: center; /* Zarovnání na střed vertikálně */
+    gap: 8px; /* Mezery mezi radio buttonem a label */
+    padding-top:3px;
+    padding-bottom:3px;
+    border-bottom: 2px solid #E7E7E7 !important;
+}
+
+.radio-container label {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    
+}
+
+
+.button_rozklik{
     font-family: 'Roboto';
     margin: 25px 25px 0px 0px;
     font-size: 1.2rem;
@@ -139,10 +210,60 @@ button{
     border-radius: .5rem;
 }
 
+.gov-button{
+/* Gov Button */
+display: inline-flex;
+vertical-align: middle;
+justify-content: center;
+align-items: center;
+
+
+/* Auto layout */
+
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 4px 8px;
+gap: 6px;
+height: 24px;
+border: 1.5px solid #4F4F4F;
+border-radius: 8px;
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+cursor: pointer;
+background-color: white;
+font-weight: bold;
+
+}
+
 
 .schovaniLegendy{
     margin:0px 10px 0px 0px;
     width: 15px;
+    font-family: 'Roboto';
+    font-size: 1.2rem;
+    font-weight: bold;
+    color:#ffffff;
+    height:2rem  ;
+    padding:1em;
+    display: inline-flex;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    background-color: #2362a2;
+    text-align: center;
+    cursor: pointer;
+    border-radius: .5rem;
+}
+
+.button-ikona{
+    width: 12px; 
+    height: 12px; 
+   
+    stroke-width:2px;
 }
 
 .hidden {
@@ -384,3 +505,13 @@ button{
 
 }
 
+/*sticky části pod sidebar-headerem*/
+.sidebar-sticky{
+    position:sticky;
+    top:56px;
+    background-color:white;
+    z-index:200000;
+    padding-top:16.6px;
+    padding-bottom:10px;
+    border-bottom: 2px solid #E7E7E7;
+}
