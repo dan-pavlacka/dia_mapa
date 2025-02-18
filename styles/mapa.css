@@ -31,7 +31,7 @@ html, body, #map {
 }
 
 #map {
-    background:white;
+    background:#E7E7E7;
 }
 
 p {
@@ -180,8 +180,8 @@ input[type="radio"]:checked::after {
     display: flex;
     align-items: center; /* Zarovnání na střed vertikálně */
     gap: 8px; /* Mezery mezi radio buttonem a label */
-    padding-top:5px;
-    padding-bottom:5px;
+    padding-top:10px;
+    padding-bottom:10px;
     
 }
 
@@ -233,8 +233,8 @@ input[type="checkbox"]:checked::after {
     display: flex;
     align-items: center; /* Zarovnání na střed vertikálně */
     gap: 5px; /* Zmenšená mezera mezi checkboxem a labelem */
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .checkbox-container label {
@@ -365,48 +365,51 @@ h3.expandable {
 
 .map-layer-menu {
     display: none; /* Skrytí menu na začátku */
+    overflow:hidden;
     position: absolute;
-    top: 101px;
+    top: 111px;
     right: 10px;
-    background-color: transparent; /* Průhledné pozadí */
+    background-color:black; /* Průhledné pozadí */
     padding: 00px;
-    
-    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+    border-radius: 8px;
     z-index: 1000;
 }
 
 .map-layer-menu button {
+    
     display: block;
-    margin: 5px 0;
+    margin: 0 0;
     width: 100%;
-    background-color: #2362a2; /* Barva tlačítek */
-    color: white;
+    background-color: #fff; /* Barva tlačítek */
+    color: black;
     border: none;
     padding: 5px;
-    font-size: 16px;
+    font-size: 12px;
     cursor: pointer;
-    border-radius: 5px;
-    text-align: right; /* Horizontální zarovnání textu */
+    
+    text-align: center; /* Horizontální zarovnání textu */
     line-height: 11px; /* Vertikální zarovnání textu, odpovídá výšce tlačítka */
+    
 }
 
 .map-layer-menu button:hover {
-    background-color: #f4f4f4;
-    color: #2362a2;
+    background-color: #E5EEF9;
+    color: black;
 }
 
 .control-button {
     position: absolute;
     top: 60px; /* 70px od horního okraje */
     right: 10px; /* 10px od pravého okraje */
-    background-color: #2362a2; /* Barva hlavního tlačítka */
+    background-color: white; /* Barva hlavního tlačítka */
     border: none;
     cursor: pointer;
     border-radius: 5px;
     width: 40px;
     height: 40px;
     text-align: center;
-  
+    border: 2px solid #E7E7E7;
     z-index: 1001; /* Zajištění, že tlačítko bude nad mapou */
     box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
     margin: 0; /* Odstraní margin */
@@ -416,13 +419,13 @@ h3.expandable {
     background-color: #ffffff; /* Barva hlavního tlačítka */
 }
 
-.control-button:hover img{
+/*.control-button:hover img{
     filter: invert(1);
-}
+}*/
 
 .map-layer-menu button.active {
-    background-color: #f4f4f4; /* Barva tlačítka při aktivní vrstvě */
-    color: #2362a2; /* Barva textu */
+    background-color: #E5EEF9; /* Barva tlačítka při aktivní vrstvě */
+    color: black; /* Barva textu */
 }
 
 /* Efekt pro hlavní tlačítko, když je aktivní (tlačítka 1, 2, 3 jsou zobrazená) */
@@ -430,9 +433,9 @@ h3.expandable {
     background-color: #ffffff; /* Barva hlavního tlačítka v aktivním stavu */
 }
 
-.control-button.active img {
-    filter: invert(1); /* Změní barvu ikony v aktivním stavu */
-}
+/*.control-button.active img {
+    filter: invert(1); 
+}*/
 
 /*Tooltip*/
 /* Tooltip container */
@@ -444,17 +447,13 @@ h3.expandable {
 
 
 /* Skrytý tooltip */
-.tooltip-right-dlouhy::after {
+.tooltip-right-dlouhy::after, .tooltip-left-dlouhy::after{
     content: attr(data-tooltip);
     position: absolute;
-    left: 110%; /* Posune tooltip doprava */
     top: 50%;
     transform: translateY(-50%);
-    background: #2362a2;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px ;
+    padding: 5px 10px;   
+
     font-weight: normal;
     width:150px;
     text-align: justify;
@@ -464,26 +463,12 @@ h3.expandable {
     transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 }
 
-.tooltip-left-dlouhy::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    right: 110%; /* Posune tooltip doprava */
-    top: 50%;
-    transform: translateY(-50%);
-    background: #2362a2;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px ;
-    font-weight: normal;
-    width:150px;
-    text-align: justify;
-    line-height: 1.4;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+.tooltip-left-dlouhy::after, .tooltip-left-kratky::after  {
+    right: 110%; /* Posune tooltip doprava */  
 }
-
+.tooltip-right-dlouhy::after, .tooltip-right-kratky::after{
+    left: 110%;
+}
 
 /* Tooltip vlevo */
 .tooltip-right-kratky::after {
@@ -493,11 +478,8 @@ h3.expandable {
     left: 110%; /* Posune tooltip doleva */
     top: 50%;
     transform: translateY(-50%);
-    background: #2362a2;
-    color: white;
     padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
+
     font-weight: normal;
     max-width: 150px;
     width:auto;
@@ -515,11 +497,8 @@ h3.expandable {
     right: 110%; /* Posune tooltip doleva */
     top: 50%;
     transform: translateY(-50%);
-    background: #2362a2;
-    color: white;
     padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
+
     font-weight: normal;
     max-width: 150px;
     width:auto;
@@ -527,6 +506,14 @@ h3.expandable {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+.tooltip-left-dlouhy::after, .tooltip-left-kratky::after, .tooltip-right-dlouhy::after, .tooltip-right-kratky::after{
+    background: #F6F6F6;
+    border: 1px solid #E7E7E7;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    color:#4F4F4F;
+    font-size: 10px;
 }
 
 
@@ -543,11 +530,14 @@ h3.expandable {
 /*tooltip nad mapou*/
 #custom-tooltip {
     position: absolute;
-    background: #2362a2;
-    color: white;
+    background: #F6F6F6;
+    border: 1px solid #E7E7E7;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    color:#4F4F4F;
+    font-size: 10px;
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: 12px;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;

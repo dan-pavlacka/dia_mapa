@@ -641,17 +641,17 @@ function zrusitPodklad(){
 ////////////Začátek menu pro podkladové mapy!!!!!!!!!!!!!!
 // Vytvoření tlačítka pro ovládání podkladových map
 let controlButton = L.DomUtil.create('button', 'control-button tooltip-left-kratky');
-controlButton.innerHTML = '<img src="img/vrstvyWhite.svg"></img>'; // Ikona tlačítka
+controlButton.innerHTML = '<img style="padding-top:4px;" src="img/vrstvyWhite.svg"></img>'; // Ikona tlačítka
 controlButton.setAttribute('data-tooltip', 'Podkladové mapy');
 
 // Vytvoření menu pro tlačítka
 let menu = L.DomUtil.create('div', 'map-layer-menu');
 let button1 = L.DomUtil.create('button', '', menu);
-button1.innerHTML = "OpenStreetMap";
+button1.innerHTML = "Základní";
 let button2 = L.DomUtil.create('button', '', menu);
-button2.innerHTML = "Ortofoto";
+button2.innerHTML = "Letecká";
 let button3 = L.DomUtil.create('button', '', menu);
-button3.innerHTML = "Bez podkladové mapy";
+button3.innerHTML = "Bez podkladu";
 
 // Přidání tlačítka a menu na mapu
 map.getContainer().appendChild(controlButton);
@@ -991,29 +991,29 @@ L.Control.LinkButton = L.Control.extend({
 
         let button = document.createElement("button");
         button.innerHTML = "Platforma";
-        button.style.backgroundColor = "#2362a2"; // Modrá barva
-        button.style.color = "white"; // Bílý text
-        button.style.border = "none";
+        button.style.backgroundColor = "white"; // Modrá barva
+        button.style.color = "#2362a2"; // Bílý text
+        button.style.border = "2px solid #E7E7E7";
         button.style.cursor = "pointer";
         button.style.margin = "0px";
-        button.style.fontSize = "20px";
-        button.style.borderRadius = "5px"; // Zaoblené rohy
-        button.style.boxShadow = "0px 2px 5px rgba(0,0,0,0.3)"; // Přidání stínu
+        button.style.fontSize = "14px";
+        button.style.borderRadius = "8px"; // Zaoblené rohy
+        button.style.boxShadow = "0px 2px 4px rgba(0,0,0,0.3)"; // Přidání stínu
         //
          // Nastavení pevné velikosti
-         button.style.width = "120px"; // Pevná šířka
-         button.style.height = "41px"; // Pevná výška
+         button.style.width = "92px"; // Pevná šířka
+         button.style.height = "40px"; // Pevná výška
          button.style.textAlign = "center"; // Zarovnání textu do středu
  
         // Změna barvy při najetí myší
-        button.onmouseover = function() {
+        /*button.onmouseover = function() {
             button.style.backgroundColor = "#f4f4f4"; // Tmavší modrá při hoveru
             button.style.color = "#2362a2";
         };
         button.onmouseout = function() {
             button.style.backgroundColor = "#2362a2"; // Zpět na původní modrou
             button.style.color = "white";
-        };
+        };*/
 
         // Kliknutí otevře odkaz v novém okně
         button.onclick = function() {

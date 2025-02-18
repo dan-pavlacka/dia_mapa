@@ -286,15 +286,15 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	border-radius: 4px;
 	}
 .leaflet-bar a {
-	background-color: #2362a2;
-	border-bottom: 1px solid #ffffff;
-	width: 26px;
-	height: 26px;
-	line-height: 26px;
+	background-color: #fff;
+	
+	width: 36px !important;
+	height: 36px !important;
+	line-height: 36px !important;
 	display: block;
 	text-align: center;
 	text-decoration: none;
-	color: rgb(255, 255, 255);
+	color: #2362a2;
 	}
 .leaflet-bar a,
 .leaflet-control-layers-toggle {
@@ -336,18 +336,34 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 
 /* zoom control */
+.leaflet-control-zoom-in {
+	margin-bottom: 10px !important;
+
+	}
+
+
+
 
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
 	font: bold 18px 'Lucida Console', Monaco, monospace;
 	text-indent: 1px;
+	border-radius: 8px !important;
+	border: 2px solid #E7E7E7 !important;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+	
 	}
 
 .leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
 	font-size: 22px;
 	}
 
-
+.leaflet-bar {
+    border: none !important; /* Odstraní rámeček okolo tlačítek */
+    background: transparent !important; /* Zruší pozadí */
+    box-shadow: none !important; /* Odstraní případné stíny */
+	
+}
 /* layers control */
 
 .leaflet-control-layers {
