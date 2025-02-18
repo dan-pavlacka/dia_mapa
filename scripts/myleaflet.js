@@ -777,22 +777,27 @@ if (infoElement) {
 
 
 
-//+- pro schovávání oddílů ovládání
-
+// Funkce pro kliknutí na tlačítko
 $(".schovaniLegendy").click(function(event){
     event.stopPropagation();  // Zabrání šíření události
     let target = $(this).data("target"); // Získá ID cílového divu
     $(target).slideToggle();
-    $(this).text($(this).text() === "−" ? "+" : "−");
+    
+    // Přepínání ikon šipek
+    $(this).find('.icon-sipka').toggleClass('skryta');
 });
 
 // Funkce pro kliknutí na celý nadpis s třídou 'expandable'
 $("h3.expandable").click(function() {
-    let target = $(this).find(".schovaniLegendy").data("target"); // Získá ID cílového divu
+    let button = $(this).find(".schovaniLegendy");
+    let target = button.data("target"); // Získá ID cílového divu
     $(target).slideToggle();
-    let buttonText = $(this).find(".schovaniLegendy").text();
-    $(this).find(".schovaniLegendy").text(buttonText === "−" ? "+" : "−");
+    
+    // Přepínání ikon šipek
+    button.find('.icon-sipka').toggleClass('skryta');
 });
+
+
 
 //czech POINTY a clusterování
 
