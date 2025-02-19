@@ -88,37 +88,60 @@
   .sidebar-tabs > ul + ul {
     bottom: 0; }
 
-  .sidebar-content {
-      position: absolute;
+    .sidebar-content {
+      position: absolute; /* Změněno na relative pro lepší kontrolu pozicování */
       top: 0;
       bottom: 0;
       background-color: rgba(255, 255, 255, 1);
-      overflow-x: hidden;
-      overflow-y: auto; /* Scrollbar je ve výchozím stavu skrytý */
-      transition: all 0.3s; /* Plynulý přechod při změně */
-      
-    }
+      overflow: hidden; /* Skrytí přetečení */
+      display: flex;
+      flex-direction: column; /* Aby obsah byl vertikálně seřazen */
+      height: 100%; /* Zabírá celou výšku sidebaru */
 
+    }
+  
 
-
-    .sidebar-content:hover {
-      overflow-y: auto; /* Scrollbar se zobrazí při najetí myší */
-    }
-    /* Styly pro scrollbar */
-    .sidebar-content::-webkit-scrollbar {
-      width: 8px; /* Šířka scrollbaru */
-    }
-    .sidebar-content::-webkit-scrollbar-track {
-      background: #f0f0f0; /* Barva pozadí scrollbaru */
-    }
-    .sidebar-content::-webkit-scrollbar-thumb {
-      background-color: #337fc4; /* Barva posuvníku */
-      border-radius: 0px; /* Zaoblené rohy posuvníku */
-    }
+  .scrollable {
+    position:relative;
+    flex-grow: 1; /* Zabírá zbývající prostor */
+    overflow-y: auto; /* Aktivuje vertikální scroll */
+    overflow-x: hidden; /* Skrytí horizontálního scrollu */
+    height: auto;
+    padding-bottom:10px;
+    box-sizing: border-box;
+    padding-right:7px;
     
-    .sidebar-content::-webkit-scrollbar-thumb:hover {
-      background-color: #1d3c5d; /* Barva posuvníku při hoveru */
-    }
+}
+
+
+/* Styly pro scrollbar */
+.scrollable::-webkit-scrollbar {
+  width: 7px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: white;
+  }
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: #E7E7E7;
+  border-radius: 10px;
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: #E7E7E7;
+}
+
+.scrollable:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  background: transparent;
+  pointer-events: none; /* Neinteraguje s uživatelskými událostmi */
+}
     
     /* Pro levý a pravý sidebar zůstávají specifické úpravy */
     .sidebar-left .sidebar-content {
@@ -138,10 +161,14 @@
 
 .sidebar-pane {
   display: none;
+  position:relative;  /*Možná potom smazat**/
   left: 0;
   right: 0;
   box-sizing: border-box;
-  padding: 10px 20px; 
+  padding-top: 10px;
+  padding-left:20px;
+  padding-right:20px;
+  padding-bottom:20px;
   }
   .sidebar-pane.active {
     display: block; }

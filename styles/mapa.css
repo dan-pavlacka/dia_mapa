@@ -571,9 +571,31 @@ h3.expandable {
     padding-top:16.6px;
     padding-bottom:10px;
     border-bottom: 2px solid #E7E7E7;
+    padding-right:10px;
 }
 
 .legend-containerKraj, .legend-container2, .legend-containerEU, .legend-body, .info-texty{
 
     border-bottom: 2px solid #E7E7E7;
 }
+
+
+.expand-sidebar {
+    position: absolute;
+    top: 0px;
+    left: 64px;
+    width: 26px;
+    height: 56px;
+    background: #E5EEF9;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    cursor: pointer;
+    z-index: 20000;
+}
+
+.expand-arrow {
+    width: 16px;
+    height: 56px;
+    padding-left: 5px;
+}
+

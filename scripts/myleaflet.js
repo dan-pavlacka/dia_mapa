@@ -1,6 +1,42 @@
 //zoomlevel podle šířky monitoru
 let zoomLev;
 
+
+let viewportHeight;
+let activeSidebar;
+function setScrollableHeight() {
+    viewportHeight = window.innerHeight;
+    // Najdeme aktuálně aktivní sidebar (pokud nějaký existuje)
+    setTimeout(() => {
+    activeSidebar = document.querySelector('.sidebar-pane.active');
+    scrollableHeightSize()
+    },30);
+
+    
+}
+
+
+function scrollableHeightSize(){
+    if (activeSidebar) {
+        let sidebarSticky = activeSidebar.querySelector('.sidebar-sticky');
+        if (sidebarSticky) {
+            const sidebarStickyHeight = sidebarSticky.offsetHeight || 0; // Získáme aktuální výšku .sidebar-sticky
+            const adjustedHeight = viewportHeight - 56 - sidebarStickyHeight - 15; // Odečteme 56px a výšku .sidebar-sticky           
+            const scrollable = activeSidebar.querySelector('.scrollable');
+            if (scrollable) {
+                scrollable.style.height = `${adjustedHeight}px`; // Nastaví výšku pro tento aktivní sidebar                
+            }
+        }
+    }
+
+}
+
+// Aktualizace výšky při změně velikosti okna
+window.addEventListener('resize', setScrollableHeight);
+
+
+
+
 if (window.innerWidth > 1800) {
     zoomLev = 9;
 } else {
@@ -877,7 +913,7 @@ function addKMVS() {
         
         // Zajistí, že legenda obsahuje aktuální informace
         legend.innerHTML = `
-                <div style="display: inline-block; background:#93bde6; width:10px; height:10px; border-radius:50%; border:2px solid #fff;"></div>
+                <div style="display: inline-block; vertical-align: middle; background:#93bde6; width:10px; height:10px; border-radius:50%; border:2px solid #fff;"></div>
         `;
         CP_active = 1;
     } else {
@@ -937,7 +973,7 @@ function addKU(){
     KU_active = 1;
     
     legend.innerHTML = `
-                        <div style="display: inline-block; background-color: #ff3333; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #ff6666;"></div>
+                        <div style="display: inline-block; vertical-align: middle; background-color: #ff3333; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #ff6666;"></div>
                         `;
     } else {
     KUbody.removeFrom(map);
@@ -977,6 +1013,8 @@ function presunBodoveVrstvyNahoru() {
         }
     });
 };
+
+//rozšíření sidebar ikony nahoře
 
 //odkaz na platformu
 L.Control.LinkButton = L.Control.extend({
@@ -1203,7 +1241,7 @@ document.getElementById('exportBtn').addEventListener('click', function() {
     exportMapToPDF(map);
 });
 
-
+/*
 document.addEventListener('DOMContentLoaded', function() {
     var svgObject = document.getElementById('download-icon');
     
@@ -1231,8 +1269,67 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.toggle('active');
         });
     });
-});
+});*/
 
 
 
-//přepínání sidebar-pane odkazem
+
+
+let sidebar_rozsireni = document.querySelector('.sidebar');
+let legendaTab = document.querySelector('a[href="#legenda"]'); // Odkaz na záložku
+
+// Vytvoříme tlačítko pro otevření sidebaru
+let toggleButton = L.DomUtil.create('div', 'expand-sidebar');
+
+// Přidáme SVG šipku (lokální soubor)
+let arrowIcon = L.DomUtil.create('img', 'expand-arrow', toggleButton);
+arrowIcon.src = 'img/right_arrowBlue.svg'; // Cesta k lokálnímu SVG souboru
+
+toggleButton.onclick = function () {
+    if (sidebar_rozsireni.classList.contains('collapsed')) {
+        sidebar_rozsireni.classList.remove('collapsed'); // Otevře sidebar
+        legendaTab.click(); // Automaticky klikne na záložku #legenda
+    }
+};
+
+// Přidáme tlačítko do mapy
+map.getContainer().appendChild(toggleButton);
+
+// Funkce pro kontrolu stavu sidebaru
+let hideButtonTimeout = null; // Proměnná pro sledování timeoutu
+let showButtonTimeout = null; // Proměnná pro sledování timeoutu pro zobrazení tlačítka
+
+function checkSidebarState() {
+    if (!sidebar_rozsireni.classList.contains('collapsed')) {
+        // Skrytí tlačítka s timeoutem 250ms
+        if (showButtonTimeout !== null) {
+            clearTimeout(showButtonTimeout); // Zrušíme probíhající timeout pro zobrazení
+            showButtonTimeout = null;
+        }
+
+        // Zpoždíme skrytí tlačítka o 250ms
+        hideButtonTimeout = setTimeout(function() {
+            toggleButton.style.display = 'none'; // Skryje tlačítko, pokud je sidebar otevřený
+        }, 50);
+    } else {
+        // Zavoláme setTimeout pro zobrazení tlačítka až po 250ms, pokud je sidebar zavřený
+        if (hideButtonTimeout !== null) {
+            clearTimeout(hideButtonTimeout); // Zrušíme probíhající timeout pro skrytí
+            hideButtonTimeout = null;
+        }
+
+        // Zpoždíme zobrazení tlačítka o 250ms
+        showButtonTimeout = setTimeout(function() {
+            toggleButton.style.display = 'block'; // Zobrazí tlačítko po 250ms
+        }, 250);
+    }
+}
+
+// Sledujeme změny ve třídách sidebaru (např. když ho otevřeš jiným tlačítkem)
+const observer = new MutationObserver(checkSidebarState);
+observer.observe(sidebar_rozsireni, { attributes: true, attributeFilter: ['class'] });
+
+// Kontrola při načtení stránky
+checkSidebarState();
+
+
