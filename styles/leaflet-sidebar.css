@@ -288,7 +288,7 @@
   position: absolute;
   top: 56px; /* Začne 56px od vrchu */
   right: 0;
-  width: 2px;
+  width: 1px;
   height: calc(100% - 56px); /* Vysoká na zbytek výšky */
   background-color: #E7E7E7; /* Barva linie */
 }

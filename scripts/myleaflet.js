@@ -407,7 +407,9 @@ function zrusitVyberSluzby() {
 }
 
 function vypisPopupuSluzba(feature, layer) {  
-    let popupContent = `<b>${feature.properties.text}</b>`; 
+    let popupContent = `<div class="popup-container"><h2>${feature.properties.text}</h2>`; 
+
+
 
     // Získání klíče pro URL na základě vybrané služby
     const sluzbaId = document.querySelector('input[type="radio"][name="sluzby"]:checked').id;
@@ -419,9 +421,11 @@ function vypisPopupuSluzba(feature, layer) {
 
     // Pokud URL existuje, přidáme odkaz s label z sluzbyData
     if (url) {
-        popupContent += `<br><a href="${url}" target="_blank">Přejít na ${sluzba.label}</a>`;
+        popupContent += `<div class="popup-row">
+        <img src="img/popup/web.svg" alt="Ikona" class="popup-icon">
+        <span><a href="${url}" target="_blank">${sluzba.label}</a></span></div>`;
     } else {
-        popupContent += `<br>Odkaz na službu není dostupný.`;
+        popupContent += `<br>Odkaz na službu není dostupný.</div>`;
     }
 
     
@@ -457,12 +461,13 @@ let CR_obrys = new L.GeoJSON.AJAX("data/CR_obrys.geojson", {
 
 function vypisPopupuDESI(feature, layer) {
   
-    let popupDESI = `<b>${feature.properties.j_stat_CZ}</b>` + 
-    `<br>DESI index: ${Math.round(feature.properties["j_DESI" + desi])}` +
-	`<br>Integrace digitálních technologií: ${Math.round(feature.properties["j_IDT" + desi])}` +
-    `<br>Lidský kapitál: ${Math.round(feature.properties["j_HC" + desi])}` +
-    `<br>Digitalizace veřejné služby: ${Math.round(feature.properties["j_DPS" + desi])}` +
-    `<br>Digitální infrastruktura: ${Math.round(feature.properties["j_CONN" + desi])}`;
+    let popupDESI = `<div class="popup-container"><h2>${feature.properties.j_stat_CZ}</h2>
+    <h3 class="info-texty">DESI index: ${Math.round(feature.properties["j_DESI" + desi])}</h3>
+	<div class="popup-row">Lidský kapitál: ${Math.round(feature.properties["j_HC" + desi])}</div>
+    <div class="popup-row">Digitální infrastruktura: ${Math.round(feature.properties["j_CONN" + desi])}</div>
+    <div class="popup-row">Digitalizace veřejné služby: ${Math.round(feature.properties["j_DPS" + desi])}</div>
+    <div class="popup-row">Integrace digitálních technologií: ${Math.round(feature.properties["j_IDT" + desi])}</div>
+    </div>`;
     
     highlightPolygon(layer);
     layer.bindPopup(popupDESI);
@@ -767,12 +772,12 @@ updateActiveButton(button1); // Výchozí aktivní tlačítko je button1 pro OSM
 function vypisPopupuIndex(feature, layer) {  
 
 
-	let popupContent = `<b>${feature.properties.text}</b>` + 
-	`<br>Index digitalizace: ${Math.round(feature.properties.j_index_digitalizace)}` +
-	`<br>Subindex poskytovaných služeb: ${Math.round(feature.properties.j_index_sluzby)}` +
-	`<br>Subindex digitální dovednosti: ${Math.round(feature.properties.j_index_dovednosti)}` +
-	`<br>Subindex digitální infrastruktura: ${Math.round(feature.properties.j_index_digitalizace)}`+
-	`<br>Subindex přístupnosti: ${Math.round(feature.properties.j_index_dostupnost)}`;
+	let popupContent = `<div class="popup-container"><h2>${feature.properties.text}</h2>
+	<h3 class="info-texty">Index digitalizace: ${Math.round(feature.properties.j_index_digitalizace)}</h3></div>
+	<div class="popup-row">Subindex poskytovaných služeb: ${Math.round(feature.properties.j_index_sluzby)}</div>
+	<div class="popup-row">Subindex digitální dovednosti: ${Math.round(feature.properties.j_index_dovednosti)}</div>
+	<div class="popup-row">Subindex digitální infrastruktura: ${Math.round(feature.properties.j_index_digitalizace)}</div>
+	<div class="popup-row">Subindex přístupnosti: ${Math.round(feature.properties.j_index_dostupnost)}</div></div>`;
 
     
 	layer.bindPopup(popupContent); 
