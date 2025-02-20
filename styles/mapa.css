@@ -34,11 +34,16 @@ html, body, #map {
     background:#E7E7E7;
 }
 
-p {
+p, li {
     font-family: 'Roboto';
     font-style: normal;
-    color: #000000;
-    text-align: justify;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    /* or 18px */
+    letter-spacing: 0.2px;
+    
+    color: #4F4F4F;
 }
 
 .p-gray{
@@ -51,6 +56,34 @@ p {
     color: #6D6D6D;
 }
 
+ul li a:link{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    /* or 18px */
+    letter-spacing: 0.2px;
+    
+    color: #4F4F4F;
+
+}
+
+a:link{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    /* identical to box height, or 21px */
+    letter-spacing: 0.0125em;
+    text-decoration-line: underline;
+    color: #1E5086;  
+}
+
+a:visited {
+    color: purple;
+  }
 
 h1{
     font-family: 'Roboto';
@@ -331,10 +364,7 @@ display: inline-flex;
 vertical-align: middle;
 justify-content: center;
 align-items: center;
-
-
 /* Auto layout */
-
 flex-direction: row;
 justify-content: center;
 align-items: center;
@@ -349,8 +379,45 @@ order: 0;
 flex-grow: 0;
 cursor: pointer;
 background-color: white;
-font-weight: bold;
+/*font*/
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+line-height: 150%;
+/* identical to box height, or 18px */
+letter-spacing: 0.2px;
+}
 
+.gov-button-blue{
+    display: inline-flex;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    /* Auto layout */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 8px;
+    gap: 6px;
+    height: 24px;
+    border: 1.5px solid #1E5086;
+    border-radius: 8px;
+    color: #1E5086;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    cursor: pointer;
+    background-color: white;
+    /*font*/
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 150%;
+    /* identical to box height, or 18px */
+    letter-spacing: 0.2px;
 }
 
 h3.expandable {
