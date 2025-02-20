@@ -56,6 +56,8 @@ p, li {
     color: #6D6D6D;
 }
 
+
+
 .sidebar ul li a:link{
     font-family: 'Roboto';
     font-style: normal;
@@ -88,7 +90,7 @@ p, li {
 h1{
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 18px;
     line-height: 150%;
     /* identical to box height, or 27px */
@@ -100,7 +102,7 @@ h1{
 h2{
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px;
     line-height: 150%;
     /* identical to box height, or 27px */
@@ -736,3 +738,81 @@ h3.expandable {
     padding-left: 5px;
 }
 
+.popup-container {
+    text-align: left; /* Celkově zarovnané doleva */
+}
+
+.popup-row {
+    display: flex;
+    align-items: center; /* Vertikální zarovnání ikon a textu */
+    gap: 8px; /* Mezera mezi ikonou a textem */
+    justify-content: left; /* Zarovnání ikon a textu doleva */
+    margin-bottom: 5px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    /* identical to box height, or 18px */
+    letter-spacing: 0.2px;
+
+    color: #4F4F4F;
+}
+
+.popup-icon {
+    width: 14px; /* Nastav stejnou velikost ikon */
+    height: 14px;
+}
+
+.popup-title {
+    display: flex;
+    align-items: center; /* Vertikální zarovnání */
+    gap: 8px;
+    margin-top: 16px; /* Přidání mezery nad "Úřední hodiny" */
+    justify-content: left; 
+}
+
+.popup-title h4 {
+    margin: 0;
+}
+
+.popup-hours {
+    text-align: left; /* Zarovná úřední hodiny doleva */
+    padding-left: 23px; /* Posunutí, aby nebyly moc u kraje */
+    margin-top: 0 !important;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    /* identical to box height, or 18px */
+    letter-spacing: 0.2px;
+
+    color: #4F4F4F;
+}
+
+.popup-container h2{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 150%;
+    /* identical to box height, or 21px */
+    letter-spacing: 0.0125em;
+
+    color: #262626;
+}
+
+.popup-container h3{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    /* identical to box height, or 21px */
+    letter-spacing: 0.0125em;
+
+    color: #262626;
+}

@@ -33,6 +33,7 @@ function scrollableHeightSize(){
 
 // Aktualizace výšky při změně velikosti okna
 window.addEventListener('resize', setScrollableHeight);
+window.addEventListener('load', setScrollableHeight);
 
 
 
@@ -677,7 +678,7 @@ function zrusitPodklad(){
 ////////////Začátek menu pro podkladové mapy!!!!!!!!!!!!!!
 // Vytvoření tlačítka pro ovládání podkladových map
 let controlButton = L.DomUtil.create('button', 'control-button tooltip-left-kratky');
-controlButton.innerHTML = '<img style="padding-top:4px;" src="img/vrstvyWhite.svg"></img>'; // Ikona tlačítka
+controlButton.innerHTML = '<img style="padding-top:4px;" src="img/vrstvy_podklad.svg"></img>'; // Ikona tlačítka
 controlButton.setAttribute('data-tooltip', 'Podkladové mapy');
 
 // Vytvoření menu pro tlačítka
@@ -874,11 +875,17 @@ let CPStyle = function(feature, latlng) {
     });
 
     
-    let popupContent = `<b>${feature.properties.Inst}</b><br>` +
-			`<br>${feature.properties.Mesto} ${feature.properties.Ulice}, ${feature.properties.Psc}` ;
+    let popupContent = `
+        <div class="popup-container"><img src="img/popup/CzechPoint.png" alt="Ikona">
+        <h2>${feature.properties.Inst}</h2>` +
+		`<h3 class="h3-black">${feature.properties.Mesto} ${feature.properties.Ulice}, ${feature.properties.Psc}</h3>` ;
 	if (feature.properties.URL) {
-		popupContent += `<br><a href="${feature.properties.URL}" target="_blank">Webové stránky</a>`
+		popupContent += 
+        `<div class="popup-row">
+        <img src="img/popup/web.svg" alt="Ikona" class="popup-icon">
+        <span><a href="${feature.properties.URL}" target="_blank">${feature.properties.URL.slice(7)}</a></span></div>`
 	}
+    popupContent += `</div>`
 	
 
 	marker.bindPopup(popupContent);
@@ -942,20 +949,44 @@ let KUbody = new L.GeoJSON.AJAX("data/krajskyUrad.geojson", {
 
 // popup
 function vypisPopupuKU(feature, layer){
-    let popupKU = `<b>${feature.properties.nazev}</b>` + 
-	`<br>${feature.properties.adresa}` +
-    `<br>Telefon: ${feature.properties.tel}` +
-    `<br>E-mail: ${feature.properties.email}` +
-    `<br>Web: ${feature.properties.web}` +
-    `<br>Dat. schránka: ${feature.properties.datSchranka}` +
-    `<br>IČ: ${feature.properties.IC}` +
-    `<br><br>Úřední hodiny:` +
-    `<br>PO: ${feature.properties.po}` +
-    `<br>ÚT: ${feature.properties.ut}` +
-    `<br>ST: ${feature.properties.st}` +
-    `<br>ČT: ${feature.properties.ct}` +
-    `<br>PÁ: ${feature.properties.pa}`;
+    let popupKU = `<div class="popup-container">
+    <h2>${feature.properties.nazev}</h2>
+    <h3 class="h3-black">${feature.properties.adresa}</h3>
     
+    <div class="popup-row">
+        <img src="img/popup/tel.svg" alt="Ikona" class="popup-icon">
+        <span>+420 ${feature.properties.tel}</span>
+    </div>
+    <div class="popup-row">
+        <img src="img/popup/email.svg" alt="Ikona" class="popup-icon">
+        <span>${feature.properties.email}</span>
+    </div>
+    <div class="popup-row">
+        <img src="img/popup/web.svg" alt="Ikona" class="popup-icon">
+        <span><a href="${feature.properties.web}" target="_blank">${feature.properties.web}</a></span>
+    </div>
+    <div class="popup-row">
+        <img src="img/popup/dat_schr.svg" alt="Ikona" class="popup-icon">
+        <span>${feature.properties.datSchranka}</span>
+    </div>
+    <div class="popup-row">
+        <img src="img/popup/ico.svg" alt="Ikona" class="popup-icon">
+        <span>${feature.properties.IC}</span>
+    </div>
+
+    <div class="popup-row popup-title">
+        <img src="img/popup/ur_hod.svg" alt="Ikona" class="popup-icon">
+        <h4>Úřední hodiny:</h4>
+    </div>
+
+    <p class="popup-hours">
+        PO: ${feature.properties.po}<br>
+        ÚT: ${feature.properties.ut}<br>
+        ST: ${feature.properties.st}<br>
+        ČT: ${feature.properties.ct}<br>
+        PÁ: ${feature.properties.pa}
+    </p>
+</div>`;
 
     layer.bindPopup(popupKU)
 };
