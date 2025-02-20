@@ -109,6 +109,11 @@ h2{
 
 }
 
+.h3-black{
+    color: #262626;
+
+}
+
 h3{
     font-family: 'Roboto';
     font-style: normal;
@@ -118,6 +123,7 @@ h3{
     /* identical to box height, or 24px */
     letter-spacing: 0.0125em;
     color: #1E5086;
+ 
 }
 
 h4{
@@ -379,6 +385,7 @@ order: 0;
 flex-grow: 0;
 cursor: pointer;
 background-color: white;
+
 /*font*/
 font-family: 'Roboto';
 font-style: normal;
@@ -410,6 +417,7 @@ letter-spacing: 0.2px;
     flex-grow: 0;
     cursor: pointer;
     background-color: white;
+    
     /*font*/
     font-family: 'Roboto';
     font-style: normal;
@@ -426,7 +434,7 @@ h3.expandable {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #2362a2;
+    
 }
 
 .schovaniLegendy {
