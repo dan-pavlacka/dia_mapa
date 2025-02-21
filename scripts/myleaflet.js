@@ -1204,16 +1204,18 @@ function highlightPolygon(layer) {
 
     activePolygon.bringToFront();
     activeFeatureId = layer.feature.id; // Uložíme ID polygonu
-    layer.openPopup(); // Otevřeme popup
+    layer.openPopup();
+    // Otevřeme popup
 
     // Event pro zavření popupu → zruší zvýraznění
-    layer.on('popupclose', function () {
+    map.on('click', function () {
         if (activePolygon) {
             activePolygon.removeFrom(map);
             activePolygon = null;
             activeFeatureId = null;
         }
     });
+    
 }
 
 
