@@ -114,7 +114,7 @@
 					<h1 class="sidebar-header">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
 					<h2 style="margin-top: 0;">Mapa digitalizace ČR </h2>
-					<p class="p-gray">Na mapě jsou znázorněny stupně digitalizace státní správy. <a href="javascript:void(0)" onclick="sidebar.open('infoIndexy')">Více info.</a></p>
+					<p class="p-gray">Na mapě jsou znázorněny stupně digitalizace státní správy. <a href="javascript:void(0)" onclick="sidebar.open('infoIndexy'), setScrollableHeight()">Více info.</a></p>
 					
 					
 					
@@ -124,10 +124,12 @@
 							Vyčistit mapu
 						</button> 
 
-						<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zoomCR()">
-							<img src="img/priblizit.svg" alt="Ikona" class="button-ikona">
-							Přibliž na ČR
-						</button>					
+						<a href="javascript:void(0)" onclick="sidebar.open('export'), setScrollableHeight()">
+						<button type="button" class="gov-button" style="margin-top: 15px;">
+							<img src="img/export_black.svg" alt="Ikona" class="button-ikona">
+							Stáhnout mapu
+						</button>	
+					</a>				
 					</div>
 			
 					</div>	<!--konec sticky části-->
@@ -248,12 +250,20 @@
 					
 				
 				
-				<div><button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="vycistiMapu()">
+				<div>
+					
+					<button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="vycistiMapu()">
 					<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
 					Vyčistit mapu</button> 
-					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zoomEU()">
-						<img src="img/priblizit.svg" alt="Ikona" class="button-ikona">
-						Přibliž na EU</button>
+					
+					
+					<a href="javascript:void(0)" onclick="sidebar.open('export'), setScrollableHeight()">
+					<button type="button" class="gov-button" style="margin-top: 15px;">
+						<img src="img/export_black.svg" alt="Ikona" class="button-ikona">
+						Stáhnout mapu</button>
+					</a>
+
+
 				</div>	
 			</div>
 
@@ -318,6 +328,8 @@
 		</div>
 		</div>	
 	
+
+		<!--informace o krajích-->
 				<div class="sidebar-pane" id="sluzby">
 					<h1 class="sidebar-header">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
@@ -326,14 +338,17 @@
 					</div>
 					
 					<div class="scrollable">
-					<div id="infoKraj"></div>
+					<div id="infoKraj">
+
+						
+					</div>
 				</div>
 				</div>
 
 				
 				
 
-
+			<!--informace o indexech-->
 				<div class="sidebar-pane" id="infoIndexy">
 					<h1 class="sidebar-header">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 					

@@ -434,7 +434,9 @@ function vypisPopupuSluzba(feature, layer) {
 
     // Vypiseme další informace o kraji, pokud je potřeba
     vypisInfoKraj(layer, feature);
-    highlightPolygon(layer);
+    layer.on('click', function() {
+        highlightPolygon(layer);
+    });
 }
 
 //----------------konec výběru služby
@@ -469,7 +471,9 @@ function vypisPopupuDESI(feature, layer) {
     <div class="popup-row">Integrace digitálních technologií: ${Math.round(feature.properties["j_IDT" + desi])}</div>
     </div>`;
     
-    highlightPolygon(layer);
+    layer.on('click', function() {
+        highlightPolygon(layer);
+    });
     layer.bindPopup(popupDESI);
 };
 
@@ -678,6 +682,9 @@ function zrusitPodklad(){
     kontrolaObrys();
     };
 
+///tlačítko pro zoom na eu/čr
+
+
 
 
 ////////////Začátek menu pro podkladové mapy!!!!!!!!!!!!!!
@@ -783,12 +790,11 @@ function vypisPopupuIndex(feature, layer) {
 	layer.bindPopup(popupContent); 
 
     vypisInfoKraj(layer,feature);
-    highlightPolygon(layer);
+    layer.on('click', function() {
+        highlightPolygon(layer);
+    });
 };
 
-
-function vypisInfoKraj(layer,feature){
-// Seznam klíčů a jejich odpovídajících textů
 const linkKeys = {
     web_kraje: "Web kraje",
     j_platebni_portal_web: "Platební portál",
@@ -801,21 +807,82 @@ const linkKeys = {
     j_dotacni_portal_web: "Dotační portál"
 };
 
-let vypisKraj = `<h3>${feature.properties.text}</h3>`;
-for (const [key, label] of Object.entries(linkKeys)) {
-    if (feature.properties[key]) {
-        vypisKraj += `<a href="${feature.properties[key]}" target="_blank">${label}</a><br>`;
+
+//Potřeba rozdělit na
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//POTŘEBA DOLADIT.. DIVNÉ CHOVÁNÍ POKUD JE ZOBRAZENÁ VRSTVA SLUŽEB/INDEXU
+
+
+const krajLayers = {}; // Objekt pro uložení vrstev podle názvu kraje
+
+function vypisInfoKraj(layer, feature) {
+    const infoElement = document.getElementById('infoKraj');
+    if (!infoElement) return;
+
+    let krajElement = document.querySelector(`#infoKraj div[data-kraj="${feature.properties.text}"]`);
+    if (!krajElement) {
+        krajElement = document.createElement("div");
+        krajElement.setAttribute("data-kraj", feature.properties.text);
+
+        krajElement.innerHTML = `
+            <div class="radio-container">
+                <label class="kraj-label">
+                    <input type="radio" name="vyberKraje" value="${feature.properties.text}">
+                    ${feature.properties.text}
+                </label>
+            </div>
+            <div class="links"></div>
+        `;
+
+        infoElement.appendChild(krajElement);
+
+        let radioButton = krajElement.querySelector('input[type="radio"]');
+        radioButton.addEventListener('change', () => {
+            const layer = krajLayers[feature.properties.text]; // Získáme vrstvu podle názvu kraje
+            if (layer) {
+                highlightPolygon(layer); // Předáme objekt Leaflet vrstvy
+            }
+        });
+
+        radioButton.addEventListener('change', () => zobrazitOdkazy(feature, krajElement));
+    }
+
+    // Uložíme vrstvu pod názvem kraje
+    krajLayers[feature.properties.text] = layer;
+
+    layer.on('click', () => {
+        zobrazitOdkazy(feature, krajElement);
+        krajElement.querySelector('input[type="radio"]').checked = true;
+        highlightPolygon(layer);
+    });
+
+    function zobrazitOdkazy(feature, krajElement) {
+        document.querySelectorAll("#infoKraj .links").forEach(el => el.innerHTML = "");
+
+        let linksHtml = "";
+        for (const [key, label] of Object.entries(linkKeys)) {
+            if (feature.properties[key]) {
+                linksHtml += `<a href="${feature.properties[key]}" target="_blank">${label}</a><br>`;
+            }
+        }
+        krajElement.querySelector(".links").innerHTML = linksHtml;
     }
 }
 
 
-layer.on('click', (e) => {
-// Změna obsahu v elementu s ID "infoKraj"
-const infoElement = document.getElementById('infoKraj');
-if (infoElement) {
-    infoElement.innerHTML = vypisKraj;
-}});
-};
+
+
 
 
 
@@ -954,6 +1021,11 @@ let KUbody = new L.GeoJSON.AJAX("data/krajskyUrad.geojson", {
 
 // popup
 function vypisPopupuKU(feature, layer){
+    
+    function formatZavreno(value) {
+        return value === "-" ? "zavřeno" : value;
+    }
+
     let popupKU = `<div class="popup-container">
     <h2>${feature.properties.nazev}</h2>
     <h3 class="h3-black">${feature.properties.adresa}</h3>
@@ -985,11 +1057,11 @@ function vypisPopupuKU(feature, layer){
     </div>
 
     <p class="popup-hours">
-        PO: ${feature.properties.po}<br>
-        ÚT: ${feature.properties.ut}<br>
-        ST: ${feature.properties.st}<br>
-        ČT: ${feature.properties.ct}<br>
-        PÁ: ${feature.properties.pa}
+        PO: ${formatZavreno(feature.properties.po)}<br>
+        ÚT: ${formatZavreno(feature.properties.ut)}<br>
+        ST: ${formatZavreno(feature.properties.st)}<br>
+        ČT: ${formatZavreno(feature.properties.ct)}<br>
+        PÁ: ${formatZavreno(feature.properties.pa)}
     </p>
 </div>`;
 
@@ -1067,7 +1139,7 @@ L.Control.LinkButton = L.Control.extend({
         button.innerHTML = "Platforma";
         button.style.backgroundColor = "white"; // Modrá barva
         button.style.color = "#2362a2"; // Bílý text
-        button.style.border = "2px solid #E7E7E7";
+        button.style.border = "none";
         button.style.cursor = "pointer";
         button.style.margin = "0px";
         button.style.fontSize = "14px";
@@ -1110,31 +1182,34 @@ map.addControl(linkButtonControl);
 let activePolygon = null;
 let activeFeatureId = null; // Uložíme ID aktivního polygonu
 
+map.createPane('highlightPane');
+map.getPane('highlightPane').style.zIndex = 650;
+
+
 function highlightPolygon(layer) {
-            layer.on('click', function () {
-            // Pokud je již nějaký polygon zvýrazněný, odstraníme ho
-            if (activePolygon) {
-                activePolygon.removeFrom(map);
-            }
+    // Pokud je již nějaký polygon zvýrazněný, odstraníme ho
+    if (activePolygon) {
+        activePolygon.removeFrom(map);
+    }
 
-            // Vytvoříme novou vrstvu polygonu s upraveným stylem
-            activePolygon = L.geoJSON(layer.toGeoJSON(), {
-                style: {
-                    color: '#FFD700',  // Zlatá barva zvýraznění
-                    weight: 4,         // Zvýrazněný obrys
-                    fillOpacity: 0   // Průhlednost výplně
-                }
-            }).addTo(map); // Přidání do mapy
-            activePolygon.bringToFront();
-            
-            activeFeatureId = layer.feature.id; // Uložíme ID polygonu
-            layer.openPopup(); // Otevřeme popup
-        });
-    
+    // Vytvoříme novou vrstvu polygonu s upraveným stylem
+    activePolygon = L.geoJSON(layer.toGeoJSON(), {
+        pane: 'highlightPane',
+        style: {
+            color: '#FFD700',  // Zlatá barva zvýraznění
+            weight: 4,         // Zvýrazněný obrys
+            fillOpacity: 0     // Průhlednost výplně
+        }
+    }).addTo(map); // Přidání do mapy
 
+    activePolygon.bringToFront();
+    activeFeatureId = layer.feature.id; // Uložíme ID polygonu
+    layer.openPopup(); // Otevřeme popup
+
+    // Event pro zavření popupu → zruší zvýraznění
     layer.on('popupclose', function () {
         if (activePolygon) {
-            activePolygon.removeFrom(map); // Odebrání zvýrazněného polygonu z mapy
+            activePolygon.removeFrom(map);
             activePolygon = null;
             activeFeatureId = null;
         }
@@ -1368,4 +1443,46 @@ observer.observe(sidebar_rozsireni, { attributes: true, attributeFilter: ['class
 // Kontrola při načtení stránky
 checkSidebarState();
 
+
+//zlačítko pro zoom na čr/eu
+L.Control.FunctionButton = L.Control.extend({
+    onAdd: function(map) {
+        let container = L.DomUtil.create('div', 'leaflet-control');
+       
+
+        // Stylování kontejneru
+        container.style.position = "fixed";
+        container.style.bottom = "168px";
+        container.style.right = "40px";
+        container.style.zIndex = "1000";
+
+        // Vytvoření tlačítka
+        let button = document.createElement("button");
+        button.innerHTML = '<img style="padding-top:4px;" src="img/zoom.svg"></img>';
+        button.className = "control-zoom-button tooltip-left-dlouhy"; // Použití CSS třídy
+        button.setAttribute('data-tooltip', 'Podle aktivního obsahu mapy přiblíží na ČR nebo na EU');
+        // Debug: zkusíme zjistit, zda se tlačítko vytvoří správně
+       
+
+        // Kliknutí zavolá JavaScript funkci
+        button.onclick = function() {
+            if(desi) {
+                zoomEU();
+            } else {
+                zoomCR();
+            }
+         
+           
+        };
+
+        container.appendChild(button);
+        return container;
+    }
+});
+
+// Přidání controlu do mapy
+let linkButton = new L.Control.FunctionButton({});
+linkButton.addTo(map);
+
+// Definice myFunction()
 

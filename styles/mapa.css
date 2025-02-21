@@ -537,6 +537,22 @@ h3.expandable {
     color: black;
 }
 
+.control-zoom-button{
+    position: absolute;
+    background-color: white; /* Barva hlavního tlačítka */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    /*border: 2px solid #E7E7E7;*/
+    z-index: 1001; /* Zajištění, že tlačítko bude nad mapou */
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+    margin: 0; /* Odstraní margin */
+
+}
+
 .control-button {
     position: absolute;
     top: 60px; /* 70px od horního okraje */
@@ -548,7 +564,7 @@ h3.expandable {
     width: 40px;
     height: 40px;
     text-align: center;
-    border: 2px solid #E7E7E7;
+    /*border: 2px solid #E7E7E7;*/
     z-index: 1001; /* Zajištění, že tlačítko bude nad mapou */
     box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
     margin: 0; /* Odstraní margin */
@@ -594,8 +610,8 @@ h3.expandable {
     padding: 5px 10px;   
 
     font-weight: normal;
-    width:150px;
-    text-align: justify;
+    width:100px;
+    text-align: left;
     line-height: 1.4;
     opacity: 0;
     visibility: hidden;
