@@ -851,3 +851,8 @@ h3.expandable {
 .p-infoIndex{
     margin-top:0;
 }
+
+.export-nazev{
+    border-radius: 8px;
+    height:24px;
+}

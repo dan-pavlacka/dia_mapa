@@ -128,18 +128,18 @@ function zoomEU(){
 
 //definování barevných stupnic pro kartogramy	
 	function getColorModra(d) {
-		return 	d >= 75 ? 	'#1d456f':
-				d >= 60 ? 	'#2362a2':
-				d >= 45 ? 	'#599bd7':
-				d < 45  ? 	'#c5dbf2':
-							'#c5dbf2';
+		return 	d >= 75 ? 	'#0080ff':
+				d >= 60 ? 	'#709bff':
+				d >= 45 ? 	'#adbeff':
+				d < 45  ? 	'#d5dcff':
+							'#d5dcff';
 	};	
 
 	function getColorOranzova(d) {
-		return 	d >= 75 ? 	'#C76300':
-				d >= 50 ? 	'#DB8543':
-				d >= 25 ? 	'#EEB086':
-				d < 25 ? 	'#F9D2B9':
+		return 	d >= 85 ? 	'#C76300':
+				d >= 70 ? 	'#DB8543':
+				d >= 55 ? 	'#EEB086':
+				d < 55 ? 	'#F9D2B9':
 							'#F9D2B9';
 	};
 
@@ -153,9 +153,9 @@ function zoomEU(){
 
 	function getColorFialova(d) {
 		return 	d >= 75 ? 	'#800080':
-				d >= 50 ? 	'#973E95':
-				d >= 25 ? 	'#AE66AA':
-				d < 25 ?  	'#C187BC':
+				d >= 60 ? 	'#973E95':
+				d >= 45 ? 	'#AE66AA':
+				d < 45 ?  	'#C187BC':
 						  	'#C187BC';
 	};
 
@@ -184,7 +184,7 @@ function indexDigitalizace(feature) {
 		weight: 2,
 		opacity: 1,
 		color: 'white',
-		fillOpacity: 0.8
+		fillOpacity: 0.9
 	};
 };
 
@@ -194,7 +194,7 @@ function indexDigitalizace(feature) {
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			fillOpacity: 0.7
+			fillOpacity: 0.9
 		};
 	};
 
@@ -204,7 +204,7 @@ function indexDigitalizace(feature) {
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			fillOpacity: 0.8
+			fillOpacity: 0.9
 		};
 	};
 
@@ -214,7 +214,7 @@ function indexDigitalizace(feature) {
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			fillOpacity: 0.8
+			fillOpacity: 0.9
 		};
 	};
 
@@ -224,7 +224,7 @@ function indexDigitalizace(feature) {
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			fillOpacity: 0.8
+			fillOpacity: 0.9
 		};
 	};
 	
@@ -234,7 +234,7 @@ function indexDigitalizace(feature) {
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			fillOpacity: 0.8
+			fillOpacity: 0.9
 		};
 	};
 
@@ -244,7 +244,7 @@ function indexDigitalizace(feature) {
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			fillOpacity: 0.8
+			fillOpacity: 0.9
 		};
 	};
 
@@ -254,7 +254,7 @@ function indexDigitalizace(feature) {
 			weight: 2,
 			opacity: 1,
 			color: 'white',
-			fillOpacity: 0.8
+			fillOpacity: 0.9
 		};
 	};
 
@@ -510,8 +510,8 @@ function generateLegend(getColorFunction, legendName, grades, min) {
 
 //definice legend
 const legendModra = generateLegend(getColorModra, "legendModra", [75, 60, 45, 44],"45");
-const legendFialova = generateLegend(getColorFialova, "legendFialova", [75, 50, 25, 24],"25");
-const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [75, 50, 25, 24],"25");
+const legendFialova = generateLegend(getColorFialova, "legendFialova", [75, 60, 45, 44],"45");
+const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [80, 60, 40, 39],"40");
 const legendZelena = generateLegend(getColorZelena, "legendZelena", [75, 50, 25, 24],"25");
 const legendVinova = generateLegend(getColorVinova, "legendVinova", [65, 60, 55, 50, 49],"50");
 const legendCervena = generateLegend(getColorCervena, "legendCervena", [90, 85, 80, 75, 74], "75");
