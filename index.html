@@ -7,7 +7,7 @@
 	
 		<title>Leaflet Mapa digitalizace</title>
     	
-		<!--nacteni test GeoJSON-->
+		<!--nacteni GeoJSON-->
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>		
 		<!--leaflet knihovna-->
     	<script src="scripts/leaflet.js"></script>
@@ -111,7 +111,7 @@
 			
 	
 				<div class="sidebar-pane" id="legenda">
-					<h1 class="sidebar-header">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
+					<h1 class="sidebar-header" onclick="sidebar.close()">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
 					<h2 style="margin-top: 0;">Mapa digitalizace ČR </h2>
 					<p class="p-gray">Na mapě jsou znázorněny stupně digitalizace státní správy. <a href="javascript:void(0)" onclick="sidebar.open('infoIndexy'), setScrollableHeight()">Více info.</a></p>
@@ -137,19 +137,20 @@
 					<div class="scrollable">
 
 					<h3 class="expandable">
-						Digitalizace v krajích
+						
 						<button class="schovaniLegendy" id="toggleBtn" data-target="#Vdigitalizace">
 						   <img src="img/sipka_dolu.svg" class="icon-sipka dolu skryta" alt="Rozbalit" />
 						   <img src="img/sipka_nahoru.svg" class="icon-sipka nahoru" alt="Sbalit" />
 						</button>
+						<span class="tooltip tooltip-right-kratky" data-tooltip="Indexy digitalizace">Digitalizace v krajích</span>
 					 </h3>
 						
-					</h3>
+					
 					
 					<div id="Vdigitalizace">
 
 					<div class="radio-container"><input  class="radio" type="radio" id="vrstva1" name="vrsKraj" onclick="addlay(indexDigitalizace, 'legenda1', legendModra, 1,0)" checked>
-					<label for="vrstva1" class="tooltip tooltip-right-dlouhy" data-tooltip="Výsledný index digitalizace je vypočítán vážením dílčích subindexů.">Index digitalizace</label> 
+					<label for="vrstva1" class="tooltip tooltip-right-dlouhy" data-tooltip="Výsledný index digitalizace je vypočítán vážením dílčích subindexů">Index digitalizace</label> 
 					</div>
 					<div id="legenda1" class="legend-containerKraj"></div>
 
@@ -194,7 +195,7 @@
 						<img src="img/sipka_dolu.svg" class="icon-sipka dolu" alt="Rozbalit" />
 						<img src="img/sipka_nahoru.svg" class="icon-sipka nahoru skryta" alt="Sbalit" />
 					</button>
-					<span class="tooltip tooltip-right-kratky" data-tooltip="Seznam digitálních služeb.">Digitální služby</span>
+					<span class="tooltip tooltip-right-kratky" data-tooltip="Seznam digitálních služeb">Digitální služby</span>
 				</h3>
 				
 				
@@ -210,12 +211,14 @@
 				</div>
 				
 				<h3 class="expandable">
-					Bodová data
+					
 				<button class="schovaniLegendy" id="toggleBtn" data-target="#Vbody">
 					
 					<img src="img/sipka_dolu.svg" class="icon-sipka dolu" alt="Rozbalit" />
 					<img src="img/sipka_nahoru.svg" class="icon-sipka nahoru skryta" alt="Sbalit" />
-				</button></h3>
+				</button>
+				<span class="tooltip tooltip-right-kratky" data-tooltip="Ovládání vrstev s bodovými daty">Bodová data</span>
+				</h3>
 				<div id="Vbody" class="hidden">
 				
 
@@ -242,7 +245,7 @@
 			</div>
 
 			<div class="sidebar-pane" id="eu">
-				<h1 class="sidebar-header">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
+				<h1 class="sidebar-header" onclick="sidebar.close()">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 			
 				<div class="sidebar-sticky" style="margin-bottom:10px;">
 					<h2 style="margin-top: 0;">Mapa digitalizace EU </h2>
@@ -331,7 +334,7 @@
 
 		<!--informace o krajích-->
 				<div class="sidebar-pane" id="sluzby">
-					<h1 class="sidebar-header">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
+					<h1 class="sidebar-header" onclick="sidebar.close()">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
 						<h2 style="margin-top: 0;">Informace o krajích</h2>
 						<p class="p-gray">Zde naleznete doplňující odkazy k jednotlivým krajům. Pro zobrazení informací ke konkrétnímu kraji klikněte v mapě na kraj.</p>
@@ -339,7 +342,8 @@
 					
 					<div class="scrollable">
 					<div id="infoKraj">
-
+						
+						
 						
 					</div>
 				</div>
@@ -350,18 +354,37 @@
 
 			<!--informace o indexech-->
 				<div class="sidebar-pane" id="infoIndexy">
-					<h1 class="sidebar-header">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
+					<h1 class="sidebar-header" onclick="sidebar.close()">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 					
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
-						<h2 style="margin-top: 0;">Celkový index digitalizace</h2>
-						<p class="p-gray">Index je stavoven vážením dílčích subindexů. Váhy jsou stanoveny rovnoměrně.</p>
+						<h2 style="margin-top: 0;">Indexy digitalizace ČR</h2>
+						<!--<p class="p-gray"></p>-->
+						<p class="p-gray">Indexy digitalizace pro kraje ČR byly navrženy na základě evropského indexu DESI.</p>
 						<a href="img/index_schema.html" target="_blank">
-							<button class="gov-button-blue"><img src="img/oko.svg" alt="Ikona" class="button-ikona">Schéma Indexu</button></a>
+							<button class="gov-button-blue" style="margin-top: 15px"><img src="img/oko.svg" alt="Ikona" class="button-ikona">
+								
+								<span class="tooltip tooltip-right-kratky" data-tooltip="Indexy digitalizace">Schéma Indexu</span>
+							
+							</button></a>
 					</div>
 
 					
 
 					<div class="scrollable">
+
+					<h3 class="expandable h3-black">
+						Celkový index digitalizace
+						<button class="schovaniLegendy" id="toggleBtn" data-target="#popisCelkovyIndex">
+							<img src="img/sipka_dolu_black.svg" class="icon-sipka dolu skryta" alt="Rozbalit" />
+							<img src="img/sipka_nahoru_black.svg" class="icon-sipka nahoru" alt="Sbalit" />
+						</button></h3>					
+					
+					<div id="popisCelkovyIndex">
+	
+						<p class="p-infoIndex">Index je stavoven vážením dílčích subindexů. Váhy jsou stanoveny rovnoměrně.</p>
+					
+					</div><div class="info-texty"></div>
+
 					<h3 class="expandable h3-black">
 						Subindex digitální služby
 						<button class="schovaniLegendy" id="toggleBtn" data-target="#popisSubindexSluzby">
@@ -371,7 +394,7 @@
 					
 					<div id="popisSubindexSluzby" class="hidden">
 
-					<p>Stanoven jako procentuální podíl vybraných digitálních služeb, poskytovaných krajem. Hodnocené služby jsou:</p>
+					<p class="p-infoIndex">Stanoven jako procentuální podíl vybraných digitálních služeb, poskytovaných krajem. Hodnocené služby jsou:</p>
 					<ul>
 						<li>Platební portál</li>
 						<li>Rozklikávací rozpočet</li>
@@ -392,7 +415,7 @@
 						</button></h3>
 
 					<div id="popisSubindexPristupnost" class="hidden">
-					<p>Stanoven jako průměrná hodnota vybraných ukazatelů. Přístupnost webových stránek a SEO bylo měřeno nástrojem Lighthouse accessibility scoring, dne 12.2.2025, pro webové stránky krajů.</p>
+					<p class="p-infoIndex">Stanoven jako průměrná hodnota vybraných ukazatelů. Přístupnost webových stránek a SEO bylo měřeno nástrojem Lighthouse accessibility scoring, dne 12.2.2025, pro webové stránky krajů.</p>
 
 					<ul>
 						<li>Přístupnost desktop</li>
@@ -413,7 +436,7 @@
 					</h3>
 
 					<div id="popisSubindexDovednosti" class="hidden">
-					<p>Stanoven jako průměrná hodnota vybraných ukazatelů, které  byly předem normalizovány.</p>
+					<p class="p-infoIndex">Stanoven jako průměrná hodnota vybraných ukazatelů, které  byly předem normalizovány.</p>
 
 					<ul>
 						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl osob, které denně využívají internet</a></li>
@@ -434,7 +457,7 @@
 					</h3>
 					
 					<div id="popisSubindexInfrastruktura" class="hidden">
-					<p>Stanoven jako průměrná hodnota vybraných ukazatelů, které  byly předem normalizovány</p>
+					<p class="p-infoIndex">Stanoven jako průměrná hodnota vybraných ukazatelů, které  byly předem normalizovány</p>
 
 					<ul>
 						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl domácností s připojením k internetu</a></li>
@@ -454,7 +477,7 @@
 
 				<div class="sidebar-pane" id="export">
 					
-					<h1 class="sidebar-header">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
+					<h1 class="sidebar-header" onclick="sidebar.close()">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
 						<h2 style="margin-top: 0;">Stáhnout mapu</h2>
 						<p class="p-gray">Zde je možné exportovat mapu do pdf. Rozměr pdf a obsah mapy bude přizpůsoben vašemu aktuálnímu pohledu na mapu.</p>
@@ -475,7 +498,7 @@
 
 				
 					<div class="sidebar-pane" id="info">
-					<h1 class="sidebar-header">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
+					<h1 class="sidebar-header" onclick="sidebar.close()">Index digitalizace<span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></i></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
 						<h2 style="margin-top: 0;">Informace o aplikaci</h2>
 						<p class="p-gray">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</p>

@@ -193,6 +193,7 @@
         color: #2362a2;
         background-color: #E5EEF9;
         z-index: 1000; /* Nastaví vysoce prioritu pro zobrazení */
+        cursor:pointer;
       }
   .sidebar-right .sidebar-header {
     padding-left: 0px; }

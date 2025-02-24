@@ -553,13 +553,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	font: 22px/28px Tahoma, Verdana, sans-serif;
 	color: #000000;
 	text-decoration: none;
-	background-color: #ffffff;
-	border-radius: 8px;
+	background-color: #ffffff00;
+	opacity:1;
+	border-radius: 25px;
 	/*background: transparent;*/
 	}
 .leaflet-container a.leaflet-popup-close-button:hover,
 .leaflet-container a.leaflet-popup-close-button:focus {
-	color: #2362a2;
+	/*color: #2362a2;*/
 	background-color:  #ffffff;
 	}
 .leaflet-popup-scrolled {

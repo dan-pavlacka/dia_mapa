@@ -1,7 +1,7 @@
 //zoomlevel podle šířky monitoru
 let zoomLev;
 
-
+//výpočet výšky scrollable části v sidebaru
 let viewportHeight;
 let activeSidebar;
 function setScrollableHeight() {
@@ -49,6 +49,28 @@ let bounds = [
     [71.5, 45]    // Severovýchodní roh (NEE)
 ];
 
+//jiný zoom podle aktuálního zoom levelu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //definice mapy, výchozí bod, a omezení zoom levelu
 const map = L.map('map',{   minZoom:4, 
@@ -76,14 +98,11 @@ let meritkoExport =  L.control.scale({
 
 meritko.addTo(map);
 
-
-
 let zoomButton = L.control.zoom({
     position: 'bottomright' // Umístění tlačítek
 });
 
 zoomButton.addTo(map);
-
 
 function zoomCR(){
     map.setView([49.8, 14.85],zoomLev)
@@ -106,8 +125,6 @@ function zoomEU(){
 		version: '1.3.0', // Verze WMS
 		crs: L.CRS.EPSG3857 // Souřadnicový systém (např. EPSG:3857)
 	  });
-
-
 
 //definování barevných stupnic pro kartogramy	
 	function getColorModra(d) {
@@ -142,7 +159,6 @@ function zoomEU(){
 						  	'#C187BC';
 	};
 
-
 	function getColorCervena(d) {
 		return 	d > 90  ? 	'#FF0000':
 				d >= 85 ? 	'#FF603E':
@@ -160,8 +176,6 @@ function zoomEU(){
 				d < 50  ? 	'#dab0bb':
 						  	'#dab0bb';
 	};
-
-
 
 //definování stylů polygonových vrstev a příslušných atributů
 function indexDigitalizace(feature) {
@@ -243,7 +257,6 @@ function indexDigitalizace(feature) {
 			fillOpacity: 0.8
 		};
 	};
-
 
 //------------výběr služby
 // Data pro radio buttony na výběr služby
@@ -409,8 +422,6 @@ function zrusitVyberSluzby() {
 function vypisPopupuSluzba(feature, layer) {  
     let popupContent = `<div class="popup-container"><h2>${feature.properties.text}</h2>`; 
 
-
-
     // Získání klíče pro URL na základě vybrané služby
     const sluzbaId = document.querySelector('input[type="radio"][name="sluzby"]:checked').id;
     const sluzba = sluzbyData.find(s => s.id === sluzbaId);
@@ -428,7 +439,6 @@ function vypisPopupuSluzba(feature, layer) {
         popupContent += `<br>Odkaz na službu není dostupný.</div>`;
     }
 
-    
     // Připojíme popup k vrstvě
     layer.bindPopup(popupContent);
 
@@ -439,9 +449,7 @@ function vypisPopupuSluzba(feature, layer) {
     });
 }
 
-//----------------konec výběru služby
-
-
+//----------------konec výběru služby-----------------
 
 //vytvoření vrstvy krajů pro indexy
 let inD = new L.GeoJSON.AJAX("data/kraje.geojson", {style: indexDigitalizace, onEachFeature: vypisPopupuIndex});
@@ -459,7 +467,6 @@ let CR_obrys = new L.GeoJSON.AJAX("data/CR_obrys.geojson", {
         };
     }
 });
-
 
 function vypisPopupuDESI(feature, layer) {
   
@@ -501,13 +508,12 @@ function generateLegend(getColorFunction, legendName, grades, min) {
     return legend;
 }
 
-
+//definice legend
 const legendModra = generateLegend(getColorModra, "legendModra", [75, 60, 45, 44],"45");
 const legendFialova = generateLegend(getColorFialova, "legendFialova", [75, 50, 25, 24],"25");
 const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [75, 50, 25, 24],"25");
 const legendZelena = generateLegend(getColorZelena, "legendZelena", [75, 50, 25, 24],"25");
 const legendVinova = generateLegend(getColorVinova, "legendVinova", [65, 60, 55, 50, 49],"50");
-//legenda pro lighthouse Accessibility
 const legendCervena = generateLegend(getColorCervena, "legendCervena", [90, 85, 80, 75, 74], "75");
 
 //sidebar
@@ -528,20 +534,9 @@ checkWindowSize();
 inD.addTo(map);
 let krajAktivni = true;
 
-//pruhledne staty pro zobrazení DESI
-
-
-//přidání průhledné vrstvy pro zobrazení služeb 
-
-
 //zobrazení legendy výchozí vrstvy 
 let legendContainer = document.getElementById('legenda1');
 legendContainer.innerHTML = legendModra;
-
-
-
-
-
 
 //ovládání legendy a vrstev indexů
 let desi = null;
@@ -550,6 +545,7 @@ function addlay(style,legenda,stupnice,vrstva, rok){
         CR_obrys.removeFrom(map);
         obrys = false;
     }
+
 	if (vrstva == 1) {
 		if(desi){
 			desi= null;
@@ -562,10 +558,9 @@ function addlay(style,legenda,stupnice,vrstva, rok){
 
             inD.addTo(map);
             inD.bringToBack();
-            krajAktivni = true;
-		
-        
+            krajAktivni = true;        
         }
+
 	//ovladani legendy
 	legendContainer.innerHTML = '<div></div>';
 	legendContainer = document.getElementById(legenda);
@@ -578,14 +573,21 @@ function addlay(style,legenda,stupnice,vrstva, rok){
     krajAktivni = true;
 	} else if (vrstva == 2) {
 	inD.removeFrom(map);
-	krajAktivni = false;
+	
+    if (krajAktivni){
+    resetVyberKraje();
+    
+    krajAktivni = false;
     zrusitVyberSluzby(); 
+    }
     zrusitBody();
-
+    
 	desi=rok;
+
     //aktualizace pop-upu
     statyDESI.eachLayer(layer => {
         vypisPopupuDESI(layer.feature, layer);
+        
     });
 
     const radios = document.querySelectorAll('input[type="radio"][name="vrsKraj"]');
@@ -610,7 +612,6 @@ function zrusitVyberIndexuKraj() {
         inD.removeFrom(map); 
         krajAktivni = false;
     
-
     // Odznačení vybraného radiobuttonu
     const radios = document.querySelectorAll('input[type="radio"][name="vrsKraj"]');
     radios.forEach((radio) => {
@@ -625,7 +626,6 @@ function zrusitVyberIndexuKraj() {
 }
     kontrolaObrys();
 }
-
 
 //tlačítko na vypnutí vrstev indexu kraj
 function zrusitVyberIndexuEU() {
@@ -647,9 +647,6 @@ function zrusitVyberIndexuEU() {
     } 
     kontrolaObrys();
 }
-
-
-
 
 //ovládání podkladových map
 let aktivniPodklad = OSM_base;
@@ -681,11 +678,6 @@ function zrusitPodklad(){
 	aktivniPodklad = false;
     kontrolaObrys();
     };
-
-///tlačítko pro zoom na eu/čr
-
-
-
 
 ////////////Začátek menu pro podkladové mapy!!!!!!!!!!!!!!
 // Vytvoření tlačítka pro ovládání podkladových map
@@ -770,22 +762,18 @@ button3.onclick = function() {
 // Výchozí stav
 updateActiveButton(button1); // Výchozí aktivní tlačítko je button1 pro OSM
 
+//---------------------Konec menu pro podkladové mapy-------------------------
 
-
-////////////Konec menu pro podkladové mapy!!!!!!!!!!!!!!
-
-
-//popup a výpis do sidebaru
+//popup a výpis do sidebaru vrstva indexů
 function vypisPopupuIndex(feature, layer) {  
-
 
 	let popupContent = `<div class="popup-container"><h2>${feature.properties.text}</h2>
 	<h3 class="info-texty">Index digitalizace: ${Math.round(feature.properties.j_index_digitalizace)}</h3></div>
-	<div class="popup-row">Subindex poskytovaných služeb: ${Math.round(feature.properties.j_index_sluzby)}</div>
-	<div class="popup-row">Subindex digitální dovednosti: ${Math.round(feature.properties.j_index_dovednosti)}</div>
+	<div class="popup-row">Subindex poskytované služby: ${Math.round(feature.properties.j_index_sluzby)}</div>
+	<div class="popup-row">Subindex přístupnosti: ${Math.round(feature.properties.j_index_dostupnost)}</div>
+    <div class="popup-row">Subindex digitální dovednosti: ${Math.round(feature.properties.j_index_dovednosti)}</div>
 	<div class="popup-row">Subindex digitální infrastruktura: ${Math.round(feature.properties.j_index_digitalizace)}</div>
-	<div class="popup-row">Subindex přístupnosti: ${Math.round(feature.properties.j_index_dostupnost)}</div></div>`;
-
+	</div>`;
     
 	layer.bindPopup(popupContent); 
 
@@ -809,23 +797,83 @@ const linkKeys = {
 
 
 //Potřeba rozdělit na
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//POTŘEBA DOLADIT.. DIVNÉ CHOVÁNÍ POKUD JE ZOBRAZENÁ VRSTVA SLUŽEB/INDEXU
+
 
 
 const krajLayers = {}; // Objekt pro uložení vrstev podle názvu kraje
 
+function resetVyberKraje() {
+    if (activePolygon) {
+        activePolygon.removeFrom(map);
+        activePolygon = null;
+        activeFeatureId = null;
+        map.closePopup();
+    }
+
+    const defaultRadio = document.getElementById("defaultRadio");
+    if (defaultRadio) {
+        defaultRadio.checked = true; // Aktivujeme "Žádný vybraný kraj"
+    }
+
+    document.querySelectorAll("#infoKraj .links").forEach(el => el.innerHTML = ""); // Smazání odkazů
+
+    const infoText = document.getElementById("defaultText");
+    if (infoText) {
+        infoText.style.display = "block"; // Zobrazíme text
+    }
+}
+
+function initDefaultRadio() {
+    const infoElement = document.getElementById('infoKraj');
+    if (!infoElement) return;
+
+    let radioContainer = infoElement.querySelector(".radio-wrapper");
+    if (!radioContainer) {
+        radioContainer = document.createElement("div");
+        radioContainer.classList.add("radio-wrapper");
+        infoElement.prepend(radioContainer);
+    }
+
+    let defaultElement = document.createElement("div");
+    defaultElement.classList.add("radio-container");
+    defaultElement.innerHTML = `
+        <label>
+            <input class="radio" type="radio" name="vyberKraje" value="" id="defaultRadio" checked>
+            Žádný vybraný kraj
+        </label>
+    `;
+    radioContainer.prepend(defaultElement);
+
+    // Vytvoření kontejneru pro text
+    let textContainer = document.createElement("div");
+    textContainer.classList.add("info-texty"); // CSS třída pro styling
+    infoElement.appendChild(textContainer);
+
+    let infoText = document.createElement("p");
+    infoText.id = "defaultText";
+    infoText.textContent = "Výběrem kraje ze seznamu nebo kliknutím na mapu si zobrazíte indexy digitalizace v kraji.";
+
+    textContainer.appendChild(infoText); // Přidání textu do kontejneru
+
+    document.getElementById("defaultRadio").addEventListener('change', resetVyberKraje);
+
+    document.addEventListener("change", (event) => {
+        if (event.target.name === "vyberKraje" && event.target.value !== "") {
+            infoText.style.display = "none";
+        } else {
+            infoText.style.display = "block"; // Zobrazí se, pokud není vybrán žádný kraj
+        }
+    });
+
+    map.on("click", resetVyberKraje); // Použití funkce při kliknutí do mapy
+}
+
+
+
+
+
+
+// Funkce pro vytváření radio buttonů podle krajů
 function vypisInfoKraj(layer, feature) {
     const infoElement = document.getElementById('infoKraj');
     if (!infoElement) return;
@@ -834,15 +882,15 @@ function vypisInfoKraj(layer, feature) {
     if (!krajElement) {
         krajElement = document.createElement("div");
         krajElement.setAttribute("data-kraj", feature.properties.text);
-
+        
         krajElement.innerHTML = `
             <div class="radio-container">
-                <label class="kraj-label">
-                    <input type="radio" name="vyberKraje" value="${feature.properties.text}">
+                <label>
+                    <input class="radio" type="radio" name="vyberKraje" value="${feature.properties.text}">
                     ${feature.properties.text}
                 </label>
             </div>
-            <div class="links"></div>
+            <div class="links legend-containerKraj"></div>
         `;
 
         infoElement.appendChild(krajElement);
@@ -880,6 +928,9 @@ function vypisInfoKraj(layer, feature) {
     }
 }
 
+// Inicializace výchozího radio buttonu při načtení
+document.addEventListener("DOMContentLoaded", initDefaultRadio);
+
 
 
 
@@ -915,7 +966,7 @@ let CPmarkers = L.markerClusterGroup({
     iconCreateFunction: function(cluster) {
         let count = cluster.getChildCount(); // Počet bodů v clusteru
         let size = count < 10 ? 20 : count < 50 ? 30 : 40; // Velikost clustru
-        let color = count < 10 ? "#599bd7" : count < 50 ? "#2362a2" : "#1d456f"; // Barva podle velikosti
+        let color = count < 10 ? "#3c3c3c" : count < 50 ? "#3c3c3c" : "#3c3c3c"; // Barva podle velikosti
 
         return L.divIcon({
             html: `<div style="
@@ -941,7 +992,7 @@ let CPStyle = function(feature, latlng) {
     let marker = L.marker(latlng, {
         icon: L.divIcon({
             className: "custom-marker",
-            html: '<div style="background:#93bde6; width:8px; height:8px; border-radius:50%; border:2px solid #fff;"></div>',
+            html: '<div style="background:#3c3c3c; width:8px; height:8px; border-radius:50%; border:2px solid #fff;"></div>',
             iconSize: [10, 10]
         })
     });
@@ -992,7 +1043,7 @@ function addKMVS() {
         
         // Zajistí, že legenda obsahuje aktuální informace
         legend.innerHTML = `
-                <div style="display: inline-block; vertical-align: middle; background:#93bde6; width:10px; height:10px; border-radius:50%; border:2px solid #fff;"></div>
+                <div style="display: inline-block; vertical-align: middle; background:#3c3c3c; width:10px; height:10px; border-radius:50%; border:2px solid #fff;"></div>
         `;
         CP_active = 1;
     } else {
@@ -1150,20 +1201,10 @@ L.Control.LinkButton = L.Control.extend({
          button.style.width = "92px"; // Pevná šířka
          button.style.height = "40px"; // Pevná výška
          button.style.textAlign = "center"; // Zarovnání textu do středu
- 
-        // Změna barvy při najetí myší
-        /*button.onmouseover = function() {
-            button.style.backgroundColor = "#f4f4f4"; // Tmavší modrá při hoveru
-            button.style.color = "#2362a2";
-        };
-        button.onmouseout = function() {
-            button.style.backgroundColor = "#2362a2"; // Zpět na původní modrou
-            button.style.color = "white";
-        };*/
 
         // Kliknutí otevře odkaz v novém okně
         button.onclick = function() {
-            window.open("https://dia.gov.cz", "_blank"); // Změň URL podle potřeby
+            window.open("https://kctest.dia.gov.cz/", "_blank"); // Změň URL podle potřeby
         };
 
         container.appendChild(button);
@@ -1183,7 +1224,7 @@ let activePolygon = null;
 let activeFeatureId = null; // Uložíme ID aktivního polygonu
 
 map.createPane('highlightPane');
-map.getPane('highlightPane').style.zIndex = 650;
+map.getPane('highlightPane').style.zIndex = 550;
 
 
 function highlightPolygon(layer) {
@@ -1225,6 +1266,7 @@ function vycistiMapu(){
     zrusitVyberIndexuEU();
     zrusitVyberSluzby();
     zrusitBody();
+    resetVyberKraje();
 };
 
 
@@ -1269,6 +1311,7 @@ function exportMapToPDF(map) {
 
     let podkladHolder;
     controlButton.remove();
+    map.removeControl(controlZoomButton);
     map.removeControl(linkButtonControl);
     map.removeControl(zoomButton);
     map.removeControl(meritko);
@@ -1333,12 +1376,13 @@ function exportMapToPDF(map) {
             // Přidání mapy pod titulek
             pdf.addImage(imgData, 'PNG', 50, 50, mapContainer.offsetWidth - 50, mapContainer.offsetHeight);
 
-            pdf.save('mapa.pdf');
+            pdf.save(titleText + '.pdf');
 
             // Vrátíme mapu do původního stavu
             map.setView(originalCenter, originalZoom, {animate: false});
             document.getElementById('map').appendChild(controlButton);
             map.addControl(linkButtonControl);
+            map.addControl(controlZoomButton);
             map.removeControl(meritkoExport);
             meritko.addTo(map);
             zoomButton.addTo(map);
@@ -1353,39 +1397,6 @@ function exportMapToPDF(map) {
 document.getElementById('exportBtn').addEventListener('click', function() {
     exportMapToPDF(map);
 });
-
-/*
-document.addEventListener('DOMContentLoaded', function() {
-    var svgObject = document.getElementById('download-icon');
-    
-    svgObject.addEventListener('load', function() {
-        var svgDoc = svgObject.contentDocument;
-        var paths = svgDoc.querySelectorAll('path');
-        
-        var link = svgObject.closest('a');
-        
-        link.addEventListener('mouseenter', function() {
-            for (var i = 0; i < paths.length; i++) {
-                paths[i].setAttribute('fill', 'white');
-            }
-            svgObject.style.backgroundColor = '#2362a2';
-        });
-        
-        link.addEventListener('mouseleave', function() {
-            for (var i = 0; i < paths.length; i++) {
-                paths[i].setAttribute('fill', '#2362A2');
-            }
-            svgObject.style.backgroundColor = '';
-        });
-        
-        link.addEventListener('click', function() {
-            link.classList.toggle('active');
-        });
-    });
-});*/
-
-
-
 
 
 let sidebar_rozsireni = document.querySelector('.sidebar');
@@ -1483,8 +1494,8 @@ L.Control.FunctionButton = L.Control.extend({
 });
 
 // Přidání controlu do mapy
-let linkButton = new L.Control.FunctionButton({});
-linkButton.addTo(map);
+let controlZoomButton = new L.Control.FunctionButton({});
+controlZoomButton.addTo(map);
 
 // Definice myFunction()
 

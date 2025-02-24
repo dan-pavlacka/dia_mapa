@@ -54,6 +54,7 @@ p, li {
     line-height: 150%;
     letter-spacing: 0.0125em;
     color: #6D6D6D;
+    margin-bottom:0;
 }
 
 
@@ -199,7 +200,7 @@ a:hover .svg-path, li.active .svg-path {
 .legend, .sluzba-status { text-align: left;
     font-family: 'Roboto';
     line-height: 18px;
-    padding: 12px 28px;
+    padding: 0px 28px 12px 28px;
     color: #242424; } 
 
 .legend i { 
@@ -232,6 +233,7 @@ label {
     align-items: center;
     letter-spacing: 0.0125em;
     color: #262626;
+    
 }
 
 .checkbox {
@@ -293,6 +295,10 @@ input[type="radio"]:checked::after {
     display: inline-block;
     vertical-align: middle;
     line-height: normal;
+    display: flex; /* Ujistí se, že radio a text budou vedle sebe */
+    align-items: center;
+    gap: 8px; 
+    cursor:pointer;
     
 }
 
@@ -344,6 +350,7 @@ input[type="checkbox"]:checked::after {
     display: inline-block;
     vertical-align: middle;
     line-height: normal;
+    cursor:pointer;
 }
 
 
@@ -601,6 +608,8 @@ h3.expandable {
 }
 
 
+
+
 /* Skrytý tooltip */
 .tooltip-right-dlouhy::after, .tooltip-left-dlouhy::after{
     content: attr(data-tooltip);
@@ -735,6 +744,7 @@ h3.expandable {
 }
 
 
+
 .expand-sidebar {
     position: absolute;
     top: 0px;
@@ -831,4 +841,13 @@ h3.expandable {
     letter-spacing: 0.0125em;
 
     color: #262626;
+}
+
+#defaultText{
+    margin-bottom:10px;
+    margin-top:0px
+}
+
+.p-infoIndex{
+    margin-top:0;
 }
