@@ -856,3 +856,9 @@ h3.expandable {
     border-radius: 8px;
     height:24px;
 }
+
+#popup-kraj .popup-row span::after {
+    content: ":";
+    margin-left: 2px;
+
+}

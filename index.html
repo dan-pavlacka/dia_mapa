@@ -113,7 +113,7 @@
 				<div class="sidebar-pane" id="legenda">
 					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
-					<h2 style="margin-top: 0;">Mapa digitalizace ČR </h2>
+					<h2 style="margin-top: 0;" data-key="pane1_h2"></h2>
 					<p class="p-gray"><span data-key="pane1_sticky"></span> <a href="javascript:void(0)" data-key="vic_info" onclick="sidebar.open('infoIndexy'), setScrollableHeight()"></a></p>
 					
 					
@@ -121,13 +121,13 @@
 					<div>
 						<button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="vycistiMapu()">
 							<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
-							Vyčistit mapu
+							<span data-key="vycistit_mapu"></span>
 						</button> 
 
 						<a href="javascript:void(0)" onclick="sidebar.open('export'), setScrollableHeight()">
 						<button type="button" class="gov-button" style="margin-top: 15px;">
 							<img src="img/export_black.svg" alt="Ikona" class="button-ikona">
-							Stáhnout mapu
+							<span data-key="pane5_h2_stahnout_mapu"></span>
 						</button>	
 						</a>	
 						
@@ -150,7 +150,7 @@
 						   <img src="img/sipka_dolu.svg" class="icon-sipka dolu skryta" alt="Rozbalit" />
 						   <img src="img/sipka_nahoru.svg" class="icon-sipka nahoru" alt="Sbalit" />
 						</button>
-						<span class="tooltip tooltip-right-kratky" data-tooltip="Indexy digitalizace">Digitalizace v krajích</span>
+						<span class="tooltip tooltip-right-kratky" data-tooltip="Indexy digitalizace" data-key="digitalizace_v_krajich"></span>
 					 </h3>
 						
 					
@@ -158,29 +158,29 @@
 					<div id="Vdigitalizace">
 
 					<div class="radio-container"><input  class="radio" type="radio" id="vrstva1" name="vrsKraj" onclick="addlay(indexDigitalizace, 'legenda1', legendModra, 1,0)" checked>
-					<label for="vrstva1" class="tooltip tooltip-right-dlouhy" data-tooltip="Výsledný index digitalizace je vypočítán vážením dílčích subindexů">Index digitalizace</label> 
+					<label for="vrstva1" class="tooltip tooltip-right-dlouhy" data-tooltip="Výsledný index digitalizace je vypočítán vážením dílčích subindexů" data-key="index_digitalizace"></label> 
 					</div>
 					<div id="legenda1" class="legend-containerKraj"></div>
 
-					<div class="radio-container"><input class="radio" type="radio" id="vrstva2" name="vrsKraj" onclick="addlay(indexSluzby, 'legenda2', legendOranzova, 1,0)">
-					<label for="vrstva2">Subindex poskytované služby</label> 
+					<div class="radio-container"><input class="radio" type="radio" id="vrstva2" name="vrsKraj" onclick="addlay(indexSluzby, 'legenda2', legendOranzova, 1,0) ">
+					<label for="vrstva2" data-key="sub_sluzby"></label> 
 					</div>
 					<div id="legenda2" class="legend-containerKraj"></div>
 	
 					<div class="radio-container"><input class="radio" type="radio" id="vrstva3" name="vrsKraj" onclick="addlay(indexPristupnost, 'legenda5', legendCervena, 1,null)">
-						<label for="vrstva3">Subindex přístupnosti</label> 
+						<label for="vrstva3" data-key="sub_pristupnost"></label> 
 					</div>		
 						<div id="legenda5" class="legend-containerKraj"></div>
 						
 
 					<div class="radio-container"><input class="radio" type="radio" id="vrstva4" name="vrsKraj" onclick="addlay(indexDovednosti, 'legenda3', legendZelena, 1,null)">
-					<label for="vrstva4">Subindex digitální dovednosti</label>
+					<label for="vrstva4" data-key="sub_dovednosti"></label>
 						
 					</div>
 					<div id="legenda3" class="legend-containerKraj"></div>
 
 					<div class="radio-container"><input class="radio" type="radio" id="vrstva5" name="vrsKraj" onclick="addlay(indexInfrastruktura, 'legenda4', legendFialova, 1,null)">
-					<label for="vrstva5">Subindex digitální infrastruktura</label> 
+					<label for="vrstva5" data-key="sub_infrastruktura"></label> 
 						
 					</div>
 					<div id="legenda4" class="legend-containerKraj"></div>
@@ -191,7 +191,9 @@
 				
 					<div><button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberIndexuKraj()">
 						<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
-						Zrušit zobrazení Indexu</button> </div>
+						<span data-key="odebrat_index"></span>
+					</button> 
+				</div>
 				</div>	
 
 				</div>
@@ -203,7 +205,7 @@
 						<img src="img/sipka_dolu.svg" class="icon-sipka dolu" alt="Rozbalit" />
 						<img src="img/sipka_nahoru.svg" class="icon-sipka nahoru skryta" alt="Sbalit" />
 					</button>
-					<span class="tooltip tooltip-right-kratky" data-tooltip="Seznam digitálních služeb">Digitální služby</span>
+					<span class="tooltip tooltip-right-kratky" data-tooltip="Seznam digitálních služeb" data-key="digitalni_sluzby"></span>
 				</h3>
 				
 				
@@ -214,7 +216,8 @@
 				<div>
 					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberSluzby()">
 						<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
-						Zrušit výběr služby</button>
+						<span data-key="odebrat_sluzbu"></span>
+					</button>
 				</div>
 				</div>
 				
@@ -225,7 +228,7 @@
 					<img src="img/sipka_dolu.svg" class="icon-sipka dolu" alt="Rozbalit" />
 					<img src="img/sipka_nahoru.svg" class="icon-sipka nahoru skryta" alt="Sbalit" />
 				</button>
-				<span class="tooltip tooltip-right-kratky" data-tooltip="Ovládání vrstev s bodovými daty">Bodová data</span>
+				<span class="tooltip tooltip-right-kratky" data-tooltip="Ovládání vrstev s bodovými daty" data-key="bodova_data"></span>
 				</h3>
 				<div id="Vbody" class="hidden">
 				
@@ -233,17 +236,19 @@
 
 				<div class="checkbox-container legend-body"><input type="checkbox" id="KMVS" name="body" onclick="addKMVS()">
 					<div id="legend-kmvs"></div>
-					<label for="KMVS">Czech POINT</label> </div>	
+					<label for="KMVS" data-key="czech_point"></label>
+				</div>	
 					
 				
 				<div class="checkbox-container legend-body"><input type="checkbox" id="KU" name="body" onclick="addKU()">
 					<div id="legend-ku"></div>
-					<label for="KU">Krajský úřad</label> </div>	
+					<label for="KU" data-key="krajsky_urad"></label>
+				</div>	
 	
 					
 					<button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitBody()">
 						<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
-						Zrušit zobrazení bodů
+						<span data-key="odebrat_body"></span>
 					</button>
 				</div>
 
@@ -256,22 +261,24 @@
 				<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 			
 				<div class="sidebar-sticky" style="margin-bottom:10px;">
-					<h2 style="margin-top: 0;">Mapa digitalizace EU </h2>
+					<h2 style="margin-top: 0;" data-key="pane2_h2"></h2>
 					<p class="p-gray" data-key="pane2_sticky"></p>
 					
 				
 				
 				<div>
 					
-					<button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="vycistiMapu()">
+				<button type="button" class="gov-button" style="margin-top: 15px; margin-right:10px;" size="m" onclick="vycistiMapu()">
 					<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
-					Vyčistit mapu</button> 
+					<span data-key="vycistit_mapu"></span>
+				</button> 
 					
 					
 					<a href="javascript:void(0)" onclick="sidebar.open('export'), setScrollableHeight()">
 					<button type="button" class="gov-button" style="margin-top: 15px;">
 						<img src="img/export_black.svg" alt="Ikona" class="button-ikona">
-						Stáhnout mapu</button>
+						<span data-key="pane5_h2_stahnout_mapu"></span>
+					</button>
 					</a>
 
 
@@ -281,7 +288,7 @@
 			<div class="scrollable">
 					
 				<h3 class="expandable">
-					Index DESI
+					<span data-key="desi_index"></span>
 					<button class="schovaniLegendy" id="toggleBtn" data-target="#Vdesi">
 					<img src="img/sipka_dolu.svg" class="icon-sipka dolu skryta" alt="Rozbalit" />
 					<img src="img/sipka_nahoru.svg" class="icon-sipka nahoru" alt="Sbalit" />
@@ -290,48 +297,42 @@
 				<div id="Vdesi">	
 				
 				<div class="radio-container"><input class="radio" type="radio" id="vrstva6" name="vrsEU" onclick="addlay(DESIIndex22, 'legenda6', legendVinova, 2,22)">
-				<label for="vrstva6">Index DESI 2022</label> 
+				<label for="vrstva6" data-key="desi_index22"></label> 
 				</div>	
 				<div id="legenda6" class="legend-containerEU"></div>
 				
 				<div class="radio-container"><input class="radio" type="radio" id="vrstva7" name="vrsEU" onclick="addlay(DESIIndex21, 'legenda7', legendVinova, 2,21)">
-				<label for="vrstva7">Index DESI 2021</label> 
+				<label for="vrstva7" data-key="desi_index21"></label> 
 				</div>					
 				<div id="legenda7" class="legend-containerEU"></div>
 
 				<div class="radio-container"><input class="radio" type="radio" id="vrstva8" name="vrsEU" onclick="addlay(DESIIndex20, 'legenda8', legendVinova, 2,20)">
-				<label for="vrstva8">Index DESI 2020</label> 
+				<label for="vrstva8" data-key="desi_index20"></label> 
 				</div>					
 				<div id="legenda8" class="legend-containerEU"></div>
 
-				
-
-				<!--<div><button type="button" class="gov-button" style="margin-top: 15px;" size="m" onclick="zrusitVyberIndexuEU()">
-					<img src="img/krizek.svg" alt="Ikona" class="button-ikona">
-					Zrušit zobrazení Indexu</button> </div>-->
-
-					
+							
 
 				
 			</div>
 			<div class="info-texty">
-				<h3 class="h3-black">Co to je Index DESI?</h3>
-				<p>Evropský index DESI (Digital Economy and Society Index) je každoroční hodnocení digitální konkurenceschopnosti členských států EU. Více informací naleznete zde.</p>
+				<h3 class="h3-black" data-key="co_je_DESI"></h3>
+				<p data-key="co_je_DESI_text"></p>
 			</div>
 			<div class="info-texty">
-				<h4>K čemu slouží?</h3>
-				<p>Index DESI pomáhá porovnávat digitální pokrok jednotlivých zemí EU a určovat oblasti, které je třeba zlepšit.</p>
+				<h4 data-key="k_cemu_slouzi"></h3>
+				<p data-key="k_cemu_slouzi_text"></p>
 			</div>
 			<div class="info-texty">
-				<h4>Podle čeho se měří</h3>
-				<p>Měří pokrok v digitalizaci na základě několika klíčových oblastí:</p>
+				<h4 data-key="podle_ceho_se_meri"></h3>
+				<p data-key="podle_ceho_se_meri_text"></p>
 			</div>
 			<div>
 				<ol>
-				<li><b>Konektivita</b> – dostupnost a kvalita širokopásmového připojení (pevného i mobilního).</li>
-				<li><b>Lidský kapitál</b> – digitální dovednosti obyvatel a odborníků v oblasti IT.</li>
-				<li><b>Integrace digitálních technologií</b> – digitalizace firem a využívání technologií (např. cloud, umělá inteligence, e-commerce).</li>
-				<li><b>Digitální veřejné služby</b> – úroveň e-governmentu a digitálních služeb státní správy.</li>
+				<li><b data-key="konektivita"></b><span data-key="konektivita_text"></span></li>
+				<li><b data-key="lidsky_kapital"></b><span data-key="lidsky_kapital_text"></span></li>
+				<li><b data-key="integrace_ICT"></b><span data-key="integrace_ICT_text"></span></li>
+				<li><b data-key="digitalni_sluzby"></b><span data-key="digitalni_sluzby_text"></span></li>
 				</ol>
 			</div>
 
@@ -344,8 +345,8 @@
 				<div class="sidebar-pane" id="sluzby">
 					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
-						<h2 style="margin-top: 0;">Informace o krajích</h2>
-						<p class="p-gray">Zde naleznete doplňující odkazy k jednotlivým krajům. Pro zobrazení informací ke konkrétnímu kraji klikněte v mapě na kraj.</p>
+						<h2 style="margin-top: 0;" data-key="pane3_h2"></h2>
+						<p class="p-gray" data-key="pane3_sticky"></p>
 					</div>
 					
 					<div class="scrollable">
@@ -365,13 +366,13 @@
 					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 					
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
-						<h2 style="margin-top: 0;">Indexy digitalizace ČR</h2>
+						<h2 style="margin-top: 0;" data-key="pane4_h2"></h2>
 						<!--<p class="p-gray"></p>-->
-						<p class="p-gray">Indexy digitalizace pro kraje ČR byly navrženy na základě evropského indexu DESI.</p>
+						<p class="p-gray" data-key="pane4_sticky"></p>
 						<a href="img/index_schema.html" target="_blank">
 							<button class="gov-button-blue" style="margin-top: 15px"><img src="img/oko.svg" alt="Ikona" class="button-ikona">
 								
-								<span class="tooltip tooltip-right-kratky" data-tooltip="Indexy digitalizace">Schéma Indexu</span>
+								<span class="tooltip tooltip-right-kratky" data-tooltip="Indexy digitalizace" data-key="schema_indexu"></span>
 							
 							</button></a>
 					</div>
@@ -381,7 +382,7 @@
 					<div class="scrollable">
 
 					<h3 class="expandable h3-black">
-						Celkový index digitalizace
+						<span data-key="index_digitalizace"> </span>
 						<button class="schovaniLegendy" id="toggleBtn" data-target="#popisCelkovyIndex">
 							<img src="img/sipka_dolu_black.svg" class="icon-sipka dolu skryta" alt="Rozbalit" />
 							<img src="img/sipka_nahoru_black.svg" class="icon-sipka nahoru" alt="Sbalit" />
@@ -389,54 +390,55 @@
 					
 					<div id="popisCelkovyIndex">
 	
-						<p class="p-infoIndex">Index je stavoven vážením dílčích subindexů. Váhy jsou stanoveny rovnoměrně.</p>
+						<p class="p-infoIndex" data-key="overall_index_popis"></p>
 					
 					</div><div class="info-texty"></div>
 
 					<h3 class="expandable h3-black">
-						Subindex digitální služby
+						<span data-key="sub_sluzby"></span>
 						<button class="schovaniLegendy" id="toggleBtn" data-target="#popisSubindexSluzby">
 							<img src="img/sipka_dolu_black.svg" class="icon-sipka dolu" alt="Rozbalit" />
 							<img src="img/sipka_nahoru_black.svg" class="icon-sipka nahoru skryta" alt="Sbalit" />
-						</button></h3>					
+						</button>
+					</h3>					
 					
 					<div id="popisSubindexSluzby" class="hidden">
 
-					<p class="p-infoIndex">Stanoven jako procentuální podíl vybraných digitálních služeb, poskytovaných krajem. Hodnocené služby jsou:</p>
+					<p class="p-infoIndex" data-key="sub_sluzby_popis"></p>
 					<ul>
-						<li>Platební portál</li>
-						<li>Rozklikávací rozpočet</li>
-						<li>Integrovaný dopravní systém</li>
-						<li>Geoportál</li>
-						<li>Portál otevřených dat</li>
-						<li>Katalog sociálních služeb</li>
-						<li>Portál krizového řízení</li>
-						<li>Dotační portál</li>
+						<li data-key="platebni_portal"></li>
+						<li data-key="rozklikavaci_rozpocet"></li>
+						<li data-key="integrovany_dopravni_system"></li>
+						<li data-key="geoportal"></li>
+						<li data-key="portal_otevrenych_dat"></li>
+						<li data-key="katalog_soc_sluzeb"></li>
+						<li data-key="portal_kriz_rizeni"></li>
+						<li data-key="dotacni_portal"></li>
 					</ul>
 					</div><div class="info-texty"></div>
 
 					<h3 class="expandable h3-black">
-						Subindex přístupnost služeb
+						<span data-key="sub_pristupnost"></span>
 						<button class="schovaniLegendy" id="toggleBtn" data-target="#popisSubindexPristupnost">
 							<img src="img/sipka_dolu_black.svg" class="icon-sipka dolu" alt="Rozbalit" />
 							<img src="img/sipka_nahoru_black.svg" class="icon-sipka nahoru skryta" alt="Sbalit" />
 						</button></h3>
 
 					<div id="popisSubindexPristupnost" class="hidden">
-					<p class="p-infoIndex">Stanoven jako průměrná hodnota vybraných ukazatelů. Přístupnost webových stránek a SEO bylo měřeno nástrojem Lighthouse accessibility scoring, dne 12.2.2025, pro webové stránky krajů.</p>
+					<p class="p-infoIndex" data-key="sub_pristupnost_popis"></p>
 
 					<ul>
-						<li>Přístupnost desktop</li>
-						<li>Přístupnost mobile</li>
-						<li>SEO desktop</li>
-						<li>SEO mobile</li>
-						<li>Počet KMVS na 1000 obyvatel (normalizováno)</li>
+						<li data-key="pristupnost_desktop"></li>
+						<li data-key="pristupnost_mobile"></li>
+						<li data-key="seo_desktop"></li>
+						<li data-key="seo_mobile"></li>
+						<li data-key="pocet_kmvs"></li>
 					</ul>
 					</div><div class="info-texty"></div>
 
 
 					<h3 class="expandable h3-black">
-						Subindex digitální dovednosti
+						<span data-key="sub_dovednosti"></span>
 						<button class="schovaniLegendy" id="toggleBtn" data-target="#popisSubindexDovednosti">
 							<img src="img/sipka_dolu_black.svg" class="icon-sipka dolu" alt="Rozbalit" />
 							<img src="img/sipka_nahoru_black.svg" class="icon-sipka nahoru skryta" alt="Sbalit" />
@@ -444,20 +446,20 @@
 					</h3>
 
 					<div id="popisSubindexDovednosti" class="hidden">
-					<p class="p-infoIndex">Stanoven jako průměrná hodnota vybraných ukazatelů, které  byly předem normalizovány.</p>
+					<p class="p-infoIndex" data-key="sub_dovednosti_popis"></p>
 
 					<ul>
-						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl osob, které denně využívají internet</a></li>
-						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl osob, využívajících sociální sítě</a></li>
-						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl osob, využívajících internetové bankovnictví</li>
-						<li><a href="https://csu.gov.cz/studenti-ict-oboru?pocet=10&start=0&podskupiny=412&razeni=-datumVydani" target="_blank">Podíl studentů ICT oborů na VŠ (dle trvalého bydliště)</a></li>
-						<li><a href="https://csu.gov.cz/studenti-ict-oboru?pocet=10&start=0&podskupiny=412&razeni=-datumVydani" target="_blank">Podíl ICT absolventů (dle trvalého bydliště)</a></li>
-						<li><a href="https://vdb.czso.cz/vdbvo2/faces/cs/index.jsf?page=vystup-objekt-vyhledavani&bkvt=WmFtxJtzdG5hbsOtIHBvZGxlIG9kdsSbdHbDrSBla29ub21pY2vDqSDEjWlubm9zdGksIHBvaGxhdsOtIGEgcG9kbGUgdmVsaWtvc3Ruw61jaCBza3VwaW4gb2Jjw60gYSBrcmFqxa8.&vyhltext=Zam%C4%9Bstnan%C3%AD+podle+odv%C4%9Btv%C3%AD+ekonomick%C3%A9+%C4%8Dinnosti%2C+pohlav%C3%AD+a+podle+velikostn%C3%ADch+skupin+obc%C3%AD+a+kraj%C5%AF&katalog=all&pvo=ZV21CR011" target="_blank">Podíl ICT odborníků (dle CZ-NACE)</a></li>
+						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank" data-key="osoby_internet_denne"></a></li>
+						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank" data-key="osoby_soc_site"></a></li>
+						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank" data-key="osoby_bankovnictvi"></a></li>
+						<li><a href="https://csu.gov.cz/studenti-ict-oboru?pocet=10&start=0&podskupiny=412&razeni=-datumVydani" target="_blank" data-key="studenti_ICT"></a></li>
+						<li><a href="https://csu.gov.cz/studenti-ict-oboru?pocet=10&start=0&podskupiny=412&razeni=-datumVydani" target="_blank" data-key="absolventi_ICT"></a></li>
+						<li><a href="https://vdb.czso.cz/vdbvo2/faces/cs/index.jsf?page=vystup-objekt-vyhledavani&bkvt=WmFtxJtzdG5hbsOtIHBvZGxlIG9kdsSbdHbDrSBla29ub21pY2vDqSDEjWlubm9zdGksIHBvaGxhdsOtIGEgcG9kbGUgdmVsaWtvc3Ruw61jaCBza3VwaW4gb2Jjw60gYSBrcmFqxa8.&vyhltext=Zam%C4%9Bstnan%C3%AD+podle+odv%C4%9Btv%C3%AD+ekonomick%C3%A9+%C4%8Dinnosti%2C+pohlav%C3%AD+a+podle+velikostn%C3%ADch+skupin+obc%C3%AD+a+kraj%C5%AF&katalog=all&pvo=ZV21CR011" target="_blank" data-key="odbornici_ICT"></a></li>
 					</ul>
 					</div><div class="info-texty"></div>
 
 					<h3 class="expandable h3-black">
-						Subindex digitální infrastruktura
+						<span data-key="sub_infrastruktura"></span>
 						<button class="schovaniLegendy" id="toggleBtn" data-target="#popisSubindexInfrastruktura">
 							<img src="img/sipka_dolu_black.svg" class="icon-sipka dolu" alt="Rozbalit" />
 							<img src="img/sipka_nahoru_black.svg" class="icon-sipka nahoru skryta" alt="Sbalit" />
@@ -465,13 +467,13 @@
 					</h3>
 					
 					<div id="popisSubindexInfrastruktura" class="hidden">
-					<p class="p-infoIndex">Stanoven jako průměrná hodnota vybraných ukazatelů, které  byly předem normalizovány</p>
+					<p class="p-infoIndex" data-key="sub_infrastruktura_popis"></p>
 
 					<ul>
-						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl domácností s připojením k internetu</a></li>
-						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank">Podíl osob využívajících internet na telefonu</a></li>
-						<li><a href="https://data.ctu.gov.cz/tags/pristup-k-internetu" target="_blank">Pokrytí infrastrukturou 30 Mbit/s (% ZSJ >80%)</a></li>
-						<li><a href="https://data.ctu.gov.cz/tags/pristup-k-internetu" target="_blank">Pokrytí infrastrukturou 100 Mbit/s (% ZSJ >80%)</a></li>
+						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank" data-key="domacnosti_internet"></a></li>
+						<li><a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-2022" target="_blank" data-key="osoby_internet_tel"></a></li>
+						<li><a href="https://data.ctu.gov.cz/tags/pristup-k-internetu" target="_blank" data-key="pokryti_30mb"></a></li>
+						<li><a href="https://data.ctu.gov.cz/tags/pristup-k-internetu" target="_blank" data-key="pokryti_100mb"></a></li>
 					</ul>
 				</div>
 			</div>
@@ -487,8 +489,8 @@
 					
 					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
-						<h2 style="margin-top: 0;">Stáhnout mapu</h2>
-						<p class="p-gray">Zde je možné exportovat mapu do pdf. Rozměr pdf a obsah mapy bude přizpůsoben vašemu aktuálnímu pohledu na mapu.</p>
+						<h2 style="margin-top: 0;" data-key="pane5_h2_stahnout_mapu"></h2>
+						<p class="p-gray" data-key="pane5_sticky"></p>
 					</div>
 					<div class="scrollable">
 					<div>
@@ -497,7 +499,8 @@
 					
 					<button id="exportBtn" class="gov-button" style="margin-top: 15px;">
 						<img src="img/export_black.svg" alt="Ikona" class="button-ikona">
-						Exportovat</button>
+						<span data-key="pane5_h2_stahnout_mapu"></span>
+					</button>
 					</div>
 				
 				
@@ -512,14 +515,14 @@
 					<div class="sidebar-pane" id="info">
 						<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
-						<h2 style="margin-top: 0;">Informace o aplikaci</h2>
-						<p class="p-gray">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</p>
+						<h2 style="margin-top: 0;" data-key="pane6_h2"></h2>
+						<p class="p-gray" data-key="pane6_sticky"></p>
 					</div>
 					
 					
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
-						<h4 style="margin-top: 0;">Jak s aplikací pracovat</h3>
-						<p class="p-gray">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.</p>
+						<h4 style="margin-top: 0;" data-key="jak_pracovat"></h4>
+						<p class="p-gray" data-key="jak_pracovat_text"></p>
 					</div>
 					<div class="scrollable">
 					</div>

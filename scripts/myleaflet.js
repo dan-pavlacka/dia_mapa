@@ -261,14 +261,14 @@ function indexDigitalizace(feature) {
 //------------výběr služby
 // Data pro radio buttony na výběr služby
 const sluzbyData = [
-    { id: "sl1", label: "Platební portál", attribute: "j_platebni_portal", urlKey: "j_platebni_portal_web"},
-    { id: "sl2", label: "Rozklikávací rozpočet", attribute: "j_rozklikavaci_rozpocet", urlKey: "j_rozklikavaci_rozpocet_web"},
-    { id: "sl3", label: "Integrovaný dopravní systém", attribute: "j_IDS", urlKey: "j_IDS_web"},
-    { id: "sl4", label: "Geoportál", attribute: "j_GEOportal", urlKey: "j_GEOportal_odkaz"},
-    { id: "sl5", label: "Portál otevřených dat", attribute: "j_openDATA", urlKey: "j_openDATA_web"},
-    { id: "sl6", label: "Katalog sociálních služeb", attribute: "j_katalog_soc_sluzeb", urlKey: "j_katalog_soc_sluzeb_web"},
-    { id: "sl7", label: "Portál krizového řízení", attribute: "j_portal_kriz_rizeni", urlKey: "j_portal_kriz_rizeni_web"},
-    { id: "sl8", label: "Dotační portál", attribute: "j_dotacni_portal", urlKey: "j_dotacni_portal_web"},
+    { id: "sl1", labelKey: "platebni_portal", attribute: "j_platebni_portal", urlKey: "j_platebni_portal_web"},
+    { id: "sl2", labelKey: "rozklikavaci_rozpocet", attribute: "j_rozklikavaci_rozpocet", urlKey: "j_rozklikavaci_rozpocet_web"},
+    { id: "sl3", labelKey: "integrovany_dopravni_system", attribute: "j_IDS", urlKey: "j_IDS_web"},
+    { id: "sl4", labelKey: "geoportal", attribute: "j_GEOportal", urlKey: "j_GEOportal_odkaz"},
+    { id: "sl5", labelKey: "portal_otevrenych_dat", attribute: "j_openDATA", urlKey: "j_openDATA_web"},
+    { id: "sl6", labelKey: "katalog_soc_sluzeb", attribute: "j_katalog_soc_sluzeb", urlKey: "j_katalog_soc_sluzeb_web"},
+    { id: "sl7", labelKey: "portal_kriz_rizeni", attribute: "j_portal_kriz_rizeni", urlKey: "j_portal_kriz_rizeni_web"},
+    { id: "sl8", labelKey: "dotacni_portal", attribute: "j_dotacni_portal", urlKey: "j_dotacni_portal_web"},
 ];
 
 // Generování radio buttonů a legend
@@ -287,10 +287,13 @@ function generateSluzby() {
         radioInput.dataset.attribute = sluzba.attribute;
         radioInput.dataset.group = "sluzby";
         
-        // Vytvoření labelu
+        // Vytvoření labelu s data-key atributem
         const label = document.createElement("label");
         label.htmlFor = sluzba.id;
-        label.textContent = sluzba.label;
+        label.setAttribute("data-key", sluzba.labelKey); // Přidání data-key atributu
+        
+        // Výchozí text (použije se, pokud není překlad k dispozici)
+        label.textContent = sluzba.labelKey;
         
         // Vytvoření legendy
         const legendContainer = document.createElement("div");
@@ -305,6 +308,9 @@ function generateSluzby() {
         container.appendChild(radioContainer);
         container.appendChild(legendContainer);
     });
+    if (window.currentLanguage) {
+        applyTranslationToElement(container, window.currentLanguage);
+    }
 }
 
 // Volání funkce pro generování HTML
@@ -338,10 +344,16 @@ function updateLegend(radioId, isActive) {
                         transparent 7px
                     );
                 "></i>
-                <span>kraj s dostupnou službou</span>
+                <span data-key="kraj_dostupna_sluzba"></span>
             </div>
         `;
         legendContainer.innerHTML = legendContent;
+        
+        //překlad pro legendu šrafy
+        if (window.currentLanguage) {
+            applyTranslationToElement(legendContainer, window.currentLanguage);
+        }
+        
     }
 }
 
@@ -420,27 +432,44 @@ function zrusitVyberSluzby() {
 }
 
 function vypisPopupuSluzba(feature, layer) {  
-    let popupContent = `<div class="popup-container"><h2>${feature.properties.text}</h2>`; 
-
     // Získání klíče pro URL na základě vybrané služby
     const sluzbaId = document.querySelector('input[type="radio"][name="sluzby"]:checked').id;
     const sluzba = sluzbyData.find(s => s.id === sluzbaId);
     
     // Získání URL pro aktuální službu
     const urlKey = sluzba.urlKey;
-    const url = feature.properties[urlKey];  // Například feature.properties.platebni_portal_url
+    const url = feature.properties[urlKey];
+    
+    // Získání výchozího textu pro aktuální jazyk
+    const defaultText = window.currentLanguage && translations[window.currentLanguage][sluzba.labelKey] 
+        ? translations[window.currentLanguage][sluzba.labelKey] 
+        : (translations["cs"][sluzba.labelKey] || sluzba.labelKey);
+    
+    let popupContent = `<div class="popup-container"><h2>${feature.properties.text}</h2>`; 
 
     // Pokud URL existuje, přidáme odkaz s label z sluzbyData
     if (url) {
         popupContent += `<div class="popup-row">
         <img src="img/popup/web.svg" alt="Ikona" class="popup-icon">
-        <span><a href="${url}" target="_blank">${sluzba.label}</a></span></div>`;
+        <span><a href="${url}" target="_blank" data-key="${sluzba.labelKey}">${defaultText}</a></span></div>`;
     } else {
-        popupContent += `<br>Odkaz na službu není dostupný.</div>`;
+        const nedostupnyText = window.currentLanguage && translations[window.currentLanguage]["odkaz_nedostupny"]
+            ? translations[window.currentLanguage]["odkaz_nedostupny"]
+            : translations["cs"]["odkaz_nedostupny"];
+            
+        popupContent += `<br><span data-key="odkaz_nedostupny">${nedostupnyText}</span></div>`;
     }
 
     // Připojíme popup k vrstvě
     layer.bindPopup(popupContent);
+
+    // Přidáme událost na otevření popupu, abychom mohli aplikovat překlad
+    layer.on('popupopen', function() {
+        const popupElement = layer.getPopup().getElement();
+        if (window.currentLanguage && popupElement) {
+            applyTranslationToElement(popupElement, window.currentLanguage);
+        }
+    });
 
     // Vypiseme další informace o kraji, pokud je potřeba
     vypisInfoKraj(layer, feature);
@@ -486,21 +515,33 @@ function vypisPopupuDESI(feature, layer) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 //generování legendy
 let grades;
 function generateLegend(getColorFunction, legendName, grades, min) {
-
-	let legend = `<div class="info legend">`;
+    let legend = `<div class="info legend">`;
 
     for (let i = 0; i < grades.length; i++) {
         const from = grades[i];
-        
+
         if (i === grades.length - 1) {
             // Poslední interval: méně než
-            legend += `<i style="background:${getColorFunction(from)}"></i> méně než ${min}<br>`;
+            legend += `<i style="background:${getColorFunction(from)}"></i> 
+                       <span data-key="mene_nez"></span> ${min}<br>`;
         } else {
             // Ostatní intervaly: více než
-            legend += `<i style="background:${getColorFunction(from + 1)}"></i> ${from} a více <br>`;
+            legend += `<i style="background:${getColorFunction(from + 1)}"></i> 
+                       ${from} <span data-key="a_vice"></span><br>`;
         }
     }
 
@@ -508,10 +549,11 @@ function generateLegend(getColorFunction, legendName, grades, min) {
     return legend;
 }
 
+
 //definice legend
 const legendModra = generateLegend(getColorModra, "legendModra", [75, 60, 45, 44],"45");
 const legendFialova = generateLegend(getColorFialova, "legendFialova", [75, 60, 45, 44],"45");
-const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [80, 60, 40, 39],"40");
+const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [85, 70, 55, 54],"55");
 const legendZelena = generateLegend(getColorZelena, "legendZelena", [75, 50, 25, 24],"25");
 const legendVinova = generateLegend(getColorVinova, "legendVinova", [65, 60, 55, 50, 49],"50");
 const legendCervena = generateLegend(getColorCervena, "legendCervena", [90, 85, 80, 75, 74], "75");
@@ -540,17 +582,18 @@ legendContainer.innerHTML = legendModra;
 
 //ovládání legendy a vrstev indexů
 let desi = null;
-function addlay(style,legenda,stupnice,vrstva, rok){
-	if (obrys ==true) {
+
+function addlay(style, legenda, stupnice, vrstva, rok) {
+    if (obrys == true) {
         CR_obrys.removeFrom(map);
         obrys = false;
     }
 
-	if (vrstva == 1) {
-		if(desi){
-			desi= null;
-			statyDESI.removeFrom(map);
-            
+    if (vrstva == 1) {
+        if (desi) {
+            desi = null;
+            statyDESI.removeFrom(map);
+
             const radios = document.querySelectorAll('input[type="radio"][name="vrsEU"]');
             radios.forEach((radio) => {
                 radio.checked = false;
@@ -558,53 +601,60 @@ function addlay(style,legenda,stupnice,vrstva, rok){
 
             inD.addTo(map);
             inD.bringToBack();
-            krajAktivni = true;        
+            krajAktivni = true;
         }
 
-	//ovladani legendy
-	legendContainer.innerHTML = '<div></div>';
-	legendContainer = document.getElementById(legenda);
-	legendContainer.innerHTML = stupnice;
-	
-	//ovladani vrstev
-    inD.addTo(map);
-	inD.setStyle(style);
-    inD.bringToBack();
-    krajAktivni = true;
-	} else if (vrstva == 2) {
-	inD.removeFrom(map);
-	
-    if (krajAktivni){
-    resetVyberKraje();
-    
-    krajAktivni = false;
-    zrusitVyberSluzby(); 
-    }
-    zrusitBody();
-    
-	desi=rok;
+        // Ovládání legendy
+        legendContainer.innerHTML = '<div></div>';
+        legendContainer = document.getElementById(legenda);
+        legendContainer.innerHTML = stupnice;
 
-    //aktualizace pop-upu
-    statyDESI.eachLayer(layer => {
-        vypisPopupuDESI(layer.feature, layer);
+        // **PŘEKLAD LEGENDY PO ZMĚNĚ**
+        const currentLang = window.currentLanguage || "cs"; 
+        changeLanguage(currentLang);
         
-    });
+        // Ovládání vrstev
+        inD.addTo(map);
+        inD.setStyle(style);
+        inD.bringToBack();
+        krajAktivni = true;
+    } else if (vrstva == 2) {
+        inD.removeFrom(map);
 
-    const radios = document.querySelectorAll('input[type="radio"][name="vrsKraj"]');
-    radios.forEach((radio) => {
-        radio.checked = false;
-    });
+        if (krajAktivni) {
+            resetVyberKraje();
+            krajAktivni = false;
+            zrusitVyberSluzby();
+        }
+        zrusitBody();
 
-	legendContainer.innerHTML = '<div></div>';
-	legendContainer = document.getElementById(legenda);
-	legendContainer.innerHTML = stupnice;
+        desi = rok;
 
-	statyDESI.addTo(map);
-    statyDESI.bringToBack();
-	statyDESI.setStyle(style);	
-	}
+        // Aktualizace pop-upu
+        statyDESI.eachLayer(layer => {
+            vypisPopupuDESI(layer.feature, layer);
+        });
 
-};
+        const radios = document.querySelectorAll('input[type="radio"][name="vrsKraj"]');
+        radios.forEach((radio) => {
+            radio.checked = false;
+        });
+
+        // Ovládání legendy
+        legendContainer.innerHTML = '<div></div>';
+        legendContainer = document.getElementById(legenda);
+        legendContainer.innerHTML = stupnice;
+
+        // **PŘEKLAD LEGENDY PO ZMĚNĚ**
+        const currentLang = window.currentLanguage || "cs"; 
+        changeLanguage(currentLang);
+
+        statyDESI.addTo(map);
+        statyDESI.bringToBack();
+        statyDESI.setStyle(style);
+    }
+}
+
 
 //tlačítko na vypnutí vrstev INDEXU
 function zrusitVyberIndexuKraj() {
@@ -766,34 +816,55 @@ updateActiveButton(button1); // Výchozí aktivní tlačítko je button1 pro OSM
 
 //popup a výpis do sidebaru vrstva indexů
 function vypisPopupuIndex(feature, layer) {  
+    function updatePopupContent(lang) {
+        return `<div id="popup-kraj" class="popup-container"><h2>${feature.properties.text}</h2>
+        <h3 class="info-texty"><span data-key="index_digitalizace">${translations[lang]["index_digitalizace"]}</span>: ${Math.round(feature.properties.j_index_digitalizace)}</h3>
+        <div class="popup-row"><span data-key="sub_sluzby">${translations[lang]["sub_sluzby"]}</span>${Math.round(feature.properties.j_index_sluzby)}</div>
+        <div class="popup-row"><span data-key="sub_pristupnost">${translations[lang]["sub_pristupnost"]}</span>${Math.round(feature.properties.j_index_dostupnost)}</div>
+        <div class="popup-row"><span data-key="sub_dovednosti">${translations[lang]["sub_dovednosti"]}</span>${Math.round(feature.properties.j_index_dovednosti)}</div>
+        <div class="popup-row"><span data-key="sub_infrastruktura">${translations[lang]["sub_infrastruktura"]}</span>${Math.round(feature.properties.j_index_digitalizace)}</div>
+        </div>`;
+    }
 
-	let popupContent = `<div class="popup-container"><h2>${feature.properties.text}</h2>
-	<h3 class="info-texty">Index digitalizace: ${Math.round(feature.properties.j_index_digitalizace)}</h3></div>
-	<div class="popup-row">Subindex poskytované služby: ${Math.round(feature.properties.j_index_sluzby)}</div>
-	<div class="popup-row">Subindex přístupnosti: ${Math.round(feature.properties.j_index_dostupnost)}</div>
-    <div class="popup-row">Subindex digitální dovednosti: ${Math.round(feature.properties.j_index_dovednosti)}</div>
-	<div class="popup-row">Subindex digitální infrastruktura: ${Math.round(feature.properties.j_index_digitalizace)}</div>
-	</div>`;
-    
-	layer.bindPopup(popupContent); 
+    // Vytvoří popup s AKTUÁLNÍM jazykem
+    const currentLang = window.currentLanguage || "cs"; 
+    layer.bindPopup(updatePopupContent(currentLang)); 
 
-    vypisInfoKraj(layer,feature);
+    //Aktualizuje popup při otevření
+    layer.on('popupopen', function() {
+        const newLang = window.currentLanguage; 
+        layer.setPopupContent(updatePopupContent(newLang)); 
+    });
+
+    //Přeloží popup při změně jazyka, pokud je otevřený
+    //asi by bylo dobré předělat, že se zavře a otevře, protože zůstává rozměr podle předchozího jazyka
+    document.addEventListener("languageChange", function () {
+        if (layer.getPopup().isOpen()) {
+            const newLang = window.currentLanguage;
+            layer.setPopupContent(updatePopupContent(newLang));
+        }
+    });
+
+    vypisInfoKraj(layer, feature);
+
     layer.on('click', function() {
         highlightPolygon(layer);
     });
-};
+}
+
 
 const linkKeys = {
-    web_kraje: "Web kraje",
-    j_platebni_portal_web: "Platební portál",
-    j_IDS_web: "Integrovaný dopravní systém",
-    j_rozklikavaci_rozpocet_web: "Rozklikávací rozpočet",
-    j_GEOportal_web: "GEOportál",
-    j_openDATA_web: "Portál otevřených dat",
-    j_katalog_soc_sluzeb_web: "Katalog sociálních služeb",
-    j_portal_kriz_rizeni_web: "Portál krizového řízení",
-    j_dotacni_portal_web: "Dotační portál"
+    
+    j_platebni_portal_web: "platebni_portal",
+    j_IDS_web: "integrovany_dopravni_system",
+    j_rozklikavaci_rozpocet_web: "rozklikavaci_rozpocet",
+    j_GEOportal_odkaz: "geoportal",
+    j_openDATA_web: "portal_otevrenych_dat",
+    j_katalog_soc_sluzeb_web: "katalog_soc_sluzeb",
+    j_portal_kriz_rizeni_web: "portal_kriz_rizeni",
+    j_dotacni_portal_web: "dotacni_portal"
 };
+
 
 
 //Potřeba rozdělit na
@@ -836,13 +907,19 @@ function initDefaultRadio() {
 
     let defaultElement = document.createElement("div");
     defaultElement.classList.add("radio-container");
+
     defaultElement.innerHTML = `
         <label>
             <input class="radio" type="radio" name="vyberKraje" value="" id="defaultRadio" checked>
-            Žádný vybraný kraj
+            <span data-key="zadny_kraj"></span>
         </label>
     `;
+
+    
+
     radioContainer.prepend(defaultElement);
+
+  
 
     // Vytvoření kontejneru pro text
     let textContainer = document.createElement("div");
@@ -850,8 +927,9 @@ function initDefaultRadio() {
     infoElement.appendChild(textContainer);
 
     let infoText = document.createElement("p");
+    infoText.setAttribute("data-key","zadny_kraj_text");
     infoText.id = "defaultText";
-    infoText.textContent = "Výběrem kraje ze seznamu nebo kliknutím na mapu si zobrazíte indexy digitalizace v kraji.";
+  
 
     textContainer.appendChild(infoText); // Přidání textu do kontejneru
 
@@ -864,6 +942,9 @@ function initDefaultRadio() {
             infoText.style.display = "block"; // Zobrazí se, pokud není vybrán žádný kraj
         }
     });
+
+    const currentLang = window.currentLanguage || "cs"; 
+    changeLanguage(currentLang);
 
     map.on("click", resetVyberKraje); // Použití funkce při kliknutí do mapy
 }
@@ -917,15 +998,19 @@ function vypisInfoKraj(layer, feature) {
 
     function zobrazitOdkazy(feature, krajElement) {
         document.querySelectorAll("#infoKraj .links").forEach(el => el.innerHTML = "");
-
-        let linksHtml = "";
-        for (const [key, label] of Object.entries(linkKeys)) {
+    
+        let linksHtml = "<ul>";
+        for (const [key, dataKey] of Object.entries(linkKeys)) {
             if (feature.properties[key]) {
-                linksHtml += `<a href="${feature.properties[key]}" target="_blank">${label}</a><br>`;
+                linksHtml += `<li><a href="${feature.properties[key]}" target="_blank" data-key="${dataKey}"></a></li>`;
             }
         }
+        linksHtml += "</ul>";
+    
         krajElement.querySelector(".links").innerHTML = linksHtml;
+        changeLanguage(window.currentLanguage || "cs"); // Aby se hned přeložilo
     }
+    
 }
 
 // Inicializace výchozího radio buttonu při načtení
@@ -1070,6 +1155,39 @@ let KUbody = new L.GeoJSON.AJAX("data/krajskyUrad.geojson", {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//dodělat podle vypisPopupuIndex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // popup
 function vypisPopupuKU(feature, layer){
     
@@ -1108,15 +1226,35 @@ function vypisPopupuKU(feature, layer){
     </div>
 
     <p class="popup-hours">
-        PO: ${formatZavreno(feature.properties.po)}<br>
-        ÚT: ${formatZavreno(feature.properties.ut)}<br>
-        ST: ${formatZavreno(feature.properties.st)}<br>
-        ČT: ${formatZavreno(feature.properties.ct)}<br>
-        PÁ: ${formatZavreno(feature.properties.pa)}
+        <span data-key="po"></span>${formatZavreno(feature.properties.po)}<br>
+        <span data-key="ut"></span>${formatZavreno(feature.properties.ut)}<br>
+        <span data-key="st"></span>${formatZavreno(feature.properties.st)}<br>
+        <span data-key="ct"></span>${formatZavreno(feature.properties.ct)}<br>
+        <span data-key="pa"></span>${formatZavreno(feature.properties.pa)}
     </p>
 </div>`;
 
-    layer.bindPopup(popupKU)
+/*        //Aktualizuje popup při otevření
+        layer.on('popupopen', function() {
+            const newLang = window.currentLanguage; 
+            layer.setPopupContent(updatePopupContent(newLang)); 
+        });
+    
+        //Přeloží popup při změně jazyka, pokud je otevřený
+        //asi by bylo dobré předělat, že se zavře a otevře, protože zůstává rozměr podle předchozího jazyka
+        document.addEventListener("languageChange", function () {
+            if (layer.getPopup().isOpen()) {
+                const newLang = window.currentLanguage;
+                layer.setPopupContent(updatePopupContent(newLang));
+            }
+        });
+*/    
+    const currentLang = window.currentLanguage || "cs"; 
+    changeLanguage(currentLang);
+
+    layer.bindPopup(popupKU);
+    
+
 };
 
 
