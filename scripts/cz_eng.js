@@ -16,7 +16,6 @@ const translations = {
         pane6_sticky: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.", //lorem ipsum v informacích o aplikaci
         jak_pracovat: "Jak s aplikací pracovat",
         jak_pracovat_text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.", //lorem ipsum v informacích o aplikaci
-
         pane1_h2:"Mapa digitalizace ČR",
         pane2_h2:"Mapa digitalizace EU",
         pane3_h2:"Informace o krajích",
@@ -34,6 +33,12 @@ const translations = {
         sub_pristupnost: "Subindex přístupnosti",
         sub_dovednosti: "Subindex digitální dovednosti",
         sub_infrastruktura: "Subindex digitální infrastruktura", 
+        index_digitalizace_: "Celkový index digitalizace:",
+        sub_sluzby_: "Subindex poskytované služby:",
+        sub_pristupnost_: "Subindex přístupnosti:",
+        sub_dovednosti_: "Subindex digitální dovednosti:",
+        sub_infrastruktura_: "Subindex digitální infrastruktura:", 
+        
         czech_point: "Czech POINT",
         krajsky_urad: "Krajský úřad",
         odebrat_index: "Odebrat index",
@@ -57,6 +62,7 @@ const translations = {
         integrace_ICT_text: " – digitalizace firem a využívání technologií (např. cloud, umělá inteligence, e-commerce).",
         digitalni_sluzby: "Digitální veřejné služby",
         digitalni_sluzby_text: " – úroveň e-governmentu a digitálních služeb státní správy.", 
+
         overall_index_popis: "Index je stavoven vážením dílčích subindexů. Váhy jsou stanoveny rovnoměrně.",
         sub_sluzby_popis: "Stanoven jako procentuální podíl vybraných digitálních služeb, poskytovaných krajem. Hodnocené služby jsou:",
         sub_pristupnost_popis: "Stanoven jako průměrná hodnota vybraných ukazatelů. Přístupnost webových stránek a SEO bylo měřeno nástrojem Lighthouse accessibility scoring, dne 12.2.2025, pro webové stránky krajů.",
@@ -101,9 +107,25 @@ const translations = {
         ut: "ÚT:", 
         st: "ST:",
         ct: "ČT:", 
-        pa: "PÁ:"  
+        pa: "PÁ:",  
 
+        desi_index_: "DESI Index: ",
+        lidsky_kapital_: "Lidský kapitál:",
+        digitalni_infrastruktura_: "Digitální infrastruktura:",
+        konektivita_: "Digitalizace veřejné služby:",
+        integrace_ICT_: "Integrace digitálních technologií:",
+        //tooltipy
+        digitalizace_v_krajich_tooltip: "Indexy digitalizace",
+        digitalni_verejne_sluzby_tooltip: "Seznam digitálních služeb",
+        bodova_data_tooltip: "Ovládání vrstev s bodovými daty",
 
+        celkovy_index_tooltip: "Výsledný index digitalizace je vypočítán vážením dílčích subindexů",
+        podkladove_mapy_tooltip: "Podkladové mapy",
+        zoom_na_cr_tooltip: "Podle aktivního obsahu mapy přiblíží na ČR nebo na EU",
+        zakladni: "Základní",
+        letecka: "Letecká", 
+        bez_podkladu: "Bez podkladu"
+        
         
         
         
@@ -146,6 +168,12 @@ const translations = {
         sub_pristupnost: "Accessibility Subindex",
         sub_dovednosti: "Digital Skills Subindex",
         sub_infrastruktura: "Digital Infrastructure Subindex",
+        index_digitalizace_: "Overall Digitalisation index:",
+        sub_sluzby_: "Service Provided Subindex:",
+        sub_pristupnost_: "Accessibility Subindex:",
+        sub_dovednosti_: "Digital Skills Subindex:",
+        sub_infrastruktura_: "Digital Infrastructure Subindex:",
+
         czech_point: "Czech POINT",
         krajsky_urad: "Regional Office",
         odebrat_index: "Remove index",
@@ -212,10 +240,128 @@ const translations = {
         ut: "Tue:", 
         st: "Wed:",
         ct: "Thu:", 
-        pa: "Fri:"  
+        pa: "Fri:", 
 
+        desi_index_: "DESI Index: ",
+        lidsky_kapital_: "Human Capital:",
+        digitalni_infrastruktura_: "Digital Infrastructure:",
+        konektivita_: "Digitalization of Public Services:",
+        integrace_ICT_: "Integration of Digital Technologies:",
+        //tooltipy
+        digitalizace_v_krajich_tooltip: "Digitalization Indices",
+        digitalni_verejne_sluzby_tooltip: "List of Digital Services",
+        bodova_data_tooltip: "Layer Control for Point Data",
+
+        celkovy_index_tooltip: "The resulting digitisation index is calculated by weighting the sub-indices",
+        podkladove_mapy_tooltip: "Base maps",
+        zoom_na_cr_tooltip: "Depending on the active content of the map, it will zoom in on the Czech Republic or the EU",
+        zakladni: "Basic", 
+        letecka: "Aerial", 
+        bez_podkladu: "No basemap"
 
     }
+    
+    /*, 
+
+    ua: {
+        sidebar_header: "Індекс цифровізації",
+        pane1_icon_tooltip: "Індекс цифровізації",
+        pane2_icon_tooltip: "Шари ЄС",
+        pane3_icon_tooltip: "Інформація про область",
+        pane4_icon_tooltip: "Інформація про індекси",
+        pane5_icon_tooltip: "Експорт у PDF",
+        pane6_icon_tooltip: "Інформація про застосунок",
+        jazyk: "Česky",
+        pane1_sticky: "На карті показано рівень цифровізації державного управління.",
+        pane2_sticky: "На карті показано рівень цифровізації держав-членів ЄС.",
+        pane3_sticky: "Тут ви знайдете додаткові посилання на окремі області. Для перегляду інформації про конкретну область натисніть на неї на карті.",
+        pane4_sticky: "Індекси цифровізації для областей Чеської Республіки були розроблені на основі європейського індексу DESI.",
+        pane5_sticky: "Тут можна експортувати карту у формат PDF. Розмір PDF і вміст карти буде адаптовано до вашого поточного перегляду карти.",
+        pane6_sticky: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.",
+        jak_pracovat: "Як працювати із застосунком",
+        jak_pracovat_text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.",
+        pane1_h2:"Карта цифровізації ЧР",
+        pane2_h2:"Карта цифровізації ЄС",
+        pane3_h2:"Інформація про області",
+        pane4_h2:"Індекси цифровізації ЧР",
+        pane5_h2_stahnout_mapu:"Завантажити карту",
+        pane6_h2:"Інформація про застосунок",
+        vic_info: "Більше інформації",
+        vycistit_mapu: "Очистити карту",
+        schema_indexu: "Схема індексу",
+        digitalizace_v_krajich: "Цифровізація в областях",
+        digitalni_sluzby: "Цифрові послуги",
+        bodova_data: "Точкові дані",
+        index_digitalizace: "Загальний індекс цифровізації",
+        sub_sluzby: "Субіндекс наданих послуг",
+        sub_pristupnost: "Субіндекс доступності",
+        sub_dovednosti: "Субіндекс цифрових навичок",
+        sub_infrastruktura: "Субіндекс цифрової інфраструктури",
+        index_digitalizace_: "Загальний індекс цифровізації:",
+        sub_sluzby_: "Субіндекс наданих послуг:",
+        sub_pristupnost_: "Субіндекс доступності:",
+        sub_dovednosti_: "Субіндекс цифрових навичок:",
+        sub_infrastruktura_: "Субіндекс цифрової інфраструктури:",
+
+        czech_point: "Czech POINT",
+        krajsky_urad: "Обласна адміністрація",
+        odebrat_index: "Видалити індекс",
+        odebrat_sluzbu: "Видалити послугу",
+        odebrat_body: "Видалити точки",
+        desi_index: "DESI Індекс",
+        desi_index22: "DESI Індекс 2022",
+        desi_index21: "DESI Індекс 2021",
+        desi_index20: "DESI Індекс 2020",
+        co_je_DESI: "Що таке індекс DESI?",
+        co_je_DESI_text: "Європейський індекс DESI (Digital Economy and Society Index) — це щорічна оцінка цифрової конкурентоспроможності держав-членів ЄС. Більше інформації можна знайти тут.",
+        k_cemu_slouzi: "Для чого він?",
+        k_cemu_slouzi_text: "Індекс DESI допомагає порівнювати цифровий розвиток окремих країн ЄС і визначати сфери, які потрібно покращити.",
+        podle_ceho_se_meri: "За якими критеріями вимірюється",
+        podle_ceho_se_meri_text: "Прогрес цифровізації вимірюється на основі кількох ключових сфер:",
+        konektivita: "Зв'язок",
+        konektivita_text: " – доступність та якість широкосмугового інтернет-з'єднання (дротового та мобільного).",
+        lidsky_kapital: "Людський капітал",
+        lidsky_kapital_text: " – цифрові навички населення та ІТ-фахівців.",
+        integrace_ICT: "Інтеграція цифрових технологій",
+        integrace_ICT_text: " – цифровізація підприємств і використання технологій (наприклад, хмара, штучний інтелект, електронна комерція).",
+        digitalni_sluzby: "Цифрові державні послуги",
+        digitalni_sluzby_text: " – рівень електронного уряду та цифрових послуг державного управління.",
+
+        overall_index_popis: "Індекс визначається шляхом зважування окремих субіндексів. Ваги розподілені рівномірно.",
+        sub_sluzby_popis: "Визначається як відсоткове співвідношення обраних цифрових послуг, що надаються областю. Оцінювані послуги:",
+        sub_pristupnost_popis: "Визначається як середнє значення обраних показників. Доступність вебсайтів і SEO вимірювалися інструментом Lighthouse accessibility scoring 12.02.2025 для сайтів областей.",
+        sub_dovednosti_popis: "Визначається як середнє значення обраних показників, які були попередньо нормалізовані.",
+        sub_infrastruktura_popis: "Визначається як середнє значення обраних показників, які були попередньо нормалізовані.",
+
+        platebni_portal: "Платіжний портал",
+        rozklikavaci_rozpocet: "Інтерактивний бюджет",
+        integrovany_dopravni_system: "Інтегрована транспортна система",
+        geoportal: "Геопортал",
+        portal_otevrenych_dat: "Портал відкритих даних",
+        katalog_soc_sluzeb: "Каталог соціальних послуг",
+        portal_kriz_rizeni: "Портал кризового управління",
+        dotacni_portal: "Грантовий портал",
+
+        kraj_dostupna_sluzba: "послуга доступна",
+        odkaz_nedostupny: "Посилання на послугу недоступне.",
+        a_vice: "та більше",
+        mene_nez: "менше ніж",
+        mapTitle_placeholder: "Введіть заголовок карти",
+        zadny_kraj: "Жодна область не вибрана",
+        zadny_kraj_text: "Виберіть область зі списку або натисніть на карту, щоб переглянути індекси цифровізації в області.",
+        zavreno: "закрито",
+        uredni_hodiny: "Офіційні години:",
+        po: "ПН:",
+        ut: "ВТ:",
+        st: "СР:",
+        ct: "ЧТ:",
+        pa: "ПТ:",
+
+        digitalizace_v_krajich_tooltip: "Індекси цифровізації",
+        digitalni_verejne_sluzby_tooltip: "Список цифрових послуг",
+        bodova_data_tooltip: "Керування шарами точкових даних"
+}*/
+
 };
 
 
@@ -254,6 +400,7 @@ function changeLanguage(lang) {
     }
     // Uložení aktuálního jazyka do globální proměnné
     window.currentLanguage = lang;
+    setScrollableHeight();
 }
 
 function applyTranslationToElement(element, lang) {

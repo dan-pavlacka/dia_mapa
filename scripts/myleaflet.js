@@ -499,31 +499,40 @@ let CR_obrys = new L.GeoJSON.AJAX("data/CR_obrys.geojson", {
 
 function vypisPopupuDESI(feature, layer) {
   
-    let popupDESI = `<div class="popup-container"><h2>${feature.properties.j_stat_CZ}</h2>
-    <h3 class="info-texty">DESI index: ${Math.round(feature.properties["j_DESI" + desi])}</h3>
-	<div class="popup-row">Lidský kapitál: ${Math.round(feature.properties["j_HC" + desi])}</div>
-    <div class="popup-row">Digitální infrastruktura: ${Math.round(feature.properties["j_CONN" + desi])}</div>
-    <div class="popup-row">Digitalizace veřejné služby: ${Math.round(feature.properties["j_DPS" + desi])}</div>
-    <div class="popup-row">Integrace digitálních technologií: ${Math.round(feature.properties["j_IDT" + desi])}</div>
+    function updatePopupContent(lang){
+    return `<div class="popup-container"><h2>${feature.properties.j_stat_CZ}</h2>
+    <h3 class="info-texty"><span data-key="desi_index_">${translations[lang]["desi_index_"]}</span>${Math.round(feature.properties["j_DESI" + desi])}</h3>
+	<div class="popup-row"><span data-key="lidsky_kapital_">${translations[lang]["lidsky_kapital_"]}</span>${Math.round(feature.properties["j_HC" + desi])}</div>
+    <div class="popup-row"><span data-key="digitalni_infrastruktura_">${translations[lang]["digitalni_infrastruktura_"]}</span>${Math.round(feature.properties["j_CONN" + desi])}</div>
+    <div class="popup-row"><span data-key="konektivita_">${translations[lang]["konektivita_"]}</span>${Math.round(feature.properties["j_DPS" + desi])}</div>
+    <div class="popup-row"><span data-key="integrace_ICT_">${translations[lang]["integrace_ICT_"]}</span>${Math.round(feature.properties["j_IDT" + desi])}</div>
     </div>`;
-    
+    }
+
+    // Vytvoří popup s AKTUÁLNÍM jazykem
+    const currentLang = window.currentLanguage || "cs"; 
+    layer.bindPopup(updatePopupContent(currentLang)); 
+
+    //Aktualizuje popup při otevření
+    layer.on('popupopen', function() {
+        const newLang = window.currentLanguage; 
+        layer.setPopupContent(updatePopupContent(newLang)); 
+    });
+
+    //Přeloží popup při změně jazyka, pokud je otevřený
+    //asi by bylo dobré předělat, že se zavře a otevře, protože zůstává rozměr podle předchozího jazyka
+    document.addEventListener("languageChange", function () {
+        if (layer.getPopup().isOpen()) {
+            const newLang = window.currentLanguage;
+            layer.setPopupContent(updatePopupContent(newLang));
+        }
+    });
+
     layer.on('click', function() {
         highlightPolygon(layer);
     });
-    layer.bindPopup(popupDESI);
+
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //generování legendy
@@ -733,16 +742,21 @@ function zrusitPodklad(){
 // Vytvoření tlačítka pro ovládání podkladových map
 let controlButton = L.DomUtil.create('button', 'control-button tooltip-left-kratky');
 controlButton.innerHTML = '<img style="padding-top:4px;" src="img/vrstvy_podklad.svg"></img>'; // Ikona tlačítka
-controlButton.setAttribute('data-tooltip', 'Podkladové mapy');
+controlButton.setAttribute('data-tooltip-key', 'podkladove_mapy_tooltip');
+controlButton.setAttribute('data-tooltip', '');
+
 
 // Vytvoření menu pro tlačítka
 let menu = L.DomUtil.create('div', 'map-layer-menu');
 let button1 = L.DomUtil.create('button', '', menu);
-button1.innerHTML = "Základní";
+button1.setAttribute("data-key", "zakladni");
+
+
 let button2 = L.DomUtil.create('button', '', menu);
-button2.innerHTML = "Letecká";
+button2.setAttribute("data-key", "letecka");
+
 let button3 = L.DomUtil.create('button', '', menu);
-button3.innerHTML = "Bez podkladu";
+button3.setAttribute("data-key", "bez_podkladu");
 
 // Přidání tlačítka a menu na mapu
 map.getContainer().appendChild(controlButton);
@@ -818,11 +832,11 @@ updateActiveButton(button1); // Výchozí aktivní tlačítko je button1 pro OSM
 function vypisPopupuIndex(feature, layer) {  
     function updatePopupContent(lang) {
         return `<div id="popup-kraj" class="popup-container"><h2>${feature.properties.text}</h2>
-        <h3 class="info-texty"><span data-key="index_digitalizace">${translations[lang]["index_digitalizace"]}</span>: ${Math.round(feature.properties.j_index_digitalizace)}</h3>
-        <div class="popup-row"><span data-key="sub_sluzby">${translations[lang]["sub_sluzby"]}</span>${Math.round(feature.properties.j_index_sluzby)}</div>
-        <div class="popup-row"><span data-key="sub_pristupnost">${translations[lang]["sub_pristupnost"]}</span>${Math.round(feature.properties.j_index_dostupnost)}</div>
-        <div class="popup-row"><span data-key="sub_dovednosti">${translations[lang]["sub_dovednosti"]}</span>${Math.round(feature.properties.j_index_dovednosti)}</div>
-        <div class="popup-row"><span data-key="sub_infrastruktura">${translations[lang]["sub_infrastruktura"]}</span>${Math.round(feature.properties.j_index_digitalizace)}</div>
+        <h3 class="info-texty"><span data-key="index_digitalizace_">${translations[lang]["index_digitalizace_"]}</span> ${Math.round(feature.properties.j_index_digitalizace)}</h3>
+        <div class="popup-row"><span data-key="sub_sluzby_">${translations[lang]["sub_sluzby_"]}</span>${Math.round(feature.properties.j_index_sluzby)}</div>
+        <div class="popup-row"><span data-key="sub_pristupnost_">${translations[lang]["sub_pristupnost_"]}</span>${Math.round(feature.properties.j_index_dostupnost)}</div>
+        <div class="popup-row"><span data-key="sub_dovednosti_">${translations[lang]["sub_dovednosti_"]}</span>${Math.round(feature.properties.j_index_dovednosti)}</div>
+        <div class="popup-row"><span data-key="sub_infrastruktura_">${translations[lang]["sub_infrastruktura_"]}</span>${Math.round(feature.properties.j_index_digitalizace)}</div>
         </div>`;
     }
 
@@ -1154,108 +1168,73 @@ let KUbody = new L.GeoJSON.AJAX("data/krajskyUrad.geojson", {
     onEachFeature: vypisPopupuKU
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//dodělat podle vypisPopupuIndex
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // popup
-function vypisPopupuKU(feature, layer){
-    
-    function formatZavreno(value) {
-        return value === "-" ? "zavřeno" : value;
+function vypisPopupuKU(feature, layer) {
+
+        function formatZavreno(value, lang) {
+            
+            return value === "-" ? `<span data-key="zavreno">${translations[lang]["zavreno"]}</span>` : value;
+        }
+
+    function updatePopupContent(lang) {
+        return `<div class="popup-container">
+            <h2>${feature.properties.nazev}</h2>
+            <h3 class="h3-black">${feature.properties.adresa}</h3>
+            
+            <div class="popup-row">
+                <img src="img/popup/tel.svg" alt="Ikona" class="popup-icon">
+                <span>+420 ${feature.properties.tel}</span>
+            </div>
+            <div class="popup-row">
+                <img src="img/popup/email.svg" alt="Ikona" class="popup-icon">
+                <span>${feature.properties.email}</span>
+            </div>
+            <div class="popup-row">
+                <img src="img/popup/web.svg" alt="Ikona" class="popup-icon">
+                <span><a href="${feature.properties.web}" target="_blank">${feature.properties.web}</a></span>
+            </div>
+            <div class="popup-row">
+                <img src="img/popup/dat_schr.svg" alt="Ikona" class="popup-icon">
+                <span>${feature.properties.datSchranka}</span>
+            </div>
+            <div class="popup-row">
+                <img src="img/popup/ico.svg" alt="Ikona" class="popup-icon">
+                <span>${feature.properties.IC}</span>
+            </div>
+
+            <div class="popup-row popup-title">
+                <img src="img/popup/ur_hod.svg" alt="Ikona" class="popup-icon">
+                <h4 data-key="uredni_hodiny">${translations[lang]["uredni_hodiny"]}</h4>
+            </div>
+
+            <p class="popup-hours">
+                <span data-key="po">${translations[lang]["po"]}</span>${formatZavreno(feature.properties.po, lang)}<br>
+                <span data-key="ut">${translations[lang]["ut"]}</span>${formatZavreno(feature.properties.ut, lang)}<br>
+                <span data-key="st">${translations[lang]["st"]}</span>${formatZavreno(feature.properties.st, lang)}<br>
+                <span data-key="ct">${translations[lang]["ct"]}</span>${formatZavreno(feature.properties.ct, lang)}<br>
+                <span data-key="pa">${translations[lang]["pa"]}</span>${formatZavreno(feature.properties.pa, lang)}
+            </p>
+        </div>`;
     }
 
-    let popupKU = `<div class="popup-container">
-    <h2>${feature.properties.nazev}</h2>
-    <h3 class="h3-black">${feature.properties.adresa}</h3>
-    
-    <div class="popup-row">
-        <img src="img/popup/tel.svg" alt="Ikona" class="popup-icon">
-        <span>+420 ${feature.properties.tel}</span>
-    </div>
-    <div class="popup-row">
-        <img src="img/popup/email.svg" alt="Ikona" class="popup-icon">
-        <span>${feature.properties.email}</span>
-    </div>
-    <div class="popup-row">
-        <img src="img/popup/web.svg" alt="Ikona" class="popup-icon">
-        <span><a href="${feature.properties.web}" target="_blank">${feature.properties.web}</a></span>
-    </div>
-    <div class="popup-row">
-        <img src="img/popup/dat_schr.svg" alt="Ikona" class="popup-icon">
-        <span>${feature.properties.datSchranka}</span>
-    </div>
-    <div class="popup-row">
-        <img src="img/popup/ico.svg" alt="Ikona" class="popup-icon">
-        <span>${feature.properties.IC}</span>
-    </div>
+    // Vytvoří popup s AKTUÁLNÍM jazykem
+    const currentLang = window.currentLanguage || "cs";
+    layer.bindPopup(updatePopupContent(currentLang));
 
-    <div class="popup-row popup-title">
-        <img src="img/popup/ur_hod.svg" alt="Ikona" class="popup-icon">
-        <h4>Úřední hodiny:</h4>
-    </div>
+    // Aktualizuje popup při otevření
+    layer.on('popupopen', function() {
+        const newLang = window.currentLanguage;
+        layer.setPopupContent(updatePopupContent(newLang));
+    });
 
-    <p class="popup-hours">
-        <span data-key="po"></span>${formatZavreno(feature.properties.po)}<br>
-        <span data-key="ut"></span>${formatZavreno(feature.properties.ut)}<br>
-        <span data-key="st"></span>${formatZavreno(feature.properties.st)}<br>
-        <span data-key="ct"></span>${formatZavreno(feature.properties.ct)}<br>
-        <span data-key="pa"></span>${formatZavreno(feature.properties.pa)}
-    </p>
-</div>`;
-
-/*        //Aktualizuje popup při otevření
-        layer.on('popupopen', function() {
-            const newLang = window.currentLanguage; 
-            layer.setPopupContent(updatePopupContent(newLang)); 
-        });
-    
-        //Přeloží popup při změně jazyka, pokud je otevřený
-        //asi by bylo dobré předělat, že se zavře a otevře, protože zůstává rozměr podle předchozího jazyka
-        document.addEventListener("languageChange", function () {
-            if (layer.getPopup().isOpen()) {
-                const newLang = window.currentLanguage;
-                layer.setPopupContent(updatePopupContent(newLang));
-            }
-        });
-*/    
-    const currentLang = window.currentLanguage || "cs"; 
-    changeLanguage(currentLang);
-
-    layer.bindPopup(popupKU);
-    
-
-};
+    // Přeloží popup při změně jazyka, pokud je otevřený
+    document.addEventListener("languageChange", function () {
+        if (layer.getPopup() && layer.getPopup().isOpen()) {
+            const newLang = window.currentLanguage;
+            layer.setPopupContent(updatePopupContent(newLang));
+        }
+    });
+}
 
 
 let KU_active = 0;
@@ -1611,7 +1590,8 @@ L.Control.FunctionButton = L.Control.extend({
         let button = document.createElement("button");
         button.innerHTML = '<img style="padding-top:4px;" src="img/zoom.svg"></img>';
         button.className = "control-zoom-button tooltip-left-dlouhy"; // Použití CSS třídy
-        button.setAttribute('data-tooltip', 'Podle aktivního obsahu mapy přiblíží na ČR nebo na EU');
+        button.setAttribute('data-tooltip-key', 'zoom_na_cr_tooltip');
+        button.setAttribute('data-tooltip', '');
         // Debug: zkusíme zjistit, zda se tlačítko vytvoří správně
        
 
