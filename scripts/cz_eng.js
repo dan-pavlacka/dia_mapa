@@ -7,7 +7,7 @@ const translations = {
         pane4_icon_tooltip: "Informace o indexech",
         pane5_icon_tooltip: "Export do PDF",
         pane6_icon_tooltip: "Informace o aplikaci",
-        jazyk: "English", 
+        jazyk: "CZ", 
         pane1_sticky: "Na mapě je znázorněna úroveň digitalizace státní správy.",
         pane2_sticky: "Na mapě je znázorněna úroveň digitalizace členských států EU.",
         pane3_sticky: "Zde naleznete doplňující odkazy k jednotlivým krajům. Pro zobrazení informací ke konkrétnímu kraji klikněte v mapě na kraj.",
@@ -142,7 +142,7 @@ const translations = {
         pane4_icon_tooltip: "Information abou indices",
         pane5_icon_tooltip: "Export to PDF",
         pane6_icon_tooltip: "Information about the application",
-        jazyk: "Čeština",
+        jazyk: "EN",
         pane1_sticky: "The map shows the level of digitalisation of the public administration.",
         pane2_sticky: "The map shows the level of digitalisation in the EU Member States.",
         pane3_sticky: "Here you can find additional links for each region. To view information for a specific region, click on the regoion in the map.",
@@ -259,9 +259,7 @@ const translations = {
         letecka: "Aerial", 
         bez_podkladu: "No basemap"
 
-    }
-    
-    /*, 
+    },
 
     ua: {
         sidebar_header: "Індекс цифровізації",
@@ -271,7 +269,7 @@ const translations = {
         pane4_icon_tooltip: "Інформація про індекси",
         pane5_icon_tooltip: "Експорт у PDF",
         pane6_icon_tooltip: "Інформація про застосунок",
-        jazyk: "Česky",
+        jazyk: "UA",
         pane1_sticky: "На карті показано рівень цифровізації державного управління.",
         pane2_sticky: "На карті показано рівень цифровізації держав-членів ЄС.",
         pane3_sticky: "Тут ви знайдете додаткові посилання на окремі області. Для перегляду інформації про конкретну область натисніть на неї на карті.",
@@ -360,9 +358,9 @@ const translations = {
         digitalizace_v_krajich_tooltip: "Індекси цифровізації",
         digitalni_verejne_sluzby_tooltip: "Список цифрових послуг",
         bodova_data_tooltip: "Керування шарами точкових даних"
-}*/
 
-};
+
+}}
 
 
 
@@ -382,18 +380,8 @@ function changeLanguage(lang) {
             el.setAttribute("data-tooltip", translations[lang][key]);
         }
     });
-
-    // Přepnutí tlačítka pro změnu jazyka
-    const langButton = document.querySelector("[data-key='jazyk']");
-    if (langButton) {
-        if (lang === "en") {
-            langButton.setAttribute("onclick", "changeLanguage('cs')");
-        } else {
-            langButton.setAttribute("onclick", "changeLanguage('en')");
-        }
-    }
     
-        // Překlad placeholderu pro pole s ID "mapTitle"
+    // Překlad placeholderu pro pole s ID "mapTitle"
     const mapTitleInput = document.getElementById("mapTitle");
     if (mapTitleInput) {
         mapTitleInput.placeholder = translations[lang]["mapTitle_placeholder"] || "Zadejte titulek mapy";
@@ -401,6 +389,7 @@ function changeLanguage(lang) {
     // Uložení aktuálního jazyka do globální proměnné
     window.currentLanguage = lang;
     setScrollableHeight();
+    document.getElementById("language-menu").style.display = "none";
 }
 
 function applyTranslationToElement(element, lang) {
@@ -425,3 +414,11 @@ function applyTranslationToElement(element, lang) {
 
 // Výchozí jazyk
 changeLanguage("cs");
+
+
+
+function toggleMenu() {
+    const menu = document.getElementById("language-menu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+

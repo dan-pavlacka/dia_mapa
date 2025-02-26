@@ -177,6 +177,23 @@ h4{
     transition: background-color 0.3s;
 }
 
+.menu-icon-jazyk {
+    display: inline-block;
+    line-height: 41.6px; /* Aby byl text vertikálně vycentrovaný */
+    text-align: center;
+    width: 41.6px;
+    height: 41.6px;
+    border: 1px solid #E7E7E7;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    color: #2362a2;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+
 .svg-path {
     transition: fill 0.3s;
 }
@@ -857,3 +874,27 @@ h3.expandable {
     height:24px;
 }
 
+.menu{
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    
+    
+    flex-direction: column;
+}
+
+.menu button {
+    background: none;
+    border: none;
+    
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.menu button:hover {
+    background: #f0f0f0;
+}
