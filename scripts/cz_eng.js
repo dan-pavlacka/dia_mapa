@@ -124,14 +124,7 @@ const translations = {
         zoom_na_cr_tooltip: "Podle aktivního obsahu mapy přiblíží na ČR nebo na EU",
         zakladni: "Základní",
         letecka: "Letecká", 
-        bez_podkladu: "Bez podkladu"
-        
-        
-        
-        
-        
-        //data-key="pristupnost_desktop"
-        
+        bez_podkladu: "Bez podkladu"        
     },
 
     en: {
@@ -355,10 +348,22 @@ const translations = {
         ct: "ЧТ:",
         pa: "ПТ:",
 
+        desi_index_: "DESI Індекс: ",
+        lidsky_kapital_: "Людський капітал:",
+        digitalni_infrastruktura_: "Цифрова інфраструктура:",
+        konektivita_: "Цифровізація державних послуг:",
+        integrace_ICT_: "Інтеграція цифрових технологій:",
+        //підказки
         digitalizace_v_krajich_tooltip: "Індекси цифровізації",
         digitalni_verejne_sluzby_tooltip: "Список цифрових послуг",
-        bodova_data_tooltip: "Керування шарами точкових даних"
-
+        bodova_data_tooltip: "Керування шарами з точковими даними",
+    
+        celkovy_index_tooltip: "Підсумковий індекс цифровізації розраховується шляхом зважування окремих субіндексів",
+        podkladove_mapy_tooltip: "Базові карти",
+        zoom_na_cr_tooltip: "Залежно від активного вмісту карти наближує Чехію або ЄС",
+        zakladni: "Базова",
+        letecka: "Аерофотознімки",
+        bez_podkladu: "Без фону"
 
 }}
 
