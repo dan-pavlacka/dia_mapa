@@ -395,6 +395,15 @@ function changeLanguage(lang) {
     window.currentLanguage = lang;
     setScrollableHeight();
     document.getElementById("language-menu").style.display = "none";
+
+    const buttons = document.querySelectorAll("#language-menu button");
+        
+        // Odstraníme třídu active ze všech tlačítek
+        buttons.forEach(button => button.classList.remove("active"));
+
+        // Přidáme třídu active jen k tomu, které odpovídá zvolenému jazyku
+        document.querySelector(`#language-menu button[onclick="changeLanguage('${lang}')"]`).classList.add("active");
+
 }
 
 function applyTranslationToElement(element, lang) {
