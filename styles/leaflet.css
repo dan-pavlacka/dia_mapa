@@ -555,7 +555,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	text-decoration: none;
 	background-color: #ffffff00;
 	opacity:1;
-	border-radius: 25px;
+	border-radius: 8px;
 	/*background: transparent;*/
 	}
 .leaflet-container a.leaflet-popup-close-button:hover,

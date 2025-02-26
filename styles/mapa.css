@@ -548,12 +548,12 @@ h3.expandable {
     color: black;
 }
 
-.control-zoom-button{
+.control-zoom-button, .control-button {
     position: absolute;
     background-color: white; /* Barva hlavního tlačítka */
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
     width: 40px;
     height: 40px;
     text-align: center;
@@ -565,20 +565,8 @@ h3.expandable {
 }
 
 .control-button {
-    position: absolute;
     top: 60px; /* 70px od horního okraje */
     right: 10px; /* 10px od pravého okraje */
-    background-color: white; /* Barva hlavního tlačítka */
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    /*border: 2px solid #E7E7E7;*/
-    z-index: 1001; /* Zajištění, že tlačítko bude nad mapou */
-    box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
-    margin: 0; /* Odstraní margin */
 }
 
 .control-button:hover{
@@ -896,15 +884,32 @@ h3.expandable {
 
 .menu-icon-jazyk {
     display: inline-block;
-    line-height: 41.6px; /* Aby byl text vertikálně vycentrovaný */
-    text-align: center;
-    width: 41.6px;
-    height: 41.6px;
+    align-items: center; /* Vertikální zarovnání na střed */
+    justify-content: center; /* Zarovnání obsahu na střed */
+    /* Mezera mezi textem a ikonou */
+    width: 40px;
+    height: 40px;
     border: 1px solid #E7E7E7;
     border-radius: 8px;
     transition: background-color 0.3s;
     color: #2362a2;
     font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 12px;
+    line-height: 40px;
+
 }
+
+a:hover .menu-icon-jazyk{
+    background-color: #2362a2;
+    color: white;
+}
+
+
+.menu-icon-jazyk svg {
+    width: 12px;
+    height: 12px;
+    vertical-align: middle;
+        
+}
+

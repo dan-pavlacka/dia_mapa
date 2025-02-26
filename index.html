@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="">
 	<head>
 	
 		<meta charset="utf-8">
@@ -24,9 +24,6 @@
 		<!--šrafa-->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.pattern/dist/leaflet.pattern.css" />
 		<script src="https://cdn.jsdelivr.net/npm/leaflet.pattern/dist/leaflet.pattern.min.js"></script>
-		<!--design system-->
-		<!--<link rel="stylesheet" href="styles/tokens.css"/>
-		<link rel="stylesheet" href="styles/components.css"/>-->
 		<!--export mapy-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -41,7 +38,7 @@
 			<div class="sidebar-tabs">
 				<ul role="tablist">
 					<li>
-						<a  href="#legenda" role="tab" style="background-color: #E5EEF9; padding-top:0px;" onclick="setScrollableHeight()">	
+						<a href="#legenda" role="tab" style="background-color: #E5EEF9; padding-top:0px;" onclick="setScrollableHeight()">	
 						<img src="img/logo_lev.svg" alt="Menu Icon" class="menu-icon-lev">
 					</a>
 					</li>
@@ -91,7 +88,15 @@
 
 					<li>
 						
-						<a role="tab" class="" onclick="toggleMenu()"> <span class="menu-icon-jazyk" data-key="jazyk"></span></a>
+						<a role="tab" class="" onclick="toggleMenu()">
+							
+							<span class="menu-icon-jazyk">
+								<span data-key="jazyk"></span>
+								<svg style="top:15px" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</span>
+						</a>
 						
 						<div id="language-menu" class="menu">
 							<button onclick="changeLanguage('cs')">CZ</button>

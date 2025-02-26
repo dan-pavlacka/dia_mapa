@@ -370,6 +370,9 @@ const translations = {
 
 
 function changeLanguage(lang) {
+    //nastavení <html lang="">
+    document.documentElement.setAttribute('lang', lang);
+       
     // Přepis HTML textů podle data-key
     document.querySelectorAll("[data-key]").forEach(el => {
         const key = el.getAttribute("data-key");
@@ -394,15 +397,17 @@ function changeLanguage(lang) {
     // Uložení aktuálního jazyka do globální proměnné
     window.currentLanguage = lang;
     setScrollableHeight();
+    
+    
     document.getElementById("language-menu").style.display = "none";
 
     const buttons = document.querySelectorAll("#language-menu button");
         
-        // Odstraníme třídu active ze všech tlačítek
-        buttons.forEach(button => button.classList.remove("active"));
+    // Odstraníme třídu active ze všech tlačítek
+    buttons.forEach(button => button.classList.remove("active"));
 
-        // Přidáme třídu active jen k tomu, které odpovídá zvolenému jazyku
-        document.querySelector(`#language-menu button[onclick="changeLanguage('${lang}')"]`).classList.add("active");
+    // Přidáme třídu active jen k tomu, které odpovídá zvolenému jazyku
+    document.querySelector(`#language-menu button[onclick="changeLanguage('${lang}')"]`).classList.add("active");
 
 }
 
@@ -431,8 +436,55 @@ changeLanguage("cs");
 
 
 
+// Vylepšená funkce toggleMenu
+// Vylepšená funkce toggleMenu
 function toggleMenu() {
     const menu = document.getElementById("language-menu");
     menu.style.display = menu.style.display === "block" ? "none" : "block";
+
+    let button = document.querySelector(".menu-icon-jazyk svg"); // Správně vybere SVG šipku
+
+    menu.classList.toggle("open");
+
+    if (menu.classList.contains("open")) {
+        button.style.transform = "rotate(180deg)";
+    } else {
+        button.style.transform = "rotate(0deg)";
+    }
 }
+
+// Přidání event listeneru pro zavírání menu kliknutím mimo
+document.addEventListener("click", function(event) {
+    const menu = document.getElementById("language-menu");
+    const menuButton = document.querySelector(".menu-icon-jazyk");
+    
+    // Kontrola zda kliknutí nebylo na menu nebo tlačítko menu
+    if (menu.classList.contains("open") && 
+        !menu.contains(event.target) && 
+        !menuButton.contains(event.target)) {
+        
+        closeMenu();
+    }
+});
+
+// Zavření menu při výběru jazyka
+document.querySelectorAll("#language-menu button").forEach(button => {
+    button.addEventListener("click", function() {
+        closeMenu();
+    });
+});
+
+// Funkce pro zavření menu a resetování šipky
+function closeMenu() {
+    const menu = document.getElementById("language-menu");
+    const button = document.querySelector(".menu-icon-jazyk svg");
+
+    menu.style.display = "none";
+    menu.classList.remove("open");
+    button.style.transform = "rotate(0deg)";
+}
+
+
+
+
 
