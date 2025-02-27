@@ -52,7 +52,7 @@
 					  </li>
 					
 					  <li>
-						<a href="#eu" role="tab" class="tooltip-trigger" data-tooltip="" data-tooltip-key="pane2_icon_tooltip" onclick="setScrollableHeight()">
+						<a href="#eu" role="tab" class="tooltip-trigger" data-tooltip="" data-tooltip-key="pane2_icon_tooltip" onclick="setScrollableHeight(), zrusitBody()">
 						  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="menu-icon">
 							<path class="svg-path" d="M11 0L11.586 1.80039H13.4711L11.939 2.90886L12.525 4.7163L10.9929 3.60077L9.46085 4.7163L10.0469 2.90886L8.51476 1.80039H10.4069L11 0ZM3.21951 3.21951L4.91399 4.08087L6.2484 2.73941L5.95186 4.6104L7.63928 5.47176L5.76829 5.76829L5.47176 7.63928L4.6104 5.9448L2.73941 6.2484L4.08087 4.90693L3.21951 3.21951ZM0 11L1.80039 10.414V8.52888L2.90886 10.061L4.7163 9.47497L3.60077 11.0071L4.7163 12.5392L2.90886 11.9531L1.80039 13.4852V11.5931L0 11ZM3.21951 18.7805L4.08087 17.086L2.73941 15.7516L4.6104 16.0481L5.47176 14.3607L5.76829 16.2317L7.63928 16.5282L5.9448 17.3896L6.2484 19.2606L4.90693 17.9191L3.21951 18.7805ZM11 22L10.414 20.1996H8.52888L10.061 19.0911L9.47497 17.2837L11.0071 18.3992L12.5392 17.2837L11.9531 19.0911L13.4852 20.1996H11.5931L11 22ZM18.7805 18.7805L17.086 17.9191L15.7516 19.2606L16.0481 17.3896L14.3607 16.5282L16.2317 16.2317L16.5282 14.3607L17.3896 16.0552L19.2606 15.7516L17.9191 17.0931L18.7805 18.7805ZM22 11L20.1996 11.586V13.4711L19.0911 11.939L17.2837 12.525L18.3992 10.9929L17.2837 9.46085L19.0911 10.0469L20.1996 8.51476V10.4069L22 11ZM18.7805 3.21951L17.9191 4.91399L19.2606 6.2484L17.3896 5.95186L16.5282 7.63928L16.2317 5.76829L14.3607 5.47176L16.0552 4.6104L15.7516 2.73941L17.0931 4.08087L18.7805 3.21951Z" fill="#2362A2"/>
 						  </svg>
@@ -60,7 +60,7 @@
 					</li>
 					
 					<li>
-						<a href="#sluzby" role="tab" class="tooltip-trigger" data-tooltip="" data-tooltip-key="pane3_icon_tooltip" onclick="setScrollableHeight()">
+						<a href="#sluzby" role="tab" class="tooltip-trigger" data-tooltip="" data-tooltip-key="pane3_icon_tooltip" onclick="setScrollableHeight(), zrusitBody()">
 						  <svg width="22" height="28" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="menu-icon">
 							<g transform="translate(0, 1)">
 							  <path class="svg-path" d="M8.75 7.54232L9.33333 8.70898H11.0833V7.54232L10.2083 6.95898L8.75 7.54232Z" fill="#2362A2"/>
@@ -258,14 +258,16 @@
 
 
 				<div class="checkbox-container legend-body"><input type="checkbox" id="KMVS" name="body" onclick="addKMVS()">
-					<div id="legend-kmvs"></div>
+					
 					<label for="KMVS" data-key="czech_point"></label>
+					<div id="legend-kmvs"></div>
 				</div>	
 					
 				
 				<div class="checkbox-container legend-body"><input type="checkbox" id="KU" name="body" onclick="addKU()">
-					<div id="legend-ku"></div>
+					
 					<label for="KU" data-key="krajsky_urad"></label>
+					<div id="legend-ku"></div>
 				</div>	
 	
 					
@@ -332,7 +334,7 @@
 				<div class="radio-container"><input class="radio" type="radio" id="vrstva8" name="vrsEU" onclick="addlay(DESIIndex20, 'legenda8', legendVinova, 2,20)">
 				<label for="vrstva8" data-key="desi_index20"></label> 
 				</div>					
-				<div id="legenda8" class="legend-containerEU"></div>
+				<div id="legenda8" class="legend-containerEU" style="margin-bottom: 19px;"></div>
 
 							
 
@@ -346,7 +348,7 @@
 				<h4 data-key="k_cemu_slouzi"></h3>
 				<p data-key="k_cemu_slouzi_text"></p>
 			</div>
-			<div class="info-texty">
+			<div>
 				<h4 data-key="podle_ceho_se_meri"></h3>
 				<p data-key="podle_ceho_se_meri_text"></p>
 			</div>

@@ -532,9 +532,9 @@ h3.expandable {
     margin: 0 0;
     width: 100%;
     background-color: #fff; /* Barva tlačítek */
-    color: black;
+    color: #2362a2;
     border: none;
-    padding: 5px;
+    padding: 8px 5px 5px 8px;
     font-size: 12px;
     cursor: pointer;
     
@@ -545,7 +545,7 @@ h3.expandable {
 
 .map-layer-menu button:hover {
     background-color: #E5EEF9;
-    color: black;
+    color: #2362a2;
 }
 
 .control-zoom-button, .control-button {
@@ -579,7 +579,7 @@ h3.expandable {
 
 .map-layer-menu button.active {
     background-color: #E5EEF9; /* Barva tlačítka při aktivní vrstvě */
-    color: black; /* Barva textu */
+    color: #2362a2; /* Barva textu */
 }
 
 /* Efekt pro hlavní tlačítko, když je aktivní (tlačítka 1, 2, 3 jsou zobrazená) */
@@ -735,7 +735,12 @@ h3.expandable {
     border-bottom: 1px solid #E7E7E7;
 }
 
-
+.info-texty-popup{
+    margin-top: 10px;
+    margin-bottom:7px;
+    padding-bottom:3px;
+    border-bottom: 1px solid #E7E7E7;
+}
 
 .expand-sidebar {
     position: absolute;
@@ -913,3 +918,6 @@ a:hover .menu-icon-jazyk{
         
 }
 
+ol, ul{
+    padding-left:15px;
+}

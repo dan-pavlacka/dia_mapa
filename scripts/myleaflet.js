@@ -61,17 +61,6 @@ let bounds = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 //definice mapy, výchozí bod, a omezení zoom levelu
 const map = L.map('map',{   minZoom:4, 
                             maxZoom:19,
@@ -128,11 +117,11 @@ function zoomEU(){
 
 //definování barevných stupnic pro kartogramy	
 	function getColorModra(d) {
-		return 	d >= 75 ? 	'#0080ff':
-				d >= 60 ? 	'#709bff':
-				d >= 45 ? 	'#adbeff':
-				d < 45  ? 	'#d5dcff':
-							'#d5dcff';
+		return 	d >= 75 ? 	'#2362a2':
+				d >= 60 ? 	'#599bd7':
+				d >= 45 ? 	'#93bde6':
+				d < 45  ? 	'#c5dbf2':
+							'#c5dbf2';
 	};	
 
 	function getColorOranzova(d) {
@@ -501,7 +490,7 @@ function vypisPopupuDESI(feature, layer) {
   
     function updatePopupContent(lang){
     return `<div class="popup-container"><h2>${feature.properties.j_stat_CZ}</h2>
-    <h3 class="info-texty"><span data-key="desi_index_">${translations[lang]["desi_index_"]}</span>${Math.round(feature.properties["j_DESI" + desi])}</h3>
+    <h3 class="info-texty-popup"><span data-key="desi_index_">${translations[lang]["desi_index_"]}</span>${Math.round(feature.properties["j_DESI" + desi])}</h3>
 	<div class="popup-row"><span data-key="lidsky_kapital_">${translations[lang]["lidsky_kapital_"]}</span>${Math.round(feature.properties["j_HC" + desi])}</div>
     <div class="popup-row"><span data-key="digitalni_infrastruktura_">${translations[lang]["digitalni_infrastruktura_"]}</span>${Math.round(feature.properties["j_CONN" + desi])}</div>
     <div class="popup-row"><span data-key="konektivita_">${translations[lang]["konektivita_"]}</span>${Math.round(feature.properties["j_DPS" + desi])}</div>
@@ -1486,7 +1475,7 @@ function exportMapToPDF(map) {
             });
 
             // Přidání titulku
-            pdf.setFont("helvetica", "bold");
+            pdf.setFont("times", "bold");
             pdf.setFontSize(36);
             pdf.text(titleText, 50, 45);
 
