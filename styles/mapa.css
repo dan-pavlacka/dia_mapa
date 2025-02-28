@@ -559,7 +559,7 @@ h3.expandable {
     text-align: center;
     /*border: 2px solid #E7E7E7;*/
     z-index: 1001; /* Zajištění, že tlačítko bude nad mapou */
-    border: 1px solid #E7E7E7;
+    border: 2px solid #E7E7E7;
     box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
     margin: 0; /* Odstraní margin */
 
