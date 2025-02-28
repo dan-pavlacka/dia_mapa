@@ -91,7 +91,7 @@ p, li {
 h1{
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 800;
     font-size: 18px;
     line-height: 150%;
     /* identical to box height, or 27px */
@@ -103,7 +103,7 @@ h1{
 h2{
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 18px;
     line-height: 150%;
     /* identical to box height, or 27px */
@@ -120,7 +120,7 @@ h2{
 h3{
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 550;
+    font-weight: 600;
     font-size: 16px;
     line-height: 150%;
     /* identical to box height, or 24px */
@@ -390,7 +390,7 @@ align-items: center;
 padding: 4px 8px;
 gap: 6px;
 height: 24px;
-border: 1.5px solid #4F4F4F;
+border: 1px solid #4F4F4F;
 border-radius: 8px;
 /* Inside auto layout */
 flex: none;
@@ -402,7 +402,7 @@ background-color: white;
 /*font*/
 font-family: 'Roboto';
 font-style: normal;
-font-weight: 700;
+font-weight: 550;
 font-size: 12px;
 line-height: 150%;
 /* identical to box height, or 18px */
@@ -421,7 +421,7 @@ letter-spacing: 0.2px;
     padding: 4px 8px;
     gap: 6px;
     height: 24px;
-    border: 1.5px solid #1E5086;
+    border: 1px solid #1E5086;
     border-radius: 8px;
     color: #1E5086;
     /* Inside auto layout */
@@ -434,7 +434,7 @@ letter-spacing: 0.2px;
     /*font*/
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 700;
+    font-weight: 550;
     font-size: 12px;
     line-height: 150%;
     /* identical to box height, or 18px */
@@ -519,7 +519,7 @@ h3.expandable {
     position: absolute;
     top: 111px;
     right: 10px;
-    background-color:black; /* Průhledné pozadí */
+     /* Průhledné pozadí */
     padding: 00px;
     box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
     border-radius: 8px;
@@ -534,7 +534,7 @@ h3.expandable {
     background-color: #fff; /* Barva tlačítek */
     color: #2362a2;
     border: none;
-    padding: 8px 5px 5px 8px;
+    padding: 10px 12px 10px 12px;
     font-size: 12px;
     cursor: pointer;
     
@@ -770,7 +770,7 @@ h3.expandable {
     align-items: center; /* Vertikální zarovnání ikon a textu */
     gap: 8px; /* Mezera mezi ikonou a textem */
     justify-content: left; /* Zarovnání ikon a textu doleva */
-    margin-bottom: 0px;
+    margin-bottom: 3px;
 
     font-family: 'Roboto';
     font-style: normal;
@@ -920,4 +920,15 @@ a:hover .menu-icon-jazyk{
 
 ol, ul{
     padding-left:15px;
+}
+
+/*tučně čísla v ol*/
+ol li::marker {
+    font-weight: bold;
+}
+
+/*odsazení placeholderu v inputu*/
+
+#mapTitle{
+    padding-left: 10px;
 }

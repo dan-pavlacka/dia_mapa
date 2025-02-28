@@ -421,51 +421,77 @@ function zrusitVyberSluzby() {
 }
 
 function vypisPopupuSluzba(feature, layer) {  
-    // Získání klíče pro URL na základě vybrané služby
     const sluzbaId = document.querySelector('input[type="radio"][name="sluzby"]:checked').id;
     const sluzba = sluzbyData.find(s => s.id === sluzbaId);
-    
-    // Získání URL pro aktuální službu
     const urlKey = sluzba.urlKey;
     const url = feature.properties[urlKey];
-    
-    // Získání výchozího textu pro aktuální jazyk
-    const defaultText = window.currentLanguage && translations[window.currentLanguage][sluzba.labelKey] 
-        ? translations[window.currentLanguage][sluzba.labelKey] 
-        : (translations["cs"][sluzba.labelKey] || sluzba.labelKey);
-    
-    let popupContent = `<div class="popup-container"><h2>${feature.properties.text}</h2>`; 
 
-    // Pokud URL existuje, přidáme odkaz s label z sluzbyData
-    if (url) {
-        popupContent += `<div class="popup-row">
-        <img src="img/popup/web.svg" alt="Ikona" class="popup-icon">
-        <span><a href="${url}" target="_blank" data-key="${sluzba.labelKey}">${defaultText}</a></span></div>`;
-    } else {
-        const nedostupnyText = window.currentLanguage && translations[window.currentLanguage]["odkaz_nedostupny"]
-            ? translations[window.currentLanguage]["odkaz_nedostupny"]
-            : translations["cs"]["odkaz_nedostupny"];
-            
-        popupContent += `<br><span data-key="odkaz_nedostupny">${nedostupnyText}</span></div>`;
+    // Funkce pro generování obsahu popupu podle aktuálního jazyka
+    function updatePopupContent(lang) {
+        let popupContent = `<div class="popup-container"><h2>${feature.properties.text}</h2>`; 
+
+        if (krajAktivni) {
+            popupContent += `<h3 class="info-texty-popup"><span data-key="index_digitalizace_">${translations[lang]["index_digitalizace_"]}</span> ${Math.round(feature.properties.j_index_digitalizace)}</h3>
+        <div class="popup-row"><span data-key="sub_sluzby_">${translations[lang]["sub_sluzby_"]}</span>${Math.round(feature.properties.j_index_sluzby)}</div>
+        <div class="popup-row"><span data-key="sub_pristupnost_">${translations[lang]["sub_pristupnost_"]}</span>${Math.round(feature.properties.j_index_dostupnost)}</div>
+        <div class="popup-row"><span data-key="sub_dovednosti_">${translations[lang]["sub_dovednosti_"]}</span>${Math.round(feature.properties.j_index_dovednosti)}</div>
+        <div class="popup-row"><span data-key="sub_infrastruktura_">${translations[lang]["sub_infrastruktura_"]}</span>${Math.round(feature.properties.j_index_digitalizace)}</div>`
+        }
+        if (url) {
+            popupContent += `<div class="popup-row">
+            <img src="img/popup/web_blue.svg" alt="Ikona" class="popup-icon">
+            <span><a href="${url}" target="_blank" data-key="${sluzba.labelKey}">${translations[lang][sluzba.labelKey]}</a></span></div>`;
+        } 
+        
+        /*else {
+            popupContent += `<br><span data-key="odkaz_nedostupny">${translations[lang]["odkaz_nedostupny"]}</span></div>`;
+        }*/
+        
+        return popupContent;
     }
 
-    // Připojíme popup k vrstvě
-    layer.bindPopup(popupContent);
+    // Vytvoří popup s AKTUÁLNÍM jazykem
+    const currentLang = window.currentLanguage || "cs";
+    layer.bindPopup(updatePopupContent(currentLang));
 
-    // Přidáme událost na otevření popupu, abychom mohli aplikovat překlad
+    // Aktualizuje popup při otevření
     layer.on('popupopen', function() {
-        const popupElement = layer.getPopup().getElement();
-        if (window.currentLanguage && popupElement) {
-            applyTranslationToElement(popupElement, window.currentLanguage);
+        const newLang = window.currentLanguage || "cs";
+        layer.setPopupContent(updatePopupContent(newLang));
+    });
+
+    // Přeloží popup při změně jazyka, pokud je otevřený
+    document.addEventListener("languageChange", function() {
+        if (layer.getPopup() && layer.getPopup().isOpen()) {
+            const newLang = window.currentLanguage || "cs";
+            layer.setPopupContent(updatePopupContent(newLang));
         }
     });
 
     // Vypiseme další informace o kraji, pokud je potřeba
     vypisInfoKraj(layer, feature);
+    
     layer.on('click', function() {
         highlightPolygon(layer);
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //----------------konec výběru služby-----------------
 
@@ -821,7 +847,7 @@ updateActiveButton(button1); // Výchozí aktivní tlačítko je button1 pro OSM
 function vypisPopupuIndex(feature, layer) {  
     function updatePopupContent(lang) {
         return `<div id="popup-kraj" class="popup-container"><h2>${feature.properties.text}</h2>
-        <h3 class="info-texty"><span data-key="index_digitalizace_">${translations[lang]["index_digitalizace_"]}</span> ${Math.round(feature.properties.j_index_digitalizace)}</h3>
+        <h3 class="info-texty-popup"><span data-key="index_digitalizace_">${translations[lang]["index_digitalizace_"]}</span> ${Math.round(feature.properties.j_index_digitalizace)}</h3>
         <div class="popup-row"><span data-key="sub_sluzby_">${translations[lang]["sub_sluzby_"]}</span>${Math.round(feature.properties.j_index_sluzby)}</div>
         <div class="popup-row"><span data-key="sub_pristupnost_">${translations[lang]["sub_pristupnost_"]}</span>${Math.round(feature.properties.j_index_dostupnost)}</div>
         <div class="popup-row"><span data-key="sub_dovednosti_">${translations[lang]["sub_dovednosti_"]}</span>${Math.round(feature.properties.j_index_dovednosti)}</div>
@@ -870,7 +896,6 @@ const linkKeys = {
 
 
 
-//Potřeba rozdělit na
 
 
 
@@ -1093,7 +1118,7 @@ let CPStyle = function(feature, latlng) {
 	if (feature.properties.URL) {
 		popupContent += 
         `<div class="popup-row">
-        <img src="img/popup/web.svg" alt="Ikona" class="popup-icon">
+        <img src="img/popup/web_blue.svg" alt="Ikona" class="popup-icon">
         <span><a href="${feature.properties.URL}" target="_blank">${feature.properties.URL.slice(7)}</a></span></div>`
 	}
     popupContent += `</div>`
@@ -1187,12 +1212,13 @@ function vypisPopupuKU(feature, layer) {
                 <span>${feature.properties.datSchranka}</span>
             </div>
             <div class="popup-row">
-                <img src="img/popup/ico.svg" alt="Ikona" class="popup-icon">
+                <img style="padding-bottom:3px;" src="img/popup/ico.svg" alt="Ikona" class="popup-icon">
+                <span data-key="ICO">${translations[lang]["ICO"]}</span>
                 <span>${feature.properties.IC}</span>
             </div>
 
             <div class="popup-row popup-title">
-                <img src="img/popup/ur_hod.svg" alt="Ikona" class="popup-icon">
+                <img style="padding-bottom:3px;" src="img/popup/ur_hod.svg" alt="Ikona" class="popup-icon">
                 <h4 data-key="uredni_hodiny">${translations[lang]["uredni_hodiny"]}</h4>
             </div>
 
