@@ -120,9 +120,30 @@ const translations = {
         digitalni_verejne_sluzby_tooltip: "Seznam digitálních služeb",
         bodova_data_tooltip: "Ovládání vrstev s bodovými daty",
 
+        schema_tooltip: "Otevře schéma indexu v novém okně",
+
         celkovy_index_tooltip: "Výsledný index digitalizace je vypočítán vážením dílčích subindexů",
         podkladove_mapy_tooltip: "Podkladové mapy",
         zoom_na_cr_tooltip: "Podle aktivního obsahu mapy přiblíží na ČR nebo na EU",
+        
+        index_sluzba_tooltip: "Hodnocení kvality a dostupnosti digitálních služeb poskytovaných veřejnou správou",
+        index_pristupnost_tooltip: "Míra dostupnosti digitálních služeb pro všechny uživatele, včetně osob se specifickými potřebami",
+        index_dovednost_tooltip: "Úroveň digitálních znalostí a schopností občanů a zaměstnanců veřejné správy",
+        index_infrastruktura_tooltip: "Stav a kvalita technického zázemí pro digitální služby, jako je konektivita a bezpečnost",
+        
+        platebni_portal_tooltip: "Online systém pro platby veřejné správě",
+        rozklikavaci_rozpocet_tooltip: "Interaktivní přehled příjmů a výdajů veřejného rozpočtu",
+        integrovany_dopravni_system_tooltip: "Propojení různých druhů dopravy do jednoho systému",
+        geoportal_tooltip: "Mapová platforma pro prostorová data a informace",
+        portal_otevrenych_dat_tooltip: "Přístup k veřejným datům ke stažení a dalšímu využití",
+        katalog_soc_sluzeb_tooltip: "Přehled poskytovatelů sociálních služeb",
+        portal_kriz_rizeni_tooltip: "Informace a nástroje pro krizové situace",
+        dotacni_portal_tooltip: "Přehled dotací a možností financování",
+        czech_point_tooltip: "Kontaktní místo pro ověřené výpisy a podání",
+        krajsky_urad_tooltip: "Správní orgán kraje zajišťující veřejné služby",
+        
+        
+        
         zakladni: "Základní",
         letecka: "Letecká", 
         bez_podkladu: "Bez podkladu"        
@@ -247,9 +268,29 @@ const translations = {
         digitalni_verejne_sluzby_tooltip: "List of Digital Services",
         bodova_data_tooltip: "Layer Control for Point Data",
 
+        schema_tooltip: "Opens the index schema in a new window",
+
         celkovy_index_tooltip: "The resulting digitisation index is calculated by weighting the sub-indices",
         podkladove_mapy_tooltip: "Base maps",
         zoom_na_cr_tooltip: "Depending on the active content of the map, it will zoom in on the Czech Republic or the EU",
+        
+        index_sluzba_tooltip: "Evaluation of the quality and availability of digital services provided by public administration",
+        index_pristupnost_tooltip: "Accessibility of digital services for all users, including people with specific needs",
+        index_dovednost_tooltip: "Level of digital knowledge and skills of citizens and public administration employees",
+        index_infrastruktura_tooltip: "State and quality of technical infrastructure for digital services, such as connectivity and security",
+
+        platebni_portal_tooltip: "Online system for payments to public administration",
+        rozklikavaci_rozpocet_tooltip: "Interactive overview of public budget revenues and expenditures",
+        integrovany_dopravni_system_tooltip: "Integration of different types of transport into one system",
+        geoportal_tooltip: "Mapping platform for spatial data and information",
+        portal_otevrenych_dat_tooltip: "Access to public data for download and further use",
+        katalog_soc_sluzeb_tooltip: "Directory of social service providers",
+        portal_kriz_rizeni_tooltip: "Information and tools for crisis situations",
+        dotacni_portal_tooltip: "Overview of grants and funding opportunities",
+        czech_point_tooltip: "Contact point for verified extracts and submissions",
+        krajsky_urad_tooltip: "Regional authority providing public services",
+
+        
         zakladni: "Basic", 
         letecka: "Aerial", 
         bez_podkladu: "No basemap"
@@ -364,6 +405,25 @@ const translations = {
         celkovy_index_tooltip: "Підсумковий індекс цифровізації розраховується шляхом зважування окремих субіндексів",
         podkladove_mapy_tooltip: "Базові карти",
         zoom_na_cr_tooltip: "Залежно від активного вмісту карти наближує Чехію або ЄС",
+
+        schema_tooltip: "Відкриває схему індексу в новому вікні",
+        
+        index_sluzba_tooltip: "Оцінка якості та доступності цифрових послуг, що надаються державною адміністрацією",
+        index_pristupnost_tooltip: "Доступність цифрових послуг для всіх користувачів, включаючи людей зі специфічними потребами",
+        index_dovednost_tooltip: "Рівень цифрових знань і навичок громадян і працівників державної адміністрації",
+        index_infrastruktura_tooltip: "Стан і якість технічної інфраструктури для цифрових послуг, таких як підключення та безпека",
+
+        platebni_portal_tooltip: "Онлайн-система для платежів до державного управління",
+        rozklikavaci_rozpocet_tooltip: "Інтерактивний огляд доходів і видатків державного бюджету",
+        integrovany_dopravni_system_tooltip: "Інтеграція різних видів транспорту в одну систему",
+        geoportal_tooltip: "Картографічна платформа для просторових даних та інформації",
+        portal_otevrenych_dat_tooltip: "Доступ до відкритих державних даних для завантаження та подальшого використання",
+        katalog_soc_sluzeb_tooltip: "Каталог постачальників соціальних послуг",
+        portal_kriz_rizeni_tooltip: "Інформація та інструменти для кризових ситуацій",
+        dotacni_portal_tooltip: "Огляд грантів та можливостей фінансування",
+        czech_point_tooltip: "Контактний пункт для перевірених виписок та подань",
+        krajsky_urad_tooltip: "Регіональна влада, що надає державні послуги",
+        
         zakladni: "Базова",
         letecka: "Аерофотознімки",
         bez_podkladu: "Без фону"

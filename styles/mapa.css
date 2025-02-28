@@ -597,6 +597,7 @@ h3.expandable {
 .tooltip {
     position: relative;
     cursor: pointer; /* Ukazatel ruky při najetí */
+    z-index:1001;
 }
 
 

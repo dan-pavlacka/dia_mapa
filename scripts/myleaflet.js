@@ -250,14 +250,14 @@ function indexDigitalizace(feature) {
 //------------výběr služby
 // Data pro radio buttony na výběr služby
 const sluzbyData = [
-    { id: "sl1", labelKey: "platebni_portal", attribute: "j_platebni_portal", urlKey: "j_platebni_portal_web"},
-    { id: "sl2", labelKey: "rozklikavaci_rozpocet", attribute: "j_rozklikavaci_rozpocet", urlKey: "j_rozklikavaci_rozpocet_web"},
-    { id: "sl3", labelKey: "integrovany_dopravni_system", attribute: "j_IDS", urlKey: "j_IDS_web"},
-    { id: "sl4", labelKey: "geoportal", attribute: "j_GEOportal", urlKey: "j_GEOportal_odkaz"},
-    { id: "sl5", labelKey: "portal_otevrenych_dat", attribute: "j_openDATA", urlKey: "j_openDATA_web"},
-    { id: "sl6", labelKey: "katalog_soc_sluzeb", attribute: "j_katalog_soc_sluzeb", urlKey: "j_katalog_soc_sluzeb_web"},
-    { id: "sl7", labelKey: "portal_kriz_rizeni", attribute: "j_portal_kriz_rizeni", urlKey: "j_portal_kriz_rizeni_web"},
-    { id: "sl8", labelKey: "dotacni_portal", attribute: "j_dotacni_portal", urlKey: "j_dotacni_portal_web"},
+    { id: "sl1", labelKey: "platebni_portal", tooltipKey: "platebni_portal_tooltip", attribute: "j_platebni_portal", urlKey: "j_platebni_portal_web"},
+    { id: "sl2", labelKey: "rozklikavaci_rozpocet", tooltipKey: "rozklikavaci_rozpocet_tooltip", attribute: "j_rozklikavaci_rozpocet", urlKey: "j_rozklikavaci_rozpocet_web"},
+    { id: "sl3", labelKey: "integrovany_dopravni_system", tooltipKey: "integrovany_dopravni_system_tooltip", attribute: "j_IDS", urlKey: "j_IDS_web"},
+    { id: "sl4", labelKey: "geoportal", tooltipKey: "geoportal_tooltip", attribute: "j_GEOportal", urlKey: "j_GEOportal_odkaz"},
+    { id: "sl5", labelKey: "portal_otevrenych_dat", tooltipKey: "portal_otevrenych_dat_tooltip", attribute: "j_openDATA", urlKey: "j_openDATA_web"},
+    { id: "sl6", labelKey: "katalog_soc_sluzeb", tooltipKey: "katalog_soc_sluzeb_tooltip", attribute: "j_katalog_soc_sluzeb", urlKey: "j_katalog_soc_sluzeb_web"},
+    { id: "sl7", labelKey: "portal_kriz_rizeni", tooltipKey: "portal_kriz_rizeni_tooltip", attribute: "j_portal_kriz_rizeni", urlKey: "j_portal_kriz_rizeni_web"},
+    { id: "sl8", labelKey: "dotacni_portal", tooltipKey: "dotacni_portal_tooltip", attribute: "j_dotacni_portal", urlKey: "j_dotacni_portal_web"},
 ];
 
 // Generování radio buttonů a legend
@@ -279,7 +279,10 @@ function generateSluzby() {
         // Vytvoření labelu s data-key atributem
         const label = document.createElement("label");
         label.htmlFor = sluzba.id;
-        label.setAttribute("data-key", sluzba.labelKey); // Přidání data-key atributu
+        label.classList.add("tooltip", "tooltip-right-dlouhy");
+        label.setAttribute("data-key", sluzba.labelKey);
+        label.setAttribute("data-tooltip", "");
+        label.setAttribute("data-tooltip-key", sluzba.popupKey); // Přidání data-key atributu
         
         // Výchozí text (použije se, pokud není překlad k dispozici)
         label.textContent = sluzba.labelKey;
@@ -438,7 +441,7 @@ function vypisPopupuSluzba(feature, layer) {
         <div class="popup-row"><span data-key="sub_infrastruktura_">${translations[lang]["sub_infrastruktura_"]}</span>${Math.round(feature.properties.j_index_digitalizace)}</div>`
         }
         if (url) {
-            popupContent += `<div class="popup-row">
+            popupContent += `<div class="popup-row" style="padding-top:8px">
             <img src="img/popup/web_blue.svg" alt="Ikona" class="popup-icon">
             <span><a href="${url}" target="_blank" data-key="${sluzba.labelKey}">${translations[lang][sluzba.labelKey]}</a></span></div>`;
         } 
@@ -475,12 +478,6 @@ function vypisPopupuSluzba(feature, layer) {
         highlightPolygon(layer);
     });
 }
-
-
-
-
-
-
 
 
 
