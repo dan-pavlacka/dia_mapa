@@ -288,8 +288,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .leaflet-bar a {
 	background-color: #fff;
 	
-	width: 40px !important;
-	height: 40px !important;
+	width: 38px !important;
+	height: 38px !important;
 	line-height: 36px !important;
 	display: block;
 	text-align: center;
@@ -346,12 +346,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
-	font: bold 18px 'Lucida Console', Monaco, monospace;
+	font: bold 16px 'Lucida Console', Monaco, monospace;
 	text-indent: 1px;
 	border-radius: 8px !important;
 	/*border: 2px solid #E7E7E7 !important;*/
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-	
+	border: 1px solid #E7E7E7;
 	}
 
 .leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
