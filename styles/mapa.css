@@ -172,7 +172,7 @@ h4{
     width: 26px;
     height: 26px;
     display: inline-block;
-    border: 2px solid #E7E7E7;
+    border: 1px solid #E7E7E7;
     border-radius: 8px;
     transition: background-color 0.3s;
 }
@@ -247,7 +247,7 @@ label {
     color:  #000000;;
     cursor: pointer;
     box-sizing: border-box;
-    border: 3px solid gray;
+    border: 1px solid gray;
 }
 
 input[type="radio"] {
@@ -258,7 +258,7 @@ input[type="radio"] {
     min-height: 16px; /* Zajistí, že výška neklesne pod 16px */
     max-width: 16px; /* Zajistí, že šířka nepřesáhne 16px */
     max-height: 16px; /* Zajistí, že výška nepřesáhne 16px */
-    border: 3px solid gray;
+    border: 1px solid gray;
     border-radius: 50%;
     display: inline-block;
     position: relative;
@@ -314,7 +314,7 @@ input[type="checkbox"] {
     min-height: 18px; /* Zajistí, že výška neklesne pod 16px */
     max-width: 18px; /* Zajistí, že šířka nepřesáhne 16px */
     max-height: 18px; /* Zajistí, že výška nepřesáhne 16px */
-    border: 3px solid gray;
+    border: 1px solid gray;
     border-radius: 3px; /* Hranatý tvar checkboxu */
     display: inline-block;
     position: relative;
