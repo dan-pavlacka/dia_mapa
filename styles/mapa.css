@@ -172,7 +172,7 @@ h4{
     width: 26px;
     height: 26px;
     display: inline-block;
-    border: 1px solid #E7E7E7;
+    border: 2px solid #E7E7E7;
     border-radius: 8px;
     transition: background-color 0.3s;
 }

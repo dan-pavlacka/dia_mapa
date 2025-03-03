@@ -282,7 +282,7 @@ function generateSluzby() {
         label.classList.add("tooltip", "tooltip-right-dlouhy");
         label.setAttribute("data-key", sluzba.labelKey);
         label.setAttribute("data-tooltip", "");
-        label.setAttribute("data-tooltip-key", sluzba.popupKey); // Přidání data-key atributu
+        label.setAttribute("data-tooltip-key", sluzba.tooltipKey); // Přidání data-key atributu
         
         // Výchozí text (použije se, pokud není překlad k dispozici)
         label.textContent = sluzba.labelKey;
@@ -300,6 +300,7 @@ function generateSluzby() {
         container.appendChild(radioContainer);
         container.appendChild(legendContainer);
     });
+    
     if (window.currentLanguage) {
         applyTranslationToElement(container, window.currentLanguage);
     }
