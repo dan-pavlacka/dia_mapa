@@ -1317,19 +1317,19 @@ L.Control.LinkButton = L.Control.extend({
         container.style.zIndex = "1000"; // Aby bylo nad mapou
 
         let button = document.createElement("button");
-        button.innerHTML = "Platforma";
+        button.innerHTML = "Portál Kompetenčních center";
         button.style.backgroundColor = "white"; // Modrá barva
         button.style.color = "#2362a2"; // Bílý text
         button.style.border = "2px solid #E7E7E7";
         button.style.cursor = "pointer";
         button.style.margin = "0px";
-        button.style.fontSize = "14px";
+        button.style.fontSize = "12px";
         button.style.borderRadius = "8px"; // Zaoblené rohy
         button.style.boxShadow = "0px 2px 4px rgba(0,0,0,0.3)"; // Přidání stínu
         //
          // Nastavení pevné velikosti
-         button.style.width = "92px"; // Pevná šířka
-         button.style.height = "40px"; // Pevná výška
+         button.style.width = "98px"; // Pevná šířka
+         button.style.height = "50px"; // Pevná výška
          button.style.textAlign = "center"; // Zarovnání textu do středu
 
         // Kliknutí otevře odkaz v novém okně

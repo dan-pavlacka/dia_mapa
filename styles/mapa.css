@@ -517,7 +517,7 @@ h3.expandable {
     display: none; /* Skrytí menu na začátku */
     overflow:hidden;
     position: absolute;
-    top: 111px;
+    top: 121px;
     right: 10px;
      /* Průhledné pozadí */
     padding: 00px;
@@ -566,7 +566,7 @@ h3.expandable {
 }
 
 .control-button {
-    top: 60px; /* 70px od horního okraje */
+    top: 70px; /* 70px od horního okraje */
     right: 10px; /* 10px od pravého okraje */
 }
 
