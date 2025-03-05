@@ -1317,7 +1317,7 @@ L.Control.LinkButton = L.Control.extend({
         container.style.zIndex = "1000"; // Aby bylo nad mapou
 
         let button = document.createElement("button");
-        button.innerHTML = "Portál Kompetenčních center";
+        button.innerHTML = "Portál kompetenčních center";
         button.style.backgroundColor = "white"; // Modrá barva
         button.style.color = "#2362a2"; // Bílý text
         button.style.border = "2px solid #E7E7E7";
