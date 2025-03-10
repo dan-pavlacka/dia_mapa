@@ -1334,7 +1334,7 @@ L.Control.LinkButton = L.Control.extend({
 
         // Kliknutí otevře odkaz v novém okně
         button.onclick = function() {
-            window.open("/"); // Změň URL podle potřeby
+            window.open("/", "_self"); // Změň URL podle potřeby
         };
 
         container.appendChild(button);
