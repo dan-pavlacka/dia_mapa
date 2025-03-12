@@ -166,6 +166,15 @@ function zoomEU(){
 						  	'#dab0bb';
 	};
 
+    function getColorHneda(d) {
+		return 	d > 95  ? 	'#804000':
+				d >= 90 ? 	'#995d2d':
+				d >= 85 ? 	'#b27e57':
+				d < 85 ? 	'#c89d7f':
+						  	'#c89d7f';
+	};
+
+
 //definování stylů polygonových vrstev a příslušných atributů
 function indexDigitalizace(feature) {
 	return {
@@ -177,9 +186,29 @@ function indexDigitalizace(feature) {
 	};
 };
 
-	function indexSluzby(feature) {
+	function indexPortaly(feature) {
 		return {
-			fillColor: getColorOranzova(feature.properties.j_index_sluzby),
+			fillColor: getColorOranzova(feature.properties.j_subindex_portaly),
+			weight: 2,
+			opacity: 1,
+			color: 'white',
+			fillOpacity: 0.9
+		};
+	};
+
+    function indexPristupnost(feature) {
+		return {
+			fillColor: getColorCervena(feature.properties.j_subindex_pristupnost),
+			weight: 2,
+			opacity: 1,
+			color: 'white',
+			fillOpacity: 0.9
+		};
+	};
+
+    function indexSluzby(feature) {
+		return {
+			fillColor: getColorHneda(feature.properties.j_subindex_sluzby),
 			weight: 2,
 			opacity: 1,
 			color: 'white',
@@ -189,7 +218,7 @@ function indexDigitalizace(feature) {
 
 	function indexDovednosti(feature) {
 		return {
-			fillColor: getColorZelena(feature.properties.j_index_dovednosti),
+			fillColor: getColorZelena(feature.properties.j_subindex_dovednost),
 			weight: 2,
 			opacity: 1,
 			color: 'white',
@@ -199,7 +228,7 @@ function indexDigitalizace(feature) {
 
 	function indexInfrastruktura(feature) {
 		return {
-			fillColor: getColorFialova(feature.properties.j_index_infrastruktura),
+			fillColor: getColorFialova(feature.properties.j_subindex_infrastruktura),
 			weight: 2,
 			opacity: 1,
 			color: 'white',
@@ -207,15 +236,7 @@ function indexDigitalizace(feature) {
 		};
 	};
 
-	function indexPristupnost(feature) {
-		return {
-			fillColor: getColorCervena(feature.properties.j_index_dostupnost),
-			weight: 2,
-			opacity: 1,
-			color: 'white',
-			fillOpacity: 0.9
-		};
-	};
+
 	
 	function DESIIndex22(feature) {
 		return {
@@ -258,6 +279,11 @@ const sluzbyData = [
     { id: "sl6", labelKey: "katalog_soc_sluzeb", tooltipKey: "katalog_soc_sluzeb_tooltip", attribute: "j_katalog_soc_sluzeb", urlKey: "j_katalog_soc_sluzeb_web"},
     { id: "sl7", labelKey: "portal_kriz_rizeni", tooltipKey: "portal_kriz_rizeni_tooltip", attribute: "j_portal_kriz_rizeni", urlKey: "j_portal_kriz_rizeni_web"},
     { id: "sl8", labelKey: "dotacni_portal", tooltipKey: "dotacni_portal_tooltip", attribute: "j_dotacni_portal", urlKey: "j_dotacni_portal_web"},
+    { id: "sl9", labelKey: "turisticky_portal", tooltipKey: "turisticky_portal_tooltip", attribute: "j_turisticky_portal", urlKey: "j_turisticky_portal_web"},
+    { id: "sl10", labelKey: "portal_pacienta", tooltipKey: "portal_pacienta_tooltip", attribute: "j_portal_pacienta", urlKey: "j_partal_pacienta_web"},
+    { id: "sl11", labelKey: "ePodatelna", tooltipKey: "ePodatelna_tooltip", attribute: "j_ePodatelna", urlKey: "j_ePodatelna_web"},
+    { id: "sl12", labelKey: "skolsky_portal", tooltipKey: "skolsky_portal_tooltip", attribute: "j_skolsky_portal", urlKey: "j_skolsky_portal_web"},
+    { id: "sl13", labelKey: "portal_prispevkovych_organizaci", tooltipKey: "portal_prispevkovych_organizaci_tooltip", attribute: "j_portal_prispevkovych_organizaci", urlKey: "j_portal_prispevkovych_organizaci_web"},  //dodelat tooltipy a jazyky
 ];
 
 // Generování radio buttonů a legend
@@ -436,10 +462,12 @@ function vypisPopupuSluzba(feature, layer) {
 
         if (krajAktivni) {
             popupContent += `<h3 class="info-texty-popup"><span data-key="index_digitalizace_">${translations[lang]["index_digitalizace_"]}</span> ${Math.round(feature.properties.j_index_digitalizace)}</h3>
-        <div class="popup-row"><span data-key="sub_sluzby_">${translations[lang]["sub_sluzby_"]}</span>${Math.round(feature.properties.j_index_sluzby)}</div>
-        <div class="popup-row"><span data-key="sub_pristupnost_">${translations[lang]["sub_pristupnost_"]}</span>${Math.round(feature.properties.j_index_dostupnost)}</div>
-        <div class="popup-row"><span data-key="sub_dovednosti_">${translations[lang]["sub_dovednosti_"]}</span>${Math.round(feature.properties.j_index_dovednosti)}</div>
-        <div class="popup-row"><span data-key="sub_infrastruktura_">${translations[lang]["sub_infrastruktura_"]}</span>${Math.round(feature.properties.j_index_digitalizace)}</div>`
+        <div class="popup-row"><span data-key="sub_portaly_">${translations[lang]["sub_portaly_"]}</span>${Math.round(feature.properties.j_subindex_portaly)}</div>
+        <div class="popup-row"><span data-key="sub_pristupnost_">${translations[lang]["sub_pristupnost_"]}</span>${Math.round(feature.properties.j_subindex_pristupnost)}</div>
+        <div class="popup-row"><span data-key="sub_sluzby_">${translations[lang]["sub_sluzby_"]}</span>${Math.round(feature.properties.j_subindex_sluzby)}</div>
+        <div class="popup-row"><span data-key="sub_dovednosti_">${translations[lang]["sub_dovednosti_"]}</span>${Math.round(feature.properties.j_subindex_dovednost)}</div>
+        <div class="popup-row"><span data-key="sub_infrastruktura_">${translations[lang]["sub_infrastruktura_"]}</span>${Math.round(feature.properties.j_subindex_infrastruktura)}</div>
+        `
         }
         if (url) {
             popupContent += `<div class="popup-row" style="padding-top:8px">
@@ -579,6 +607,7 @@ const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [85, 7
 const legendZelena = generateLegend(getColorZelena, "legendZelena", [75, 50, 25, 24],"25");
 const legendVinova = generateLegend(getColorVinova, "legendVinova", [65, 60, 55, 50, 49],"50");
 const legendCervena = generateLegend(getColorCervena, "legendCervena", [90, 85, 80, 75, 74], "75");
+const legendHneda = generateLegend(getColorHneda, "legendHneda", [95, 90, 85, 84],"85");
 
 //sidebar
 let sidebar = L.control.sidebar('sidebar').addTo(map); 
@@ -846,10 +875,11 @@ function vypisPopupuIndex(feature, layer) {
     function updatePopupContent(lang) {
         return `<div id="popup-kraj" class="popup-container"><h2>${feature.properties.text}</h2>
         <h3 class="info-texty-popup"><span data-key="index_digitalizace_">${translations[lang]["index_digitalizace_"]}</span> ${Math.round(feature.properties.j_index_digitalizace)}</h3>
-        <div class="popup-row"><span data-key="sub_sluzby_">${translations[lang]["sub_sluzby_"]}</span>${Math.round(feature.properties.j_index_sluzby)}</div>
-        <div class="popup-row"><span data-key="sub_pristupnost_">${translations[lang]["sub_pristupnost_"]}</span>${Math.round(feature.properties.j_index_dostupnost)}</div>
-        <div class="popup-row"><span data-key="sub_dovednosti_">${translations[lang]["sub_dovednosti_"]}</span>${Math.round(feature.properties.j_index_dovednosti)}</div>
-        <div class="popup-row"><span data-key="sub_infrastruktura_">${translations[lang]["sub_infrastruktura_"]}</span>${Math.round(feature.properties.j_index_digitalizace)}</div>
+        <div class="popup-row"><span data-key="sub_portaly_">${translations[lang]["sub_portaly_"]}</span>${Math.round(feature.properties.j_subindex_portaly)}</div>
+        <div class="popup-row"><span data-key="sub_pristupnost_">${translations[lang]["sub_pristupnost_"]}</span>${Math.round(feature.properties.j_subindex_pristupnost)}</div>
+        <div class="popup-row"><span data-key="sub_sluzby_">${translations[lang]["sub_sluzby_"]}</span>${Math.round(feature.properties.j_subindex_sluzby)}</div>
+        <div class="popup-row"><span data-key="sub_dovednosti_">${translations[lang]["sub_dovednosti_"]}</span>${Math.round(feature.properties.j_subindex_dovednost)}</div>
+        <div class="popup-row"><span data-key="sub_infrastruktura_">${translations[lang]["sub_infrastruktura_"]}</span>${Math.round(feature.properties.j_subindex_infrastruktura)}</div>
         </div>`;
     }
 
@@ -889,7 +919,12 @@ const linkKeys = {
     j_openDATA_web: "portal_otevrenych_dat",
     j_katalog_soc_sluzeb_web: "katalog_soc_sluzeb",
     j_portal_kriz_rizeni_web: "portal_kriz_rizeni",
-    j_dotacni_portal_web: "dotacni_portal"
+    j_dotacni_portal_web: "dotacni_portal",
+    j_turisticky_portal_web: "turisticky_portal",
+    j_partal_pacienta_web: "portal_pacienta",
+    j_ePodatelna_web: "ePodatelna",
+    j_skolsky_portal_web: "skolsky_portal",
+    j_portal_prispevkovych_organizaci_web: "portal_prispevkovych_organizaci"
 };
 
 

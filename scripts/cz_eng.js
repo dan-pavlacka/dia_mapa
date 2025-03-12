@@ -1,5 +1,6 @@
 const translations = {
     cs: {
+        title: "KPC | Mapa digitalizace",
         sidebar_header: "Index digitalizace", 
         pane1_icon_tooltip: "Index digitalizace",
         pane2_icon_tooltip: "Vrstvy EU",
@@ -29,12 +30,17 @@ const translations = {
         digitalni_sluzby: "Digitální služby",
         bodova_data: "Bodová data",
         index_digitalizace: "Celkový index digitalizace",
-        sub_sluzby: "Subindex poskytované služby",
-        sub_pristupnost: "Subindex přístupnosti",
+        
+        sub_portaly: "Subindex webové portály",
+        sub_sluzby: "Subindex digitální služby", 
+        sub_pristupnost: "Subindex přístupnosti služeb",
+
         sub_dovednosti: "Subindex digitální dovednosti",
         sub_infrastruktura: "Subindex digitální infrastruktura", 
+        
         index_digitalizace_: "Celkový index digitalizace:",
-        sub_sluzby_: "Subindex poskytované služby:",
+        sub_portaly_: "Subindex webové portály:",
+        sub_sluzby_: "Subindex digitální služby:",
         sub_pristupnost_: "Subindex přístupnosti:",
         sub_dovednosti_: "Subindex digitální dovednosti:",
         sub_infrastruktura_: "Subindex digitální infrastruktura:", 
@@ -64,7 +70,10 @@ const translations = {
         digitalni_sluzby_text: " – úroveň e-governmentu a digitálních služeb státní správy.", 
 
         overall_index_popis: "Index je stavoven vážením dílčích subindexů. Váhy jsou stanoveny rovnoměrně.",
-        sub_sluzby_popis: "Stanoven jako procentuální podíl vybraných digitálních služeb, poskytovaných krajem. Hodnocené služby jsou:",
+        
+        sub_portaly_popis: "Stanoven jako procentuální podíl vybraných digitálních služeb, poskytovaných krajem. Hodnocené služby jsou:", 
+        sub_sluzby_popis: "Stanoven jako průměrná hodnota vybraných ukazatelů, které byly předem normalizovány.",
+        
         sub_pristupnost_popis: "Stanoven jako průměrná hodnota vybraných ukazatelů. Přístupnost webových stránek a SEO bylo měřeno nástrojem Lighthouse accessibility scoring, dne 12.2.2025, pro webové stránky krajů.",
         sub_dovednosti_popis: "Stanoven jako průměrná hodnota vybraných ukazatelů, které byly předem normalizovány.",
         sub_infrastruktura_popis: "Stanoven jako průměrná hodnota vybraných ukazatelů, které byly předem normalizovány",
@@ -77,18 +86,39 @@ const translations = {
         katalog_soc_sluzeb: "Katalog sociálních služeb",
         portal_kriz_rizeni: "Portál krizového řízení",
         dotacni_portal: "Dotační portál",
+        turisticky_portal: "Turistický portál",
+        portal_pacienta: "Portál pacienta",
+        ePodatelna: "ePodatelna",
+        skolsky_portal: "Školský portál",
+        portal_prispevkovych_organizaci: "Portál příspěvkových organizací",
+
+
+
+
+
         //popisky jednotlivých indikátorů
         pristupnost_desktop: "Přístupnost desktop",
         pristupnost_mobile: "Přístupnost mobile",
         seo_desktop: "SEO desktop",
         seo_mobile: "SEO mobile",
         pocet_kmvs: "Počet Czech POINTŮ na 1000 obyvatel (normalizováno)",
+
+        lekar_online_objednani: "Podíl ordinací, kde se lze přihlásit online k vyšetření",
+        lekar_elektronicka_dokumentace: "Podíl ordinací, které vedou zdravotnickou dokumentaci elektronicky",
+        lekar_web: "Podíl ordinací, které mají vlastní web",
+
         osoby_internet_denne: "Podíl osob, které denně využívají internet",
         osoby_soc_site: "Podíl osob, využívajících sociální sítě",
         osoby_bankovnictvi: "Podíl osob, využívajících internetové bankovnictví",
         studenti_ICT: "Podíl studentů ICT oborů na VŠ (dle trvalého bydliště)",
         absolventi_ICT: "Podíl ICT absolventů (dle trvalého bydliště)",
         odbornici_ICT: "Podíl ICT odborníků (dle CZ-NACE)",
+
+        PC_ZS: "Počet počítačů na 100 žáků ZŠ",
+        PC_ZS_2: "Počet počítačů na 100 žáků SŠ",
+        PC_SS: "Počet počítačů starých do 2 let na 100 žáků SŠ",
+        PC_SS_2: "Počet počítačů starých do 2 let na 100 žáků ZŠ",
+
         domacnosti_internet: "Podíl domácností s připojením k internetu",
         osoby_internet_tel: "Podíl osob využívajících internet na telefonu",
         pokryti_30mb: "Pokrytí infrastrukturou 30 Mbit/s (% ZSJ >80%)",
@@ -127,6 +157,8 @@ const translations = {
         zoom_na_cr_tooltip: "Podle aktivního obsahu mapy přiblíží na ČR nebo na EU",
         
         index_sluzba_tooltip: "Hodnocení kvality a dostupnosti digitálních služeb poskytovaných veřejnou správou",
+        index_portaly_tooltip: "Hodnocení webových portálů",
+
         index_pristupnost_tooltip: "Míra dostupnosti digitálních služeb pro všechny uživatele, včetně osob se specifickými potřebami",
         index_dovednost_tooltip: "Úroveň digitálních znalostí a schopností občanů a zaměstnanců veřejné správy",
         index_infrastruktura_tooltip: "Stav a kvalita technického zázemí pro digitální služby, jako je konektivita a bezpečnost",
@@ -139,6 +171,12 @@ const translations = {
         katalog_soc_sluzeb_tooltip: "Přehled poskytovatelů sociálních služeb",
         portal_kriz_rizeni_tooltip: "Informace a nástroje pro krizové situace",
         dotacni_portal_tooltip: "Přehled dotací a možností financování",
+        turisticky_portal_tooltip: "Informace a služby pro turisty v regionu",
+        portal_pacienta_tooltip: "Online přístup k zdravotním záznamům a službám",
+        ePodatelna_tooltip: "Elektronické podání dokumentů pro veřejnou správu",
+        skolsky_portal_tooltip: "Informace a nástroje pro školy, učitele a studenty",
+        portal_prispevkovych_organizaci_tooltip: "Správa a podpora příspěvkových organizací",       
+        
         czech_point_tooltip: "Kontaktní místo pro ověřené výpisy a podání",
         krajsky_urad_tooltip: "Správní orgán kraje zajišťující veřejné služby",
         
@@ -150,6 +188,7 @@ const translations = {
     },
 
     en: {
+        title: "KPC | Digitalization Map",
         sidebar_header: "Digitalisation index", 
         pane1_icon_tooltip: "Digitalisation index",
         pane2_icon_tooltip: "EU layers",
@@ -179,12 +218,14 @@ const translations = {
         digitalni_sluzby: "Digital services",
         bodova_data: "Point data",
         index_digitalizace: "Overall Digitalisation index",
-        sub_sluzby: "Service Provided Subindex",
+        sub_portaly: "Subindex of web portals",
+        sub_sluzby: "Subindex of digital services",
         sub_pristupnost: "Accessibility Subindex",
         sub_dovednosti: "Digital Skills Subindex",
         sub_infrastruktura: "Digital Infrastructure Subindex",
         index_digitalizace_: "Overall Digitalisation index:",
-        sub_sluzby_: "Service Provided Subindex:",
+        sub_sluzby_: "Digital services Subindex:",
+        sub_portaly_: "Web portals Subindex:",
         sub_pristupnost_: "Accessibility Subindex:",
         sub_dovednosti_: "Digital Skills Subindex:",
         sub_infrastruktura_: "Digital Infrastructure Subindex:",
@@ -213,7 +254,8 @@ const translations = {
         digitalni_sluzby: "Digital Public Services",
         digitalni_sluzby_text: " – level of e-government and digital services in public administration.",
         overall_index_popis: "The index is determined by weighting individual subindexes. The weights are assigned evenly.",
-        sub_sluzby_popis: "Determined as the percentage share of selected digital services provided by the region. The evaluated services are:",
+        sub_portaly_popis: "Defined as the percentage share of selected digital services provided by the region. The evaluated services are:",
+        sub_sluzby_popis: "Defined as the average value of selected indicators that have been pre-normalized.",
         sub_pristupnost_popis: "Determined as the average value of selected indicators. Website accessibility and SEO were measured using the Lighthouse accessibility scoring tool on February 12, 2025, for regional websites.",
         sub_dovednosti_popis: "Determined as the average value of selected indicators, which were pre-normalized.",
         sub_infrastruktura_popis: "Determined as the average value of selected indicators, which were pre-normalized.",
@@ -226,17 +268,34 @@ const translations = {
         katalog_soc_sluzeb: "Social Services Catalog",
         portal_kriz_rizeni: "Crisis Management Portal",
         dotacni_portal: "Subsidy Portal", 
+        turisticky_portal: "Tourist Portal",
+        portal_pacienta: "Patient Portal",
+        ePodatelna: "eSubmissions",
+        skolsky_portal: "School Portal",
+        portal_prispevkovych_organizaci: "Contributory Organizations Portal",
+
+
         pristupnost_desktop: "Desktop Accessibility",
         pristupnost_mobile: "Mobile Accessibility",
         seo_desktop: "SEO Desktop",
         seo_mobile: "SEO Mobile",
         pocet_kmvs: "Number of Czech POINTs per 1,000 inhabitants (normalized)",
+
+        lekar_online_objednani: "Share of clinics where online appointment booking is available",
+        lekar_elektronicka_dokumentace: "Share of clinics that maintain electronic medical records",
+        lekar_web: "Share of clinics that have their own website",
+
         osoby_internet_denne: "Share of people using the internet daily",
         osoby_soc_site: "Share of people using social networks",
         osoby_bankovnictvi: "Share of people using online banking",
         studenti_ICT: "Share of ICT students at universities (by permanent residence)",
         absolventi_ICT: "Share of ICT graduates (by permanent residence)",
         odbornici_ICT: "Share of ICT professionals (by CZ-NACE classification)",
+        PC_ZS: "Number of computers per 100 primary school students",
+        PC_ZS_2: "Number of computers per 100 secondary school students",
+        PC_SS: "Number of computers less than 2 years old per 100 secondary school students",
+        PC_SS_2: "Number of computers less than 2 years old per 100 primary school students",
+
         domacnosti_internet: "Share of households with internet access",
         osoby_internet_tel: "Share of people using the internet on their phone",
         pokryti_30mb: "Coverage with 30 Mbit/s infrastructure (% of localities >80%)",
@@ -275,6 +334,7 @@ const translations = {
         zoom_na_cr_tooltip: "Depending on the active content of the map, it will zoom in on the Czech Republic or the EU",
         
         index_sluzba_tooltip: "Evaluation of the quality and availability of digital services provided by public administration",
+        index_portaly_tooltip: "Evaluation of web portals",
         index_pristupnost_tooltip: "Accessibility of digital services for all users, including people with specific needs",
         index_dovednost_tooltip: "Level of digital knowledge and skills of citizens and public administration employees",
         index_infrastruktura_tooltip: "State and quality of technical infrastructure for digital services, such as connectivity and security",
@@ -287,6 +347,12 @@ const translations = {
         katalog_soc_sluzeb_tooltip: "Directory of social service providers",
         portal_kriz_rizeni_tooltip: "Information and tools for crisis situations",
         dotacni_portal_tooltip: "Overview of grants and funding opportunities",
+        turisticky_portal_tooltip: "Information and services for tourists in the region",
+        portal_pacienta_tooltip: "Online access to medical records and services",
+        ePodatelna_tooltip: "Electronic submission of documents for public administration",
+        skolsky_portal_tooltip: "Information and tools for schools, teachers, and students",
+        portal_prispevkovych_organizaci_tooltip: "Management and support of contributory organizations",
+        
         czech_point_tooltip: "Contact point for verified extracts and submissions",
         krajsky_urad_tooltip: "Regional authority providing public services",
 
@@ -298,6 +364,7 @@ const translations = {
     },
 
     ua: {
+        title: "KPC | Карта цифровізації",
         sidebar_header: "Індекс цифровізації",
         pane1_icon_tooltip: "Індекс цифровізації",
         pane2_icon_tooltip: "Шари ЄС",
@@ -327,12 +394,14 @@ const translations = {
         digitalni_sluzby: "Цифрові послуги",
         bodova_data: "Точкові дані",
         index_digitalizace: "Загальний індекс цифровізації",
-        sub_sluzby: "Субіндекс наданих послуг",
+        sub_portaly: "Субіндекс веб-порталів",
+        sub_sluzby: "Субіндекс цифрових послуг",
         sub_pristupnost: "Субіндекс доступності",
         sub_dovednosti: "Субіндекс цифрових навичок",
         sub_infrastruktura: "Субіндекс цифрової інфраструктури",
         index_digitalizace_: "Загальний індекс цифровізації:",
-        sub_sluzby_: "Субіндекс наданих послуг:",
+        sub_sluzby_: "Субіндекс цифрових послуг:",
+        sub_portaly_: "Субіндекс веб-порталів:",
         sub_pristupnost_: "Субіндекс доступності:",
         sub_dovednosti_: "Субіндекс цифрових навичок:",
         sub_infrastruktura_: "Субіндекс цифрової інфраструктури:",
@@ -362,7 +431,8 @@ const translations = {
         digitalni_sluzby_text: " – рівень електронного уряду та цифрових послуг державного управління.",
 
         overall_index_popis: "Індекс визначається шляхом зважування окремих субіндексів. Ваги розподілені рівномірно.",
-        sub_sluzby_popis: "Визначається як відсоткове співвідношення обраних цифрових послуг, що надаються областю. Оцінювані послуги:",
+        sub_portaly_popis: "Визначено як відсоткову частку вибраних цифрових послуг, що надаються регіоном. Оцінювані послуги є:",
+        sub_sluzby_popis: "Визначено як середнє значення вибраних показників, які були попередньо нормалізовані.",
         sub_pristupnost_popis: "Визначається як середнє значення обраних показників. Доступність вебсайтів і SEO вимірювалися інструментом Lighthouse accessibility scoring 12.02.2025 для сайтів областей.",
         sub_dovednosti_popis: "Визначається як середнє значення обраних показників, які були попередньо нормалізовані.",
         sub_infrastruktura_popis: "Визначається як середнє значення обраних показників, які були попередньо нормалізовані.",
@@ -375,18 +445,32 @@ const translations = {
         katalog_soc_sluzeb: "Каталог соціальних послуг",
         portal_kriz_rizeni: "Портал кризового управління",
         dotacni_portal: "Грантовий портал",
+        turisticky_portal: "Туристичний портал",
+        portal_pacienta: "Портал пацієнта",
+        ePodatelna: "еПодатальна",
+        skolsky_portal: "Шкільний портал",
+        portal_prispevkovych_organizaci: "Портал бюджетних організацій",
 
         pristupnost_desktop: "Доступність для настільних пристроїв",
         pristupnost_mobile: "Доступність для мобільних пристроїв",
         seo_desktop: "SEO для настільних пристроїв",
         seo_mobile: "SEO для мобільних пристроїв",
         pocet_kmvs: "Кількість Czech POINT на 1 000 жителів (нормалізовано)",
+
+        lekar_online_objednani: "Частка клінік, де доступне онлайн-запис на прийом",
+        lekar_elektronicka_dokumentace: "Частка клінік, що ведуть медичну документацію в електронному вигляді",
+        lekar_web: "Частка клінік, що мають власний веб-сайт",
+
         osoby_internet_denne: "Частка людей, які користуються інтернетом щодня",
         osoby_soc_site: "Частка людей, які користуються соціальними мережами",
         osoby_bankovnictvi: "Частка людей, які користуються інтернет-банкінгом",
         studenti_ICT: "Частка студентів ІКТ в університетах (за місцем проживання)",
         absolventi_ICT: "Частка випускників ІКТ (за місцем проживання)",
         odbornici_ICT: "Частка ІКТ-фахівців (за класифікацією CZ-NACE)",
+        PC_ZS: "Кількість комп'ютерів на 100 учнів початкової школи",
+        PC_ZS_2: "Кількість комп'ютерів на 100 учнів середньої школи",
+        PC_SS: "Кількість комп'ютерів віком до 2 років на 100 учнів середньої школи",
+        PC_SS_2: "Кількість комп'ютерів віком до 2 років на 100 учнів початкової школи",
         domacnosti_internet: "Частка домогосподарств з доступом до інтернету",
         osoby_internet_tel: "Частка людей, які користуються інтернетом на телефоні",
         pokryti_30mb: "Покриття інфраструктурою 30 Мбіт/с (% населених пунктів >80%)",
@@ -425,6 +509,7 @@ const translations = {
         schema_tooltip: "Відкриває схему індексу в новому вікні",
         
         index_sluzba_tooltip: "Оцінка якості та доступності цифрових послуг, що надаються державною адміністрацією",
+        index_portaly_tooltip: "Оцінка веб-порталів",
         index_pristupnost_tooltip: "Доступність цифрових послуг для всіх користувачів, включаючи людей зі специфічними потребами",
         index_dovednost_tooltip: "Рівень цифрових знань і навичок громадян і працівників державної адміністрації",
         index_infrastruktura_tooltip: "Стан і якість технічної інфраструктури для цифрових послуг, таких як підключення та безпека",
@@ -437,6 +522,12 @@ const translations = {
         katalog_soc_sluzeb_tooltip: "Каталог постачальників соціальних послуг",
         portal_kriz_rizeni_tooltip: "Інформація та інструменти для кризових ситуацій",
         dotacni_portal_tooltip: "Огляд грантів та можливостей фінансування",
+        turisticky_portal_tooltip: "Інформація та послуги для туристів у регіоні",
+        portal_pacienta_tooltip: "Онлайн-доступ до медичних записів і послуг",
+        ePodatelna_tooltip: "Електронне подання документів для державного управління",
+        skolsky_portal_tooltip: "Інформація та інструменти для шкіл, вчителів і студентів",
+        portal_prispevkovych_organizaci_tooltip: "Управління та підтримка бюджетних організацій",
+            
         czech_point_tooltip: "Контактний пункт для перевірених виписок та подань",
         krajsky_urad_tooltip: "Регіональна влада, що надає державні послуги",
         
