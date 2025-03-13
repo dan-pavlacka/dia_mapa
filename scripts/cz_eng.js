@@ -11,7 +11,7 @@ const translations = {
         jazyk: "CZ", 
         pane1_sticky: "Na mapě je znázorněna úroveň digitalizace státní správy.",
         pane2_sticky: "Na mapě je znázorněna úroveň digitalizace členských států EU.",
-        pane3_sticky: "Zde naleznete doplňující odkazy k jednotlivým krajům. Pro zobrazení informací ke konkrétnímu kraji klikněte v mapě na kraj.",
+        pane3_sticky: "Zde naleznete doplňující odkazy informace k jednotlivým krajům. Pro zobrazení informací ke konkrétnímu kraji klikněte v mapě na kraj nebo vyberte z nabídky níže.",
         pane4_sticky: "Indexy digitalizace pro kraje ČR byly navrženy na základě evropského indexu DESI.",
         pane5_sticky: "Zde je možné exportovat mapu do pdf. Rozměr pdf a obsah mapy bude přizpůsoben vašemu aktuálnímu pohledu na mapu.",
         pane6_sticky: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.", //lorem ipsum v informacích o aplikaci
@@ -199,7 +199,7 @@ const translations = {
         jazyk: "EN",
         pane1_sticky: "The map shows the level of digitalisation of the public administration.",
         pane2_sticky: "The map shows the level of digitalisation in the EU Member States.",
-        pane3_sticky: "Here you can find additional links for each region. To view information for a specific region, click on the regoion in the map.",
+        pane3_sticky: "Here you will find additional links and information for individual regions. To view information for a specific region, click on the region on the map or select it from the menu below.",
         pane4_sticky: "The digitalisation indices for the regions of the Czech Republic were designed on the basis of the European DESI index.",
         pane5_sticky: "Here you can export the map to pdf. The size of the pdf and the content of the map will be adapted to your current view of the map.",
         pane6_sticky: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.", //lorem ipsum v informacích o aplikaci
@@ -375,7 +375,7 @@ const translations = {
         jazyk: "UA",
         pane1_sticky: "На карті показано рівень цифровізації державного управління.",
         pane2_sticky: "На карті показано рівень цифровізації держав-членів ЄС.",
-        pane3_sticky: "Тут ви знайдете додаткові посилання на окремі області. Для перегляду інформації про конкретну область натисніть на неї на карті.",
+        pane3_sticky: "Тут ви знайдете додаткові посилання та інформацію про окремі регіони. Щоб переглянути інформацію про конкретний регіон, натисніть на нього на карті або виберіть зі списку нижче.",
         pane4_sticky: "Індекси цифровізації для областей Чеської Республіки були розроблені на основі європейського індексу DESI.",
         pane5_sticky: "Тут можна експортувати карту у формат PDF. Розмір PDF і вміст карти буде адаптовано до вашого поточного перегляду карти.",
         pane6_sticky: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.",

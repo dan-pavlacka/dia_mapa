@@ -1663,5 +1663,4 @@ L.Control.FunctionButton = L.Control.extend({
 let controlZoomButton = new L.Control.FunctionButton({});
 controlZoomButton.addTo(map);
 
-// Definice myFunction()
 
