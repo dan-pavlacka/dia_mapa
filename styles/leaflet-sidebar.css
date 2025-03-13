@@ -5,7 +5,7 @@
   width: 100%;
   overflow: hidden;
   z-index: 2000; 
-  
+  min-height:500px;
   }
   .sidebar.collapsed {
     width: 64px; }
@@ -40,6 +40,7 @@
   bottom: 0;
   height: 100%;
   background-color: #fff; 
+  min-height:500px;
   }
   
   .sidebar-left .sidebar-tabs {
@@ -110,7 +111,7 @@
     padding-bottom:10px;
     box-sizing: border-box;
     padding-right:7px;
-    
+
 }
 
 

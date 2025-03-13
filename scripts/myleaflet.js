@@ -23,6 +23,11 @@ function scrollableHeightSize(){
             const sidebarStickyHeight = sidebarSticky.offsetHeight || 0; // Získáme aktuální výšku .sidebar-sticky
             const adjustedHeight = viewportHeight - 56 - sidebarStickyHeight - 15; // Odečteme 56px a výšku .sidebar-sticky           
             const scrollable = activeSidebar.querySelector('.scrollable');
+            
+            /*if (viewportHeight < 500){
+                adjustedHeight = 500 - 56 - sidebarStickyHeight - 15; //aby se nepřekrývaly ikony při malé výšce okna
+            }*/
+
             if (scrollable) {
                 scrollable.style.height = `${adjustedHeight}px`; // Nastaví výšku pro tento aktivní sidebar                
             }
@@ -283,7 +288,7 @@ const sluzbyData = [
     { id: "sl10", labelKey: "portal_pacienta", tooltipKey: "portal_pacienta_tooltip", attribute: "j_portal_pacienta", urlKey: "j_partal_pacienta_web"},
     { id: "sl11", labelKey: "ePodatelna", tooltipKey: "ePodatelna_tooltip", attribute: "j_ePodatelna", urlKey: "j_ePodatelna_web"},
     { id: "sl12", labelKey: "skolsky_portal", tooltipKey: "skolsky_portal_tooltip", attribute: "j_skolsky_portal", urlKey: "j_skolsky_portal_web"},
-    { id: "sl13", labelKey: "portal_prispevkovych_organizaci", tooltipKey: "portal_prispevkovych_organizaci_tooltip", attribute: "j_portal_prispevkovych_organizaci", urlKey: "j_portal_prispevkovych_organizaci_web"},  //dodelat tooltipy a jazyky
+    { id: "sl13", labelKey: "portal_prispevkovych_organizaci", tooltipKey: "portal_prispevkovych_organizaci_tooltip", attribute: "j_portal_prispevkovych_organizaci", urlKey: "j_portal_prispevkovych_organizaci_web"},  
 ];
 
 // Generování radio buttonů a legend
@@ -947,7 +952,7 @@ function resetVyberKraje() {
         defaultRadio.checked = true; // Aktivujeme "Žádný vybraný kraj"
     }
 
-    document.querySelectorAll("#infoKraj .links").forEach(el => el.innerHTML = ""); // Smazání odkazů
+    document.querySelectorAll("#infoKraj .links, #infoKraj .attributes").forEach(el => el.innerHTML = ""); // Smazání odkazů
 
     const infoText = document.getElementById("defaultText");
     if (infoText) {
@@ -1011,11 +1016,31 @@ function initDefaultRadio() {
 }
 
 
+const attributeKeys = {
+    j_internet_denne: "osoby_internet_denne",
+    j_soc_site: "osoby_soc_site",
+    j_int_bankovnictvi: "osoby_bankovnictvi",
+    j_studenti_ICT: "studenti_ICT",
+    j_absolventi_ICT: "absolventi_ICT",
+    j_ICT_odbornici: "odbornici_ICT",
+    j_pc_zakladky: "PC_ZS",
+    j_pc_stredni: "PC_SS",
+    j_pc_zakladky_2roky: "PC_ZS_2",
+    j_pc_stredni_2roky: "PC_SS_2",
+    j_int_domacnosti: "domacnosti_internet",
+    j_int_telefon: "osoby_internet_tel",
+    j_pokryti_30mbit: "pokryti_30mb",
+    j_pokryti_100mbit: "pokryti_100mb",
+    j_KMVSnaObyv: "pocet_kmvs_",
+    j_online_objednani_na_vysetreni: "lekar_online_objednani",
+    j_elektronicka_zdravotnicka_dokumentace: "lekar_elektronicka_dokumentace",
+    j_vlastni_web: "lekar_web",
+
+
+};
 
 
 
-
-// Funkce pro vytváření radio buttonů podle krajů
 function vypisInfoKraj(layer, feature) {
     const infoElement = document.getElementById('infoKraj');
     if (!infoElement) return;
@@ -1032,48 +1057,62 @@ function vypisInfoKraj(layer, feature) {
                     ${feature.properties.text}
                 </label>
             </div>
-            <div class="links legend-containerKraj"></div>
+             
+            <div class="links"></div>
+            <div class="attributes legend-containerKraj"></div>
+            
         `;
 
         infoElement.appendChild(krajElement);
 
         let radioButton = krajElement.querySelector('input[type="radio"]');
         radioButton.addEventListener('change', () => {
-            const layer = krajLayers[feature.properties.text]; // Získáme vrstvu podle názvu kraje
+            const layer = krajLayers[feature.properties.text];
             if (layer) {
-                highlightPolygon(layer); // Předáme objekt Leaflet vrstvy
+                highlightPolygon(layer);
             }
         });
 
-        radioButton.addEventListener('change', () => zobrazitOdkazy(feature, krajElement));
+        radioButton.addEventListener('change', () => zobrazitOdkazyAtributy(feature, krajElement));
     }
 
     // Uložíme vrstvu pod názvem kraje
     krajLayers[feature.properties.text] = layer;
 
     layer.on('click', () => {
-        zobrazitOdkazy(feature, krajElement);
+        zobrazitOdkazyAtributy(feature, krajElement);
         krajElement.querySelector('input[type="radio"]').checked = true;
         highlightPolygon(layer);
     });
 
-    function zobrazitOdkazy(feature, krajElement) {
-        document.querySelectorAll("#infoKraj .links").forEach(el => el.innerHTML = "");
-    
+    function zobrazitOdkazyAtributy(feature, krajElement) {
+        // Vyčistíme obsah odkazů a atributů
+        document.querySelectorAll("#infoKraj .links, #infoKraj .attributes").forEach(el => el.innerHTML = "");
+
+        // **Vytvoříme HTML pro odkazy**
         let linksHtml = "<ul>";
         for (const [key, dataKey] of Object.entries(linkKeys)) {
             if (feature.properties[key]) {
-                linksHtml += `<li><a href="${feature.properties[key]}" target="_blank" data-key="${dataKey}"></a></li>`;
+                linksHtml += `<li><a href="${feature.properties[key]}" target="_blank" data-key="${dataKey}">${dataKey}</a></li>`;
             }
         }
         linksHtml += "</ul>";
-    
         krajElement.querySelector(".links").innerHTML = linksHtml;
-        changeLanguage(window.currentLanguage || "cs"); // Aby se hned přeložilo
-    }
-    
-}
 
+        // **Vytvoříme HTML pro atributy** na základě `attributeKeys`
+        let attributesHtml = "<ul>";
+        for (const [key, dataKey] of Object.entries(attributeKeys)) {
+            if (feature.properties[key]) {
+                attributesHtml += `<li><span data-key="${dataKey}">${dataKey}</span> ${feature.properties[key]}</li>`;
+            }
+        }
+        attributesHtml += "</ul>";
+        krajElement.querySelector(".attributes").innerHTML = attributesHtml;
+
+        // Přeložíme texty
+        changeLanguage(window.currentLanguage || "cs");
+    }
+}
 // Inicializace výchozího radio buttonu při načtení
 document.addEventListener("DOMContentLoaded", initDefaultRadio);
 
@@ -1625,15 +1664,8 @@ checkSidebarState();
 //zlačítko pro zoom na čr/eu
 L.Control.FunctionButton = L.Control.extend({
     onAdd: function(map) {
-        let container = L.DomUtil.create('div', 'leaflet-control');
+        let container = L.DomUtil.create('div', 'leaflet-zoom-container');
        
-
-        // Stylování kontejneru
-        container.style.position = "fixed";
-        container.style.bottom = "168px";
-        container.style.right = "40px";
-        container.style.zIndex = "1000";
-
         // Vytvoření tlačítka
         let button = document.createElement("button");
         button.innerHTML = '<img style="padding-top:4px;" src="img/zoom.svg"></img>';

@@ -102,7 +102,7 @@ const translations = {
         seo_desktop: "SEO desktop",
         seo_mobile: "SEO mobile",
         pocet_kmvs: "Počet Czech POINTŮ na 1000 obyvatel (normalizováno)",
-
+        pocet_kmvs_: "Počet Czech POINTŮ na 1000 obyvatel",
         lekar_online_objednani: "Podíl ordinací, kde se lze přihlásit online k vyšetření",
         lekar_elektronicka_dokumentace: "Podíl ordinací, které vedou zdravotnickou dokumentaci elektronicky",
         lekar_web: "Podíl ordinací, které mají vlastní web",
@@ -280,7 +280,7 @@ const translations = {
         seo_desktop: "SEO Desktop",
         seo_mobile: "SEO Mobile",
         pocet_kmvs: "Number of Czech POINTs per 1,000 inhabitants (normalized)",
-
+        pocet_kmvs_: "Number of Czech POINTs per 1,000 inhabitants",
         lekar_online_objednani: "Share of clinics where online appointment booking is available",
         lekar_elektronicka_dokumentace: "Share of clinics that maintain electronic medical records",
         lekar_web: "Share of clinics that have their own website",
@@ -456,7 +456,7 @@ const translations = {
         seo_desktop: "SEO для настільних пристроїв",
         seo_mobile: "SEO для мобільних пристроїв",
         pocet_kmvs: "Кількість Czech POINT на 1 000 жителів (нормалізовано)",
-
+        pocet_kmvs_: "Кількість Czech POINT на 1 000 жителів",
         lekar_online_objednani: "Частка клінік, де доступне онлайн-запис на прийом",
         lekar_elektronicka_dokumentace: "Частка клінік, що ведуть медичну документацію в електронному вигляді",
         lekar_web: "Частка клінік, що мають власний веб-сайт",

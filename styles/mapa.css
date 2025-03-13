@@ -9,6 +9,7 @@
 html, body {
     height: 100%;
     margin: 0;
+    min-height:500px;
 }
 
 .leaflet-container{
@@ -32,6 +33,7 @@ html, body, #map {
 
 #map {
     background:#E7E7E7;
+    position:relative;
 }
 
 p, li {
@@ -563,6 +565,13 @@ h3.expandable {
     box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
     margin: 0; /* Odstraní margin */
 
+}
+
+.leaflet-zoom-container{
+    position: fixed;
+    bottom: 165px;
+    right: 40px;
+    z-index: 1000;
 }
 
 .control-button {
