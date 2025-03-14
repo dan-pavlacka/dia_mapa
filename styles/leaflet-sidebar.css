@@ -191,8 +191,8 @@
         padding: 0 20px;
         line-height: 55px;
         font-size: 14.4pt;
-        color: #2362a2;
-        background-color: #E5EEF9;
+        color: var(--sidebar-header-color);
+        background-color: var(--secondary-color);
         z-index: 1000; /* Nastaví vysoce prioritu pro zobrazení */
         cursor:pointer;
       }

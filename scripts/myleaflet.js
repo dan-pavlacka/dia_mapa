@@ -117,7 +117,8 @@ function zoomEU(){
 		format: 'image/png', // Formát dat
 		transparent: true, // Průhledné pozadí
 		version: '1.3.0', // Verze WMS
-		crs: L.CRS.EPSG3857 // Souřadnicový systém (např. EPSG:3857)
+		crs: L.CRS.EPSG3857, // Souřadnicový systém (např. EPSG:3857)
+        attribution: '&copy; <a href="https://geoportal.cuzk.cz/Dokumenty/Podminky.pdf">Zeměměřičský úřad</a>'
 	  });
 
 //definování barevných stupnic pro kartogramy	
@@ -573,6 +574,8 @@ function vypisPopupuDESI(feature, layer) {
             layer.setPopupContent(updatePopupContent(newLang));
         }
     });
+
+    
 
     layer.on('click', function() {
         highlightPolygon(layer);
@@ -1393,7 +1396,7 @@ L.Control.LinkButton = L.Control.extend({
         let button = document.createElement("button");
         button.innerHTML = "Portál kompetenčních center";
         button.style.backgroundColor = "white"; // Modrá barva
-        button.style.color = "#2362a2"; // Bílý text
+        button.style.color = "#368537"; // Bílý text
         button.style.border = "2px solid #E7E7E7";
         button.style.cursor = "pointer";
         button.style.margin = "0px";
