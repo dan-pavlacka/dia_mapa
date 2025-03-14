@@ -1,7 +1,8 @@
 :root{
 	--primary-color: #368537; /*color: var(--primary-color)*/
 	--secondary-color: #E8F5E4; /*color: var(--secondary-color)*/
-	--nadpisy-legenda-color: #2A6B2D;	
-	--sidebar-header-color: #4F4F4F; /*color: var(--sidebar-header-color)*/
-	--url: #1E5086; /*color: var(--url)*/
+	--nadpisy-legenda-color: #2E2D2C;	/*color: var(--nadpisy-legenda-color)*/
+	--sidebar-header-color: #368537; /*color: var(--sidebar-background-color)*/
+	--sidebar-background-color: #FFFFFF;
+	--url: #368537; /*color: var(--url)*/
 }

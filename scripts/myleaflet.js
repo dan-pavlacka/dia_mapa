@@ -1,3 +1,6 @@
+
+
+
 //zoomlevel podle šířky monitoru
 let zoomLev;
 
@@ -124,9 +127,9 @@ function zoomEU(){
 //definování barevných stupnic pro kartogramy	
 	function getColorModra(d) {
 		return 	d >= 75 ? 	'#2362a2':
-				d >= 60 ? 	'#599bd7':
-				d >= 45 ? 	'#93bde6':
-				d < 45  ? 	'#c5dbf2':
+				d >= 50 ? 	'#599bd7':
+				d >= 25 ? 	'#93bde6':
+				d < 255  ? 	'#c5dbf2':
 							'#c5dbf2';
 	};	
 
@@ -139,11 +142,11 @@ function zoomEU(){
 	};
 
 	function getColorZelena(d) {
-		return 	d >= 75 ? 	'#008040':
-				d >= 50 ? 	'#499861':
-				d >= 25 ? 	'#82B78F':
-				d < 25 ? 	'#B2D3B9':
-							'#B2D3B9';
+		return 	d >= 75 ? 	'#125600':
+				d >= 60 ? 	'#368537':
+				d >= 45 ? 	'#a2d893':
+				d < 45 ? 	'#e8f5e4':
+							'#e8f5e4';
 	};
 
 	function getColorFialova(d) {
@@ -184,7 +187,7 @@ function zoomEU(){
 //definování stylů polygonových vrstev a příslušných atributů
 function indexDigitalizace(feature) {
 	return {
-		fillColor: getColorModra(feature.properties.j_index_digitalizace),
+		fillColor: getColorZelena(feature.properties.j_index_digitalizace),
 		weight: 2,
 		opacity: 1,
 		color: 'white',
@@ -224,7 +227,7 @@ function indexDigitalizace(feature) {
 
 	function indexDovednosti(feature) {
 		return {
-			fillColor: getColorZelena(feature.properties.j_subindex_dovednost),
+			fillColor: getColorModra(feature.properties.j_subindex_dovednost),
 			weight: 2,
 			opacity: 1,
 			color: 'white',
@@ -609,10 +612,10 @@ function generateLegend(getColorFunction, legendName, grades, min) {
 
 
 //definice legend
-const legendModra = generateLegend(getColorModra, "legendModra", [75, 60, 45, 44],"45");
+const legendZelena = generateLegend(getColorZelena, "legendZelena", [75, 60, 45, 44],"45");
 const legendFialova = generateLegend(getColorFialova, "legendFialova", [75, 60, 45, 44],"45");
 const legendOranzova = generateLegend(getColorOranzova, "legendOranzova", [85, 70, 55, 54],"55");
-const legendZelena = generateLegend(getColorZelena, "legendZelena", [75, 50, 25, 24],"25");
+const legendModra = generateLegend(getColorModra, "legendModra", [75, 50, 25, 24],"25");
 const legendVinova = generateLegend(getColorVinova, "legendVinova", [65, 60, 55, 50, 49],"50");
 const legendCervena = generateLegend(getColorCervena, "legendCervena", [90, 85, 80, 75, 74], "75");
 const legendHneda = generateLegend(getColorHneda, "legendHneda", [95, 90, 85, 84],"85");
@@ -637,7 +640,7 @@ let krajAktivni = true;
 
 //zobrazení legendy výchozí vrstvy 
 let legendContainer = document.getElementById('legenda1');
-legendContainer.innerHTML = legendModra;
+legendContainer.innerHTML = legendZelena;
 
 //ovládání legendy a vrstev indexů
 let desi = null;
@@ -1396,7 +1399,7 @@ L.Control.LinkButton = L.Control.extend({
         let button = document.createElement("button");
         button.innerHTML = "Portál kompetenčních center";
         button.style.backgroundColor = "white"; // Modrá barva
-        button.style.color = "#368537"; // Bílý text
+        button.style.color = "#2E2D2C"; // Bílý text
         button.style.border = "2px solid #E7E7E7";
         button.style.cursor = "pointer";
         button.style.margin = "0px";
@@ -1574,6 +1577,9 @@ function exportMapToPDF(map) {
                 compress: true, // Komprese pro lepší kvalitu
                 dpi: 600 // Zvýší rozlišení // Přidáme místo pro titulek
             });
+
+
+            
 
             // Přidání titulku
             pdf.setFont("times", "bold");

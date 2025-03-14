@@ -51,8 +51,8 @@
 			<!-- Nav tabs -->
 			<div class="sidebar-tabs">
 				<ul role="tablist">
-					<li>
-						<a href="#legenda" role="tab" style="background-color: var(--secondary-color); padding-top:0px;" onclick="setScrollableHeight()">	
+					<li  class="info-texty">
+						<a href="#legenda" role="tab" style="background-color: var(--sidebar-background-color); padding-top:0px;" onclick="setScrollableHeight()">	
 						<img src="img/logo_lev.svg" alt="Menu Icon" class="menu-icon-lev">
 					</a>
 					</li>
@@ -194,7 +194,7 @@
 					
 					<div id="Vdigitalizace">
 
-					<div class="radio-container"><input  class="radio" type="radio" id="vrstva1" name="vrsKraj" onclick="addlay(indexDigitalizace, 'legenda1', legendModra, 1,null)" checked>
+					<div class="radio-container"><input  class="radio" type="radio" id="vrstva1" name="vrsKraj" onclick="addlay(indexDigitalizace, 'legenda1', legendZelena, 1,null)" checked>
 						<label for="vrstva1" class="tooltip tooltip-right-dlouhy" data-tooltip="" data-tooltip-key="celkovy_index_tooltip" data-key="index_digitalizace"></label> 
 					</div>
 						<div id="legenda1" class="legend-containerKraj"></div>
@@ -214,7 +214,7 @@
 					</div>		
 						<div id="legenda6" class="legend-containerKraj"></div>
 
-					<div class="radio-container"><input class="radio" type="radio" id="vrstva5" name="vrsKraj" onclick="addlay(indexDovednosti, 'legenda3', legendZelena, 1,null)">
+					<div class="radio-container"><input class="radio" type="radio" id="vrstva5" name="vrsKraj" onclick="addlay(indexDovednosti, 'legenda3', legendModra, 1,null)">
 						<label for="vrstva5" class="tooltip tooltip-right-dlouhy" data-tooltip="" data-tooltip-key="index_dovednost_tooltip" data-key="sub_dovednosti"></label>				
 					</div>
 						<div id="legenda3" class="legend-containerKraj"></div>

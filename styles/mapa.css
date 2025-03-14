@@ -71,7 +71,7 @@ p, li {
     /* or 18px */
     letter-spacing: 0.2px;
     
-    color: #4F4F4F;
+    color: var(--url);
 
 }
 
@@ -165,7 +165,7 @@ h4{
     height: 26px;
     display: inline-block;
     padding:5px;
-    background-color: var(--secondary-color);
+    background-color: var(--sidebar-background-color);
 
 }
 
@@ -424,9 +424,9 @@ letter-spacing: 0.2px;
     padding: 4px 8px;
     gap: 6px;
     height: 24px;
-    border: 1px solid var(--nadpisy-legenda-color);
+    border: 1px solid var(--primary-color);
     border-radius: 8px;
-    color: var(--nadpisy-legenda-color);
+    color: var(--primary-color);
     /* Inside auto layout */
     flex: none;
     order: 0;
@@ -535,7 +535,7 @@ h3.expandable {
     margin: 0 0;
     width: 100%;
     background-color: #fff; /* Barva tlačítek */
-    color: var(--primary-color);
+    color: var(--nadpisy-legenda-color);
     border: none;
     padding: 10px 12px 10px 12px;
     font-size: 12px;
@@ -590,7 +590,7 @@ h3.expandable {
 
 .map-layer-menu button.active {
     background-color: var(--secondary-color); /* Barva tlačítka při aktivní vrstvě */
-    color: var(--primary-color); /* Barva textu */
+    color: var(--nadpisy-legenda-color); /* Barva textu */
 }
 
 /* Efekt pro hlavní tlačítko, když je aktivní (tlačítka 1, 2, 3 jsou zobrazená) */
@@ -742,7 +742,7 @@ h3.expandable {
     padding-right:10px;
 }
 
-.legend-containerKraj, .legend-container2, .legend-containerEU, .legend-body, .info-texty{
+.legend-containerKraj, .legend-container2, .legend-containerEU, .legend-body, .info-texty, .sidebar-header{
 
     border-bottom: 1px solid #E7E7E7;
 }
@@ -760,7 +760,7 @@ h3.expandable {
     left: 64px;
     width: 26px;
     height: 56px;
-    background: var(--secondary-color);
+    background: var(--sidebar-background-color);
     border-radius: 0 8px 8px 0;
     display: flex;
     cursor: pointer;

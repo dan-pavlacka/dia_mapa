@@ -192,7 +192,7 @@
         line-height: 55px;
         font-size: 14.4pt;
         color: var(--sidebar-header-color);
-        background-color: var(--secondary-color);
+        background-color: var(--sidebar-background-color);
         z-index: 1000; /* Nastaví vysoce prioritu pro zobrazení */
         cursor:pointer;
       }
