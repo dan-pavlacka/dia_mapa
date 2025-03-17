@@ -5,7 +5,12 @@
     font-style: normal; 
 }
 
-
+@font-face {
+    font-family: 'AzeretMono'; 
+    src: url('../fonts/Azeret_Mono/AzeretMono-VariableFont_wght.ttf') format('truetype'); 
+    font-weight: normal; 
+    font-style: normal; 
+}
 
 html, body {
     height: 100%;
@@ -92,15 +97,19 @@ p, li {
   }
 
 h1{
-    font-family: 'Roboto';
+    font-family: 'AzeretMono';
     font-style: normal;
-    font-weight: 800;
-    font-size: 18px;
+    font-weight: 400;
+    font-size: 15.6px !important;
     line-height: 150%;
     /* identical to box height, or 27px */
-    letter-spacing: 0.0125em;
+    letter-spacing: -0.003em;
     
     color: var(--nadpisy-legenda-color); 
+}
+
+.underscore{
+    color: var(--primary-color)
 }
 
 h2{
@@ -161,8 +170,8 @@ h4{
 
 .menu-icon-lev{
     margin-top:6px;
-    width: 26px;
-    height: 26px;
+    width: 42px;
+    height: 33px;
     display: inline-block;
     padding:5px;
     background-color: var(--sidebar-background-color);
@@ -747,6 +756,33 @@ h3.expandable {
     border-bottom: 1px solid #E7E7E7;
 }
 
+.dia_ikona {
+    border-bottom: 1px solid #E7E7E7;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.dia_ikona::after {
+    content: "";
+    position: absolute;
+    top: 10px; /* začíná 10px od hora */
+    height: 36.6px; /* přesná výška v pixelech */
+    width: 2px;
+    right: 0;
+    background-color: var(--primary-color);
+}
+
+
+.dia_ikona::after {
+    content: "";
+    position: absolute;
+    top: 10px; /* Odsazení 10px od hora */
+    bottom: 10px; /* Odsazení 10px od spoda */
+    right: 0;
+    width: 2px; /* Šířka okraje */
+    background-color: var(--primary-color); /* Barva okraje */
+}
+
 .info-texty-popup{
     margin-top: 10px;
     margin-bottom:7px;
@@ -759,7 +795,7 @@ h3.expandable {
     top: 0px;
     left: 64px;
     width: 26px;
-    height: 56px;
+    height: 55.5px;
     background: var(--sidebar-background-color);
     border-radius: 0 8px 8px 0;
     display: flex;

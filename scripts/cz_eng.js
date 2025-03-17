@@ -1,7 +1,7 @@
 const translations = {
     cs: {
         title: "KPC | Mapa digitalizace",
-        sidebar_header: "Index digitalizace", 
+        sidebar_header: "Prostorová data", 
         pane1_icon_tooltip: "Index digitalizace",
         pane2_icon_tooltip: "Vrstvy EU",
         pane3_icon_tooltip: "Informace o kraji",
@@ -14,9 +14,21 @@ const translations = {
         pane3_sticky: "Zde naleznete doplňující odkazy informace k jednotlivým krajům. Pro zobrazení informací ke konkrétnímu kraji klikněte v mapě na kraj nebo vyberte z nabídky níže.",
         pane4_sticky: "Indexy digitalizace pro kraje ČR byly navrženy na základě evropského indexu DESI.",
         pane5_sticky: "Zde je možné exportovat mapu do pdf. Rozměr pdf a obsah mapy bude přizpůsoben vašemu aktuálnímu pohledu na mapu.",
-        pane6_sticky: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.", //lorem ipsum v informacích o aplikaci
+        
+        pane6_sticky: "Zobrazení míry digitalizace České republiky na interaktivní mapě.", //lorem ipsum v informacích o aplikaci
         jak_pracovat: "Jak s aplikací pracovat",
-        jak_pracovat_text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.", //lorem ipsum v informacích o aplikaci
+        jak_pracovat_text: "Tato aplikace umožňuje snadné zobrazení míry digitalizace a dalších relevantních dat. Uživatelé si mohou zobrazit konkrétní informace dvěma způsoby:", //lorem ipsum v informacích o aplikaci
+        vyberem_parametru: "Výběrem parametru",
+        vyberem_parametru_text: " – Pomocí filtrů si zvolte požadovaný ukazatel a zobrazte odpovídající data.",
+        kliknutim_do_mapy: "Kliknutím do mapy",
+        kliknutim_do_mapy_text: " – Kliknutím na konkrétní oblast získáte podrobnosti o digitalizaci a souvisejících ukazatelích.",
+        o_aplikaci: "O aplikaci",
+        o_aplikaci_text: "Vytvořeno v rámci projektu ROPIM – Reforma pro optimalizaci, implementaci a metodické řízení digitalizovaných služeb vč. jejich kapacitního plánování a komunikaci informací klientům veřejné správy, financovaného Evropskou unií NextGeneration.",
+        cislo_projektu: "Reg. č.: CZ.31.5.0/0.0/0.0/23_106/0008503",
+        dia: "2024 © Digitální a informační agentura",
+        paticka_text1: "Informace jsou poskytovány v souladu se zákonem č. 106/1999 Sb., o svobodném přístupu k informacím.",
+        paticka_text2: "Verze 2.0.2105.9856 | Využit Design system 4.2",
+
         pane1_h2:"Mapa digitalizace ČR",
         pane2_h2:"Mapa digitalizace EU",
         pane3_h2:"Informace o krajích",
@@ -189,7 +201,7 @@ const translations = {
 
     en: {
         title: "KPC | Digitalization Map",
-        sidebar_header: "Digitalisation index", 
+        sidebar_header: "Spatial data", 
         pane1_icon_tooltip: "Digitalisation index",
         pane2_icon_tooltip: "EU layers",
         pane3_icon_tooltip: "Information about the region",
@@ -202,9 +214,20 @@ const translations = {
         pane3_sticky: "Here you will find additional links and information for individual regions. To view information for a specific region, click on the region on the map or select it from the menu below.",
         pane4_sticky: "The digitalisation indices for the regions of the Czech Republic were designed on the basis of the European DESI index.",
         pane5_sticky: "Here you can export the map to pdf. The size of the pdf and the content of the map will be adapted to your current view of the map.",
-        pane6_sticky: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.", //lorem ipsum v informacích o aplikaci
-        jak_pracovat: "How to work with the application",
-        jak_pracovat_text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.", //lorem ipsum v informacích o aplikaci
+        pane6_sticky: "Displaying the level of digitization of the Czech Republic on an interactive map.",
+        jak_pracovat: "How to use the application",
+        jak_pracovat_text: "This application allows easy display of the level of digitization and other relevant data. Users can access specific information in two ways:",
+        vyberem_parametru: "By selecting a parameter",
+        vyberem_parametru_text: " – Use filters to choose the desired indicator and display the corresponding data.",
+        kliknutim_do_mapy: "By clicking on the map",
+        kliknutim_do_mapy_text: " – Click on a specific area to get details about digitization and related indicators.",
+        o_aplikaci: "About the application",
+        o_aplikaci_text: "Created as part of the ROPIM project – Reform for Optimization, Implementation, and Methodological Management of Digitalized Services, including their capacity planning and communication of information to public administration clients, funded by the European Union NextGeneration.",
+        cislo_projektu: "Reg. No.: CZ.31.5.0/0.0/0.0/23_106/0008503",
+        dia: "2024 © Digital and Information Agency",
+        paticka_text1: "Information is provided in accordance with Act No. 106/1999 Coll., on free access to information.",
+        paticka_text2: "Version 2.0.2105.9856 | Using Design System 4.2",
+
         pane1_h2:"Map of digitalisation of the Czech Republic",
         pane2_h2:"Map of EU digitalisation",
         pane3_h2:"Information about the regions",
@@ -365,7 +388,7 @@ const translations = {
 
     ua: {
         title: "KPC | Карта цифровізації",
-        sidebar_header: "Індекс цифровізації",
+        sidebar_header: "Просторові дані",
         pane1_icon_tooltip: "Індекс цифровізації",
         pane2_icon_tooltip: "Шари ЄС",
         pane3_icon_tooltip: "Інформація про область",
@@ -378,9 +401,20 @@ const translations = {
         pane3_sticky: "Тут ви знайдете додаткові посилання та інформацію про окремі регіони. Щоб переглянути інформацію про конкретний регіон, натисніть на нього на карті або виберіть зі списку нижче.",
         pane4_sticky: "Індекси цифровізації для областей Чеської Республіки були розроблені на основі європейського індексу DESI.",
         pane5_sticky: "Тут можна експортувати карту у формат PDF. Розмір PDF і вміст карти буде адаптовано до вашого поточного перегляду карти.",
-        pane6_sticky: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.",
-        jak_pracovat: "Як працювати із застосунком",
-        jak_pracovat_text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.",
+        pane6_sticky: "Відображення рівня цифровізації Чехії на інтерактивній карті.",
+        jak_pracovat: "Як користуватися додатком",
+        jak_pracovat_text: "Цей додаток дозволяє легко відображати рівень цифровізації та інші відповідні дані. Користувачі можуть отримати конкретну інформацію двома способами:",
+        vyberem_parametru: "Вибором параметра",
+        vyberem_parametru_text: " – Використовуйте фільтри для вибору бажаного показника та відображення відповідних даних.",
+        kliknutim_do_mapy: "Натисканням на карту",
+        kliknutim_do_mapy_text: " – Натисніть на конкретну область, щоб отримати детальну інформацію про цифровізацію та пов'язані показники.",
+        o_aplikaci: "Про додаток",
+        o_aplikaci_text: "Створено в рамках проєкту ROPIM – Реформа для оптимізації, впровадження та методологічного управління цифровими послугами, включаючи їхнє планування потужностей та комунікацію інформації клієнтам державного управління, фінансованого Європейським Союзом NextGeneration.",
+        cislo_projektu: "Реєстр. №: CZ.31.5.0/0.0/0.0/23_106/0008503",
+        dia: "2024 © Агенція цифрової та інформаційної політики",
+        paticka_text1: "Інформація надається відповідно до Закону № 106/1999 Зб., про вільний доступ до інформації.",
+        paticka_text2: "Версія 2.0.2105.9856 | Використовується Design System 4.2",
+
         pane1_h2:"Карта цифровізації ЧР",
         pane2_h2:"Карта цифровізації ЄС",
         pane3_h2:"Інформація про області",

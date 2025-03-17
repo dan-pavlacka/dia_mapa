@@ -187,7 +187,8 @@
         position: sticky;
         top: 0;
         margin: -10px -20px 0;
-        height: 56px;
+        height: 55.2px !important;
+ 
         padding: 0 20px;
         line-height: 55px;
         font-size: 14.4pt;

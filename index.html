@@ -51,7 +51,7 @@
 			<!-- Nav tabs -->
 			<div class="sidebar-tabs">
 				<ul role="tablist">
-					<li  class="info-texty">
+					<li  class="dia_ikona">
 						<a href="#legenda" role="tab" style="background-color: var(--sidebar-background-color); padding-top:0px;" onclick="setScrollableHeight()">	
 						<img src="img/logo_lev.svg" alt="Menu Icon" class="menu-icon-lev">
 					</a>
@@ -151,7 +151,7 @@
 			
 	
 				<div class="sidebar-pane" id="legenda">
-					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
+					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="underscore">_</span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
 					<h2 style="margin-top: 0;" data-key="pane1_h2"></h2>
 					<p class="p-gray"><span data-key="pane1_sticky"></span> <a href="javascript:void(0)" data-key="vic_info" onclick="sidebar.open('infoIndexy'), setScrollableHeight()"></a></p>
@@ -299,7 +299,7 @@
 			</div>
 
 			<div class="sidebar-pane" id="eu">
-				<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
+				<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="underscore">_</span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 			
 				<div class="sidebar-sticky" style="margin-bottom:10px;">
 					<h2 style="margin-top: 0;" data-key="pane2_h2"></h2>
@@ -384,7 +384,7 @@
 
 		<!--informace o krajích-->
 				<div class="sidebar-pane" id="sluzby">
-					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
+					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="underscore">_</span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
 						<h2 style="margin-top: 0;" data-key="pane3_h2"></h2>
 						<p class="p-gray" data-key="pane3_sticky"></p>
@@ -404,7 +404,7 @@
 
 			<!--informace o indexech-->
 				<div class="sidebar-pane" id="infoIndexy">
-					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
+					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="underscore">_</span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 					
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
 						<h2 style="margin-top: 0;" data-key="pane4_h2"></h2>
@@ -567,7 +567,7 @@
 
 				<div class="sidebar-pane" id="export">
 					
-					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
+					<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="underscore">_</span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
 						<h2 style="margin-top: 0;" data-key="pane5_h2_stahnout_mapu"></h2>
 						<p class="p-gray" data-key="pane5_sticky"></p>
@@ -593,19 +593,42 @@
 
 				
 					<div class="sidebar-pane" id="info">
-						<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
+						<h1 class="sidebar-header" onclick="sidebar.close()"><span data-key="sidebar_header"></span><span class="underscore">_</span><span class="sidebar-close"><img src="img/left_arrowBlue.svg" alt="Menu Icon" class="menu-icon-arrow"></span></h1>
 					<div class="sidebar-sticky" style="margin-bottom:10px;">
 						<h2 style="margin-top: 0;" data-key="pane6_h2"></h2>
 						<p class="p-gray" data-key="pane6_sticky"></p>
 					</div>
 					
-					
-					<div class="sidebar-sticky" style="margin-bottom:10px;">
-						<h4 style="margin-top: 0;" data-key="jak_pracovat"></h4>
-						<p class="p-gray" data-key="jak_pracovat_text"></p>
-					</div>
 					<div class="scrollable">
+					<div class="" style="margin-bottom:10px;">
+						<h3 style="margin-top: 10px;" data-key="jak_pracovat"></h4>
+						<p class="p-gray" data-key="jak_pracovat_text"></p>
+						<div class="info-texty">
+							<ol>
+							<li><b data-key="vyberem_parametru"></b><span data-key="vyberem_parametru_text"></span></li>
+							<li><b data-key="kliknutim_do_mapy"></b><span data-key="kliknutim_do_mapy_text"></span></li>
+							</ol>
+						</div>
+						
+						<div class="info-texty" style="margin-bottom:10px;">
+						<h3 style="margin-top: 10px;" data-key="o_aplikaci"></h4>
+						<p class="p-gray" data-key="o_aplikaci_text"></p>
+						<p class="p-gray" data-key="cislo_projektu"></p>
+						<img src="img/paticka_loga.png" alt="Loga" style="width:350px; margin-top:10px; margin-bottom:10px;">
+
 					</div>
+					<div>
+					<p data-key="dia"></p>
+					<p data-key="paticka_text1"></p>
+					<p data-key="paticka_text2"></p>
+					</div>
+
+
+				</div>
+				</div>
+					</div>
+				
+				
 				</div>
 			
 		</div>

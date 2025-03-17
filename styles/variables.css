@@ -2,7 +2,7 @@
 	--primary-color: #368537; /*color: var(--primary-color)*/
 	--secondary-color: #E8F5E4; /*color: var(--secondary-color)*/
 	--nadpisy-legenda-color: #2E2D2C;	/*color: var(--nadpisy-legenda-color)*/
-	--sidebar-header-color: #368537; /*color: var(--sidebar-background-color)*/
-	--sidebar-background-color: #FFFFFF;
+	--sidebar-header-color: #2E2D2C; /*color: var(--sidebar-header-color)*/
+	--sidebar-background-color: #FFFFFF; /* color: var(--sidebar-background-color)*/
 	--url: #368537; /*color: var(--url)*/
 }
