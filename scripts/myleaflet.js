@@ -1,8 +1,7 @@
-
-
-
 //zoomlevel podle šířky monitoru
 let zoomLev;
+
+
 
 //výpočet výšky scrollable části v sidebaru
 let viewportHeight;
@@ -13,11 +12,8 @@ function setScrollableHeight() {
     setTimeout(() => {
     activeSidebar = document.querySelector('.sidebar-pane.active');
     scrollableHeightSize()
-    },30);
-
-    
+    },30);    
 }
-
 
 function scrollableHeightSize(){
     if (activeSidebar) {
@@ -43,13 +39,26 @@ function scrollableHeightSize(){
 window.addEventListener('resize', setScrollableHeight);
 window.addEventListener('load', setScrollableHeight);
 
-
-
-
-if (window.innerWidth > 1800) {
-    zoomLev = 9;
-} else {
+if (window.innerWidth < 400) {
+    zoomLev = 6;
+} else if (window.innerWidth < 700) {
+    zoomLev = 6.75;
+} else if (window.innerWidth < 1000) {
+    zoomLev = 7.25;
+} else if (window.innerWidth < 1300) {
+    zoomLev = 7.5;
+} else if (window.innerWidth < 1300) {
+    zoomLev = 7.75;
+} else if (window.innerWidth < 1600) {
     zoomLev = 8;
+} else if (window.innerWidth < 1900) {
+    zoomLev = 8.25;
+} else if (window.innerWidth < 2200) {
+    zoomLev = 8.5;
+} else if (window.innerWidth < 2500) {
+    zoomLev = 8.75;
+} else {
+    zoomLev = 9
 };
 
 let bounds = [
@@ -57,11 +66,12 @@ let bounds = [
     [71.5, 45]    // Severovýchodní roh (NEE)
 ];
 
+
+
+
+
+
 //jiný zoom podle aktuálního zoom levelu
-
-
-
-
 
 
 
@@ -77,7 +87,7 @@ const map = L.map('map',{   minZoom:4,
                             maxBounds: bounds, // Omezení na dané souřadnice
                             maxBoundsViscosity: 1.0, // Určuje "sílu" omezení (1 = nikdy nepřeskočí)
                             zoomControl: false
-                        }).setView([49.8, 14.85],zoomLev);
+                        }).setView([49.8, 15.1],zoomLev);
 
 map.options.wheelPxPerZoomLevel = 150;  // jinak nefunguje zoomSnap
 //měřítko
@@ -1705,3 +1715,12 @@ let controlZoomButton = new L.Control.FunctionButton({});
 controlZoomButton.addTo(map);
 
 
+
+//testování šířky a zoomlevelu
+map.on('zoomend', function() {
+    console.log("Aktuální zoom level:", map.getZoom());
+});
+
+window.addEventListener('resize', function() {
+    console.log("Změna velikosti okna - šířka (px):", window.innerWidth);
+});
