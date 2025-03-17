@@ -56,9 +56,9 @@ if (window.innerWidth < 400) {
 } else if (window.innerWidth < 2200) {
     zoomLev = 8.5;
 } else if (window.innerWidth < 2500) {
-    zoomLev = 8.75;
-} else {
-    zoomLev = 9
+    zoomLev = 8.75
+} else if (window.innerWidth >= 2500) {
+    zoomLev = 8.75
 };
 
 let bounds = [
