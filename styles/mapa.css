@@ -15,7 +15,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    min-height:500px;
+    min-height:400px;
 }
 
 .leaflet-container{
@@ -768,7 +768,7 @@ h3.expandable {
 /*sticky části pod sidebar-headerem*/
 .sidebar-sticky{
     position:sticky;
-    top:56px;
+   
     background-color:white;
     z-index:200000;
     padding-top:16.6px;

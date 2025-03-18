@@ -26,8 +26,8 @@ function scrollableHeightSize(){
             
             
             
-            if (viewportHeight < 500){
-                adjustedHeight = 500 - 56 - sidebarStickyHeight - 15; //aby se nepřekrývaly ikony při malé výšce okna
+            if (viewportHeight <= 400){
+                adjustedHeight = 400 - 56 - sidebarStickyHeight - 15; //aby se nepřekrývaly ikony při malé výšce okna
             } else {
                 adjustedHeight = viewportHeight - 56 - sidebarStickyHeight - 15;
             };
@@ -92,7 +92,7 @@ let bounds = [
 
 
 //definice mapy, výchozí bod, a omezení zoom levelu
-const map = L.map('map',{   minZoom:2, 
+const map = L.map('map',{   minZoom:3, 
                             maxZoom:14,
                             zoomSnap:0.25, //jemnější zoom pro kolečko myši
                             zoomDelta:0.25,   //jemnější zoom pro +-
@@ -131,15 +131,15 @@ function zoomCR(){
 
 function zoomEU(){
     if (window.innerWidth < 400) {
-        zoomLev = 2;
-    } else if (window.innerWidth < 700) {
         zoomLev = 3;
-    } else if (window.innerWidth < 1000) {
+    } else if (window.innerWidth < 700) {
         zoomLev = 3.5;
+    } else if (window.innerWidth < 1000) {
+        zoomLev = 4;
     } else if (window.innerWidth < 1300) {
         zoomLev = 4;
     } else if (window.innerWidth < 1600) {
-        zoomLev = 4.5;
+        zoomLev = 4.25;
     } else if (window.innerWidth < 1900) {
         zoomLev = 4.5;
     } else if (window.innerWidth < 2200) {
@@ -1766,7 +1766,8 @@ let controlZoomButton = new L.Control.FunctionButton({
 controlZoomButton.addTo(map);
 
 //testování šířky a zoomlevelu
-/*
+
+
 map.on('zoomend', function() {
     console.log("Aktuální zoom level:", map.getZoom());
 });
@@ -1774,4 +1775,3 @@ map.on('zoomend', function() {
 window.addEventListener('resize', function() {
     console.log("Změna velikosti okna - šířka (px):", window.innerWidth);
 });
-*/
