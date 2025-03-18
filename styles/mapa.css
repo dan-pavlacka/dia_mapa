@@ -840,10 +840,10 @@ h3.expandable {
     text-align: left; /* Celkově zarovnané doleva */
 }
 
-.popup-row {
+.popup-row, .popup-row-index {
     display: flex;
     align-items: center; /* Vertikální zarovnání ikon a textu */
-    gap: 8px; /* Mezera mezi ikonou a textem */
+     /* Mezera mezi ikonou a textem */
     justify-content: left; /* Zarovnání ikon a textu doleva */
     margin-bottom: 3px;
 
@@ -856,6 +856,14 @@ h3.expandable {
     letter-spacing: 0.2px;
 
     color: #4F4F4F;
+}
+
+.popup-row{
+    gap: 8px;
+}
+
+.popup-row-index{
+    gap:4px;
 }
 
 .popup-icon {
@@ -874,6 +882,37 @@ h3.expandable {
 .popup-title h4 {
     margin: 0;
 }
+
+
+.popup-hours-table {
+    padding-left: 21px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 110%;
+    /* identical to box height, or 18px */
+    letter-spacing: 0.2px;
+
+
+}
+
+.popup-hours-table td {
+    padding: 0px 0;
+}
+
+.day-name {
+
+    text-align: left;
+}
+
+.hours-value {
+
+    text-align: left;
+}
+
+
+
 
 .popup-hours {
     text-align: left; /* Zarovná úřední hodiny doleva */

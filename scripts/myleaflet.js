@@ -514,11 +514,11 @@ function vypisPopupuSluzba(feature, layer) {
 
         if (krajAktivni) {
             popupContent += `<h3 class="info-texty-popup"><span data-key="index_digitalizace_">${translations[lang]["index_digitalizace_"]}</span> ${Math.round(feature.properties.j_index_digitalizace)}</h3>
-        <div class="popup-row"><span data-key="sub_portaly_">${translations[lang]["sub_portaly_"]}</span>${Math.round(feature.properties.j_subindex_portaly)}</div>
-        <div class="popup-row"><span data-key="sub_pristupnost_">${translations[lang]["sub_pristupnost_"]}</span>${Math.round(feature.properties.j_subindex_pristupnost)}</div>
-        <div class="popup-row"><span data-key="sub_sluzby_">${translations[lang]["sub_sluzby_"]}</span>${Math.round(feature.properties.j_subindex_sluzby)}</div>
-        <div class="popup-row"><span data-key="sub_dovednosti_">${translations[lang]["sub_dovednosti_"]}</span>${Math.round(feature.properties.j_subindex_dovednost)}</div>
-        <div class="popup-row"><span data-key="sub_infrastruktura_">${translations[lang]["sub_infrastruktura_"]}</span>${Math.round(feature.properties.j_subindex_infrastruktura)}</div>
+        <div class="popup-row-index"><span data-key="sub_portaly_">${translations[lang]["sub_portaly_"]}</span>${Math.round(feature.properties.j_subindex_portaly)}</div>
+        <div class="popup-row-index"><span data-key="sub_pristupnost_">${translations[lang]["sub_pristupnost_"]}</span>${Math.round(feature.properties.j_subindex_pristupnost)}</div>
+        <div class="popup-row-index"><span data-key="sub_sluzby_">${translations[lang]["sub_sluzby_"]}</span>${Math.round(feature.properties.j_subindex_sluzby)}</div>
+        <div class="popup-row-index"><span data-key="sub_dovednosti_">${translations[lang]["sub_dovednosti_"]}</span>${Math.round(feature.properties.j_subindex_dovednost)}</div>
+        <div class="popup-row-index"><span data-key="sub_infrastruktura_">${translations[lang]["sub_infrastruktura_"]}</span>${Math.round(feature.properties.j_subindex_infrastruktura)}</div>
         `
         }
         if (url) {
@@ -595,10 +595,10 @@ function vypisPopupuDESI(feature, layer) {
     function updatePopupContent(lang){
     return `<div class="popup-container"><h2>${feature.properties.j_stat_CZ}</h2>
     <h3 class="info-texty-popup"><span data-key="desi_index_">${translations[lang]["desi_index_"]}</span>${Math.round(feature.properties["j_DESI" + desi])}</h3>
-	<div class="popup-row"><span data-key="lidsky_kapital_">${translations[lang]["lidsky_kapital_"]}</span>${Math.round(feature.properties["j_HC" + desi])}</div>
-    <div class="popup-row"><span data-key="digitalni_infrastruktura_">${translations[lang]["digitalni_infrastruktura_"]}</span>${Math.round(feature.properties["j_CONN" + desi])}</div>
-    <div class="popup-row"><span data-key="konektivita_">${translations[lang]["konektivita_"]}</span>${Math.round(feature.properties["j_DPS" + desi])}</div>
-    <div class="popup-row"><span data-key="integrace_ICT_">${translations[lang]["integrace_ICT_"]}</span>${Math.round(feature.properties["j_IDT" + desi])}</div>
+	<div class="popup-row-index"><span data-key="lidsky_kapital_">${translations[lang]["lidsky_kapital_"]}</span>${Math.round(feature.properties["j_HC" + desi])}</div>
+    <div class="popup-row-index"><span data-key="digitalni_infrastruktura_">${translations[lang]["digitalni_infrastruktura_"]}</span>${Math.round(feature.properties["j_CONN" + desi])}</div>
+    <div class="popup-row-index"><span data-key="konektivita_">${translations[lang]["konektivita_"]}</span>${Math.round(feature.properties["j_DPS" + desi])}</div>
+    <div class="popup-row-index"><span data-key="integrace_ICT_">${translations[lang]["integrace_ICT_"]}</span>${Math.round(feature.properties["j_IDT" + desi])}</div>
     </div>`;
     }
 
@@ -930,11 +930,11 @@ function vypisPopupuIndex(feature, layer) {
     function updatePopupContent(lang) {
         return `<div id="popup-kraj" class="popup-container"><h2>${feature.properties.text}</h2>
         <h3 class="info-texty-popup"><span data-key="index_digitalizace_">${translations[lang]["index_digitalizace_"]}</span> ${Math.round(feature.properties.j_index_digitalizace)}</h3>
-        <div class="popup-row"><span data-key="sub_portaly_">${translations[lang]["sub_portaly_"]}</span>${Math.round(feature.properties.j_subindex_portaly)}</div>
-        <div class="popup-row"><span data-key="sub_pristupnost_">${translations[lang]["sub_pristupnost_"]}</span>${Math.round(feature.properties.j_subindex_pristupnost)}</div>
-        <div class="popup-row"><span data-key="sub_sluzby_">${translations[lang]["sub_sluzby_"]}</span>${Math.round(feature.properties.j_subindex_sluzby)}</div>
-        <div class="popup-row"><span data-key="sub_dovednosti_">${translations[lang]["sub_dovednosti_"]}</span>${Math.round(feature.properties.j_subindex_dovednost)}</div>
-        <div class="popup-row"><span data-key="sub_infrastruktura_">${translations[lang]["sub_infrastruktura_"]}</span>${Math.round(feature.properties.j_subindex_infrastruktura)}</div>
+        <div class="popup-row-index"><span data-key="sub_portaly_">${translations[lang]["sub_portaly_"]}</span>${Math.round(feature.properties.j_subindex_portaly)}</div>
+        <div class="popup-row-index"><span data-key="sub_pristupnost_">${translations[lang]["sub_pristupnost_"]}</span>${Math.round(feature.properties.j_subindex_pristupnost)}</div>
+        <div class="popup-row-index"><span data-key="sub_sluzby_">${translations[lang]["sub_sluzby_"]}</span>${Math.round(feature.properties.j_subindex_sluzby)}</div>
+        <div class="popup-row-index"><span data-key="sub_dovednosti_">${translations[lang]["sub_dovednosti_"]}</span>${Math.round(feature.properties.j_subindex_dovednost)}</div>
+        <div class="popup-row-index"><span data-key="sub_infrastruktura_">${translations[lang]["sub_infrastruktura_"]}</span>${Math.round(feature.properties.j_subindex_infrastruktura)}</div>
         </div>`;
     }
 
@@ -1304,6 +1304,8 @@ let KUbody = new L.GeoJSON.AJAX("data/krajskyUrad.geojson", {
     onEachFeature: vypisPopupuKU
 });
 
+
+
 // popup
 function vypisPopupuKU(feature, layer) {
 
@@ -1333,24 +1335,41 @@ function vypisPopupuKU(feature, layer) {
                 <img src="img/popup/dat_schr.svg" alt="Ikona" class="popup-icon">
                 <span>${feature.properties.datSchranka}</span>
             </div>
-            <div class="popup-row">
-                <img style="padding-bottom:3px;" src="img/popup/ico.svg" alt="Ikona" class="popup-icon">
+            <div class="popup-row" style>
+                <img style="padding-bottom:2px;" src="img/popup/ico.svg" alt="Ikona" class="popup-icon">
+                <div style=gap:0;>
                 <span data-key="ICO">${translations[lang]["ICO"]}</span>
                 <span>${feature.properties.IC}</span>
+                </div>
             </div>
 
             <div class="popup-row popup-title">
-                <img style="padding-bottom:3px;" src="img/popup/ur_hod.svg" alt="Ikona" class="popup-icon">
+                <img style="padding-bottom:2px;" src="img/popup/ur_hod.svg" alt="Ikona" class="popup-icon">
                 <h4 data-key="uredni_hodiny">${translations[lang]["uredni_hodiny"]}</h4>
             </div>
 
-            <p class="popup-hours">
-                <span data-key="po">${translations[lang]["po"]}</span>${formatZavreno(feature.properties.po, lang)}<br>
-                <span data-key="ut">${translations[lang]["ut"]}</span>${formatZavreno(feature.properties.ut, lang)}<br>
-                <span data-key="st">${translations[lang]["st"]}</span>${formatZavreno(feature.properties.st, lang)}<br>
-                <span data-key="ct">${translations[lang]["ct"]}</span>${formatZavreno(feature.properties.ct, lang)}<br>
-                <span data-key="pa">${translations[lang]["pa"]}</span>${formatZavreno(feature.properties.pa, lang)}
-            </p>
+            <table class="popup-hours-table">
+                <tr>
+                    <td class="day-name"><span data-key="po">${translations[lang]["po"]}</span></td>
+                    <td class="hours-value">${formatZavreno(feature.properties.po, lang)}</td>
+                </tr>
+                <tr>
+                    <td class="day-name"><span data-key="ut">${translations[lang]["ut"]}</span></td>
+                    <td class="hours-value">${formatZavreno(feature.properties.ut, lang)}</td>
+                </tr>
+                <tr>
+                    <td class="day-name"><span data-key="st">${translations[lang]["st"]}</span></td>
+                    <td class="hours-value">${formatZavreno(feature.properties.st, lang)}</td>
+                </tr>
+                <tr>
+                    <td class="day-name"><span data-key="ct">${translations[lang]["ct"]}</span></td>
+                    <td class="hours-value">${formatZavreno(feature.properties.ct, lang)}</td>
+                </tr>
+                <tr>
+                    <td class="day-name"><span data-key="pa">${translations[lang]["pa"]}</span></td>
+                    <td class="hours-value">${formatZavreno(feature.properties.pa, lang)}</td>
+                </tr>
+            </table>
         </div>`;
     }
 
