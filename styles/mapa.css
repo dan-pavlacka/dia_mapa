@@ -270,7 +270,7 @@ input[type="radio"] {
     min-height: 16px; /* Zajistí, že výška neklesne pod 16px */
     max-width: 16px; /* Zajistí, že šířka nepřesáhne 16px */
     max-height: 16px; /* Zajistí, že výška nepřesáhne 16px */
-    border: 1px solid gray;
+    border: 1.5px solid var(--primary-color);
     border-radius: 50%;
     display: inline-block;
     position: relative;
@@ -326,7 +326,7 @@ input[type="checkbox"] {
     min-height: 18px; /* Zajistí, že výška neklesne pod 16px */
     max-width: 18px; /* Zajistí, že šířka nepřesáhne 16px */
     max-height: 18px; /* Zajistí, že výška nepřesáhne 16px */
-    border: 1px solid gray;
+    border: 1.5px solid var(--primary-color);
     border-radius: 3px; /* Hranatý tvar checkboxu */
     display: inline-block;
     position: relative;
@@ -560,7 +560,7 @@ h3.expandable {
     color: var(--primary-color);
 }
 
-.control-zoom-button, .control-button {
+.control-button {
     position: absolute;
     background-color: white; /* Barva hlavního tlačítka */
     border: none;
@@ -577,12 +577,39 @@ h3.expandable {
 
 }
 
-.leaflet-zoom-container{
-    position: fixed;
-    bottom: 165px;
-    right: 40px;
-    z-index: 1000;
+
+
+/* Nastavení pro tlačítko */
+.control-zoom-button, .control-button {
+    position: absolute;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 2px solid #E7E7E7;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+    margin: 0;
+    z-index: 1001;
 }
+
+/* Nastavení přesné pozice pro tlačítko */
+.custom-position {
+    bottom: 115px !important;
+    right: 0px !important;
+    left: auto !important;
+    top: auto !important;
+}
+
+/* Zajištění, že kontejner vytvořený Leafletem nebude ovlivňovat pozici */
+.leaflet-control-container .leaflet-bottom.leaflet-right .leaflet-control:has(.custom-position) {
+    margin: 0;
+    position: static;
+}
+
+
 
 .control-button {
     top: 70px; /* 70px od horního okraje */

@@ -15,21 +15,30 @@ function setScrollableHeight() {
     },30);    
 }
 
+let adjustedHeight;
+
 function scrollableHeightSize(){
     if (activeSidebar) {
         let sidebarSticky = activeSidebar.querySelector('.sidebar-sticky');
         if (sidebarSticky) {
             const sidebarStickyHeight = sidebarSticky.offsetHeight || 0; // Získáme aktuální výšku .sidebar-sticky
-            const adjustedHeight = viewportHeight - 56 - sidebarStickyHeight - 15; // Odečteme 56px a výšku .sidebar-sticky           
-            const scrollable = activeSidebar.querySelector('.scrollable');
+             // Odečteme 56px a výšku .sidebar-sticky           
             
-            /*if (viewportHeight < 500){
+            
+            
+            if (viewportHeight < 500){
                 adjustedHeight = 500 - 56 - sidebarStickyHeight - 15; //aby se nepřekrývaly ikony při malé výšce okna
-            }*/
+            } else {
+                adjustedHeight = viewportHeight - 56 - sidebarStickyHeight - 15;
+            };
+
+            const scrollable = activeSidebar.querySelector('.scrollable');
 
             if (scrollable) {
                 scrollable.style.height = `${adjustedHeight}px`; // Nastaví výšku pro tento aktivní sidebar                
             }
+
+            /*console.log(adjustedHeight);*/
         }
     }
 
@@ -38,15 +47,15 @@ function scrollableHeightSize(){
 // Aktualizace výšky při změně velikosti okna
 window.addEventListener('resize', setScrollableHeight);
 window.addEventListener('load', setScrollableHeight);
+window.addEventListener('load', setZoomLevel());
 
+function setZoomLevel(){
 if (window.innerWidth < 400) {
     zoomLev = 6;
 } else if (window.innerWidth < 700) {
     zoomLev = 6.75;
 } else if (window.innerWidth < 1000) {
     zoomLev = 7.25;
-} else if (window.innerWidth < 1300) {
-    zoomLev = 7.5;
 } else if (window.innerWidth < 1300) {
     zoomLev = 7.75;
 } else if (window.innerWidth < 1600) {
@@ -60,10 +69,13 @@ if (window.innerWidth < 400) {
 } else if (window.innerWidth >= 2500) {
     zoomLev = 8.75
 };
+}
+
+
 
 let bounds = [
-    [34.5, -35],  // Jihozápadní roh (SWW)
-    [71.5, 45]    // Severovýchodní roh (NEE)
+    [30, -45],  // Jihozápadní roh (SWW)
+    [72, 45]    // Severovýchodní roh (NEE)
 ];
 
 
@@ -80,8 +92,8 @@ let bounds = [
 
 
 //definice mapy, výchozí bod, a omezení zoom levelu
-const map = L.map('map',{   minZoom:4, 
-                            maxZoom:19,
+const map = L.map('map',{   minZoom:2, 
+                            maxZoom:14,
                             zoomSnap:0.25, //jemnější zoom pro kolečko myši
                             zoomDelta:0.25,   //jemnější zoom pro +-
                             maxBounds: bounds, // Omezení na dané souřadnice
@@ -112,11 +124,32 @@ let zoomButton = L.control.zoom({
 zoomButton.addTo(map);
 
 function zoomCR(){
-    map.setView([49.8, 14.85],zoomLev)
+    
+    setZoomLevel()
+    map.setView([49.8, 15.1],zoomLev)
 }
 
 function zoomEU(){
-    map.setView([50.8503, 4.3517],4)
+    if (window.innerWidth < 400) {
+        zoomLev = 2;
+    } else if (window.innerWidth < 700) {
+        zoomLev = 3;
+    } else if (window.innerWidth < 1000) {
+        zoomLev = 3.5;
+    } else if (window.innerWidth < 1300) {
+        zoomLev = 4;
+    } else if (window.innerWidth < 1600) {
+        zoomLev = 4.5;
+    } else if (window.innerWidth < 1900) {
+        zoomLev = 4.5;
+    } else if (window.innerWidth < 2200) {
+        zoomLev = 4.75;
+    } else if (window.innerWidth < 2500) {
+        zoomLev = 4.75
+    } else if (window.innerWidth >= 2500) {
+        zoomLev = 5
+    };
+    map.setView([56, 4.3517], zoomLev)
 }
 
 //podkladové mapy
@@ -490,7 +523,7 @@ function vypisPopupuSluzba(feature, layer) {
         }
         if (url) {
             popupContent += `<div class="popup-row" style="padding-top:8px">
-            <img src="img/popup/web_blue.svg" alt="Ikona" class="popup-icon">
+            <img src="img/popup/web_green.svg" alt="Ikona" class="popup-icon">
             <span><a href="${url}" target="_blank" data-key="${sluzba.labelKey}">${translations[lang][sluzba.labelKey]}</a></span></div>`;
         } 
         
@@ -641,6 +674,7 @@ function checkWindowSize() {
         sidebar.close();
     }
 }
+
 checkWindowSize();
 
 //vložení dvýchozí vrstvy do mapy
@@ -1206,8 +1240,8 @@ let CPStyle = function(feature, latlng) {
 	if (feature.properties.URL) {
 		popupContent += 
         `<div class="popup-row">
-        <img src="img/popup/web_blue.svg" alt="Ikona" class="popup-icon">
-        <span><a href="${feature.properties.URL}" target="_blank">${feature.properties.URL.slice(7)}</a></span></div>`
+        <img src="img/popup/web_green.svg" alt="Ikona" class="popup-icon">
+        <span><a href="${feature.properties.URL}" target="_blank">${feature.properties.URL.replace(/^[a-z0-9.+-]+:(\/\/)?/i, '')}</a></span></div>`
 	}
     popupContent += `</div>`
 	
@@ -1284,16 +1318,16 @@ function vypisPopupuKU(feature, layer) {
             <h3 class="h3-black">${feature.properties.adresa}</h3>
             
             <div class="popup-row">
+                <img src="img/popup/web_green.svg" alt="Ikona" class="popup-icon">
+                <span><a href="${feature.properties.web}" target="_blank">${feature.properties.web}</a></span>
+            </div>
+            <div class="popup-row">
                 <img src="img/popup/tel.svg" alt="Ikona" class="popup-icon">
                 <span>+420 ${feature.properties.tel}</span>
             </div>
             <div class="popup-row">
                 <img src="img/popup/email.svg" alt="Ikona" class="popup-icon">
                 <span>${feature.properties.email}</span>
-            </div>
-            <div class="popup-row">
-                <img src="img/popup/web.svg" alt="Ikona" class="popup-icon">
-                <span><a href="${feature.properties.web}" target="_blank">${feature.properties.web}</a></span>
             </div>
             <div class="popup-row">
                 <img src="img/popup/dat_schr.svg" alt="Ikona" class="popup-icon">
@@ -1680,43 +1714,40 @@ observer.observe(sidebar_rozsireni, { attributes: true, attributeFilter: ['class
 checkSidebarState();
 
 
-//zlačítko pro zoom na čr/eu
+//zoom tlačítko
 L.Control.FunctionButton = L.Control.extend({
     onAdd: function(map) {
-        let container = L.DomUtil.create('div', 'leaflet-zoom-container');
-       
-        // Vytvoření tlačítka
-        let button = document.createElement("button");
+        // Vytvoření tlačítka přímo bez kontejneru
+        let button = L.DomUtil.create('button', 'control-zoom-button tooltip-left-dlouhy custom-position');
         button.innerHTML = '<img style="padding-top:4px;" src="img/zoom.svg"></img>';
-        button.className = "control-zoom-button tooltip-left-dlouhy"; // Použití CSS třídy
         button.setAttribute('data-tooltip-key', 'zoom_na_cr_tooltip');
         button.setAttribute('data-tooltip', '');
-        // Debug: zkusíme zjistit, zda se tlačítko vytvoří správně
-       
-
+        
         // Kliknutí zavolá JavaScript funkci
-        button.onclick = function() {
+        L.DomEvent.on(button, 'click', function(e) {
+            // Zastavení propagace události, aby se zabránilo prokliku na mapu
+            L.DomEvent.stopPropagation(e);
+            L.DomEvent.preventDefault(e);
+            
             if(desi) {
                 zoomEU();
             } else {
                 zoomCR();
             }
-         
-           
-        };
-
-        container.appendChild(button);
-        return container;
+        });
+        
+        return button;
     }
 });
 
 // Přidání controlu do mapy
-let controlZoomButton = new L.Control.FunctionButton({});
+let controlZoomButton = new L.Control.FunctionButton({
+    position: 'bottomright' // Toto je potřeba pro správnou inicializaci, ale CSS ho přepíše
+});
 controlZoomButton.addTo(map);
 
-
-
 //testování šířky a zoomlevelu
+/*
 map.on('zoomend', function() {
     console.log("Aktuální zoom level:", map.getZoom());
 });
@@ -1724,3 +1755,4 @@ map.on('zoomend', function() {
 window.addEventListener('resize', function() {
     console.log("Změna velikosti okna - šířka (px):", window.innerWidth);
 });
+*/
