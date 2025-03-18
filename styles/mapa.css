@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Roboto'; 
     src: url('../fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype'); 
-    font-weight: normal; 
+    font-weight: 100 1000; 
     font-style: normal; 
 }
 
@@ -115,7 +115,7 @@ h1{
 h2{
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 18px;
     line-height: 150%;
     /* identical to box height, or 27px */
@@ -132,13 +132,12 @@ h2{
 h3{
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 16px;
     line-height: 150%;
     /* identical to box height, or 24px */
     letter-spacing: 0.0125em;
     color: var(--nadpisy-legenda-color);
- 
 }
 
 h4{
@@ -933,7 +932,7 @@ h3.expandable {
 .popup-container h2{
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 14px;
     line-height: 150%;
     /* identical to box height, or 21px */
@@ -945,7 +944,7 @@ h3.expandable {
 .popup-container h3{
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 14px;
     line-height: 150%;
     /* identical to box height, or 21px */
