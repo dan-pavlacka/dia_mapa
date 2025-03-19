@@ -149,6 +149,8 @@ h4{
     /* identical to box height, or 21px */
     letter-spacing: 0.0125em;
     color: #262626;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /* Kdybych htěl někde zrušit azeret tak oddělat to p a používat tuto class */
@@ -777,9 +779,31 @@ h3.expandable {
     padding-right:10px;
 }
 
-.legend-containerKraj, .legend-container2, .legend-containerEU, .legend-body, .info-texty, .sidebar-header{
+.legend-containerKraj, .legend-container2, .legend-containerEU, .legend-body, .info-texty, .sidebar-header, .info-texty-hodnoty{
 
     border-bottom: 1px solid #E7E7E7;
+}
+
+.info-texty-hodnoty{
+    padding-bottom: 10px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 16px; /* Mezera mezi ikonami */
+    margin-top: 10px;
+    padding-left: 14px;
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.social-icons img {
+    width: 100%;
+    height: auto;
 }
 
 .dia_ikona {
@@ -1032,7 +1056,12 @@ a:hover .menu-icon-jazyk{
 }
 
 ol, ul{
-    padding-left:15px;
+    padding: 0 0 0 15px;
+    margin:0px;
+}
+
+#infoIndexy ul{
+    margin-bottom:10px;
 }
 
 /*tučně čísla v ol*/
@@ -1044,4 +1073,12 @@ ol li::marker {
 
 #mapTitle{
     padding-left: 10px;
+}
+
+.ul-odkazy{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column; 
+    gap: 6px;
+
 }

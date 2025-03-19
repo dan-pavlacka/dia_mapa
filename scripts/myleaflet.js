@@ -93,7 +93,7 @@ let bounds = [
 
 //definice mapy, výchozí bod, a omezení zoom levelu
 const map = L.map('map',{   minZoom:3, 
-                            maxZoom:14,
+                            maxZoom:16,
                             zoomSnap:0.25, //jemnější zoom pro kolečko myši
                             zoomDelta:0.25,   //jemnější zoom pro +-
                             maxBounds: bounds, // Omezení na dané souřadnice
@@ -982,7 +982,12 @@ const linkKeys = {
     j_portal_prispevkovych_organizaci_web: "portal_prispevkovych_organizaci"
 };
 
-
+const socialKeys = {
+    j_fb_url: "img/social/facebook.svg",
+    j_instagram_url: "img/social/instagram.svg",
+    j_x_url: "img/social/x.svg",
+    j_youtube_url: "img/social/youtube.svg",
+};
 
 
 
@@ -1048,6 +1053,7 @@ function initDefaultRadio() {
   
 
     textContainer.appendChild(infoText); // Přidání textu do kontejneru
+    
 
     document.getElementById("defaultRadio").addEventListener('change', resetVyberKraje);
 
@@ -1066,7 +1072,19 @@ function initDefaultRadio() {
 }
 
 
-const attributeKeys = {
+
+
+const attributePristupnostKeys = {
+    j_KMVSnaObyv: "pocet_kmvs_",
+};
+
+const attributeSluzbyKeys = {
+    j_online_objednani_na_vysetreni: "lekar_online_objednani",
+    j_elektronicka_zdravotnicka_dokumentace: "lekar_elektronicka_dokumentace",
+    j_vlastni_web: "lekar_web",
+};
+
+const attributeDovednostKeys = {
     j_internet_denne: "osoby_internet_denne",
     j_soc_site: "osoby_soc_site",
     j_int_bankovnictvi: "osoby_bankovnictvi",
@@ -1077,17 +1095,15 @@ const attributeKeys = {
     j_pc_stredni: "PC_SS",
     j_pc_zakladky_2roky: "PC_ZS_2",
     j_pc_stredni_2roky: "PC_SS_2",
+};
+
+const attributeInfrastrukturaKeys = {
     j_int_domacnosti: "domacnosti_internet",
     j_int_telefon: "osoby_internet_tel",
     j_pokryti_30mbit: "pokryti_30mb",
     j_pokryti_100mbit: "pokryti_100mb",
-    j_KMVSnaObyv: "pocet_kmvs_",
-    j_online_objednani_na_vysetreni: "lekar_online_objednani",
-    j_elektronicka_zdravotnicka_dokumentace: "lekar_elektronicka_dokumentace",
-    j_vlastni_web: "lekar_web",
-
-
 };
+
 
 
 
@@ -1140,23 +1156,63 @@ function vypisInfoKraj(layer, feature) {
         document.querySelectorAll("#infoKraj .links, #infoKraj .attributes").forEach(el => el.innerHTML = "");
 
         // **Vytvoříme HTML pro odkazy**
-        let linksHtml = "<ul>";
+        let linksHtml = "<div><ul class='ul-odkazy'>";
         for (const [key, dataKey] of Object.entries(linkKeys)) {
             if (feature.properties[key]) {
                 linksHtml += `<li><a href="${feature.properties[key]}" target="_blank" data-key="${dataKey}">${dataKey}</a></li>`;
             }
         }
         linksHtml += "</ul>";
+
+        linksHtml += `<div class="social-icons info-texty-hodnoty">`;
+        for (const [key, icon] of Object.entries(socialKeys)) {
+            if (feature.properties[key]) {
+                linksHtml += `<a href="${feature.properties[key]}" target="_blank">
+                                <img src="${icon}" alt="${key}" class="social-icon">
+                              </a>`;
+            }
+        }
+        linksHtml += "</div></div>"; 
+
         krajElement.querySelector(".links").innerHTML = linksHtml;
 
         // **Vytvoříme HTML pro atributy** na základě `attributeKeys`
-        let attributesHtml = "<ul>";
-        for (const [key, dataKey] of Object.entries(attributeKeys)) {
+        let attributesHtml = "<div class='info-texty-hodnoty'><h4 data-key='sub_pristupnost'></h3><ul>";
+
+        for (const [key, dataKey] of Object.entries(attributePristupnostKeys)) {
             if (feature.properties[key]) {
-                attributesHtml += `<li><span data-key="${dataKey}">${dataKey}</span> ${feature.properties[key]}</li>`;
+                attributesHtml += `<li><span data-key="${dataKey}">${dataKey}</span>:<b> ${feature.properties[key]}</b></li>`;
             }
         }
-        attributesHtml += "</ul>";
+
+        attributesHtml += "</ul></div>"; 
+        attributesHtml += "<div class='info-texty-hodnoty'><h4 data-key='sub_sluzby'></h3><ul>";
+
+        for (const [key, dataKey] of Object.entries(attributeSluzbyKeys)) {
+            if (feature.properties[key]) {
+                attributesHtml += `<li><span data-key="${dataKey}">${dataKey}</span>:<b> ${feature.properties[key]}</b></li>`;
+            }
+        }
+
+        attributesHtml += "</ul></div>";
+        attributesHtml += "<div class='info-texty-hodnoty'><h4 data-key='sub_dovednosti'></h3><ul>"; 
+
+        for (const [key, dataKey] of Object.entries(attributeDovednostKeys)) {
+            if (feature.properties[key]) {
+                attributesHtml += `<li><span data-key="${dataKey}">${dataKey}</span>:<b> ${feature.properties[key]}</b></li>`;
+            }
+        }
+
+        attributesHtml += "</ul></div>"; 
+        attributesHtml += "<div style='padding-bottom:10px'><h4 data-key='sub_infrastruktura'></h3><ul>";
+
+        for (const [key, dataKey] of Object.entries(attributeInfrastrukturaKeys)) {
+            if (feature.properties[key]) {
+                attributesHtml += `<li><span data-key="${dataKey}">${dataKey}</span>:<b> ${feature.properties[key]}</b></li>`;
+            }
+        }
+
+        attributesHtml += "</ul></div>";
         krajElement.querySelector(".attributes").innerHTML = attributesHtml;
 
         // Přeložíme texty
