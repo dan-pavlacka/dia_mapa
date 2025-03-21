@@ -71,25 +71,10 @@ if (window.innerWidth < 400) {
 };
 }
 
-
-
 let bounds = [
     [30, -45],  // Jihozápadní roh (SWW)
     [72, 45]    // Severovýchodní roh (NEE)
 ];
-
-
-
-
-
-
-//jiný zoom podle aktuálního zoom levelu
-
-
-
-
-
-
 
 //definice mapy, výchozí bod, a omezení zoom levelu
 const map = L.map('map',{   minZoom:3, 
@@ -103,6 +88,27 @@ const map = L.map('map',{   minZoom:3,
 
 map.options.wheelPxPerZoomLevel = 150;  // jinak nefunguje zoomSnap
 //měřítko
+map.on('zoomend', function () {
+    let currentZoom = map.getZoom();
+    
+    if (currentZoom < 6.75) {
+        map.options.zoomSnap = 0.5;
+        map.options.zoomDelta = 0.5;
+    } else if (currentZoom >= 6.75 && currentZoom < 8.5) {
+        map.options.zoomSnap = 0.5;
+        map.options.zoomDelta = 0.5;
+    } else if (currentZoom >= 8.5 && currentZoom < 11.5) {
+        map.options.zoomSnap = 0.25;
+        map.options.zoomDelta = 0.25;
+    } else if (currentZoom >= 11.5 && currentZoom < 16) {
+        map.options.zoomSnap = 0.5;
+        map.options.zoomDelta = 0.5;
+    }else {
+        map.options.zoomSnap = 0.25;
+        map.options.zoomDelta = 0.25;
+    }
+});
+
 let meritko = L.control.scale({
 	position:'bottomright',
 	metric: true, 
@@ -560,17 +566,6 @@ function vypisPopupuSluzba(feature, layer) {
     });
 }
 
-
-
-
-
-
-
-
-
-
-
-
 //----------------konec výběru služby-----------------
 
 //vytvoření vrstvy krajů pro indexy
@@ -964,9 +959,7 @@ function vypisPopupuIndex(feature, layer) {
     });
 }
 
-
-const linkKeys = {
-    
+const linkKeys = {  
     j_platebni_portal_web: "platebni_portal",
     j_IDS_web: "integrovany_dopravni_system",
     j_rozklikavaci_rozpocet_web: "rozklikavaci_rozpocet",
@@ -988,9 +981,6 @@ const socialKeys = {
     j_x_url: "img/social/x.svg",
     j_youtube_url: "img/social/youtube.svg",
 };
-
-
-
 
 const krajLayers = {}; // Objekt pro uložení vrstev podle názvu kraje
 
@@ -1036,11 +1026,7 @@ function initDefaultRadio() {
         </label>
     `;
 
-    
-
     radioContainer.prepend(defaultElement);
-
-  
 
     // Vytvoření kontejneru pro text
     let textContainer = document.createElement("div");
@@ -1051,10 +1037,8 @@ function initDefaultRadio() {
     infoText.setAttribute("data-key","zadny_kraj_text");
     infoText.id = "defaultText";
   
-
     textContainer.appendChild(infoText); // Přidání textu do kontejneru
     
-
     document.getElementById("defaultRadio").addEventListener('change', resetVyberKraje);
 
     document.addEventListener("change", (event) => {
@@ -1070,9 +1054,6 @@ function initDefaultRadio() {
 
     map.on("click", resetVyberKraje); // Použití funkce při kliknutí do mapy
 }
-
-
-
 
 const attributePristupnostKeys = {
     j_KMVSnaObyv: "pocet_kmvs_",
@@ -1103,9 +1084,6 @@ const attributeInfrastrukturaKeys = {
     j_pokryti_30mbit: "pokryti_30mb",
     j_pokryti_100mbit: "pokryti_100mb",
 };
-
-
-
 
 function vypisInfoKraj(layer, feature) {
     const infoElement = document.getElementById('infoKraj');
@@ -1221,12 +1199,6 @@ function vypisInfoKraj(layer, feature) {
 }
 // Inicializace výchozího radio buttonu při načtení
 document.addEventListener("DOMContentLoaded", initDefaultRadio);
-
-
-
-
-
-
 
 // Funkce pro kliknutí na tlačítko
 $(".schovaniLegendy").click(function(event){

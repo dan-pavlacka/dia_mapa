@@ -104,10 +104,6 @@ const translations = {
         skolsky_portal: "Školský portál",
         portal_prispevkovych_organizaci: "Portál příspěvkových organizací",
 
-
-
-
-
         //popisky jednotlivých indikátorů
         pristupnost_desktop: "Přístupnost desktop",
         pristupnost_mobile: "Přístupnost mobile",
@@ -395,7 +391,7 @@ const translations = {
         pane4_icon_tooltip: "Інформація про індекси",
         pane5_icon_tooltip: "Експорт у PDF",
         pane6_icon_tooltip: "Інформація про застосунок",
-        jazyk: "UA",
+        jazyk: "UK",
         pane1_sticky: "На карті показано рівень цифровізації державного управління.",
         pane2_sticky: "На карті показано рівень цифровізації держав-членів ЄС.",
         pane3_sticky: "Тут ви знайдете додаткові посилання та інформацію про окремі регіони. Щоб переглянути інформацію про конкретний регіон, натисніть на нього на карті або виберіть зі списку нижче.",
