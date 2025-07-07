@@ -1,0 +1,36 @@
+
+
+.bannerWrapper {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  margin: 0;
+  padding: $spacing-3xl;
+  background-color: $bg-app;
+  border: none;
+  border-radius: $border-radius-xl;
+}
+
+.noResultsIcon {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.topLine {
+  font-weight: $font-weight-semibold;
+  font-size: 1rem;
+  color: $text-primary;
+  margin: 0;
+}
+
+.bottomLine {
+  font-size: 0.9rem;
+  color: $text-secondary;
+  margin-top: 0.2rem;
+}

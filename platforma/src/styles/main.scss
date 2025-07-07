@@ -1,0 +1,47 @@
+// Gov.cz Design System
+@import '@gov-design-system-ce/styles/lib/tokens.css';
+@import '@gov-design-system-ce/styles/lib/styles.css';
+@import '@gov-design-system-ce/styles/lib/layout.css';
+@import '@gov-design-system-ce/styles/lib/components.css';
+@import '@gov-design-system-ce/templates/lib/styles/styles.css';
+
+// Base
+@import 'variables';
+@import 'mixins';
+@import 'base';
+
+// Layout
+@import 'layout/layout';
+@import 'layout/header';
+@import 'layout/footer';
+
+// Forms
+@import 'forms/form';
+
+// UI Components
+@import 'ui/header-naviagtion';
+@import 'ui/add-record-button';
+@import 'ui/budget-info-card';
+@import 'ui/budget-modal';
+@import 'ui/col-styles';
+@import 'ui/data-table';
+@import 'ui/data-table-filter-dropdown';
+@import 'ui/detail-modal';
+@import 'ui/filter-button';
+@import 'ui/info-card';
+@import 'ui/landing-page';
+@import 'ui/landing-search-bar';
+@import 'ui/menu';
+@import 'ui/modal';
+@import 'ui/modal-header';
+@import 'ui/no-results-banner';
+@import 'ui/ovm-tile';
+@import 'ui/pagination-controls';
+@import 'ui/search-bar';
+@import 'ui/section-title';
+@import 'ui/banners';
+@import 'cards/_cards';
+
+// Pages
+@import 'pages/centralni-dashboard';
+@import 'pages/header-ovm'; 

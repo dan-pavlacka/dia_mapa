@@ -1,0 +1,38 @@
+.homepageCardDescription {
+    font-family: var(--font-family);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+    letter-spacing: 0.0125em;
+    color: var(--text-secondary) !important; //bez important se nepropíše
+  }
+
+
+  .homepageCardTitle {
+    font-family: 'Roboto', sans-serif;
+    font-weight: var(--font-weight-medium);                  
+    font-size: var(--font-size-xl);    
+    line-height: 1.5;                  
+    letter-spacing: 0.0125em;          
+    color: var(--green-primary);        
+  }
+
+  .sectionHeadingTitle{
+    font-family: 'Roboto', sans-serif;
+    font-weight: var(--font-weight-medium); 
+    font-style: normal;
+    font-size: var(--font-size-3xl); 
+    line-height: 1.5; // 150%
+    letter-spacing: 0;
+  }
+
+  .sectionHeadingLink{
+    font-family: 'Roboto', sans-serif;
+    font-weight: var(--font-weight-bold); 
+    font-style: normal;
+    font-size: var(--font-size-lg); 
+    line-height: 1.5; 
+    letter-spacing: 0.0125em; 
+    color: var(--green-primary);  
+  }
+

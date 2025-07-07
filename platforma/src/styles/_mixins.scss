@@ -1,0 +1,432 @@
+// Responsive Design Mixins
+
+// Mobile-first media queries
+@mixin respond-above($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  @media (max-width: ($breakpoint - 1px)) {
+    @content;
+  }
+}
+
+@mixin respond-between($min-breakpoint, $max-breakpoint) {
+  @media (min-width: $min-breakpoint) and (max-width: ($max-breakpoint - 1px)) {
+    @content;
+  }
+}
+
+// Semantic responsive mixins based on defined breakpoints
+@mixin mobile-only {
+  @include respond-below($breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @include respond-above($breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @include respond-above($breakpoint-lg) {
+    @content;
+  }
+}
+
+// Specific breakpoint mixins for common usage
+@mixin mobile-sm {
+  @include respond-below($breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin tablet-md {
+  @include respond-between($breakpoint-md, $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin desktop-xl {
+  @include respond-above($breakpoint-xl) {
+    @content;
+  }
+}
+
+// Convenience mixins for exact breakpoints used in project
+@mixin below-640 {
+  @media (max-width: 639px) {
+    @content;
+  }
+}
+
+@mixin below-768 {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin below-600 {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin below-500 {
+  @media (max-width: 499px) {
+    @content;
+  }
+}
+
+@mixin below-991 {
+  @media (max-width: 990px) {
+    @content;
+  }
+}
+
+// Typography Mixins
+
+@mixin font-size($size, $line-height: null) {
+  font-size: $size;
+  @if $line-height {
+    line-height: $line-height;
+  }
+}
+
+@mixin text-style($size, $weight: $font-weight-normal, $line-height: $line-height-normal, $letter-spacing: $letter-spacing-normal) {
+  font-family: $font-family-primary;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+// Text truncation
+@mixin text-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin text-truncate-multiline($lines: 3) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Layout Mixins
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  @include flex-column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Grid utilities
+@mixin grid-container($columns: 1fr, $gap: $grid-gap) {
+  display: grid;
+  grid-template-columns: $columns;
+  gap: $gap;
+}
+
+@mixin grid-responsive($mobile-cols: 1, $tablet-cols: 2, $desktop-cols: 3) {
+  display: grid;
+  grid-template-columns: repeat($mobile-cols, 1fr);
+  gap: $grid-gap;
+
+  @include tablet-up {
+    grid-template-columns: repeat($tablet-cols, 1fr);
+  }
+
+  @include desktop-up {
+    grid-template-columns: repeat($desktop-cols, 1fr);
+  }
+}
+
+// Container with max-width and centering
+@mixin container($max-width: $grid-container-max-width) {
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $content-padding;
+  padding-right: $content-padding;
+}
+
+// Theme Mixins
+
+// Dark mode utility mixin for components
+@mixin dark-mode {
+  :root[data-theme="dark"] & {
+    @content;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme]) &,
+    html[data-theme="auto"] & {
+      @content;
+    }
+  }
+}
+
+// Light mode utility mixin (for explicit overrides)
+@mixin light-mode {
+  :root & {
+    @content;
+  }
+  
+  :root[data-theme="light"] & {
+    @content;
+  }
+  
+  @media (prefers-color-scheme: light) {
+    html:not([data-theme]) &,
+    html[data-theme="auto"] & {
+      @content;
+    }
+  }
+}
+
+// Theme-aware properties mixin for easier usage
+@mixin theme-aware($property, $light-value, $dark-value) {
+  #{$property}: $light-value;
+  
+  // Explicitly set light value for theme switch usage
+  :root[data-theme="light"] & {
+    #{$property}: $light-value;
+  }
+  
+  @include dark-mode {
+    #{$property}: $dark-value;
+  }
+}
+
+// Component Mixins
+
+// Button styles
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: $button-border-radius;
+  cursor: pointer;
+  font-family: $font-family-primary;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $green-primary;
+  color: $bg-app;
+  border: $border-width-thin solid $green-primary;
+
+  &:hover:not(:disabled) {
+    background-color: darken($green-primary, 10%);
+    border-color: darken($green-primary, 10%);
+  }
+
+  &:focus {
+    outline: 2px solid lighten($green-primary, 20%);
+    outline-offset: 2px;
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background-color: $bg-app;
+  color: $green-primary;
+  border: $border-width-thin solid $green-primary;
+
+  &:hover:not(:disabled) {
+    background-color: $green-primary;
+    color: $bg-app;
+  }
+
+  &:focus {
+    outline: 2px solid lighten($green-primary, 20%);
+    outline-offset: 2px;
+  }
+}
+
+// Input styles
+@mixin input-base {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: $border-width-thin solid $color-neutral-300;
+  border-radius: $input-border-radius;
+  font-family: $font-family-primary;
+  font-size: $font-size-md;
+  line-height: $line-height-normal;
+  background-color: $bg-app;
+  color: $text-primary;
+  transition: border-color 0.2s ease-in-out;
+
+  &:focus {
+    outline: none;
+    border-color: $green-primary;
+    box-shadow: 0 0 0 2px rgba($green-primary, 0.2);
+  }
+
+  &:disabled {
+    background-color: $color-neutral-100;
+    color: $color-neutral-500;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: $text-secondary;
+  }
+}
+
+// Card styles
+@mixin card-base {
+  background-color: $bg-app;
+  border-radius: $card-border-radius;
+  border: $border-width-thin solid $color-neutral-200;
+  padding: 8pxxl;
+  box-shadow: $shadow-sm;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+@mixin card-hover {
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+// Modal styles
+@mixin modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, $modal-backdrop-opacity);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-index-modal;
+  animation: fadeIn $transition-normal ease-in-out;
+}
+
+@mixin modal-content {
+  background-color: $bg-app;
+  border-radius: $card-border-radius;
+  padding: 8pxxl;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideIn $transition-normal ease-out;
+}
+
+// Utility Mixins
+
+// Visually hidden (for screen readers)
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Focus styles
+@mixin focus-visible {
+  outline: 2px solid $green-primary;
+  outline-offset: 2px;
+}
+
+// Loading state
+@mixin loading-skeleton {
+  background: linear-gradient(90deg, $color-neutral-200 25%, $color-neutral-100 50%, $color-neutral-200 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+// Hover lift effect
+@mixin hover-lift {
+  transition: transform 0.2s ease-out;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+} 

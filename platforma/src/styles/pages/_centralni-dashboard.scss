@@ -1,0 +1,15 @@
+.dashboardContainer {
+  @include flex-column;
+  gap: 20px;
+}
+
+.grid {
+  @include grid-responsive(1, 2, 2); // mobile: 1 col, tablet+: 2 cols
+  width: 100%;
+}
+
+.mainContentOVM {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

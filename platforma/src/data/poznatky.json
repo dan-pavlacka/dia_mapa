@@ -1,0 +1,46 @@
+[
+  {
+    "id_ovm": "orgán-veřejné-moci/00022985",
+    "nazev_poznatku": "Míra digitalizace",
+    "poznatek": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "id_konzultace": "MD-234",
+    "id_zameru": "",
+    "pridano": "23.7.2025",
+    "autor": "Tomáš Šedivec",
+    "aktualni": true,
+    "sdileny": true
+  },
+  {
+    "id_ovm": "orgán-veřejné-moci/00022985",
+    "nazev_poznatku": "Poznatek 2",
+    "poznatek": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "id_konzultace": "",
+    "id_zameru": "K-234",
+    "pridano": "23.7.2025",
+    "autor": "Martin Kukla",
+    "aktualni": false,
+    "sdileny": true
+  },
+  {
+    "id_ovm": "orgán-veřejné-moci/00022985",
+    "nazev_poznatku": "Poznatek 3",
+    "poznatek": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "id_konzultace": "MD-234",
+    "id_zameru": "K-234",
+    "pridano": "23.7.2025",
+    "autor": "Vít Křížka",
+    "aktualni": false,
+    "sdileny": true
+  },
+  {
+    "id_ovm": "orgán-veřejné-moci/17651921",
+    "nazev_poznatku": "Test",
+    "poznatek": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "id_konzultace": "MD-234",
+    "id_zameru": "K-234",
+    "pridano": "23.7.2025",
+    "autor": "Vít Křížka",
+    "aktualni": false,
+    "sdileny": true
+  }
+]

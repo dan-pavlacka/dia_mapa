@@ -1,0 +1,378 @@
+// CSS Reset & Normalization
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#main {
+  flex: 1;
+}
+
+// Remove all animations and transitions for people that prefer not to see them
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Auto light mode detection (prefers-color-scheme)
+// Ensures our light values override design system when auto theme is used
+@media (prefers-color-scheme: light) {
+  html:root:not([data-theme]),
+  html:root[data-theme="auto"],
+  html:not([data-theme]),
+  html[data-theme="auto"] {
+    // Same overrides as explicit light theme - ensure our values take precedence
+    --background-page: #{$bg-page};
+    --text-primary: #{$text-primary};
+    --text-secondary: #{$text-secondary};
+    --bg-page: #{$bg-page};
+    --bg-app: #{$bg-app};
+    --text-footer-copy: #{$text-footer-copy};
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// Design System Override Layer
+// Provides mapping between gov-design-system-ce tokens and our custom values
+// Higher specificity ensures our values override design system defaults
+// -----------------------------------------------------------------------------
+
+html:root,
+html:root[data-theme="light"],
+:root,
+:root[data-theme="light"] {
+  // -----------------------------------------------------------------------------
+  // Core Color Palette - Base tokens that may be overridden
+  // -----------------------------------------------------------------------------
+  
+  // Neutral colors - our project values override design system defaults
+  --color-neutral-0: #{$color-neutral-0};           // white
+  --color-neutral-50: #{$color-neutral-50};         // lightest gray
+  --color-neutral-100: #{$color-neutral-100};       // light gray
+  --color-neutral-200: #{$color-neutral-200};       // border light
+  --color-neutral-300: #{$color-neutral-300};       // border default
+  --color-neutral-400: #{$color-neutral-400};       // text disabled
+  --color-neutral-500: #{$color-neutral-500};       // text placeholder
+  --color-neutral-600: #{$color-neutral-600};       // text secondary
+  --color-neutral-700: #{$color-neutral-700};       // text tertiary
+  --color-neutral-800: #{$color-neutral-800};       // text primary
+  --color-neutral-900: #{$color-neutral-900};       // text strongest
+  --color-neutral-950: #{$color-neutral-950};       // darker gray
+  --color-neutral-1000: #{$color-neutral-1000};     // black
+  
+  // Primary colors - our green theme overrides design system blue
+  --color-primary-50: #{$color-primary-50};         // lightest primary
+  --color-primary-100: #{$color-primary-100};       // light primary
+  --color-primary-200: #{$color-primary-200};       // primary subtle
+  --color-primary-300: #{$color-primary-300};       // primary muted
+  --color-primary-400: #{$color-primary-400};       // primary medium
+  --color-primary-500: #{$color-primary-700};       // primary base
+  --color-primary-600: #{$color-primary-600};       // primary strong (main brand)
+  --color-primary-700: #{$color-primary-700};       // primary stronger
+  --color-primary-800: #{$color-primary-800};       // primary strongest
+  --color-primary-900: #{$color-primary-900};       // primary darkest
+  --color-primary-950: #{$color-primary-950};       // primary darker
+  --color-primary-1000: #{$color-primary-1000};     // primary darkest
+  --color-primary-1050: #{$color-primary-1050};     // primary black
+  
+  // Secondary colors - use design system defaults (yellow/orange theme)
+  --color-secondary-50: #{$color-secondary-50};
+  --color-secondary-100: #{$color-secondary-100};
+  --color-secondary-200: #{$color-secondary-200};
+  --color-secondary-300: #{$color-secondary-300};
+  --color-secondary-400: #{$color-secondary-400};
+  --color-secondary-500: #{$color-secondary-500};
+  --color-secondary-600: #{$color-secondary-600};
+  --color-secondary-700: #{$color-secondary-700};
+  --color-secondary-800: #{$color-secondary-800};
+  --color-secondary-900: #{$color-secondary-900};
+  --color-secondary-950: #{$color-secondary-950};
+  --color-secondary-1000: #{$color-secondary-1000};
+  
+  // Error colors - use design system defaults
+  --color-error-50: #{$color-error-50};
+  --color-error-100: #{$color-error-100};
+  --color-error-200: #{$color-error-200};
+  --color-error-300: #{$color-error-300};
+  --color-error-400: #{$color-error-400};
+  --color-error-500: #{$color-error-500};
+  --color-error-600: #{$color-error-600};
+  --color-error-700: #{$color-error-700};
+  --color-error-800: #{$color-error-800};
+  --color-error-900: #{$color-error-900};
+  --color-error-950: #{$color-error-950};
+  --color-error-1000: #{$color-error-1000};
+  
+  // Success colors - use design system defaults  
+  --color-success-50: #{$color-success-50};
+  --color-success-100: #{$color-success-100};
+  --color-success-200: #{$color-success-200};
+  --color-success-300: #{$color-success-300};
+  --color-success-400: #{$color-success-400};
+  --color-success-500: #{$color-success-500};
+  --color-success-600: #{$color-success-600};
+  --color-success-700: #{$color-success-700};
+  --color-success-800: #{$color-success-800};
+  --color-success-900: #{$color-success-900};
+  --color-success-950: #{$color-success-950};
+  --color-success-1000: #{$color-success-1000};
+  
+  // Warning colors - use design system defaults
+  --color-warning-50: #{$color-warning-50};
+  --color-warning-100: #{$color-warning-100};
+  --color-warning-200: #{$color-warning-200};
+  --color-warning-300: #{$color-warning-300};
+  --color-warning-400: #{$color-warning-400};
+  --color-warning-500: #{$color-warning-500};
+  --color-warning-600: #{$color-warning-600};
+  --color-warning-700: #{$color-warning-700};
+  --color-warning-800: #{$color-warning-800};
+  --color-warning-900: #{$color-warning-900};
+  --color-warning-950: #{$color-warning-950};
+  --color-warning-1000: #{$color-warning-1000};
+  
+  // Focus and visited colors - use design system defaults
+  --color-focus-300: #{$color-focus-300};
+  --color-focus-600: #{$color-focus-600};
+  --color-visited-300: #{$color-visited-300};
+  --color-visited-600: #{$color-visited-600};
+  --color-visited-700: #{$color-visited-700};
+  
+  // -----------------------------------------------------------------------------
+  // Semantic Color Tokens - Override design system with our preferences
+  // -----------------------------------------------------------------------------
+  
+  // Background colors
+  --background-page: #{$bg-page};                   // our override: neutral-50
+  --background-white: var(--color-neutral-0);
+  --background-block-primary: var(--color-neutral-0);
+  --background-block-secondary: var(--color-neutral-50);
+  --background-neutral-subtle: var(--color-neutral-100);
+  --background-neutral-subtlest: var(--color-neutral-50);
+  
+  // Text colors  
+  --text-primary: #{$text-primary};                 // our override: neutral-800
+  --text-secondary: #{$text-secondary};             // our override: neutral-600
+  --text-disabled: var(--color-neutral-300);
+  --text-placeholder: var(--color-neutral-500);
+  --text-white: var(--color-neutral-0);
+  
+  // Border colors
+  --border-subtle: var(--color-neutral-300);
+  --border-subtlest: var(--color-neutral-100);
+  --border-disabled: var(--color-neutral-200);
+  
+  // Status semantic tokens
+  --status-error: var(--color-error-600);
+  --status-success: var(--color-success-600);
+  --status-warning: var(--color-warning-400);
+  --status-focus: var(--color-focus-600);
+  --status-visited: var(--color-visited-600);
+  
+  // -----------------------------------------------------------------------------
+  // Typography & Spacing - Our project values override design system
+  // -----------------------------------------------------------------------------
+  
+  // Typography
+  --font-family: #{$font-family-primary};
+  --font-size-xs: #{$font-size-xs};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-md: #{$font-size-md};
+  --font-size-lg: #{$font-size-lg};
+  --font-size-xl: #{$font-size-xl};
+  --font-size-2xl: #{$font-size-2xl};
+  --font-size-3xl: #{$font-size-3xl};
+  --font-size-4xl: #{$font-size-4xl};
+  --font-size-5xl: #{$font-size-5xl};
+  --font-size-6xl: #{$font-size-6xl};
+  --font-size-7xl: #{$font-size-7xl};
+  
+  // Font weights
+  --font-weight-light: #{$font-weight-light};
+  --font-weight-normal: #{$font-weight-normal};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-semibold: #{$font-weight-semibold};
+  --font-weight-bold: #{$font-weight-bold};
+  --font-weight-extrabold: #{$font-weight-extrabold};
+  --font-weight-black: #{$font-weight-black};
+  
+  // Line heights
+  --line-height-tight: #{$line-height-tight};
+  --line-height-normal: #{$line-height-normal};
+  --line-height-relaxed: #{$line-height-relaxed};
+  
+  // Spacing
+  --spacing-xs: #{$spacing-xs};
+  --spacing-sm: #{$spacing-sm};
+  --spacing-md: #{$spacing-md};
+  --spacing-lg: #{$spacing-lg};
+  --spacing-xl: #{$spacing-xl};
+  --spacing-2xl: #{$spacing-2xl};
+  --spacing-3xl: #{$spacing-3xl};
+  --spacing-4xl: #{$spacing-4xl};
+  --spacing-5xl: #{$spacing-5xl};
+  --spacing-6xl: #{$spacing-6xl};
+  --spacing-7xl: #{$spacing-7xl};
+  
+  // Border radius
+  --border-radius-sm: #{$border-radius-sm};
+  --border-radius-md: #{$border-radius-md};
+  --border-radius-lg: #{$border-radius-lg};
+  --border-radius-xl: #{$border-radius-xl};
+  --border-radius-2xl: #{$border-radius-2xl};
+  --border-radius-full: #{$border-radius-full};
+  
+  // Border widths
+  --border-width-thin: #{$border-width-thin};
+  --border-width-medium: #{$border-width-medium};
+  --border-width-thick: #{$border-width-thick};
+  
+  // Shadows
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  --shadow-xl: #{$shadow-xl};
+  
+  // Transitions
+  --transition-fast: #{$transition-fast};
+  --transition-normal: #{$transition-normal};
+  --transition-slow: #{$transition-slow};
+  
+  // -----------------------------------------------------------------------------
+  // Legacy Variables - Backward compatibility with existing code
+  // -----------------------------------------------------------------------------
+  
+  // Project specific colors (maintain existing usage)
+  --green-primary: #{$green-primary};               // main brand color
+  --green-secondary: #{$green-secondary};           // light green
+  --green-tertiary: #{$green-tertiary};             // dark green
+  
+  // Additional semantic colors from our variables (light mode defaults)
+  --bg-page: #{$bg-page};
+  --bg-app: #{$bg-app};
+  --text-footer-copy: #{$text-footer-copy};
+  --color-gray-light: #{$color-gray-light};
+  --color-border-light: #{$color-border-light};
+  --color-border-lighter: #{$color-border-lighter};
+  --color-gray-hover: #{$color-gray-hover};
+  --color-footer-bg: #{$color-footer-bg};
+  
+  // Status colors from our variables
+  --status-info-bg: #{$status-info-bg};
+  --status-info-text: #{$status-info-text};
+  --status-warning-bg: #{$status-warning-bg};
+  --status-success-bg: #{$status-success-bg};
+  --status-success-text: #{$status-success-text};
+
+  --component-nav-separator: #{$component-nav-separator};
+}
+
+// -----------------------------------------------------------------------------
+// Dark Mode Theme Override
+// Higher specificity ensures our dark mode values override design system
+// -----------------------------------------------------------------------------
+
+html:root[data-theme="dark"],
+:root[data-theme="dark"] {
+  // Override semantic color tokens for dark mode (following design system)
+  --background-page: #{$bg-page-dark};                 // primary-1050 instead of neutral-50
+  --background-white: var(--color-neutral-1000);       // black instead of white
+  --background-block-primary: var(--color-neutral-900);
+  --background-block-secondary: var(--color-neutral-800);
+  --background-neutral-subtle: var(--color-neutral-900);
+  --background-neutral-subtlest: var(--color-neutral-950);
+  
+  // Text colors for dark mode
+  --text-primary: #{$text-primary-dark};               // neutral-0 instead of neutral-800
+  --text-secondary: #{$text-secondary-dark};           // neutral-100 instead of neutral-600
+  --text-disabled: var(--color-neutral-500);
+  --text-placeholder: var(--color-neutral-300);
+  --text-white: var(--color-neutral-1000);             // reversed
+  
+  // Border colors for dark mode
+  --border-subtle: var(--color-neutral-600);
+  --border-subtlest: var(--color-neutral-900);
+  --border-disabled: var(--color-neutral-900);
+  
+  // Status semantic tokens for dark mode
+  --status-focus: var(--color-focus-300);              // lighter focus
+  --status-visited: var(--color-visited-300);          // lighter visited
+  --status-warning: var(--color-warning-300);          // lighter warning
+  
+  // Legacy variables override for dark mode
+  --bg-page: #{$bg-page-dark};
+  --bg-app: #{$bg-app-dark};
+  --text-footer-copy: #{$text-footer-copy-dark};
+  --color-footer-bg: #{$color-neutral-900};            // lighter footer in dark mode
+  --button-outlined-primary-hover: #214021;
+
+  --component-nav-separator: #{$component-nav-separator-dark};
+}
+
+// Auto dark mode detection (prefers-color-scheme)
+// Higher specificity ensures our values override design system
+@media (prefers-color-scheme: dark) {
+  html:root:not([data-theme]),
+  html:root[data-theme="auto"],
+  html:not([data-theme]),
+  html[data-theme="auto"] {
+    // Same overrides as explicit dark theme
+    --background-page: #{$bg-page-dark};
+    --background-white: var(--color-neutral-1000);
+    --background-block-primary: var(--color-neutral-950);
+    --background-block-secondary: var(--color-neutral-800);
+    --background-neutral-subtle: var(--color-neutral-900);
+    --background-neutral-subtlest: var(--color-neutral-950);
+    
+    --text-primary: #{$text-primary-dark};
+    --text-secondary: #{$text-secondary-dark};
+    --text-disabled: var(--color-neutral-500);
+    --text-placeholder: var(--color-neutral-300);
+    --text-white: var(--color-neutral-1000);
+    
+    --border-subtle: var(--color-neutral-600);
+    --border-subtlest: var(--color-neutral-900);
+    --border-disabled: var(--color-neutral-900);
+    
+    --status-focus: var(--color-focus-300);
+    --status-visited: var(--color-visited-300);
+    --status-warning: var(--color-warning-300);
+    
+    --bg-page: #{$bg-page-dark};
+    --bg-app: #{$bg-app-dark};
+    --text-footer-copy: #{$text-footer-copy-dark};
+    --color-footer-bg: #{$color-neutral-900};
+  }
+}

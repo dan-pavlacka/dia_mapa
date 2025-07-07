@@ -1,0 +1,188 @@
+
+
+.arrowIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.budgetModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.budgetModalContent {
+  position: relative;
+  background-color: $bg-app;
+  border-radius: $border-radius-xl;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  max-width: 90vw;
+  min-width: 400px;
+  width: auto;
+  padding: $spacing-3xl;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin: auto;
+
+  @include below-500 {
+    padding: $spacing-lg;
+    max-width: 95%;
+  }
+  
+  h2 {
+    margin: 0 0 $spacing-lg 0;
+    font-style: normal;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-3xl;
+    line-height: $line-height-normal;
+    letter-spacing: 0.0312em;
+    color: $text-primary;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Year Selector
+// -----------------------------------------------------------------------------
+
+.yearSelector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.yearButton {
+  padding: 4px $spacing-lg;
+  border: 1px solid $green-primary;
+  border-radius: $spacing-lg;
+  background-color: $bg-app;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-md;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+  color: $green-primary;
+
+  &:hover {
+    background-color: $color-gray-light;
+    border-color: $color-neutral-500;
+  }
+
+  &.active {
+    background-color: $green-primary;
+    color: $bg-page;
+    border-color: $green-primary;
+  }
+
+  @include below-500 {
+    padding: 6px $spacing-md;
+    font-size: $font-size-sm;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Budget Table
+// -----------------------------------------------------------------------------
+
+.budgetTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    text-align: left;
+    padding: $spacing-sm $spacing-md;
+    background-color: $bg-app;
+    border-bottom: 1px solid $table-border-color;
+    font-style: normal;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-md;
+    line-height: $line-height-normal;
+    letter-spacing: $letter-spacing-wide;
+    color: $color-neutral-900;
+
+    @include below-500 {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  td {
+    text-align: right;
+    padding: $spacing-sm $spacing-md;
+    border-bottom: 1px solid $color-neutral-200;
+    font-style: normal;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-md;
+    line-height: $line-height-normal;
+    letter-spacing: $letter-spacing-wide;
+    color: $text-primary;
+
+    @include below-500 {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Responsive - inline with component classes
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Modal Controls
+// -----------------------------------------------------------------------------
+
+.closeIcon {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.divider {
+  border-top: 1px solid $color-border-light;
+  margin-left: -24px;
+  margin-right: -24px;
+  width: calc(100% + 48px);
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.budgetCloseButton {
+  display: block;
+  margin-left: auto;
+  padding: $spacing-sm $spacing-lg;
+  background-color: $bg-app;
+  border: 1px solid $green-primary;
+  border-radius: $border-radius-lg;
+  cursor: pointer;
+  color: $green-primary;
+  font-style: normal;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+  
+  &:hover {
+    background-color: $green-primary;
+    color: $bg-app;
+  }
+}

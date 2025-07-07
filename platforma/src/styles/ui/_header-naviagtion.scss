@@ -1,0 +1,10 @@
+// Header navigation container
+.gov-header__navigation {
+    padding: $spacing-sm 0;
+}
+
+#main-navigation .gov-subnavigation, #main-navigation .gov-mega-menu {
+    top: 3.5rem;
+    left: 0;
+}
+

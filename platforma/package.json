@@ -1,0 +1,31 @@
+{
+  "name": "platforma",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "copy:icons": "copyfiles --flat ./node_modules/@gov-design-system-ce/icons/lib/components/* ./public/icons"
+  },
+  "dependencies": {
+    "@gov-design-system-ce/react": "^2.3.1",
+    "@gov-design-system-ce/templates": "^0.1.2",
+    "@hookform/resolvers": "^5.1.1",
+    "ajv": "^8.17.1",
+    "ajv-errors": "^3.0.0",
+    "ajv-formats": "^3.0.1",
+    "next": "15.3.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.58.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "copyfiles": "^2.4.1",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.3",
+    "sass": "^1.89.2"
+  }
+}

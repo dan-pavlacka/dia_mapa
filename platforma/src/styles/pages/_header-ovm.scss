@@ -1,0 +1,59 @@
+
+
+.titleOVM {
+  width: 100%;
+  padding-bottom: 0;
+  margin-bottom: 0;
+
+  &.compact {
+    padding-bottom: 0;
+    margin-bottom: 0;
+
+    .subtitle {
+      margin-bottom: 0;
+    }
+
+    .cardRow {
+      display: none;
+    }
+  }
+}
+
+.subtitle {
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+.heading {
+  margin: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Card Layout
+// -----------------------------------------------------------------------------
+
+.cardRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-lg;
+  margin-top: $spacing-lg;
+
+  > * {
+    flex: 1 1 300px; // min width is 300px
+    min-width: 250px; // safe minimum
+    max-width: 100%;  // never overflow
+    box-sizing: border-box;
+  }
+
+  @include below-640 {
+    flex-direction: column;
+    align-items: stretch;
+
+    > * {
+      width: 100% !important;
+      min-width: unset !important;
+      max-width: 100% !important;
+      flex: 0 0 auto !important;
+    }
+  }
+} 

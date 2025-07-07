@@ -1,0 +1,104 @@
+
+
+// TODO: Convert DetailModal.module.css to SCSS 
+
+// Detail Modal component styles - converted from DetailModal.module.css
+
+  .detailModalContent {
+    background-color: $color-neutral-0;
+    padding: $spacing-lg;
+    border-radius: $border-radius-lg;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+
+  h2 {
+    margin: 0 0 $spacing-lg 0;
+    font-style: normal;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-3xl;
+    line-height: 150%;
+    letter-spacing: 0.0312em;
+    color: $text-primary;
+  }
+}
+
+.closeIcon {
+  position: absolute;
+  top: $spacing-3xl;
+  right: $spacing-3xl;
+  width: $spacing-lg;
+  height: $spacing-lg;
+  cursor: pointer;
+}
+
+.divider {
+  border-top: 1px solid $table-border-color;
+  margin-left: -$spacing-3xl;
+  margin-right: -$spacing-3xl;
+  width: calc(100% + 48px);
+  margin-top: $spacing-lg;
+  margin-bottom: $spacing-lg;
+}
+
+.detailTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+    border-bottom: 1px solid $color-border-lighter;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  td {
+    text-align: left;
+    padding: $spacing-sm $spacing-md;
+    border-bottom: 1px solid $color-neutral-200;
+    font-style: normal;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-md;
+    line-height: $line-height-normal;
+    letter-spacing: $letter-spacing-wide;
+    color: $text-primary;
+  }
+}
+
+.detailLabel {
+  width: 40%;
+  font-weight: $font-weight-medium;
+  color: $color-neutral-500;
+  padding-right: $spacing-lg;
+  white-space: nowrap;
+}
+
+.detailValue {
+  width: 60%;
+  color: $color-neutral-800;
+  word-break: break-word;
+}
+
+.detailCloseButton {
+  display: block;
+  margin-left: auto;
+  padding: $spacing-sm $spacing-lg;
+  background-color: $bg-app;
+  border: 1px solid $green-primary;
+  border-radius: $border-radius-lg;
+  cursor: pointer;
+  color: $green-primary;
+  font-style: normal;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+
+  &:hover {
+    background-color: $green-primary;
+    color: $bg-app;
+  }
+} 

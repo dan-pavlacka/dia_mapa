@@ -1,0 +1,26 @@
+.gov-header {
+    background-color: $color-header-bg;
+    & > div > * {
+        max-width: $grid-container-max-width;
+        margin: 0 auto;
+        padding: 0;
+        width: 100%;
+        position: relative;
+    }
+    [data-theme="dark"] & {
+        background-color: $color-header-bg-dark;
+    }
+}
+
+.gov-header .gov-header__content {
+    padding: 0 $spacing-md;
+}
+
+.gov-header__divider {
+    border-bottom: $border-width-thin solid var(--component-nav-separator);    
+    padding: $spacing-lg 0;
+}
+
+[data-theme="dark"] .gov-theme-switch__indicator svg {
+    color: $color-primary-500;
+}

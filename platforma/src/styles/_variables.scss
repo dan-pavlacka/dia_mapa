@@ -1,0 +1,250 @@
+
+// Green colors
+$color-green-50: #f0fdf4;
+$color-green-100: #F7FFF5;
+$color-green-200: #E8F5E4;
+$color-green-300: #D1EEC9;
+$color-green-400: #A2D893;
+$color-green-500: #6BA45C;
+$color-green-600: #368537;
+$color-green-700: #207315;
+$color-green-800: #125600;
+$color-green-900: #113A06;
+
+// Neutral colors
+$color-neutral-0: #ffffff;
+$color-neutral-50: #fafafa;
+$color-neutral-100: #f5f5f5;
+$color-neutral-200: #e7e7e7;
+$color-neutral-300: #d4d4d4;
+$color-neutral-400: #a3a3a3;
+$color-neutral-500: #737373;
+$color-neutral-600: #525252;
+$color-neutral-700: #4f4f4f; //změněno podle DS původní bylo #404040 - stejěn tak 
+$color-neutral-800: #262626;
+$color-neutral-900: #171717;
+$color-neutral-950: #262626;
+$color-neutral-1000: #000000;
+
+// Colors - Primary & Secondary
+$color-primary-50: $color-green-50;
+$color-primary-100: $color-green-100;
+$color-primary-200: $color-green-200;
+$color-primary-300: $color-green-300;
+$color-primary-400: $color-green-400;
+$color-primary-500: $color-green-500;
+$color-primary-600: $color-green-600;
+$color-primary-700: $color-green-700;
+$color-primary-800: $color-green-800;
+$color-primary-900: $color-green-900;
+$color-primary-950: #132a3e;
+$color-primary-1000: #0f1f33;
+$color-primary-1050: #010409;
+
+// Secondary colors (from design system)
+$color-secondary-50: #fff9e9;
+$color-secondary-100: #fff6e1;
+$color-secondary-200: #fef0d0;
+$color-secondary-300: #fde1a1;
+$color-secondary-400: #ffcf74;
+$color-secondary-500: #fbc342;
+$color-secondary-600: #fab413;
+$color-secondary-700: #c8900f;
+$color-secondary-800: #af7a00;
+$color-secondary-900: #4a3403;
+$color-secondary-950: #3d2b00;
+$color-secondary-1000: #241b04;
+
+// Error colors (from design system)
+$color-error-50: #fef2f2;
+$color-error-100: #fde3e3;
+$color-error-200: #fccccc;
+$color-error-300: #f8a9a9;
+$color-error-400: #f37676;
+$color-error-500: #e84b4b;
+$color-error-600: #c62828;
+$color-error-700: #b32222;
+$color-error-800: #7e1414;
+$color-error-900: #490c0c;
+$color-error-950: #300606;
+$color-error-1000: #240303;
+
+// Success colors (from design system)
+$color-success-50: #f3faf3;
+$color-success-100: #e2f6e3;
+$color-success-200: #c7ebc9;
+$color-success-300: #9bda9e;
+$color-success-400: #67c16b;
+$color-success-500: #42a547;
+$color-success-600: #2e7d32;
+$color-success-700: #2a6b2d;
+$color-success-800: #265529;
+$color-success-900: #204724;
+$color-success-950: #0d260f;
+$color-success-1000: #061b08;
+
+// Warning colors (from design system)
+$color-warning-50: #fefbe8;
+$color-warning-100: #fef7c3;
+$color-warning-200: #feed8a;
+$color-warning-300: #fdd835;
+$color-warning-400: #fac615;
+$color-warning-500: #ead508;
+$color-warning-600: #ca8504;
+$color-warning-700: #e49400;
+$color-warning-800: #be7d02;
+$color-warning-900: #6b4a0d;
+$color-warning-950: #432e06;
+$color-warning-1000: #2a1b00;
+
+// Focus and visited colors (from design system)
+$color-focus-300: #6caef4;
+$color-focus-600: #007bff;
+$color-visited-300: #c4a7e6;
+$color-visited-600: #67329e;
+$color-visited-700: #60306b;
+
+
+$color-footer-bg: #2e2d2c;
+$color-header-bg: $color-neutral-0;
+$color-header-bg-dark: #2e2d2c;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-2xl: 24px;
+$spacing-3xl: 32px;
+$spacing-4xl: 40px;
+$spacing-5xl: 48px;
+$spacing-6xl: 56px;
+$spacing-7xl: 64px;
+
+// Typography
+$font-family-primary: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+$font-family-secondary: 'Roboto', sans-serif;
+
+$font-size-xs: 12px;
+$font-size-sm: 13px;
+$font-size-md: 14px;
+$font-size-lg: 16px;
+$font-size-xl: 18px;
+$font-size-2xl: 20px;
+$font-size-3xl: 24px;
+$font-size-4xl: 32px;
+$font-size-5xl: 40px;
+$font-size-6xl: 48px;
+$font-size-7xl: 64px;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+$font-weight-black: 900;
+
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+$letter-spacing-tight: -0.025em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.0125em;
+$letter-spacing-wider: 0.05em;
+$letter-spacing-widest: 0.1em;
+
+// Border & Border Radius
+$border-radius-sm: 4px;
+$border-radius-md: 6px;
+$border-radius-lg: 8px;
+$border-radius-xl: 12px;
+$border-radius-2xl: 16px;
+$border-radius-full: 50%;
+
+$border-width-thin: 1px;
+$border-width-medium: 2px;
+$border-width-thick: 3px;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// Z-Index Scale
+$z-index-dropdown: 100;
+$z-index-sticky: 200;
+$z-index-fixed: 300;
+$z-index-modal-backdrop: 400;
+$z-index-modal: 500;
+$z-index-popover: 600;
+$z-index-tooltip: 700;
+$z-index-toast: 800;
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// Project colors
+$green-primary: #368537;
+$green-secondary: $color-green-100;
+$green-tertiary: $color-green-700;
+
+// Status colors
+$status-info-bg: #E5EEF9;
+$status-info-text: #1E5086;
+$status-warning-bg: #FEF0D0;
+$status-success-bg: #E2F6E3;
+$status-success-text: #2A6B2D;
+
+// Additional grays
+$color-gray-light: #eaeaea;
+$color-border-light: #ddd;
+$color-border-lighter: #eee;
+$color-gray-hover: #f9f9f9;
+
+// Light mode semantic colors (current defaults)
+$bg-page: #F6F6F6;
+$bg-app: $color-neutral-0;
+$text-primary: $color-neutral-800;
+$text-secondary: $color-neutral-700; //změněno z 600 - podle figmy
+$text-footer-copy: $color-neutral-400;
+
+// Dark mode semantic colors (following design system patterns)
+$bg-page-dark: #262524;
+$bg-app-dark: $color-neutral-950;
+$text-primary-dark: $color-neutral-0;
+$text-secondary-dark: $color-neutral-100;
+$text-footer-copy-dark: $color-neutral-300;
+
+// Layout
+$grid-container-max-width: 1200px;
+$grid-container-max-width-wide: 1440px;
+$grid-gap: $spacing-lg;
+$content-padding: $spacing-lg;
+
+// Transitions
+$transition-fast: 0.15s;
+$transition-normal: 0.3s;
+$transition-slow: 0.5s;
+$transition-ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+// Components
+$modal-backdrop-opacity: 0.5;
+$tooltip-max-width: 320px;
+$card-border-radius: $border-radius-xl;
+$button-border-radius: $border-radius-lg;
+$input-border-radius: $border-radius-md;
+
+
+$table-border-color: $color-border-light;
+$table-header-bg: $color-neutral-100;
+$table-cell-padding: $spacing-sm; 
+
+$component-nav-separator: #e7e7e7; 
+$component-nav-separator-dark: #424242; 

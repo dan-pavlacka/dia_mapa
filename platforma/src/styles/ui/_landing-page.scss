@@ -1,0 +1,10 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-lg;
+  width: 100%;
+
+  @include below-768 {
+    grid-template-columns: 1fr;
+  }
+}

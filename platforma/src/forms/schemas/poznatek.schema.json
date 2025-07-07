@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "",
+  "type": "object",
+  "required": ["nazev_poznatku", "poznatek", "autor"],
+  "properties": {
+    "nazev_poznatku": { "type": "string", "title": "Název poznatku" },
+    "poznatek": { "type": "string", "title": "Poznatek" },
+    "autor": { "type": "string", "title": "Autor" },
+    "id_konzultace": { "type": "string", "title": "ID konzultace" },
+    "id_zameru": { "type": "string", "title": "ID záměru" },
+    "aktualni": { "type": "boolean", "title": "Je aktuální?" }
+  },
+  "errorMessage": {
+    "required": {
+      "nazev_poznatku": "Zadejte název poznatku.",
+      "poznatek": "Zadejte text poznatku.",
+      "autor": "Zadejte autora."
+    }
+  }
+}

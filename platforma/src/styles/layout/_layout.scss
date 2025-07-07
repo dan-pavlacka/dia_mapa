@@ -1,0 +1,70 @@
+
+
+.react-main-layout {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  gap: $spacing-lg;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: $bg-page;
+  grid-template-rows: auto;
+  align-items: start;
+  padding: 0 0 $spacing-lg 0;
+
+  @include below-640 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.react-main-center {
+  grid-column: 2;
+  @include flex-column;
+  gap: $spacing-3xl;
+  max-width: 100%;
+  overflow: hidden;
+
+  @include below-640 {
+    grid-column: 1;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Content Blocks
+// -----------------------------------------------------------------------------
+
+.mainContent {
+  width: 100%;
+  padding: $spacing-lg;
+  background-color: $bg-app;
+  border: none;
+  border-radius: $border-radius-2xl;
+  box-sizing: border-box;
+}
+
+// -----------------------------------------------------------------------------
+// Header & Navigation Components
+// -----------------------------------------------------------------------------
+
+.headerOVM {
+  margin-top: 37px; // Keep original specific value
+  @include flex-column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 8px;
+  width: 100%;
+}
+
+.contacts {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.menu {
+  width: 100%;
+  padding: 0;
+  margin: 0 !important;
+  box-sizing: border-box;
+} 

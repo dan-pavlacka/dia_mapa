@@ -1,0 +1,33 @@
+
+
+.filterButton_container {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: solid 1px $color-neutral-200;
+}
+
+.filterButton_button {
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 16px;
+  border: 1px solid $green-tertiary;
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0.0125em;
+  background-color: $bg-app;
+  color: $green-primary;
+  user-select: none;
+
+  &:hover:not(.active) {
+    background-color: $bg-app;
+  }
+
+  &.active {
+    background-color: $green-tertiary;
+    color: $bg-app;
+    border-color: $green-tertiary;
+  }
+} 

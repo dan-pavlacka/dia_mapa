@@ -1,0 +1,102 @@
+
+
+// TODO: Convert BudgetInfoCard.module.css to SCSS 
+
+// Budget Info Card component styles - converted from BudgetInfoCard.module.css
+
+.budgetCard {
+  background-color: $bg-app;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  border-radius: $border-radius-2xl;
+  
+  /* Responzivní chování */
+  flex: 1 1 0; /* flex-grow: 1, flex-shrink: 1, flex-basis: 300px */
+  min-width: 300px; /* Minimální šířka před zalomením */
+  max-width: 100%; /* Maximální šířka */
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* volitelný hover efekt */
+  }
+}
+
+.budgetCardContent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: $spacing-md;
+  gap: $spacing-md;
+  width: 100%;
+  box-sizing: border-box;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  flex-shrink: 0; /* Ikona se nesmí zmenšovat */
+}
+
+.budgetIcon {
+  width: 36px;
+  height: 36px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0; /* Umožní text overflow */
+}
+
+.budgetLabel {
+  margin: 0;
+  white-space: nowrap; /* Text na jednom řádku */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Tři tečky pokud se text nevejde */
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  color: $text-secondary;
+}
+
+.budgetValue {
+  margin: 0;
+  white-space: nowrap; /* Text na jednom řádku */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Tři tečky pokud se text nevejde */
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  color: $text-primary !important;
+}
+
+/*modální okno a chevron*/
+.arrowButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $spacing-xs;
+  margin-left: auto;
+  align-self: center;
+} 

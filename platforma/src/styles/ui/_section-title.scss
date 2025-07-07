@@ -1,0 +1,55 @@
+
+
+.sectionTitleWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: 0;
+}
+
+.sectionTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionIcon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.name, 
+.abbr {
+  font-style: normal;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-3xl;
+  line-height: $line-height-tight;
+  color: $text-primary;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.subtitle {
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-md;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-neutral-500;
+}
+
+.subtitleUrl {
+  text-decoration: underline;
+  cursor: pointer;
+  color: $color-neutral-500;
+} 

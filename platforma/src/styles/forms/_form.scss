@@ -1,0 +1,31 @@
+
+
+.formButtons {
+  @include flex-between;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 0;
+}
+
+.divider {
+  border-top: $border-width-thin solid $color-neutral-300;
+  margin-left: -8pxxl;
+  margin-right: -8pxxl;
+  width: calc(100% + #{8pxxl * 2});
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.formButton {
+  @include button-secondary;
+  gap: 8px; // Space between icon and text
+  
+  // Override base button styling with specific form button styles
+  padding: 8px 16px;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+
+  &:hover {
+    cursor: pointer;
+  }
+} 

@@ -1,0 +1,63 @@
+
+
+.paginationContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: $spacing-md;
+  margin-top: $spacing-md;
+}
+
+.rowsPerPageSelect {
+  padding: 4px 8px;
+  font-size: 14px;
+  width: auto;
+  max-width: 80px;
+}
+
+.recordsText {
+  font-size: 14px;
+  color: $color-neutral-700;
+}
+
+.paginationButtons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pageButton {
+  background: transparent;
+  border: none;
+  padding: 12px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: $color-neutral-700;
+  border-radius: 8px;
+  color: $green-primary;
+}
+
+.pageButtonActive {
+  background-color: $green-secondary;
+  color: $green-primary;
+  font-weight: $font-weight-bold;
+  cursor: default;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+}
+
+.paginationIconButton {
+  background: transparent;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.paginationIconButton img {
+  display: block;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}

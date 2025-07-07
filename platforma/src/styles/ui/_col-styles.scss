@@ -1,0 +1,83 @@
+
+
+.colBasic {
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-md;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+  color: $text-primary;
+}
+
+.colTyp {
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-md;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-neutral-600;
+}
+
+.colURL {
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-md;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+  text-decoration-line: underline;
+  color: $green-primary;
+}
+
+.colTag {
+  padding: 0;
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-xs;
+  line-height: $line-height-normal;
+  letter-spacing: 0.2px;
+}
+
+// -----------------------------------------------------------------------------
+// Status Wrappers & States
+// -----------------------------------------------------------------------------
+
+.wrapperClass {
+  padding: $spacing-xs;
+  background-color: $text-secondary;
+  color: $text-primary;
+  border-radius: $border-radius-lg;
+}
+
+// Status states
+.stav_modra {
+  background-color: $status-info-bg;
+  color: $status-info-text;
+  padding: $spacing-xs;
+  border-radius: $border-radius-sm;
+}
+
+.stav_seda {
+  background-color: $color-neutral-200;
+  color: $color-neutral-800;
+  padding: $spacing-xs;
+  border-radius: $border-radius-sm;
+}
+
+.stav_oranzova {
+  background-color: $status-warning-bg;
+  color: $color-neutral-800;
+  padding: $spacing-xs;
+  border-radius: $border-radius-sm;
+}
+
+.stav_zelena {
+  background-color: $status-success-bg;
+  color: $status-success-text;
+  padding: $spacing-xs;
+  border-radius: $border-radius-sm;
+}
+
+.stav_nic {
+  background-color: $bg-app;
+  color: $bg-app;
+}

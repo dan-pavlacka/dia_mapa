@@ -1,0 +1,88 @@
+
+
+.infoCard {
+  background-color: $bg-app;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  border-radius: $border-radius-2xl;
+  flex: 1 1 0px;
+  min-width: 300px;
+  max-width: 100%;
+
+  @include below-768 {
+    flex: 1 1 100%;
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+.infoCardContent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: $spacing-md;
+  gap: $spacing-md;
+  width: 100%;
+  box-sizing: border-box;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.infoIcon {
+  width: 36px;
+  height: 36px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.infoLabel {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  color: $text-secondary;
+}
+
+.infoValue {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  color: $text-primary !important;
+}
+

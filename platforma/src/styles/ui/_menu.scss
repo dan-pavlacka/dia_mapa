@@ -1,0 +1,45 @@
+
+
+.menu {
+  width: 100%;
+  border-bottom: $border-width-thin solid $color-neutral-200;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: $spacing-md;
+  margin-top: $spacing-lg;
+
+  @include below-768 {
+    flex-direction: column;
+    gap: $spacing-sm;
+    align-items: flex-start;
+  }
+}
+
+.menuButton {
+  border-radius: 0;
+  font-style: normal;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
+  letter-spacing: $letter-spacing-wide;
+  color: $green-primary;
+  background-color: $bg-page;
+  border: none;
+  padding: 6px $spacing-md;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+
+  &:hover {
+    background-color: $color-gray-light;
+  }
+
+  &.active {
+    border-bottom: 2px solid $green-primary;
+  }
+
+  @include below-768 {
+    width: 100%;
+    text-align: left;
+  }
+}

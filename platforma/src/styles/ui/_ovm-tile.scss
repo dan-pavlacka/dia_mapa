@@ -1,0 +1,59 @@
+
+
+.ovmCard {
+  cursor: pointer;
+  border: none;
+  border-radius: $border-radius-lg;
+  padding: $spacing-xl;
+  box-sizing: border-box;
+  background: $color-gray-hover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.ovmCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+}
+
+.ovmTitle {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  margin: 0;
+}
+
+.chevronIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.counts {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.countsRow {
+  margin: 0;
+}
+
+.countItem {
+  font-size: $font-size-md;
+  color: $color-neutral-700;
+} 

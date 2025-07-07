@@ -1,0 +1,74 @@
+
+
+.gov-footer {
+  // Change text color for all gov-link in footer
+  --text-primary-color: #{$color-neutral-0};
+  background-color: $color-footer-bg;
+  padding: $spacing-5xl $spacing-2xl;
+
+  h5 {
+    color: $color-neutral-0;
+    @include text-style($font-size-3xl, $font-weight-bold, $line-height-normal, $letter-spacing-wide);
+    font-family: $font-family-secondary;
+
+    &.loga {
+      font-weight: $font-weight-medium;
+      font-size: $font-size-xl; 
+    }
+  }
+
+  p {
+    color: $color-neutral-0;
+    @include text-style($font-size-md, $font-weight-semibold, $line-height-normal, $letter-spacing-wide);
+    font-family: $font-family-secondary;
+
+    &.thin {
+      font-weight: $font-weight-normal;
+      font-size: $font-size-sm;
+    }
+
+    &.copy {
+      color: $text-footer-copy;
+      font-weight: $font-weight-semibold;
+      font-size: $font-size-sm;
+      letter-spacing: 0.2px;
+    }
+  }
+
+  .gov-footer__address {
+    li {
+      color: $color-neutral-0;
+      font-style: normal;
+      @include text-style($font-size-lg, $font-weight-semibold, $line-height-normal, $letter-spacing-wide);
+      font-family: $font-family-secondary;
+      text-decoration: underline;
+      text-decoration-style: solid;
+      text-decoration-thickness: 0%;
+      text-decoration-skip-ink: auto;
+    }
+  }
+
+  .gov-footer__content {
+    max-width: $grid-container-max-width;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+  }
+
+  .gov-footer-links {
+    li {
+      color: $color-neutral-0;
+    }
+  }
+
+  hr {
+    border-color: $color-neutral-0;
+    opacity: 0.4;
+  }
+}
+
+.footer-version {
+  span {
+    color: $color-neutral-0;
+  }
+} 

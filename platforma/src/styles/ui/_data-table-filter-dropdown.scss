@@ -1,0 +1,55 @@
+
+
+// TODO: Convert DataTableFilterDropdown.module.css to SCSS 
+
+// Data Table Filter Dropdown component styles - converted from DataTableFilterDropdown.module.css
+
+.dropdownBox {
+  position: fixed;
+  background: $color-neutral-0;
+  border: $border-width-thin solid $color-neutral-300;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  min-width: 150px;
+  width: max-content;
+  max-width: 320px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: $spacing-xs 0;
+  will-change: transform;
+  transform: translateZ(0);
+  pointer-events: auto;
+
+  &.alignRight {
+    left: auto;
+    right: 0;
+  }
+}
+
+.dropdownOption {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  cursor: pointer;
+  border-bottom: $border-width-thin solid $color-neutral-100;
+
+  &:hover {
+    background-color: $color-neutral-50;
+  }
+}
+
+.clearSelection {
+  padding: $spacing-sm $spacing-md;
+  cursor: pointer;
+  border-top: $border-width-thin solid $color-neutral-300;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background-color: $color-neutral-50;
+  color: $text-secondary;
+
+  &:hover {
+    background-color: $color-neutral-100;
+  }
+}

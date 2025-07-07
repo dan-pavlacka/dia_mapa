@@ -1,0 +1,16 @@
+.gov-banner--homepage[foreground=icon][size=s] {
+    --image-width: 48px;
+    & > div {
+        @include respond-above($breakpoint-lg) {
+            padding-left: 100px;
+        }
+    }
+    &:before {
+        width: var(--image-width);
+        height: var(--image-width);
+        top: var(--image-width);
+        left: var(--image-width);
+        background-image: url('/assets/icons/complex/graduate.svg');
+        filter: invert(1);
+    }
+}
